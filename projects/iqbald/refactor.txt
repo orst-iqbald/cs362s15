@@ -1,0 +1,11 @@
+Line 669: For adventurer, I increase the drawntreasure when deck is empty
+//
+          drawntreasure++;
+//
+Line843: For smithy, the drawCard function is called for up to and inclusive of three cards rather than just till three
+      for (i = 0; i =< 3; i++)
+Line 859: For village, added 3 actions rather than 2 that were previous to change.
+      state->numActions = state->numActions + 3;
+Line 857: For baron case, decrease number of buys rather than increase them.
+
+
