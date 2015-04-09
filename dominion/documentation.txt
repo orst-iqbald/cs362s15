@@ -1,0 +1,59 @@
+
+Name:       Sonja Olson
+ONID:       olsonsor@onid.oregonstate.edu
+Course:     CS 362 - Software Engineering 2
+Assignment: Week 2 - Assignment 2
+
+File:       documentation.txt
+Purpose:    Document Smithy, Adventurer, Update and Discard cards for Dominion Game
+
+***********************************************************************************
+
+SMITHY 
+	Cost = [4 TREASURE]
+The SMITHY card allows the player to draw 3 additional cards.
+
+When a card is played in the game, the cardEffect() method is called. This method identifies the card played and then calls the corresponding card method. When the method for the SMITHY card is called, zzzsmithycardplay(), it takes a value i, the identifying number of the current player, the position of the card in the hand, and the game state. In the method it calls the drawCard method three times in a for loop, to draw the three additional cards, and then calls the discardCard method to discard the SMITHY card as it has now been played.
+
+****************************
+
+ADVENTURER 
+	Cost = [6 TREASURE]
+The ADVENTURER card allows the player to keep drawing additional cards from their deck until 2 Treasure cards have been drawn. The 2 Treasure cards are then moved to the player’s hand while the other cards drawn are discarded.
+
+When a card is played in the game, the cardEffect() method is called. This method identifies the card played and then calls the corresponding card method. When the method for the ADVENTURER card is called, zzzadventurercardplay(), it takes a value for the treasure drawn, the identifying number of the current player, the identifying value of the card drawn, a temporary count of the hand, a value z, and the game state. While less than two treasures have been drawn, the method goes through a loop. First it checks that there are still cards in the deck to be drawn from. If not, the cards from the discard pile are shuffled and replaced in the deck. Then a card is drawn by calling the drawCard() method. The card drawn is moved to be the top card in the hand. If the card drawn is a Treasure card, the drawTreasure count is increased by one. If not, the card is placed into a temporary hand, removed from the hand, and the value for z (which is the number of cards that have been drawn) is increased. Once two Treasure cards have been drawn, the method goes through a second loop while z-1 is greater than or equal to 0 and discards each of the cards that have been drawn.
+
+***************************
+
+discardCard()
+After a card has been played it is discarded using the discardCard() method. 
+The method takes in four values: 
+	the position of the card in the hand, 
+	the identifying number of the current player, 
+	the game state, 
+	and a trash flag value. 
+Functions:
+1. method checks the trash flag value. A value of 0 indicates that the card will be added to the discard pile instead of being trashed. 
+2. method sets the played card to -1 and removes the card from the playerÕs hand.
+3. if the card is the last card in the current hand:
+	reduce the handCount by 1.
+        ELSE IF the card was the only card left in hand, reduce hand count
+        by 1.
+        ELSE the card must be somewhere in the middle. Replace the current 
+        card with the last card. Then set state of last card in hand 
+        (now duplicated in hand)to -1 and reduce the number of cards in hand
+        by 1. 
+
+
+****************************
+
+updateCoins()
+The updateCoins() method calculates the amount of coins the user has to spend during their turn. 
+The method takes in three values: 
+	the identifying number of the current player, 
+	the game state, 
+	and a bonus value. 
+Functions:
+1. initially resets the sum of the coins to zero 
+2. adds up the sum of the values for each of the Treasure cards in the player’s hands, with respect to the appropriate values of the Treasure cards (+1 for Copper, +2 for Silver, +3 for Gold). 
+3. Depending on the other cards in play during the turn, a bonus value may also be added to the coin total.>>>>>>> .r455
