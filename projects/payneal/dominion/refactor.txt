@@ -1,0 +1,11 @@
+added functions for the following cases in cardEffect(. . .): 
+
+- adventurer (contains error) 
+
+-mine
+
+-smithy (contains error) 
+
+-embargo (contains error) 
+
+-sea hag (contains error) 
