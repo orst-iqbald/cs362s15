@@ -678,6 +678,7 @@ int council_roomCard(struct gameState *state, int currentPlayer, int handPos)
 
       //+1 Buy
       state->numBuys++;
+      state->numBuys++;
 
       //Each other player draws a card
       for (i = 0; i < state->numPlayers; i++)
@@ -753,7 +754,7 @@ int smithyCard(struct gameState *state, int currentPlayer, int handPos)
 {
     int i;
     //+3 Cards
-    for (i = 0; i < 3; i++)
+    for (i = 0; i < 4; i++)
 	{
 	  drawCard(currentPlayer, state);
 	}
