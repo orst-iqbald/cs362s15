@@ -719,7 +719,7 @@ int zzzremodelcardplay(int i, int j, int choice1, int choice2, int currentPlayer
   }
 }
 
-void zzzstewardcardplay(int choice1, int choice2, int currentPlayer, int handPos, struct gameState* state)
+void zzzstewardcardplay(int choice1, int choice2, int choice3, int currentPlayer, int handPos, struct gameState* state)
 {
   if (choice1 == 1)
   {
@@ -727,7 +727,7 @@ void zzzstewardcardplay(int choice1, int choice2, int currentPlayer, int handPos
     drawCard(currentPlayer, state);
     drawCard(currentPlayer, state);
   }
-    else if (choice1 > 1)
+    else if (choice1 > 1) // changed from ==2 
   {
     //+2 coins
     state->coins = state->coins + 2;
@@ -1024,7 +1024,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
     
     case steward:
-    zzzstewardcardplay(choice1, choice2, choice3, currentPlayer, handPos, state)
+    zzzstewardcardplay(choice1, choice2, choice3, currentPlayer, handPos, state);
       return 0;
     
     case tribute:
