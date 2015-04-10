@@ -1078,30 +1078,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case cutpurse:
-      //return playCutpurse(state, currentPlayer, handPos);
-  updateCoins(currentPlayer, state, 2);
-  for (i = 0; i < state->numPlayers; i++) {
-    if (i != currentPlayer) {
-      for (j = 0; j < state->handCount[i]; j++) {
-        if (state->hand[i][j] == copper) {
-          discardCard(j, i, state, 0);
-          break;
-        }
-        if (j == state->handCount[i]) {
-          for (k = 0; k < state->handCount[i]; k++) {
-            if (DEBUG)
-              printf("Player %d reveals card number %d\n", i, state->hand[i][k]);
-          } 
-          break;
-        }   
-      }      
-    } 
-  }     
-
-  //discard played card from hand
-  discardCard(handPos, currentPlayer, state, 0);      
-
-  return 0;    
+      return playCutpurse(state, currentPlayer, handPos);
 
     case embargo: 
       //+2 Coins
@@ -1364,35 +1341,35 @@ int playSmithy(struct gameState *state, int currentPlayer, int handPos)
 }
 
 //new function to play the Cutpurse card
-// int playCutpurse(struct gameState *state, int currentPlayer, int handPos)
-// {
-//   int i;
-//   int j;
+int playCutpurse(struct gameState *state, int currentPlayer, int handPos)
+{
+  int i;
+  int j;
 
-//   updateCoins(currentPlayer, state, 2);
-//   for (i = 0; i < state->numPlayers; i++) {
-//     if (i != currentPlayer) {
-//       for (j = 0; j < state->handCount[i]; j++) {
-//         if (state->hand[i][j] == copper) {
-//           discardCard(j, i, state, 0);
-//           break;
-//         }
-//         if (j == state->handCount[i]) {
-//           for (k = 0; k < state->handCount[i]; k++) {
-//             if (DEBUG)
-//               printf("Player %d reveals card number %d\n", i, state->hand[i][k]);
-//           } 
-//           break;
-//         }   
-//       }      
-//     } 
-//   }     
+  updateCoins(currentPlayer, state, 2);
+  for (i = 0; i < state->numPlayers; i++) {
+    if (i != currentPlayer) {
+      for (j = 0; j < state->handCount[i]; j++) {
+        if (state->hand[i][j] == copper) {
+          discardCard(j, i, state, 0);
+          break;
+        }
+        if (j == state->handCount[i]) {
+          for (k = 0; k < state->handCount[i]; k++) {
+            if (DEBUG)
+              printf("Player %d reveals card number %d\n", i, state->hand[i][k]);
+          } 
+          break;
+        }   
+      }      
+    } 
+  }     
 
-//   //discard played card from hand
-//   discardCard(handPos, currentPlayer, state, 0);      
+  //discard played card from hand
+  discardCard(handPos, currentPlayer, state, 0);      
 
-//   return 0;
-// }
+  return 0;
+}
 
 
 
