@@ -11,10 +11,5 @@ int gainCard(int supplyPos, struct gameState *state, int toFlag, int player);
 int getCost(int cardNumber);
 int cardEffect(int card, int choice1, int choice2, int choice3, 
 	       struct gameState *state, int handPos, int *bonus);
-int effectSmithy(struct gameState *state, int handPos);
-int effectAdventurer(struct gameState *state, int handPos);
-int effectCouncilRoom(struct gameState *state, int handPos);
-int effectGreatHall(struct gameState *state, int handPos);
-int effectCutpurse(struct gameState *state, int handPos);
 
 #endif
