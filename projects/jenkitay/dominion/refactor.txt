@@ -1,0 +1,31 @@
+// Author Taylor Jenkins
+// jenkitay@onid.oregonstate.edu
+// CS 362 Assignment 2
+// File name: refactor.txt
+// Description: Documentation of refactored code for dominion, and how the 
+//    smithy card, adventurer card, 
+//    were implemented in their own functions. Also includes documentation of 
+//    bugs introduced  into the code.
+
+
+All of the following cards were implemented as separate functions, and located 
+immediately preceding the cardEffect() function in the following order:
+
+adventurer card:
+   int adventurerCardEffect(struct gameState *state)
+
+
+smithy card:
+   int smithyCardEffect(struct gameState *state, int handPos) 
+
+   
+gardens card:
+   int gardensCardEffect()
+
+
+embargo card:
+   int embargoCardEffect(int choice1, struct gameState *state, int handPos)
+
+
+sea_hag card:
+   int sea_hagCardEffect(struct gameState *state)
