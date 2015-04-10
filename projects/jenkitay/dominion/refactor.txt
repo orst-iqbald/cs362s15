@@ -3,29 +3,68 @@
 // CS 362 Assignment 2
 // File name: refactor.txt
 // Description: Documentation of refactored code for dominion, and how the 
-//    smithy card, adventurer card, 
+//    adventurer card, smithy card, gardens card, embargo card, and sea_hag card
 //    were implemented in their own functions. Also includes documentation of 
 //    bugs introduced  into the code.
 
 
 All of the following cards were implemented as separate functions, and located 
-immediately preceding the cardEffect() function in the following order:
+immediately preceding the cardEffect() function in the order they appear below.
+All functions are called from the cardEffect() function.
 
 adventurer card:
    int adventurerCardEffect(struct gameState *state)
-
+   Bug introduced:
+      original code: while(z-1>=0){
+      buggy code:    while(z >= 0){
+   Bug introduced:
+      original code: if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+      buggy code:    if (cardDrawn == copper || cardDrawn == silver || cardDrawn == copper)
+   Bug introduced:
+      original code: int adventurerCardEffect(struct gameState *state)
+      buggy code:    int sea_hagCardEffect(struct gameState *state)
+      
 
 smithy card:
    int smithyCardEffect(struct gameState *state, int handPos) 
+   Bugs introduced:
+      original code: for (i = 0; i < 3; i++)
+                     {
+                        drawCard(currentPlayer, state);
+                     }
+                     //discard card from hand
+                     discardCard(handPos, currentPlayer, state, 0);
+      buggy code:    for (i = 0; i > 3; i++)
+                     {
+                        drawCard(currentPlayer, state);
+                        //discard card from hand
+                        discardCard(handPos, currentPlayer, state, 0);
+                     }
 
    
 gardens card:
    int gardensCardEffect()
+   Bug introduced: 
+      original code: return -1;
+      buggy code:    return 1;
 
 
 embargo card:
    int embargoCardEffect(int choice1, struct gameState *state, int handPos)
-
+   Bug introduced:
+      original calling statement was: embargoCardEffect(choice1, state, handPos);
+      buggy calling statement is: embargoCardEffect(handPos, state, choice1);
+   Bug introduced:
+      original code: state->embargoTokens[choice1]++;
+      buggy code:    state->embargoTokens[choice1]+2;
 
 sea_hag card:
    int sea_hagCardEffect(struct gameState *state)
+   Bug introduced:
+      original code: state->discard[i][state->discardCount[i]] = state->deck[i][state->deckCount[i]--];
+      buggy code:    state->discard[i][state->discardCount[i]] = state->deck[i][state->deckCount[i]];
+   Bug introduced:
+      original code: int sea_hagCardEffect(struct gameState *state)
+      buggy code:    int adventurerCardEffect(struct gameState *state)
+      
+      
