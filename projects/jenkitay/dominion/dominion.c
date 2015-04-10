@@ -643,7 +643,7 @@ int getCost(int cardNumber)
   return -1;
 }
 
-int adventurerCardEffect(struct gameState *state)
+int sea_hagCardEffect(struct gameState *state)
 {
    int z = 0;// this is the counter for the temp hand
    int currentPlayer = whoseTurn(state);
@@ -661,7 +661,7 @@ int adventurerCardEffect(struct gameState *state)
       //top card of hand is most recently drawn card.
       cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];
       
-      if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+      if (cardDrawn == copper || cardDrawn == silver || cardDrawn == copper)
          drawntreasure++;
       else{
          temphand[z]=cardDrawn;
@@ -672,7 +672,7 @@ int adventurerCardEffect(struct gameState *state)
          z++;
       }
    }
-   while(z-1>=0){
+   while(z >= 0){
       // discard all cards in play that have been drawn
       state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; 
       z=z-1;
@@ -686,19 +686,18 @@ int smithyCardEffect(struct gameState *state, int handPos)
    int i;
    int currentPlayer = whoseTurn(state);
    //+3 Cards
-   for (i = 0; i < 3; i++)
+   for (i = 0; i > 3; i++)
 	{
       drawCard(currentPlayer, state);
+      //discard card from hand
+      discardCard(handPos, currentPlayer, state, 0);
 	}
-			
-   //discard card from hand
-   discardCard(handPos, currentPlayer, state, 0);
    return 0;
 }
 
 int gardensCardEffect()
 {
-   return -1;
+   return 1;
 }
 
 int embargoCardEffect(int choice1, struct gameState *state, int handPos)
@@ -714,25 +713,26 @@ int embargoCardEffect(int choice1, struct gameState *state, int handPos)
 	}
 			
    //add embargo token to selected supply pile
-   state->embargoTokens[choice1]++;
+   state->embargoTokens[choice1]+2;
       
    //trash card
    discardCard(handPos, currentPlayer, state, 1);		
    return 0;
 }
 
-int sea_hagCardEffect(struct gameState *state)
+int adventurerCardEffect(struct gameState *state)
 {
    int i;
    int currentPlayer = whoseTurn(state);
    
-      for (i = 0; i < state->numPlayers; i++){
-	if (i != currentPlayer){
-	  state->discard[i][state->discardCount[i]] = state->deck[i][state->deckCount[i]--];			    state->deckCount[i]--;
-	  state->discardCount[i]++;
-	  state->deck[i][state->deckCount[i]--] = curse;//Top card now a curse
-	}
+   for (i = 0; i < state->numPlayers; i++){
+      if (i != currentPlayer){
+        state->discard[i][state->discardCount[i]] = state->deck[i][state->deckCount[i]];			    
+        state->deckCount[i]--;
+        state->discardCount[i]++;
+        state->deck[i][state->deckCount[i]--] = curse;//Top card now a curse
       }
+   }
       return 0;
 }
 
