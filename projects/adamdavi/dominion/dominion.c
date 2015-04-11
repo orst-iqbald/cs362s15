@@ -1227,7 +1227,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
 int playAdventurer(struct gameState *state, int currentPlayer)
 {
   int cardDrawn;
-  int drawntreasure = 0;
+  int drawntreasure;
   int z = 0; //counter for temp hand
   int temphand[MAX_HAND];// moved above the if statement
 
@@ -1246,7 +1246,8 @@ int playAdventurer(struct gameState *state, int currentPlayer)
       z++;
     }
   }
-  while(z - 1 >= 0){
+  
+  while(z >= 0){
     state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z - 1]; // discard all cards in play that have been drawn
     z = z - 1;
   }
@@ -1260,12 +1261,12 @@ int playSmithy(struct gameState *state, int currentPlayer, int handPos)
   int i;
 
   //+3 Cards
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i < 3; i--) {
     drawCard(currentPlayer, state);
   }
       
   //discard card from hand
-  discardCard(handPos, currentPlayer, state, 0);
+  discardCard(handPos, currentPlayer, state, 1);
   
   return 0;
 }
