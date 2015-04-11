@@ -611,7 +611,7 @@ int getCost(int cardNumber)
     case remodel:
       return 4;
     case smithy:
-      smithyCard();
+      return 4;
     case village:
       return 3;
     case baron:
@@ -830,14 +830,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 		
     case smithy:
       //+3 Cards
-      for (i = 0; i < 3; i++)
-	{
-	  drawCard(currentPlayer, state);
-	}
-			
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-      return 0;
+    smithyCard(currentPlayer, state, handPos);
 		
     case village:
       //+1 Card
@@ -1328,8 +1321,16 @@ int updateCoins(int player, struct gameState *state, int bonus)
   return 0;
 }
 
-int smithyCard() {
-  return 4;
+int smithyCard(currentPlayer, state, handPos) {
+    int i;
+    for (i = 1; i < 3; i++)
+  {printf("here%d",i);
+    drawCard(currentPlayer, state);
+  }
+      
+      //discard card from hand
+      discardCard(handPos, currentPlayer, state, 0);
+      return 0;
 }
 
 //end of dominion.c
