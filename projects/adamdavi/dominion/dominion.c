@@ -1278,6 +1278,7 @@ int playCutpurse(struct gameState *state, int currentPlayer, int handPos)
 {
   int i;
   int j;
+  int k;
 
   updateCoins(currentPlayer, state, 2);
   for (i = 0; i < state->numPlayers; i++) {
