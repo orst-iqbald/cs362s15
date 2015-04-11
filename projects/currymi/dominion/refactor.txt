@@ -1,0 +1,51 @@
+### Miles A. Curry (currymi)
+### Github: Micurry
+### CS-362-400 - Spring 2015
+### Assignment 2 - refactor.txt 
+
+
+Refactoring
+===========
+The following cards have been refactored:
+    1. Smithy card 
+        -> int smithyCard(int currentPlayer, int handPos, struct gameState *state);
+    2. Adventuerer Card
+        -> int advetuerCard(int currentPlayer, int gameState *state);
+    3. Council Room card
+        -> int councilRoomEffect(int currentPlayer, int handPos, struct gameState *state);
+    4. feast card
+        -> int feastEffect(int currentPlayer, int choice1, struct gameState *state);
+    5. mine card
+        -> int mineEffect(int currentPlayer, int choice1, int choice2, int handPos, struct gameState *state);
+    6. remodel card
+        -> int remodelEffect(int currentPlayer, int choice1, int choice2, int handPos, struct gameState *state);
+
+
+Bug Introductions
+=================
+
+    Smithy Card
+    ----------
+    Once three cards have been drawn the smithy card is not the card that is discarded. 
+
+
+    Adventurer Card
+    ----------------
+    The adventure card draws only one treasure, and not two.
+
+
+    Council Room Card
+    -----------------
+    Gives 2 buys instead of 1.
+
+
+    Feast Card
+    ----------------
+    Gives 10 bonus coins instead of 5.
+
+
+
+
+
+
+
