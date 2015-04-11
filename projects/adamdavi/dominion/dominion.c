@@ -1278,13 +1278,12 @@ int playCutpurse(struct gameState *state, int currentPlayer, int handPos)
   int j;
   int k;
 
-  updateCoins(currentPlayer, state, 2);
+  updateCoins(currentPlayer, state, 0);
   for (i = 0; i < state->numPlayers; i++) {
     if (i != currentPlayer) {
       for (j = 0; j < state->handCount[i]; j++) {
         if (state->hand[i][j] == copper) {
           discardCard(j, i, state, 0);
-          break;
         }
         if (j == state->handCount[i]) {
           for (k = 0; k < state->handCount[i]; k++) {
