@@ -1311,7 +1311,7 @@ int playTreasureMap(struct gameState *state, int currentPlayer, int handPos)
   //search hand for another treasure_map
   index = -1;
   for (i = 0; i < state->handCount[currentPlayer]; i++) {
-    if (state->hand[currentPlayer][i] == treasure_map && i != handPos) {
+    if (state->hand[currentPlayer][i] == treasure_map) {
       index = i;
       break;
     }
