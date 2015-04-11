@@ -128,4 +128,15 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 /* Set array position of each player who won (remember ties!) to
    1, others to 0 */
 
+int useAdventurer(struct gameState *state, int currentPlayer);
+/* implements adventurer card as own method */
+int useSmithy(struct gameState *state, int currentPlayer, int handPos);
+/* implements smithy card as own method */
+int useVillage (struct gameState *state, int currentPlayer, int handPos);
+/* implements village card as own method */
+int useCouncil_room (struct gameState *state, int currentPlayer, int handPos);
+/* implements council_room card as own method */
+int useCutpurse(struct gameState *state, int currentPlayer, int handPos);
+/* implements cutpurse card as own method */
+
 #endif
