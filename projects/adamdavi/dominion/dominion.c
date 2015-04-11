@@ -1343,7 +1343,7 @@ int playRemodel(struct gameState *state, int currentPlayer, int handPos, int cho
 
   j = state->hand[currentPlayer][choice1];  //store card we will trash
 
-  if ( (getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2) ) {
+  if ( (getCost(state->hand[currentPlayer][choice1])) > getCost(choice2) ) {
     return -1;
   }
 
@@ -1354,7 +1354,7 @@ int playRemodel(struct gameState *state, int currentPlayer, int handPos, int cho
 
   //discard trashed card
   for (i = 0; i < state->handCount[currentPlayer]; i++) {
-    if (state->hand[currentPlayer][i] == j) {
+    if (state->hand[currentPlayer][j] == j) {
       discardCard(i, currentPlayer, state, 0);      
       break;
     }
