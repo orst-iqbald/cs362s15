@@ -5,7 +5,7 @@ Documentation.txt
 
 Adventurer card: This card lets the player draw cards from their 
 deck until they draw two treasure cards of any value. Any non-treasure
-care are discarded. If the deck runs out before two treasure cards
+cards are discarded. If the deck runs out before two treasure cards
 are drawn, the rest of the deck is reshuffled and the drawing continues. 
 
 Smithy card: This card lets the player draw the next three cards from
@@ -14,7 +14,7 @@ before the three cards are drawn, the rest of the deck is reshuffled
 and the rest of the cards are drawn from the new deck.
 
 discardCard(): This method looks at a card and determines if the card 
-has been removed from play or if the card has been played. If the card 
+is to be removed from the game or if the card has been played. If the card 
 has not been trashed, the card is removed from the player's hand and 
 added to the played pile. 
 
