@@ -611,7 +611,7 @@ int getCost(int cardNumber)
     case remodel:
       return 4;
     case smithy:
-      return 4;
+      smithyCard();
     case village:
       return 3;
     case baron:
@@ -1328,6 +1328,9 @@ int updateCoins(int player, struct gameState *state, int bonus)
   return 0;
 }
 
+int smithyCard() {
+  return 4;
+}
 
 //end of dominion.c
 
