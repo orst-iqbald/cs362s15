@@ -1221,9 +1221,6 @@ int updateCoins(int player, struct gameState *state, int bonus)
   return 0;
 }
 
-
-//end of dominion.c
-
 //added by adamdavi for Assignment 2
 
 //new function to play the adventurer card
@@ -1368,3 +1365,4 @@ int playRemodel(struct gameState *state, int currentPlayer, int handPos, int cho
 
 //end of work added for Assignment 2
 
+//end of dominion.c
