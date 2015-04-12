@@ -1,0 +1,13 @@
+- Refactor of dominion.c 
+
+- Minion Card
+
+Added a minion_refact function that is called in the minion card switch.  Changed the conditional that checks if state->handCount < 4.  Instad of checking the conditional it will instead apply a left bit shift to handCount[i].
+
+- Smithy Card
+
+Added smithy_refact function that is called in the smithy card switch.  Changed it to check that "i" is <= 3.  So it will draw 4 cards now
+
+- Adventurer 
+
+Added adventurer_refact function that is called in the adventurer card switch.  I changed the logic of the conditional that checks if a treasure card has been drawn.  I changed it from || to &&.  This means that only coppers are counted as being treasure cards.
