@@ -1,0 +1,12 @@
+Conleyme Assignment 2 - refactor.txt
+
+I first moved the adventurer function out of the switch statement and replaced it with a void function. The parameters for the function are simply passed from either the cardEffect parameters or local variables declared within cardEffect. Afterward I confirmed the game still runs correctly. Then I did the same for smithy, village, council room, cutpurse, and minion.
+
+I then introduced a bug into adventurer, smithy, council room, and village one at a time, again recompiling each time to make sure it was not enough to break the game.
+
+The bugs introduced were as follows:
+
+Adventurer: The case for copper being counted as a treasure card was removed, so drawnTreasure will only update if silver or gold is drawn. After introducing this bug, the scores changed from player 0 - 30/player 1 - 40 to player 0 - 29/player 1 - 47.
+Smithy: The for loop that allows the player to draw 3 cards had the condition changed from i = 0; i < 3 to i = 1; i < 3, effectively allowing the player to draw only 2 cards. After introducing this bug, the scores changed from player 0 - 29/player 1 - 47 to player 0 - 15/player 1 - 39.
+Village: Instead of adding + 2 to numActions, only 1 is added. 
+Council Room: The logic was changed from (i != currentPlayer) which has all players not the current player draw a card, it was changed to (i == currentPlayer), allowing only the current player to draw a card. 
