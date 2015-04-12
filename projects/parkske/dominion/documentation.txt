@@ -1,0 +1,30 @@
+#Documentation of dominion project
+Author: Kevin Parks
+
+#Card documentation
+smithy card:
+- 3 cards are drawn from the player's deck and added to their hand.
+- The player must discard 1 card from their hand after the drawing.
+
+adventurer card:
+- If the current player's deck is empty, the discard is shuffled and added to deck.
+- The adventurer card draws cards from the deck until two treasure cards have been drawn (copper|silver|gold), placing those treasure cards into your hand.
+- Any non-treasure cards drawn during the process of drawing the two treasure cards are moved to discard after being revealed.
+- Note: the deck is not reshuffled once the drawing process has begun.
+
+#Method documentation
+discardCard():
+- int handPos = position of card to discard in current player's hand
+- int currentPlayer = player's hand in question
+- struct gameState *state = current game state
+- int trashFlag = bool to indicate whether to trash or discard card
+- The function discards the specific card instance from a player's hand.
+- If the discard call includes the trash flag, the card is added to the trash pile. Otherwise, it is added to the Played pile.
+- The player's hand (count) is decremented by 1.
+
+updateCoins():
+- int player = the player in question
+- struct gameState *state = current game state
+- int bonus = 
+- All treasure cards in the hand of the player in question are summed as coins.
+- The state's current bonus value is then added to the sum as well.
