@@ -1,0 +1,39 @@
+Smithy card is an Action card and a Kingdom card.
+
+The card costs 4 coins, and gives an immediate +3 draw from the hand.
+
+In code, the card calls drawCard() 3 times, and then is discarded.
+-------------------------------------------------------------------------------
+Adventurer card is an Action card and a Kingdom Card
+The card costs 6 coins, and allows the player to dig through their deck, 
+discarding other cards until 2 treasure cards are found and added to the hand.
+
+In code, the card checks to make sure there is a deck to draw from, and calls
+shuffle if the deck is empty. 
+
+Then it draws a card. If that card is a coin card (gold, silver, copper) it 
+increments the drawnTreasure counter. If it is not a coin card, then it is put 
+aside. 
+
+Once drawnTreasure reaches 2, the other cards are discarded, and updateCoins is 
+called to add the value of the two cards found. 
+-------------------------------------------------------------------------------
+discardCard()
+Cards are discarded to a Played pile. Once the current deck is exhausted, the
+Played pile is shuffled and becomes the current deick again. 
+
+discardCard() first checks to make sure the card is Discarded, not Trashed. 
+then it increments the played card count.
+
+Then, it resets the players hand, in preperation for removing the just played or
+discarded card form the hand, taking hand count down by 1.
+-------------------------------------------------------------------------------
+updateCoins()
+There are 3 coin cards: copper, worth 1; silver, worth 2; and gold, worth 3.
+
+updateCoins() sets the total value of coins to 0, then runs through the hand 
+array. Each time it encounters a coin card, it adds the appropriate value to 
+the coins value. 
+
+Once it is done with the hand, it adds any bonus coins (which
+are recieved from playing certain actions).
