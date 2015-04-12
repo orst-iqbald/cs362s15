@@ -1,0 +1,54 @@
+Rory Bresnahan
+bresnahr@onid.oregonstate.edu
+CS 362
+Assignment
+refactor.txt
+
+In dominion.c I added the following funcitons:
+newSmithy(int currentPLayer, struct gameState *state, int handPos)
+newAdventurer(int currentPlayer, struct gameState *state)
+newRemodel(int currentPlayer, struct gameState *state, int handPos, int choice1, int choice2)
+newCouncil_room(int currentPlayer, stuct gameState *struct, int handPos)
+newSea_hag(int currentPlayer, struct gameState *state)
+
+In the cardEffect function I added an int getNew and initialized it to 0.  This variable is used for the return value of these new functions.
+For each new function, in the dominion.c code, I commented out the code where their respective switch statements were and added
+a call to the new function.  The getNew variable is set to the value of the new function and the value is returned within that switch statement.
+
+
+newSmithy()
+This function draws 3 cards to the current player and discards the smithy card.
+A bug was added to the for loop that calls drawCard.  I changed the "less than 3" to "less than or equl to 3", therefore
+it iterates 4 times instead of 3.
+for(i = 0; i <= 3; i++)
+
+newAdventurer()
+The adventurer card reveals cards from the players deck until 2 treasure cards are found- they are put into their hand and
+the other revealed cards are discarded.  If the deck is empty the shuffle is called.
+I placed a bug during the process of checking if the drawn card is a treasure card.
+If it is a gold card it will not be considered a treasure card.  I did this by changing the if statement:
+if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+I changed the 'cardDrawn == gold' to 'cardDrawn != gold'.
+Also I placed an unnecessary call to shuffle outside of the if statement that checks and calls shuffle if the deck is empty.
+
+newRemodel()
+Remodel trashes a card allowing you to gain a gain worth 2 more than the trashed card.
+Instead of gaining a card the player chooses worth 2 more, a bug adds the card that was supposed to be trashed to the player's hand.
+gainCard(choice2, state, 0, currentPlayer) was changed to gainCard(choice1, state, 0, currentPlayer)
+Also the code that checks if the card the player wants to trash is in the hand, I added a condition that it will trash the current card
+being checked if it is a smithy card.
+'if( state->hand[currentPlayer][i] == j )' was changed to 'if( state->hand[currentPlayer][i] == j || state->hand[currentPlayer][i] == smithy)'
+
+newCouncil_room()
+Council room adds 4 cards to the current player's hand and allows an extra buy.  Each other players draw a card.
+A bug exists when the other players draw a card.  Instead of only having the other players add a card, each player will add a card.
+'if( i != currentPlayer )' was changed to 'if( i == currentPlayer )'
+
+newSea_hag()
+Each other player discard the top card of their deck and gains a curse card.  Tis is placed on the top of the deck.
+I added the benefit the player that played the sea hag card will also gain 3 gold.
+updateCoins(currentPlayer, state, 3);
+
+
+
+

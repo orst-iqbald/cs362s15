@@ -1,0 +1,27 @@
+Daryl Cooke
+CS362 - Software Engineering 2
+Spring 2015
+
+Assignment 2
+
+Smithy
+------
+Card type: Action
+This action card draws 3 cards and places them in your hand. You then place the smithy card into the discard pile. 
+
+The smithy case inside the cardEffect(...) function uses a for loop to call drawCard(...) three times. It then calls the discardCard(...) function to place the smithy in the discard pile.
+
+Adventurer
+----------
+Card type: Action
+This action card will continuously draw cards from your deck until it has found two treasure cards. It will then place those treasure cards in your hand and place the other drawn cards into the discard pile.
+
+The adventure case inside the cardEffect(...) function will draw cards until integer drawntreasure is 2. It also performs some checks on the deck to make sure it does not overdraw, such as shuffling the discard pile into your deck if the deck becomes empty. It will create a temporary hand using the temphand[] integer array which will hold all of the cards that are not treasure cards. Once two treasure cards have been found we will discard the temphand[] array and return.
+
+discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
+-----------------------------------------------------------------------------------
+This function is used to discard cards after they have been played. Some cards are trashed instead of discarded, which is denoted by a flag passed into the discardCard(...) function. An if statement is used to determine if a card needs to be trashed at the beginning of the function. Otherwise we remove the card from the players hand, decrement the hand card count, and return.
+
+int updateCoins(int player, struct gameState *state, int bonus)
+---------------------------------------------------------------
+This function is used to calculate the number of coins a player has after drawing a hand. It should be called at the beginning of each players turn. The first step is to reset the players coins to 0, and then loop through the players hand and count the number of coins he has. There are special cases for each type of coin (copper, silver, gold) and also a bonus parameter that is passed in which could be from an active card.
