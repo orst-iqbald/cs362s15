@@ -1,0 +1,58 @@
+/* 
+Name: Philip Lewallen
+Email: lewallep@onid.oregonstate.edu
+Class: CS362-400
+Assignment: Assignment3
+*/
+
+I wrote the adventurerCard() function at the bottom of dominion.c.  I also included a function prototype for this function in the 
+dominion.h file.
+
+I passed in the pointers by value and then the temp z by value also. 
+
+The bug I made in this card is:
+	I changed the decrement z value @ line 1354 to 2 instead of 1.
+
+-------------------------------------------------------------------------------------
+
+smithCard() Refactoring
+
+This was straight forward.  I copied the contents over to a function and done.
+
+The bug I made in this card is:
+	@ Line 1359 I changed the comparison operator to a less than or equals.
+
+	Time permitting I would like to introduce a bug where I flip the variables being passed into the function @ line 1365.
+
+----------------------------------------------------------------------------------------
+
+baronCard() Refactoring
+
+The function takes three arguments.
+	The gameState struct pointer
+	Int currentPlayer and 
+	Int choice1.  
+
+	These are passed by value.
+
+	The bug I introduced is simple.  I changed the increment of the state->coins +=4 to +=3.
+	This was done on line1352 of my file.
+------------------------------------------------------------------------------------------
+
+gardensCard() Refactoring
+
+I changed the function to return and int. And done.
+
+	No bug was inserted into this card.
+
+------------------------------------------------------------------------------------------
+
+villageCard() Refactoring
+
+	I changed thhe order of function calls to have the draw card be last instead of the first line of the function.
+	My reasoning is the function is clear cut enough by itself that if I made any further changes it would draw the eye of th eperson doing the debugging and not be as effective.  The theory is to "hide in plain site".  Experimentation will determine if I am onto something.  
+
+
+files changes are
+	dominion.c
+	dominion.h
