@@ -1,0 +1,16 @@
+04.12.15
+
+Smithy:
+	The code implementing the Smithy card is found on line 831 of the dominion.c file. The purpose of this function is to have the player draw 3 cards. This is accomplished with a For-Loop that iterates 3 times. Each iteration of the loop, the drawCard() function is called, adding 3 cards to the player's hand. After the 3 cards are drawn, the discardCard() function is called to move to the next play. 
+
+Adventure: The code implementing the Adventure card is found on line 665 of the dominion.c file. The purpose of this function is to verify that the user draws two treasure cards. This is done by drawing a card and checking if cardDrawn == copper, silver or gold. If it is, the drawntreasure variable is incremented. The temphand[] array and z variable are used to keep track of the most recently drawn card, and whether to discard it or not (i.e. whether it was a treasure card or not).
+
+
+discardCard():
+	This function takes 4 arguments, handpos, currentPlayer, *state and trashFlag. First the trashFlag is checked, and if it's less than 1 the current card is added to the played pile and the players cardCount is incremented.  If the player has played the last card in the array or if they have only 1 card in their hand, their handcount gets decremented by 1. 
+
+updateCoins():
+	This function takes 3 arguments, player, *state and bonus. For the player designated by the first argument, the struct referenced by *state sets the coins variable to 0. Then, the handCount member variable is looped over (checking every card in that players hand) and based on if it's a copper, silver or gold the appropriate number of coins are added and assigned to their coins member variable.  If a bonus has been passed in as the 3rd argument, it is added to the coins count at the end.
+
+
+
