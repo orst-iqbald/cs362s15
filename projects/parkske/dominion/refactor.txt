@@ -13,3 +13,18 @@ Moved smithy to its own function doSmithy. Passed all necessary args from cardEf
 Bug: Changed for loop to terminate i <= 3 instead of i < 3.
 Bug: Added free/null of state and tempHand. Memory may be dereferenced later without checks for null.
 Bug: Added handpos-- instead of handpos, should change position of discard selection.
+
+/***Village***/
+Moved village to its own function doVillage. Passed all necessary args from cardEffect into function call.
+Bug: Discard handpos -1 instead of handpos, should change position of discard selection
+Bug: Added free/null of state. Memory may be dereferenced later without checks for null.
+Bug: Did currentPlayer++ in drawCard call. Should result in discard from currentPlayer + 1 in discardCard call.
+
+/***Treasure_Map**/
+Moved treasure_map to its own function doTreasureMap. Passed all necessary args from cardEffect into function call, expect index. Got rid of it.
+Bug: Did index+= i instead of index = i.
+Bug: Returns 1 on success, -1 on failure, but check statement in cardEffect assumes 0 is success. So -1 gets returned from cardEffect to playCard.
+
+/***Steward***/
+Moved steward case to its own function doSteward. Passed all necessary args from cardEffect into function call. 
+Made int array of choices to pass into function to cut down on param list size.
