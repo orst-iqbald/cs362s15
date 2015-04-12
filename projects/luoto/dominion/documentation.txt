@@ -1,0 +1,30 @@
+Smithy
+============================================================================
+Draws three cards then discards the card from hand. 
+
+
+Adventurer
+============================================================================
+Keeps drawing cards from the deck until player has drawn two treasure cards, defined as copper, silver, or gold.
+
+If the deck is empty, the discard pile is re-shuffled (deck is replenished).
+
+If the card drawn is not a treasure card, then it is stored in a temporary hand, which is discarded after the two treasure cards have been drawn.
+
+
+discardCard()
+============================================================================
+Adds card to played pile if the card is not trashed, then reduces the number of cards in the player's hand.
+
+
+updateCoins()
+============================================================================
+Updates the gameState with the total number of coins in the player's hand.
+
+Resets the coin count and adds coins for each treasure card in player's hand, where:
+
+copper = 1
+silver = 2
+gold = 3
+
+If there is a bonus from an action card, then this bonus will be added into the coin count.
