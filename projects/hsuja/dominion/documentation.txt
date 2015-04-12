@@ -1,0 +1,30 @@
+Jason Hsu
+hsuja@onid.oregonstate.edu
+4/11/15
+CS362-400
+Dominion Documentation
+
+
+Adventurer Cards:
+
+	Adventurer cards reveals cards from the player's deck until 2 Treasure cards are unveiled. Then the Treasure cards are added to the hand and the other revealed cards are discarded. 
+
+	First, the function checks whether the deck is empty and then shuffles the deck if so. However, this code effectively does nothing because shuffle() will just return -1 because the deck is empty. 
+
+	The function then draws a card from the deck using drawCard(). drawCard() will shuffle cards from the discard pile and put them in the hand if the hand is empty.
+
+	If the drawn card is a treasure card, the count of treasure cards increments. Otherwise, the drawn card is put into an array of temporary cards that will be discarded, as the hand count is decremented.
+
+	After two Treasure cards are drawn, then the temporary cards are transferred to the discard pile.
+
+Smithy Cards:
+
+	Playing the Smithy card has the player draw three cards by calling drawCard() three times. The Smithy card is then removed from the player's hand with a call to discardCard().
+
+discardCard():
+
+	discardCard() removes a card from a player's hand. The function takes as input the hand position of the card, the current player, the gameState, and the trash flag. If the card is not to be trashed, it is added to the played pile of cards. Whether the card is to be trashed or not, the card is removed from the player's hand. If the card is the last card in the hand array or if it is the last remaining card in the hand, then the gameState's hand count is simply decremented. Otherwise, if the hand has more than one card and the card to be removed is not last in the hand array, then the card will be replaced by the last card in the hand array, and the hand count is decremented. This ensures there is no "gap" in the hand array.
+
+updateCoins():
+
+	updateCoins() changes the gameState's coin count according to the Treasure cards in the player's hand as well as any coin bonus. It takes the player, pointer to the gameState, and the coin bonus as input. It first resets the gameState's coin count and then goes through each card in the player's hand. If the card is a copper, silver, or gold card, the coin count increments by 1, 2, or 3, respectively. Then the coin bonus, if any, is added to the coin count.
