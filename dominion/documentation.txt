@@ -1,5 +1,6 @@
 Conleyme Assignment 2 - documentation.txt
 
+
 Adventurer card:
 
 The adventurer card starts by shuffling the discard pile into the deck if the current deck is empty. It then has the player draw cards until they have 2 treasure cards. This is counted by checking if the last drawn card is copper, silver, or gold, and updating a counter each time these cards are drawn. It holds the non treasure card in a dummy hand array called temphand[]. Once the player has drawn 2 treasure cards, cards are discarded from temphand[] until none remain.
