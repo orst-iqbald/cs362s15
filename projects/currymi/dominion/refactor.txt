@@ -26,7 +26,7 @@ Bug Introductions
 
     Smithy Card
     ----------
-    Once three cards have been drawn the smithy card is not the card that is discarded. 
+    Once three cards have been drawn the smithy card is trashed rather then discarded. 
 
 
     Adventurer Card
