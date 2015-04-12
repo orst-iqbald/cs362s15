@@ -1,0 +1,27 @@
+This document outlines the changes I've made to 5 action cards that I've refactored.
+
+1. adventurer
+
+frxtrg
+
+
+2. council_room
+
+
+
+
+3. feast
+
+
+
+
+4. mine
+
+
+
+
+5. smithy
+
+
+
+
