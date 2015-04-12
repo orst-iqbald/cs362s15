@@ -1,5 +1,6 @@
 Conleyme Assignment 2 - refactor.txt
 
+
 I first moved the adventurer function out of the switch statement and replaced it with a void function. The parameters for the function are simply passed from either the cardEffect parameters or local variables declared within cardEffect. Afterward I confirmed the game still runs correctly. Then I did the same for smithy, village, council room, cutpurse, and minion.
 
 I then introduced a bug into adventurer, smithy, council room, and village one at a time, again recompiling each time to make sure it was not enough to break the game.
