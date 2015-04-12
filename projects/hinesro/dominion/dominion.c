@@ -646,7 +646,7 @@ int getCost(int cardNumber)
 // Added by hinesro 4/11/15
 void callAdventurer(int drawntreasure, struct gameState *state, int currentPlayer, int *temphand, int z) {
     int cardDrawn;
-    while(drawntreasure < 2) {
+    while(drawntreasure <= 2) {
         if (state->deckCount[currentPlayer] < 1) {//if the deck is empty we need to shuffle discard and add to deck
             shuffle(currentPlayer, state);
         }
@@ -655,14 +655,14 @@ void callAdventurer(int drawntreasure, struct gameState *state, int currentPlaye
         if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
             drawntreasure++;
         else {
-            temphand[z]=cardDrawn;
+            temphand[z] = cardDrawn;
             state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
             z++;
         }
     }
-    while(z-1>=0) {
-        state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
-        z=z-1;
+    while(z - 1 > 0) {
+        state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[z-1]; // discard all cards in play that have been drawn
+        z -= 1;
     }
 }
 void callCouncilRoom(int currentPlayer, struct gameState *state, int handPos) {
@@ -693,7 +693,7 @@ void callSmithy(int currentPlayer, struct gameState *state, int handPos) {
     }
 
     //discard card from hand
-    discardCard(handPos, currentPlayer, state, 0);
+    //discardCard(handPos, currentPlayer, state, 0);
 }
 // End add by hinesro 4/12/15
 
@@ -776,7 +776,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
             updateCoins(currentPlayer, state, 5);
             x = 1;//Condition to loop on
             while( x == 1) {//Buy one card
-                if (supplyCount(choice1, state) <= 0){
+                if (supplyCount(choice1, state) == 0){
                     if (DEBUG)
                         printf("None of that card left, sorry!\n");
 
@@ -839,7 +839,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
             for (i = 0; i < state->handCount[currentPlayer]; i++){
                 if (state->hand[currentPlayer][i] == j){
                     discardCard(i, currentPlayer, state, 0);			
-                    break;
+                    //break;
                 }
             }
 
