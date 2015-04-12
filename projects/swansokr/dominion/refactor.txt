@@ -1,0 +1,35 @@
+The following 5 cards have been refactored into their own functions.  
+The functions are below cardEffect() in the dominion.c file and are of the form play_[cardname]().
+
+Adventurer
+Cutpurse
+Remodel
+Salvager
+Smithy
+
+Bugs were inserted into the following 4 cards:
+
+Adventurer:
+	I changed the condition on the second while-loop from "z-1 >= 0" to "z-1 > 0".
+	This will cause one of the cards in the "temporary hand" to not be discarded afterward.
+	So a card remains in the temporary hand, which is a local variable, thus that card will be lost.
+	
+Remodel:
+	I changed 
+	      if ( (getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2) )
+	to
+	      if ( (getCost(state->hand[currentPlayer][handPos]) + 2) > getCost(choice2) )
+	So instead of what was chosen to trash, the cost of the remodel (4) will be compared to 
+	the card that is to be gained.
+	
+Salvager:
+	I moved
+		//+1 buy
+        state->numBuys++;
+	inside the "if (choice1)" block.
+	So if you do not specify choice1 (a card to trash for coins), you do not get the extra buy.
+
+Smithy:
+	I changed the 0 to a 1 for the discardCard() flag.
+	This will cause the Smithy card to be trashed (removed from the game) and not merely discarded 
+	after it is played.
