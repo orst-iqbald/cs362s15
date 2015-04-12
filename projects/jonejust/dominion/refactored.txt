@@ -1,0 +1,49 @@
+Refactored Card Effect Functions
+
+Added the following variable declaration in cardEffect function.
+int retValue;
+This declaration stores return values from each of the functions below, and returns those values from within the cardEffect function.
+
+adventurerEffect(int currentPlayer, struct gameState *state)
+This function takes the currentPlayer number as its first parameter and the gameState as the 2nd parameter. Moved the following variable declarations from cardEffect into adventurerEffect function:
+int z;
+int temphand[MAX_HAND];
+int cardDrawn;
+int drawntreasure = 0;
+returns 0 upon finishing sucessfully
+*Introduced a bug such that the current player's discardCount is not
+incremented when returning cards to the discard pile. As a result only
+the last non-treasure card drawn will be returned to the discard pile.
+The rest will be lost.
+
+int feastEffect(int choice1, struct gameState *state, int currentPlayer)
+Declares the following variables previously in cardEffect: int i, x, temphand[MAX_HAND]
+Takes a card (choice1) as its first parameter, checks to see if there are
+any left, updates coins by 5, makes sure the card chosen is not more than 5,
+and then if it isn't, it puts the card into the current player's deck. If there aren't
+any cards left in the supply, it tells the player that, or else if it's too 
+expensive it prints a message telling the player that.
+*Left a bug already in the code that will allow the function to go into an 
+endless loop if the supplycount of the card is zero, or the card is too expensive.
+*Introduced a bug such that if the cost of the card equals the number of coins
+the player has, it will tell the player the card is too expensive.
+
+int remodelEffect(int currentPlayer, struct gameState *state, int handPos, int choice1, int choice2)
+This function takes choice1, the card the currentPlayer wants to discard, adds 2 to 
+the cost of the card, and compares that to the cost of the card the player wants to exchange for.
+If the card the player wants is more than this total, it returns -1. Else the function
+puts the new card in the player's deck and trashes the card the player has exchanged for.
+*Left a bug that has an inequality reversed when checking to see if the card to 
+be trashed + 2 >= the cost of the card the player wants. It returns -1 when
+the cost isn't too expensive, and doesn't return -1 when it is too expensive.
+*Introduced a bug such that instead of trashing the card that the current player intended
+to be trashed it looks in the current player's hand and sees if there are any cards of the
+same type that the player gained, and trashes one of those if they are there.
+
+int smithyEffect(int currentPlayer, struct gameState *state, int handPos)
+currentPlayer entered in parameter 1 draws three cards from the deck and 
+the smithy card is discarded. 
+*Introduced a bug such that it discards the card at handPos 3 instead of
+discarding the smithy card, unless the smithy card happens to be at 
+position 3.
+

@@ -1,0 +1,86 @@
+Brittany Hopkins
+CS 362
+Assignment 2
+refactor.txt
+
+I chose to refactor the adventurer, smithy, steward, cutpurse, and salvager cards.
+The functions for these cards were created and placed above the cardEffect function
+in the dominion.c file and are called in the respective cases in the cardEffect function.
+
+Below are the bugs that I introduced into each of these 5 cards.
+
+Adventurer card: 
+    The if statement that checks to see if treasure has been drawn no longer counts gold
+	treasure cards as drawn treasure. The code was changed as shown below:
+		FROM:   if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+	            drawntreasure++;
+		 
+		 TO:   if (cardDrawn == copper || cardDrawn == silver)
+	           drawntreasure++;
+			   
+Smithy card: 
+	The for loop that calls the drawCard function now runs 5 times instead of 3. The
+	code was changed as shown below: 
+	    FROM:   for (i = 0; i < 3; i++)
+				{
+					drawCard(currentPlayer, state);
+				}
+				
+		TO:     for (i = 0; i < 5; i++)
+				{
+					drawCard(currentPlayer, state);
+				}
+				
+Steward card: 
+	The if statement that checks if choice1 is equivalent to 1 was changed so that 
+	choice1 must be less than 1 for the statement to be ran. The code was changed 
+	as shown below: 
+		FROM:   if (choice1 == 1)
+				{
+					//+2 cards
+					drawCard(currentPlayer, state);
+					drawCard(currentPlayer, state);
+				}
+				
+		TO:     if (choice1 < 1)
+				{
+					//+2 cards
+					drawCard(currentPlayer, state);
+					drawCard(currentPlayer, state);
+				}
+
+Cutpurse card: 
+	The if statement that checked to see if the card in the hand was a copper was
+	changed to look for a gold treasure card instead. The code was changed as 
+	shown below: 
+		FROM:   if (state->hand[i][j] == copper)
+				{
+					discardCard(j, i, state, 0);
+					break;
+				}
+		
+		TO:     if (state->hand[i][j] == gold)
+				{
+					discardCard(j, i, state, 0);
+					break;
+				}
+				
+Salvager card: 
+	The if statement that adds coins to the player's total was changed so that
+	it instead subtracts coins from the user's total. The code was changed 
+	as shown below: 
+		FROM:   if (choice1)
+				{
+					//gain coins equal to trashed card
+					state->coins = state->coins + getCost( handCard(choice1, state) );
+					//trash card
+					discardCard(choice1, currentPlayer, state, 1);	
+				}
+				
+		TO:     if (choice1)
+				{
+					//gain coins equal to trashed card
+					state->coins = state->coins - getCost( handCard(choice1, state) );
+					//trash card
+					discardCard(choice1, currentPlayer, state, 1);	
+				}
