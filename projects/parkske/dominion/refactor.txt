@@ -1,0 +1,15 @@
+#Documentation of dominion project refactoring
+Author: Kevin Parks
+
+4/11/2015: 
+/***Adventurer***/
+Moved adventurer to its own function doAdventurer. Passed all necessary args from cardEffect into function call.
+Added test checks for all funcs that expect a return value.
+Bug: Added free/null of state and tempHand. Memory may be dereferenced later without checks for null.
+Bug: Modified count on temp hand clean up from [z-1] to z. z-1 was the correct value for the while and temphand.
+
+/***Smithy***/
+Moved smithy to its own function doSmithy. Passed all necessary args from cardEffect into function call.
+Bug: Changed for loop to terminate i <= 3 instead of i < 3.
+Bug: Added free/null of state and tempHand. Memory may be dereferenced later without checks for null.
+Bug: Added handpos-- instead of handpos, should change position of discard selection.
