@@ -1,0 +1,21 @@
+Conleyme Assignment 2 - documentation.txt
+
+
+Adventurer card:
+
+The adventurer card starts by shuffling the discard pile into the deck if the current deck is empty. It then has the player draw cards until they have 2 treasure cards. This is counted by checking if the last drawn card is copper, silver, or gold, and updating a counter each time these cards are drawn. It holds the non treasure card in a dummy hand array called temphand[]. Once the player has drawn 2 treasure cards, cards are discarded from temphand[] until none remain.
+
+Smithy card:
+
+A for loop draws 3 cards from the player's deck, then automatically discards the Smithy. Because the current card (in this case Smithy) is stored in the handPos variable, discardCard is called on handPos, discarding the Smithy.
+
+discardCard():
+
+The parameters are the current card position in the player's hand, the number of the current player, the current gamestate, and a flag that indicates whether or not the card is to be trashed.
+
+First the function checks if the card is trashed; if not, it is added to the played card pile, the number of cards in the hand is reduced by one, and the card is removed from the hand. If only one card is in the hand, that one card is removed in a single step. Otherwise, the trashed card is removed from all play. The same steps of removing a card from the hand apply.
+
+updateCoins():
+
+The parameters are the player, gamestate, and bonus.
+For each turn, it resets the coin count to 0, then recalculates the current coin count by iterating through the hand and adding coins for each treasure card, and any bonus if applicable.

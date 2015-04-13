@@ -12,4 +12,11 @@ int getCost(int cardNumber);
 int cardEffect(int card, int choice1, int choice2, int choice3, 
 	       struct gameState *state, int handPos, int *bonus);
 
+int adventurerFunc(struct gameState *state, int currentPlayer);
+int remodelFunc(struct gameState *state, int currentPlayer, int handPos, int choice1, int choice2);
+int smithyFunc(struct gameState *state, int currentPlayer, int handPos);
+int minionFunc(struct gameState *state, int currentPlayer, int handPos, int choice1, int choice2);
+int stewardFunc(struct gameState *state, int currentPlayer, int handPos, int choice1, int choice2, int choice3);
+
+
 #endif
