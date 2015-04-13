@@ -1,0 +1,22 @@
+newAdventurer: 
+	void newAdventurer(int drawntreasure, int currentPlayer, int cardDrawn,
+		int temphand[MAX_HAND], int z, struct gameState* state)
+	BUGS:
+		Made it so that only copper could be drawn. line 666.
+newBaron:
+	void newBaron(int choice1, int currentPlayer, struct gameState* state) {
+	BUGS:
+		none added
+newCouncilRoom:
+	void newCouncilRoom(int i, int currentPlayer, int handPos,
+		struct gameState* state)
+	BUGS:
+		removed the if statement so that the currentPlayer also draws a card when 		every other player is suppose to draw. line 700.
+newSmithy:
+	void newSmithy(int i, int currentPlayer, int handPos, struct gameState* state)
+	BUGS:
+		started at i = 1 so the player only draws 2 cards. line 649.
+newVillage:
+	void newVillage(int currentPlayer, int handPos, struct gameState* state)
+	BUGS:
+		Does not add 2 actions, instead sets to 2 actions. line 685.
