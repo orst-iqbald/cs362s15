@@ -85,7 +85,7 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
 		   struct gameState *state);
 /* Responsible for initializing all supplies, and shuffling deck and
    drawing starting hands for all players.  Check that 10 cards selected
-   are in fact (different) kingdom cards, and that numPlayers is valid.
+   are in fact (different) kingdom cards, and that numPlayers is valid. 
 
 Cards not in game should initialize supply position to -1 */
 
@@ -96,21 +96,6 @@ int shuffle(int player, struct gameState *state);
 int playCard(int handPos, int choice1, int choice2, int choice3,
 	     struct gameState *state);
 /* Play card with index handPos from current player's hand */
-
-int playAdventurer(struct gameState *state);
-/* Draws cards until 2 treasure cards are drawn, discards rest of drawn cards */
-
-int playCutPurse(struct gameState *state, int handPos);
-/* +2 coins. Each other player discards a Copper card (or reveals a hand with no Copper) */
-
-int playFeast(int choice1, struct gameState *state);
-/* Trashes this card and gains one costing up to 5 coins */
-
-int playRemodel(int choice1, int choice2, struct gameState *state, int handPos);
-/* Trash a card from your hand. Gain a card costing up to 2 coins more than the trashed card. */
-
-int playSmithy(int handPos, struct gameState *state);
-/* Draws 3 cards */
 
 int buyCard(int supplyPos, struct gameState *state);
 /* Buy card with supply index supplyPos */
