@@ -1,0 +1,34 @@
+This discusses the refactoring of dominion.c to user functions to handle 5 card actions, 4 of which have bugs introduced.
+
+I defined these functions at the bottom of dominion.c and declared them in dominion.h.
+
+Adventurer
+
+	Made this a separate function and passed in the necessary parameters.
+
+	BUG:	At the end, for discard revealed cards routine while(z-1>0), should be while(z-1>=0).
+
+
+Smithy
+
+	Made this a separate function and passed in the necessary parameters.
+
+	BUG:	Trash flag set to 1 when discardCard() called; should be 0;
+
+
+Embargo 
+
+	Made this a separate function and passed in the necessary parameters.
+
+Outpost
+
+	Made this a separate function and passed in the necessary parameters.
+
+	BUG:	Trash flag set to 1 when discardCard() called; should be 0;
+
+
+Great Hall
+	
+	Made this a separate function and passed in the necessary parameters.
+
+	BUG:	numActions--, should be numActions++.
