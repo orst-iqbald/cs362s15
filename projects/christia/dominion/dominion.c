@@ -5,6 +5,11 @@
 #include <math.h>
 #include <stdlib.h>
 
+/* instructor comments: file is updated. */
+int dummymethod()
+{
+	return 0;
+}
 int compare(const void* a, const void* b) {
   if (*(int*)a > *(int*)b)
     return 1;
