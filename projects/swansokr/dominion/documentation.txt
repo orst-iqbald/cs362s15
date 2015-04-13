@@ -1,0 +1,25 @@
+Adventurer
+•	While less than 2 treasure cards have been drawn
+	o	If the deck has no cards, shuffle the discard pile
+	o	Draw a card
+	o	Check if the card just added to the hand is a copper, silver, or gold 
+			If yes, increment the treasure card count
+			Otherwise, take the draw card out of the hand and put it into a temporary hand (This is so that the same non-treasure cards do not get shuffled back into the deck in the search for 2 treasure cards)
+•	Put all cards in the temporary hand into the current player’s discard pile
+
+Smithy
+•	Draw 3 cards (call drawCard() 3 times)
+•	Discard the Smithy card from the current player’s hand (call discardCard()) 
+
+discardCard()
+•	If the trash flag is not set, add the card to the set of played cards
+•	Remove the card from the player’s hand
+•	If this card was not the card at the far edge of the hand nor the final card in the hand, this card’s position in the hand will be filled by the card at the far edge of the hand
+
+updateCoins()
+•	Reset the coin count to zero
+•	Looks at each card in the player's hand
+	o	If it is a copper, add 1 to the coin count
+	o	If it is a silver, add 2 to the coin count 
+	o	If it is a gold, add 3 to the coin count 
+•	Add the provided bonus to the coin count 
