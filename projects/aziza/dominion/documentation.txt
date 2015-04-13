@@ -1,0 +1,13 @@
+Aryan Aziz
+CS 362
+Spring 2015
+
+Assignment 2 - Documentation.txt
+
+Smithy: Smithy is an action card (can be used during the action phase of your turn) which does not provide any additional actions, but increases the size of your hand by drawing 3 cards from the deck and placing it into your hand. 
+
+Adventurer: Adventurer is also an action card (which can be used during the action phase of your turn) which also does not provide any additional actions, but instead allows you to repeatedly draw from the deck until you get 2 treasure cards. Once you get the 2 treasure cards, you place those into your hand and discard the other cards that you drew from the deck. 
+
+discardCard(): The discardCard() method takes in 4 params: the hand position (int), the current player (int), the game state (struct), and the trash flag (int). From there it goes into 2 main if statements. First it will check if the card was not trashed, and if not it will add it to the played pile. Then it will also check the number of cards in the hand (0, 1, or n). Based on the number of cards (0, 1, or n) it will then either reduce the number of cards in the hand or (0 or 1) or remove the card and adjust what the struct should point to (n). It will always return 0. 
+
+updateCoins(): The updatecoins() method takes in 3 params: the current player (int), the game state (struct), and the bonus (int). From there it first resets the coin count to 0 and then goes into a for loop. In the for loop, it will run through each card in the player's hand. If that card is a copper, it adds 1 coin; silver adds 2 coins; gold adds 3 coins. Then ocne the for loop is complete, it will add all bonus coins as well. The function will always return 0. 
