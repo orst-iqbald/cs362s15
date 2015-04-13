@@ -1,0 +1,4 @@
+04.12.15
+
+1. Adventurer was implemented as it's own function and removed from the
+switch statement in cardEffect.
