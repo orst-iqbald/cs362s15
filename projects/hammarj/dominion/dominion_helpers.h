@@ -13,6 +13,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3,
 	       struct gameState *state, int handPos, int *bonus);
 int cardAdventurer(struct gameState *state, int handPos);
 int cardMine(struct gameState *state, int handpos, int choice1, int choice2);
+int cardRemodel(struct gameState *state, int handpos, int choice1, int choice2);
 int cardSmithy(struct gameState *state, int handPos);
 
 #endif
