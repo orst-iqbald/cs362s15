@@ -1,0 +1,22 @@
+Matthew Ahle
+CS362 – Assignment 2
+documentation.txt
+
+#2
+Smithy card
+The smithy card is a kingdom card that is specifically an action card. It increases your handsize by 3 when played. The cost of purchasing this 
+card is 4 coins.
+
+Adventurer card
+The adventurer card is a kingdom card that is also an action card. It allows you to search through your deck until you receive 2 treasure cards 
+to be placed into your hand. The other cards are discarded. This card costs 6 coins.
+
+discardCard() function
+The function will remove cards from a player as they are played in a round. First, the card is checked for whether it has a trashFlag to 
+determine if it is placed into the discard pile. Then, number of cards available to play during this turn is decremented. Then the card is 
+located from within the players hand and is removed. The number of cards in your hand is reduced.
+
+updateCoins() function
+The function updates the current total of coins available to a player when they play their treasure cards. First, the total coin count is reset.  
+Then the player’s hand is checked for any copper, silver, or gold coin cards and the value of these is added to the coin count for the current 
+player’s game state. Lastly, bonus coins are included from other cards that may provide coins.
