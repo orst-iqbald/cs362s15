@@ -1,0 +1,14 @@
+These are the cards that I implemented in their own function and the names of the functions:
+	adventurer => playAdventurer()
+	cutpurse => playCutPurse()
+	feast => playFeast()
+	remodel => playRemodel()	
+	smithy => playSmithy()
+	
+These are the bugs I introduced into these functions:
+	playAdventurer(): Instead of reshuffling the deck when it reaches zero cards, it only reshuffles when the deck
+	reaches -1 cards.
+	playCutPurse(): I switched the arguments passed to discardCard() so that now the wrong player discards the wrong
+	card. 
+	playRemodel(): Instead of gaining the desired card, the player gains the card they just trashed.	
+	playSmithy(): Instead of drawing three cards and discarding one, it now discards three and draws one.
