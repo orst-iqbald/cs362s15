@@ -2,3 +2,11 @@
 
 1. Adventurer was implemented as it's own function and removed from the
 switch statement in cardEffect.
+
+2. Smithy was implemented as it's own function and removed from the switch 
+statement in cardEffect.
+
+3. Council Room, Village and Great Hall were implemented as their own 
+functions and removed from the switch statement in cardEffect.
+
+
