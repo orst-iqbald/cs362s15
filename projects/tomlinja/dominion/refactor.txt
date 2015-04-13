@@ -1,0 +1,45 @@
+playAdventurer(state, currentPlayer):
+
+Moved case code to function.
+Added local variables for cardDrawn, drawntreasure, temphand, and z.
+Added return statement.
+
+Bug: Gold cards don't count!
+
+
+
+playCouncilRoom(state, currentPlayer):
+
+Moved case code to function.
+Added local variable for i.
+Added return statement.
+
+Bug: Current player gets an extra card!
+
+
+
+playSmithy(state, currentPlayer):
+
+Moved case code to function.
+Added local variable for i.
+Added return statement.
+
+Bug: Player doesn't get enough cards!
+
+
+
+playVillage(state, currentPlayer):
+
+Moved case code to function.
+Added return statement.
+
+Bug: None.
+
+
+
+playSteward(state, currentPlayer, choice1, choice2, choice3):
+
+Moved case code to function.
+Added return statement.
+
+Bug: Player might trash wrong card!
