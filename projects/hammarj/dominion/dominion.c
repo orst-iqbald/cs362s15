@@ -667,7 +667,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-      return cardAdventurer(state, handpos);
+      return cardAdventurer(state, handPos);
 			
     case council_room:
       //+4 Cards
@@ -750,16 +750,16 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return -1;
 			
     case mine:
-      return cardMine(state, handpos, choice1, choice2);
+      return cardMine(state, handPos, choice1, choice2);
 			
     case remodel:
-      return cardRemodel(state, handpos, choice1, choice2);
+      return cardRemodel(state, handPos, choice1, choice2);
 		
     case smithy:
-      return cardSmithy(state, handpos);
+      return cardSmithy(state, handPos);
 		
     case village:
-      return cardVillage(state handpos);
+      return cardVillage(state, handPos);
 		
     case baron:
       state->numBuys++;//Increase buys by 1!
@@ -1134,7 +1134,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   return -1;
 }
 
-int cardAdventurer(struct gameState *state, int handpos) {
+int cardAdventurer(struct gameState *state, int handPos) {
     int currentPlayer = whoseTurn(state);
     int temphand[MAX_HAND];// moved above the if statement
     int drawntreasure=0;
@@ -1165,7 +1165,7 @@ int cardAdventurer(struct gameState *state, int handpos) {
     return 0;
 }
 
-int cardMine(struct gameState *state, int handpos, int choice1, int choice2) {
+int cardMine(struct gameState *state, int handPos, int choice1, int choice2) {
   int currentPlayer = whoseTurn(state);
   
   int j;
@@ -1205,7 +1205,7 @@ int cardMine(struct gameState *state, int handpos, int choice1, int choice2) {
   return 0;
 }
 
-int cardRemodel(struct gameState *state, int handpos, int choice1, int choice2){
+int cardRemodel(struct gameState *state, int handPos, int choice1, int choice2){
   int currentPlayer = whoseTurn(state);
   int j;
   
@@ -1235,7 +1235,7 @@ int cardRemodel(struct gameState *state, int handpos, int choice1, int choice2){
   return 0;
 }
 
-int cardSmithy(struct gameState *state, int handpos) {
+int cardSmithy(struct gameState *state, int handPos) {
   int currentPlayer = whoseTurn(state);
   
   //+3 Cards
@@ -1248,7 +1248,7 @@ int cardSmithy(struct gameState *state, int handpos) {
   discardCard(handPos, currentPlayer, state, 1);
 }
 
-int cardVillage(struct gameState *state, int handpos) {
+int cardVillage(struct gameState *state, int handPos) {
   int currentPlayer = whoseTurn(state);
   
   //+1 Card
