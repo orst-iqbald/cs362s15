@@ -12,11 +12,13 @@ Cards update:
 	Village
 
 Bug introduced:
-	Adventurer: Made the while loop continue until it’s greater than 2, used <=. Also the discard pile will be reshuffled when there is 1 or less card left in the deck instead of just 0.
-	
+	Adventurer: Made the while loop continue until it’s greater than 2, used <=. 
+				Also the discard pile will be reshuffled when there is 1 or less card left in the deck instead of just 0.
+		
 	Cutpurse: Gives player 3 coins instead of 2. The Copper that is normally discarded is trashed instead.
 
-	Smithy: A fourth card is drawn, as the loop was changed to I <= 3. And the Smithy card is trashed upon use instead of discarded.
+	Smithy: A fourth card is drawn, as the loop was changed to I <= 3. 
+			And the Smithy card is trashed upon use instead of discarded.
 
 	Steward: Instead of the 2 cards being trashed, they are instead discarded, and the Steward card is trashed upon use.
 
