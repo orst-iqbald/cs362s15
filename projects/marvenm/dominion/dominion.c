@@ -662,29 +662,116 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
     nextPlayer = 0;
   }
   
-	
+  void mdmadventurercardplay(int drawntreasure, int currentPlayer, int cardDrawn,
+    int temphand[MAX_HAND], int z, struct gameState* state) {
+        while (drawntreasure < 2) {
+            if (state->deckCount[currentPlayer] < 1) {
+                //if the deck is empty we need to shuffle discard and add to deck
+                shuffle(currentPlayer, state);
+            }
+            drawCard(currentPlayer, state);
+            cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]
+                    - 1]; //top card of hand is most recently drawn card.
+            if (cardDrawn == gold)
+                drawntreasure++;
+            else {
+                temphand[z] = cardDrawn;
+                state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+                z++;
+            }
+            }
+            while (z - 1 >= 0) {
+                state->discard[currentPlayer][state->discardCount[currentPlayer]++] =
+                        temphand[z - 1]; // discard all cards in play that have been drawn
+                z = z - 1;
+        }
+    }
+    
+  void mdmsmithycardplay(int i, int currentPlayer, int handPos,
+		struct gameState* state) {
+        //+3 Cards
+        for (i = 0; i < 5; i++) {
+            drawCard(currentPlayer, state);
+        }
+        //discard card from hand
+        discardCard(handPos, currentPlayer, state, 0);
+    }
+    
+  void mdmgreathallcardplay(int currentPlayer, int handPos, 
+		struct gameState* state) {
+        //+1 Card
+        drawCard(currentPlayer, state);
+            
+        //+1 Actions
+        state->coins++;
+            
+        //discard card from hand
+        discardCard(handPos, currentPlayer, state, 1);		
+    }
+  
+  void mdmstewardcardplay(int currentPlayer, int handPos, struct gameState* state, 
+		int choice1, int choice2, int choice3) {
+        if (choice1 == 1)
+        {
+          //+2 cards
+          drawCard(currentPlayer, state);
+          drawCard(currentPlayer, state);
+        }
+          else if (choice1 == 2)
+        {
+          //+2 coins
+          state->coins = state->coins + 2;
+        }
+          else
+        {
+          //trash 2 cards in hand
+          discardCard(choice2, currentPlayer, state, 0);
+          discardCard(choice3, currentPlayer, state, 0);
+        }
+                
+          //discard card from hand
+          discardCard(handPos, currentPlayer, state, 0);	
+    }
+
+  void mdmcutpursecardplay(int i, int j, int k, int currentPlayer, int handPos,
+		struct gameState* state) {
+	updateCoins(currentPlayer, state, 2);
+      for (i = 0; i < state->numPlayers; i++)
+	{
+	  if (i != currentPlayer)
+	    {
+	      for (j = 0; j < state->handCount[i]; j++)
+		{
+		  if (state->hand[i][j] == copper)
+		    {
+		      discardCard(j, i, state, 0);
+		      break;
+		    }
+		  if (j == state->handCount[i])
+		    {
+		      for (k = 0; k < state->handCount[i]; k++)
+			{
+			  if (DEBUG)
+			    printf("Player %d reveals card number %d\n", i, state->hand[i][k]);
+			}	
+		      break;
+		    }		
+		}
+					
+	    }
+				
+	}				
+
+      //discard played card from hand
+      discardCard(handPos, currentPlayer, state, 0);
+}
+
   //uses switch to select card and perform actions
   switch( card ) 
     {
     case adventurer:
-      while(drawntreasure<2){
-	if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
-	  shuffle(currentPlayer, state);
-	}
-	drawCard(currentPlayer, state);
-	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-	if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
-	  drawntreasure++;
-	else{
-	  temphand[z]=cardDrawn;
-	  state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
-	  z++;
-	}
-      }
-      while(z-1>=0){
-	state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
-	z=z-1;
-      }
+      mdmadventurercardplay(drawntreasure, currentPlayer, cardDrawn, temphand, z,
+				state);
       return 0;
 			
     case council_room:
@@ -830,13 +917,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 		
     case smithy:
       //+3 Cards
-      for (i = 0; i < 3; i++)
-	{
-	  drawCard(currentPlayer, state);
-	}
-			
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
+		mdmsmithycardplay(i, currentPlayer, handPos, state);
       return 0;
 		
     case village:
@@ -902,14 +983,8 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case great_hall:
-      //+1 Card
-      drawCard(currentPlayer, state);
-			
-      //+1 Actions
-      state->numActions++;
-			
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
+      //+1 Card; +1 Actions
+	    mdmgreathallcardplay(currentPlayer, handPos, state);
       return 0;
 		
     case minion:
@@ -964,26 +1039,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case steward:
-      if (choice1 == 1)
-	{
-	  //+2 cards
-	  drawCard(currentPlayer, state);
-	  drawCard(currentPlayer, state);
-	}
-      else if (choice1 == 2)
-	{
-	  //+2 coins
-	  state->coins = state->coins + 2;
-	}
-      else
-	{
-	  //trash 2 cards in hand
-	  discardCard(choice2, currentPlayer, state, 1);
-	  discardCard(choice3, currentPlayer, state, 1);
-	}
-			
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
+      mdmstewardcardplay(currentPlayer, handPos, state, choice1, choice2, choice3);
       return 0;
 		
     case tribute:
@@ -1104,37 +1160,8 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case cutpurse:
-
-      updateCoins(currentPlayer, state, 2);
-      for (i = 0; i < state->numPlayers; i++)
-	{
-	  if (i != currentPlayer)
-	    {
-	      for (j = 0; j < state->handCount[i]; j++)
-		{
-		  if (state->hand[i][j] == copper)
-		    {
-		      discardCard(j, i, state, 0);
-		      break;
-		    }
-		  if (j == state->handCount[i])
-		    {
-		      for (k = 0; k < state->handCount[i]; k++)
-			{
-			  if (DEBUG)
-			    printf("Player %d reveals card number %d\n", i, state->hand[i][k]);
-			}	
-		      break;
-		    }		
-		}
-					
-	    }
-				
-	}				
-
-      //discard played card from hand
-      discardCard(handPos, currentPlayer, state, 0);			
-
+    
+        mdmcutpursecardplay(i, j, k, currentPlayer, handPos, state);
       return 0;
 
 		
