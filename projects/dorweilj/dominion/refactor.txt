@@ -1,0 +1,21 @@
+- Refactor of dominion.c 
+
+- Minion Card
+
+Added a minion_refact function that is called in the minion card switch in the cardEffect function.  Changed the conditional that checks if state->handCount < 4.  Instad of checking the conditional it will instead apply a left bit shift to handCount[i].
+
+- Smithy Card
+
+Added smithy_refact function that is called in the smithy card switch in the cardEffect function.  Changed it to check that "i" is <= 3.  So it will draw 4 cards now
+
+- Adventurer 
+
+Added adventurer_refact function that is called in the adventurer card switch in the cardEffect function.  I changed the logic of the conditional that checks if a treasure card has been drawn.  I changed it from || to &&.  This means that only coppers are counted as being treasure cards.
+
+- Village
+
+Added village_refact function that is called in the village card switch in the cardEffect function.  I changed it so that instead of adding 2 actions it removes two actions. 
+
+- Outpost
+
+Added outpost_refact function that is called in the outpost card switch in the cardEffect function.  I added a call to drawCard that will add a card to the player's hand.

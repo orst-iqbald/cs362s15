@@ -12,4 +12,13 @@ int getCost(int cardNumber);
 int cardEffect(int card, int choice1, int choice2, int choice3, 
 	       struct gameState *state, int handPos, int *bonus);
 
+//added by adamdavi for Assignment 2
+int playAdventurer(struct gameState *state, int currentPlayer);
+int playSmithy(struct gameState *state, int currentPlayer, int handPos);
+int playCutpurse(struct gameState *state, int currentPlayer, int handPos);
+int playTreasureMap(struct gameState *state, int currentPlayer, int handPos);
+int playRemodel(struct gameState *state, int currentPlayer, int handPos,
+			int choice1, int choice2);
+//end of added by adamdavi
+
 #endif

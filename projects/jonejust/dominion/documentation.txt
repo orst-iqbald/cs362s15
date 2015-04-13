@@ -1,0 +1,15 @@
+Documentation
+
+Adventurer Card
+Draw cards until two treasure cards are drawn. If at any point the deck becomes empty, shuffle the discard pile and place all the discarded cards which are shuffled into the player's deck. After all cards are drawn, the two treasure cards (i.e. copper, silver or gold) are placed in the player's hand. Any cards drawn that are not treasure cards are discarded into the discard pile. This card cost 6. NOTE: Although online documentation suggests all cards be discarded after being played, the dominion.c code does not discard the Adventurer card. It keeps the card in the player's hand, such that if the player has another action remaining, the card could be played again. This is likely a bug in the dominion.c code.
+
+Smithy Card
+Three cards are drawn and placed in the current player's hand. If at any point the deck becomes empty, shuffle the discard pile and place all the discarded cards which are shuffled into the player's deck.  The current player's handCount is incremented accordingly. The Smithy card is then discarded and put in the played pile (i.e. with the discardCard function).
+The card cost is 4.
+
+discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
+This function first checks the trashflag parameter to see if the card should be placed in the played pile. If the trashflag is not set, i.e. if trashFlag is less than 1, then the card is added to the played pile. (i.e. state->playedcards array). It then removes the card from the player's hand (i.e. the state->hand array) and decrements the player's hand count accordingly (i.e. state->handCount[currentPlayer]). If the trashflag is set the card is removed from the player's hand, but is not put back in the played pile.
+
+
+updateCoins(int player, struct gameState *state, int bonus)
+This function calculates the value of the treasure cards in a player's hand, and adds the bonus value specified in the third parameter.
