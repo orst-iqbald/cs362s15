@@ -1,0 +1,60 @@
+Smithy Card:
+The Smithy card costs 4 coins to buy, as coded into the switch statement in 
+the getCost() function.
+What the Smithy card does is add 3 cards to the player's hand (per 
+http://dominion.diehrstraits.com/?set=Base). This behavior is implemented in the
+switch statement in cardEffect() by making 3 calls to drawCard() and then
+simply discarding the Smithy card.
+
+Adventurer Card:
+The Adventurer card costs 6 coins to buy, as coded into the switch statement in
+the getCost() function.
+What the Adventurer card does is allow the player to reveal cards from their 
+deck until they reveal 2 Treasure cards. Those Treasure cards are added to the
+player's hand and the other revealed cards are discarded 
+(per http://dominion.diehrstraits.com/?set=Base). This behavior is implemented
+in the switch statement in cardEffect() by calling drawCard() while the number
+of treasures drawn is less than 2. If the drawn card is a treasure, the number
+of drawn treasures is incremented; if not, the card is added to a temporary
+hand of cards. Once enough cards have been drawn, all the cards in the
+temporary hand (which are the non-treasures) are discarded. The treasures
+remain in the player's hand. It would appear the Adventurer card is not
+discarded like the Smithy card is, so I'm wondering if that might be a bug.
+
+discardCard() Method:
+The discardCard() method is responsible for discarding a card from a player's
+hand. If the trashFlag is less than 1 that means the card is a "regular" discard 
+instead of being trashed, so it is added to the Played pile by modifying the 
+state->playedCards array and playedCardCount. Then, the card is removed from the 
+current player's hand by modifying the row of the state->hand 2D array for
+that player, as well as the state->handCount variable. Specifically, the given
+position in the player's hand is first set to -1. Next, state->handCount for
+that player is decremented and the array is adjusted if necessary so there are
+no gaps in it. If there is only one card in their hand or the discarded card
+was last in their hand, decrementing state->handCount makes it so the
+discarded card is no longer viewed as part of their hand, and there is no gap to 
+fill. Otherwise, the last card in the hand is swapped into the position left
+vacant by the discarded card.
+Parameters: int handPos is the position in the player's hand for the card to
+discard, int currentPlayer is the player whose hand the card is being 
+discarded from, struct gameState *state is the game state that is modified
+by the method, int trashFlag indicates whether the card should be added back
+to the Played pile
+Returns: 0 always, could possibly be improved with some error checking
+
+updateCoins() Method:
+The updateCoins() method is responsible for determining the number of coins
+available that can be used to make a purchase. It sets the state->coins
+variable, which appears to be used on an on-demand basis so instead of tracking
+a particular player's coins over time, it is set on every player's turn and
+represents the number of coins they can use in that turn. At the start of the
+method, state->coins is re-set to 0. Then it loops over all the cards in the
+player's hand and increments state->coins as appropriate (+1 for copper, +2 for
+silver, +3 for gold). After adding all the coins from the player's Treasure
+cards, it increments state->coins again by adding the bonus value that was
+passed (which may be 0).
+Parameters: int player is the player whose turn it is, struct gameState *state 
+is the game state that is modified by the method, int bonus is an additional
+number that should be added to state->coins aside from the Treasure cards in
+the player's hand
+Returns: 0 always, could possibly be improved with some error checking
