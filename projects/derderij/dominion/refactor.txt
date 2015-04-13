@@ -1,0 +1,23 @@
+/*Author: Jon Derderian
+ *Title: refactor.txt
+ *CS 362_400
+ *GitHub: Jderderian
+ */
+
+Cards update: 
+	Adventurer
+	Cutpurse
+	Smithy
+	Steward
+	Village
+
+Bug introduced:
+	Adventurer: Made the while loop continue until it’s greater than 2, used <=. Also the discard pile will be reshuffled when there is 1 or less card left in the deck instead of just 0.
+	
+	Cutpurse: Gives player 3 coins instead of 2. The Copper that is normally discarded is trashed instead.
+
+	Smithy: A fourth card is drawn, as the loop was changed to I <= 3. And the Smithy card is trashed upon use instead of discarded.
+
+	Steward: Instead of the 2 cards being trashed, they are instead discarded, and the Steward card is trashed upon use.
+
+	Village: The player loses 2 actions instead of gains 2 actions.
