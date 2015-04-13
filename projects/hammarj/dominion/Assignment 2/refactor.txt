@@ -1,0 +1,9 @@
+Added cardAdventurer(), cardMine(), cardRemodel(), cardSmithy(), and cardVilage() prototypes to dominion_helpers.h.  Their definitions are just below the cardEffect() definition in dominion.c.  I always call these function inside a return statement so that the return value of the card function gets passed up to the cardEffect() (where it was called).  When these function used arguments that were passed to cardEffect(), then I also passed them to the appropriate card function.  I also needed to copy some of the variable declarations and initializations from the cardEffect() function.  
+
+Introduced bug in cardAdventurer().  The condition of the first while loop is drawntreasure<=2 instead of drawntreasure<2.
+
+Introduced bug in cardMine().  Instead of adding choice2 to the player's hand, it adds choice1, which is same as the card they just trashed.
+
+Introduced bug in cardRemodel().  Inside the for loop where it's trying to figure out which card should be trashed, the cards of the player's hand are compared to the loop variable i instead of the stored card j.
+
+Introduced bug in cardSmithy().  When the card gets discarded at the end of the function, the trash flag is set instead of clear.
