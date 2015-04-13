@@ -1,0 +1,124 @@
+Michael Marven
+Assignment 2
+CS362 Spring 2015
+04/12/2015
+
+Adventurer card
+    In the conditional of the second if statement, "cardDrawn == copper || cardDrawn == silver ||" has been removed so now the drawntreasure variable will only be incresed if the card drawn is gold rather than any copper, silver, or gold treasure.
+
+    void mdmadventurercardplay(int drawntreasure, int currentPlayer, int cardDrawn,
+    int temphand[MAX_HAND], int z, struct gameState* state) {
+        while (drawntreasure < 2) {
+            if (state->deckCount[currentPlayer] < 1) {
+                //if the deck is empty we need to shuffle discard and add to deck
+                shuffle(currentPlayer, state);
+            }
+            drawCard(currentPlayer, state);
+            cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]
+                    - 1]; //top card of hand is most recently drawn card.
+            if (cardDrawn == gold)
+                drawntreasure++;
+            else {
+                temphand[z] = cardDrawn;
+                state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+                z++;
+            }
+            }
+            while (z - 1 >= 0) {
+                state->discard[currentPlayer][state->discardCount[currentPlayer]++] =
+                        temphand[z - 1]; // discard all cards in play that have been drawn
+                z = z - 1;
+        }
+    }
+    
+Smithy card
+
+    In the for statement, 5 is used rather than 3 to set the limit for card drawing, so rather than 3 cards being drawn, 5 will be drawn.
+    
+    void mdmsmithycardplay(int i, int currentPlayer, int handPos,
+		struct gameState* state) {
+        //+3 Cards
+        for (i = 0; i < 5; i++) {
+            drawCard(currentPlayer, state);
+        }
+        //discard card from hand
+        discardCard(handPos, currentPlayer, state, 0);
+    }
+
+Great Hall Card
+	The trash flag is now set to 1 in the discardCard() function, so the Great Hall card will be trashed rather than placed on the player's discard pile, and rather than increasing by one the gameState struct's numActions variable, the coins variable will instead be increased by one.
+	
+	void mdmgreathallcardplay(int currentPlayer, int handPos, 
+		struct gameState* state) {
+	//+1 Card
+      drawCard(currentPlayer, state);
+			
+      //+1 Actions
+      state->coins++;
+			
+      //discard card from hand
+      discardCard(handPos, currentPlayer, state, 1);		
+}
+
+Steward card
+	In the else clause of the if-then-else statement, the trash flags for the two cards to be trashed have been set to 0, so they will be placed in the discard pile rather than trashed.
+	
+	void mdmstewardcardplay(int currentPlayer, int handPos, struct gameState* state, 
+		int choice1, int choice2, int choice3) {
+	if (choice1 == 1)
+	{
+	  //+2 cards
+	  drawCard(currentPlayer, state);
+	  drawCard(currentPlayer, state);
+	}
+      else if (choice1 == 2)
+	{
+	  //+2 coins
+	  state->coins = state->coins + 2;
+	}
+      else
+	{
+	  //trash 2 cards in hand
+	  discardCard(choice2, currentPlayer, state, 0);
+	  discardCard(choice3, currentPlayer, state, 0);
+	}
+			
+      //discard card from hand
+      discardCard(handPos, currentPlayer, state, 0);	
+}
+
+Cutpurse card
+	No bugs have been introduced with this card
+	
+	void mdmcutpursecardplay(int i, int j, int currentPlayer, int handPos,
+		struct gameState* state) {
+	updateCoins(currentPlayer, state, 2);
+      for (i = 0; i < state->numPlayers; i++)
+	{
+	  if (i != currentPlayer)
+	    {
+	      for (j = 0; j < state->handCount[i]; j++)
+		{
+		  if (state->hand[i][j] == copper)
+		    {
+		      discardCard(j, i, state, 0);
+		      break;
+		    }
+		  if (j == state->handCount[i])
+		    {
+		      for (k = 0; k < state->handCount[i]; k++)
+			{
+			  if (DEBUG)
+			    printf("Player %d reveals card number %d\n", i, state->hand[i][k]);
+			}	
+		      break;
+		    }		
+		}
+					
+	    }
+				
+	}				
+
+      //discard played card from hand
+      discardCard(handPos, currentPlayer, state, 0);
+}

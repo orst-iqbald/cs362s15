@@ -1,0 +1,21 @@
+vandelug
+CS362-400
+Assignment 2
+12 April 2015
+
+cards refactored:
+Adventurer -> playAdventurer() with bug injection
+Smithy     -> playSmithy() with bug injection
+Village    -> playVillage() with bug injection
+GreatHall  -> playGreatHall() with bug injection
+Feast      -> playFeast() clean
+
+Injected bugs:
+
+playAdventurer() - ln 1260 increment numActions, nothing crazy just an increment
+
+playSmith() - ln 1282 switches the value of numBuys and coins prior to drawing cards to make numBuys = 0 sometimes
+
+playGreatHall() - ln 1360,1362 currentPlayer and nextPlayer both draw one card
+
+playVillage() - ln 1351-1354 if numActions is more than three, numBuys is incremented by 1 and coins is incremented by 2
