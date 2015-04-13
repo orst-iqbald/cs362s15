@@ -1,0 +1,5 @@
+Added cardAdventurer() and cardSmithy() prototypes to dominion_helpers.h.  Their defintions are just below the cardEffect() definition in dominion.c.  They take struct gameState *state and int handPos as arguments.  I also needed to copy some of the variable declarations and initializations from the cardEffect() function.  
+
+Introduced bug in cardAdventurer().  The condition of the first while loop is drawntreasure<=2 instead of drawntreasure<2.
+
+Introduced bug in cardSmithy().  When the card gets discarded at the end of the function, the trash flag is set instead of clear.
