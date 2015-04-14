@@ -714,7 +714,7 @@ void pcdSalvager(struct gameState *state, int currentPlayer, int handPos, int ch
     //gain coins equal to trashed card
     state->coins = state->coins + getCost( handCard(choice1, state) );
     //trash card
-    discardCard(choice1, currentPlayer, state, 1);	
+    discardCard(handPos, currentPlayer, state, 1);	
   }
 			
   //discard card
