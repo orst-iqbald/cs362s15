@@ -17,9 +17,9 @@ Bug introduced:
 		
 	Cutpurse: Gives player 3 coins instead of 2. The Copper that is normally discarded is trashed instead.
 
-	Smithy: A fourth card is drawn, as the loop was changed to I <= 3. 
+	Smithy: A fourth card is drawn, as the loop was changed to i <= 3. 
 			And the Smithy card is trashed upon use instead of discarded.
 
 	Steward: Instead of the 2 cards being trashed, they are instead discarded, and the Steward card is trashed upon use.
 
-	Village: The player loses 2 actions instead of gains 2 actions.
+	Village: The player loses 2 actions instead of gaining 2 actions.
