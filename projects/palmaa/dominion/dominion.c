@@ -699,7 +699,7 @@ int pcdEmbargo(struct gameState *state, int currentPlayer, int handPos, int choi
   state->embargoTokens[choice1]++;
 			
   //trash card
-  discardCard(handPos, currentPlayer, state, 1);		
+  discardCard(handPos, currentPlayer, state, 0);		
   return 0;
 }
 
