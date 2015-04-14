@@ -704,6 +704,24 @@ int pcdEmbargo(struct gameState *state, int currentPlayer, int handPos, int choi
 }
 
 
+void pcdSalvager(struct gameState *state, int currentPlayer, int handPos, int choice1) {
+
+  //+1 buy
+  state->numBuys++;
+			
+  if (choice1)
+  {
+    //gain coins equal to trashed card
+    state->coins = state->coins + getCost( handCard(choice1, state) );
+    //trash card
+    discardCard(choice1, currentPlayer, state, 1);	
+  }
+			
+  //discard card
+  discardCard(handPos, currentPlayer, state, 0);
+}
+
+
 int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
 {
   int i;
@@ -1184,19 +1202,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case salvager:
-      //+1 buy
-      state->numBuys++;
-			
-      if (choice1)
-	{
-	  //gain coins equal to trashed card
-	  state->coins = state->coins + getCost( handCard(choice1, state) );
-	  //trash card
-	  discardCard(choice1, currentPlayer, state, 1);	
-	}
-			
-      //discard card
-      discardCard(handPos, currentPlayer, state, 0);
+      pcdSalvager(state, currentPlayer, handPos, choice1);
       return 0;
 		
     case sea_hag:
