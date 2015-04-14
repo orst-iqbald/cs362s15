@@ -646,6 +646,7 @@ int getCost(int cardNumber)
 int playAdventurer (struct gameState *state, int currentPlayer)
 {
 	int drawntreasure = 0;
+	int temphand[MAX_HAND];
 	int z = 0;
 	int cardDrawn;
 	
@@ -655,7 +656,7 @@ int playAdventurer (struct gameState *state, int currentPlayer)
 	}
 	drawCard(currentPlayer, state);
 	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-	if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+	if (cardDrawn == copper || cardDrawn == gold) // adventurer altered to not recognize silver
 	  drawntreasure++;
 	else{
 	  temphand[z]=cardDrawn;
