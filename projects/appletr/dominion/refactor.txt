@@ -1,0 +1,16 @@
+
+Adventurer
+Bug introduced: deck is not checked
+
+Smithy
+Bugs introduced: 4 cards are drawn instead of 3 and the smithy card isn't discarded
+
+Council room
+Bug introduced: no check for current player adding a card
+
+Feast
+Bug introduced: no check for cards having supply left
+
+Remodel
+Bug introduced: No longer breaks one loop and will check beyond the bounds of the array
+allocated for the hand. 
