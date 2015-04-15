@@ -1,0 +1,26 @@
+Below are the 5 cards that I pulled out of the switch statement and created individual functions for.
+For all of them, either the bug introduced into the code is described, or it is stated that no bug
+has been introduced and the card's behavior remains unchanged.
+
+1. Adventurer
+The Adventurer looks through the deck until it finds two treasure cards. All cards that are drawn that
+are NOT treasure cards are discarded. I left this mostly unchanged, but I have caused it to fail to
+recognize Silver as a treasure card. This was accomplished simply by removing the silver check from
+the conditional. Thus the Adventurer will continue drawing past a silver and only register coppers
+and golds as treasure cards. Any silvers that are drawn will be discarded.
+
+2. Smithy
+The Smithy is a simple card that lets the player draw 3 additional cards. Rather than tinker with that
+behavior, I used the updateCoins function to decrease player's total coins by one.
+
+3. Village
+The village is a card that replaces itself by allowing you to draw another card and gives you two actions,
+leaving you with a 5 card hand and one 'bonus' action. I tweaked this card to give you an extra card instead
+of merely replacing itself.
+
+4. Council Room
+I left the draw 4 cards functionality intact, and I did not change the behavior where all other players
+get to draw one extra card whenever this is played. I removed the bonus buy from this card, though.
+
+5. Great Hall
+The great hall was moved to its own function but its behavior was unaffected.
