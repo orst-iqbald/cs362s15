@@ -93,12 +93,16 @@ int playAdventurer(struct gameState *state, int currentPlayer);
 // Individual function to handle the behavior of the adventurer card.
 
 int playSmithy(struct gameState *state, int currentPlayer, int handPos);
+// Individual function to handle the behavior of the Smithy
 
 int playVillage(struct gameState *state, int currentPlayer, int handPos);
+// Function to handle Village
 
 int playCouncilRoom(struct gameState *state, int currentPlayer, int handPos);
+// Function to handle Council Room
 
 int playGreatHall(struct gameState *state, int currentPlayer, int handPos);
+// Function to handle Great Hall
 
 int shuffle(int player, struct gameState *state);
 /* Assumes all cards are now in deck array (or hand/played):  discard is
