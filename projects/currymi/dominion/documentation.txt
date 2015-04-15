@@ -1,0 +1,47 @@
+### Miles A. Curry (currymi)
+### Github: Micurry
+### CS-362-400 - Spring 2015
+### Assignment 2 - documentation.txt 
+
+
+Smithy
+======
+The smithy card calls the draw card method three times on the current player
+while passing in the current state of the game. Once all three new cards have
+been drawn the smithy card is then discarded from the current players hand
+using the discardCard() method.
+
+Adventurer
+==========
+The adventurer cards loop through the players deck until it has drawn three
+treasurer cards. The other cards it draws are put into a tempHand array which is
+discarded after the three treasurer cards are found.
+
+discardCard()
+=============
+The discardCard method takes in the handPos of the card to be discarded, the
+currentPlayer, the gameState, and a trash flag if the card at the handPos is to
+be trashed instead of discarded.
+
+First the method checks to see if the trash flag is set and then trashes the
+card and adds it to the played pile. It then sets the position of where the
+discarded/trash card to -1, which I am assuming mean 
+
+First the method checks to see if the trash flag is set and trashes the card, it
+then sets the current position of that card to -1, which I am assuming to mean
+there is no card there. It then removes the card from the players hand and
+reduces the card count, however it make sures that its not removing the last
+hand or that its not removing the 2nd to last card. It then replaces the
+discarded card with the last card in the hand.  
+
+updateCoins()
+=============
+The update coin method takes in the current player, the gameState and a bounus
+int, which I am guessing is the number of coins to be added to the player.
+
+First the method sets the coins in the state struct to zero. It then loops
+through that players hand counts up all the treasures in the hand, and then adds
+the bonus, which must be the bonus from cards that give a +gold bonus. The
+function then returns.
+
+
