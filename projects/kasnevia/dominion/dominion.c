@@ -1384,7 +1384,7 @@ int greatHallCard(int handPos, int currentPlayer, struct gameState *state){
       //discard card from hand
       discardCard(handPos, currentPlayer, state, 0);
       return 0;
-}//End cardGreatHall()
+}//End greatHallCard()
 
 /*Refactored villageCard() function implemented below*/
 
