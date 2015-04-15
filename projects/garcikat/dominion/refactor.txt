@@ -25,7 +25,7 @@ Changes to cardEffects():
 *seahag card:
 	Changes to the code: Replaced the code inside the switch statement with a call to the new function seahag(). The index variable i is created. Seahas() takes arguements: int currentPlayer, struct gameState *state.
 	Bugs:
-	* I removed the statment: state->deckCount[j]--; from inside the if statement.
+	* I removed the statment: state->deckCount[i]--; from inside the if statement.
 
 *remodel card: 
 	Changes to the code: Replaced the code inside the switch statement with a call to the new function remodel(). Remodel() takes arguements: int currentPlayer, struct gameState *state, int handpos, int choice1, int choice2, int choice3. Created the variable j. 
