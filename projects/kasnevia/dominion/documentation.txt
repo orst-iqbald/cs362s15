@@ -14,14 +14,12 @@ In terms of code, the Smithy card is implemented as the “smithy” case within the
 Adventurer Card
 ***************
 The Adventurer card is classified as an action card, because it defines actions that players can take during the game.  This card allows a player to obtain a hand consisting of two Treasure cards by drawing cards from the player’s deck until two Treasure cards are located, adding those cards to the player’s hand, and discarding any other cards from the player’s hand into the discard pile.  
-
 In terms of code, the Adventurer card is implemented as the “adventurer” case within the cardEffect() function.  This case is primarily run within a WHILE loop based on the drawntreasure integer being less than 2, and operates to continuously draw cards from the player’s deck.  The drawntreasure integer reflects the number of treasure cards currently in the player’s hand, and is incremented if the player draws a copper, silver, or gold card; otherwise the drawn card is discarded and the WHILE loop continues.  Once the drawntreasure integer reaches 2, the WHILE loop exits and all other drawn cards are discarded.  
 
 int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
 ***************************************************************************************
 The discardCard() function, implemented in the dominion.c source file, is used to discard cards from a player’s hand once they have been played or otherwise are targeted for removal.  The function begins by checking whether a card’s trashFlag is set, and if it is, that card is trashed (added to the played card pile) instead of discarded.  If the card is to be discarded and not trashed, the function removes the card from the player’s hand and the handCount integer is correspondingly decremented.  
 
- 
 int updateCoins(int player, struct gameState *state, int bonus)
 ***************************************************************
 The updateCoins() function, implemented in the dominion.c source file, is used to find the total number of coins possessed by a player once after that player draws a hand.  Using a FOR loop set to the handCount variable, this function checks each card in the player’s hand and adds 1, 2, or 3 to the bonus tracking variable for each copper, silver, and gold Treasure card, respectively, held by that player.  Once the FOR loop concludes, this value is added to the player’s coins variable to reflect the total value of all of the player’s coins.  
