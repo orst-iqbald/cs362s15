@@ -92,6 +92,8 @@ Cards not in game should initialize supply position to -1 */
 int playAdventurer(struct gameState *state, int currentPlayer);
 /* Individual function to handle the behavior of the adventurer card. */
 
+int playSmithy(struct gameState *state, int currentPlayer, int handPos);
+
 int shuffle(int player, struct gameState *state);
 /* Assumes all cards are now in deck array (or hand/played):  discard is
  empty */
