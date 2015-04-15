@@ -1,0 +1,14 @@
+CS362 Assignment 2
+Chunyu Wang
+
+Smithy:
+Smithy card is an action card that costs 4 coins.  The cost of Smithy is defined in getCost() function in dominion.c file (line 613).  Smithy allows the user to draw three additional cards from the card deck at the cost of one action.  The effect of Smithy is defined in cardEffect() function in dominion.c file.  The code starts with a loop that draws a card into the current player's hand and repeats 3 times.  This is implemented by calling the drawCard() function for 3 times (see line 835). The function then finishes by discarding this card into the discard deck.  This is implemented by calling the discardCard() function (see line 839).  The code playdom.c has some code to play Smithy card. 
+
+Adventurer:
+Adventurer card is an action card that costs 6 coins. The cost of Adventurer is defined in getCost() function in dominion.c file (line 601). Adventurer card searches the user's deck until finding 2 treasure cards and places them into the user's hand, and discard other revealed cards.  The effect of Adventurer is defined in cardEffect() function in dominion.c file (see line 669).  The code starts with a while loop continues until 2 treasure cards are drawn.  If the deck is empty, we need to shuffle the cards by calling the shuffle() function and add cards back to deck.  If the card drawn is a copper, silver, or gold, then we increment number of treasures by 1, 2, or 3.  Otherwise, we discard the card back and loop again.  The code playdom.c has some code to play Adventurer card. 
+
+discardCard():
+This function removes a specified card from the user's hand.  The specified card is set in played pile if it was not marked to be trashed. It then sets played card to -1, which is a flag for later calls. The card is removed from the player's hand, and the card count is reduced. 
+
+updateCoins():
+This function calculates the total value of coins that the user currently has.  This function creates a loop variable, resets current coins to 0, and proceeds to add coins based on the player's hand.  Each copper is worth 1, each silver is worth 2, and each gold is worth 3.  The bonus coins from any actions or other sources is then added.

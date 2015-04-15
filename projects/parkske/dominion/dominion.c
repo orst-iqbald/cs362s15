@@ -649,7 +649,6 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   int j;
   int k;
   int x;
-  int index;
   int currentPlayer = whoseTurn(state);
   int nextPlayer = currentPlayer + 1;
 
@@ -672,27 +671,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
             return 0;
         }
         break;
-    /*
-      while(drawntreasure<2){
-        if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
-          shuffle(currentPlayer, state);
-        }
-        drawCard(currentPlayer, state);
-        cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-        if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
-          drawntreasure++;
-        else{
-          temphand[z]=cardDrawn;
-          state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
-          z++;
-        }
-      }
-      while(z-1>=0){
-        state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
-        z=z-1;
-      }
-      return 0;
-	*/		
+	
     case council_room:
       //+4 Cards
       for (i = 0; i < 4; i++)
@@ -838,27 +817,11 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
         if (doSmithy(state, currentPlayer, handPos) == 0)
             return 0;
         break;
-      /*  
-      //+3 Cards
-      for (i = 0; i < 3; i++)
-	  {
-        drawCard(currentPlayer, state);
-	  }
-			
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-      return 0;*/
 		
     case village:
-      //+1 Card
-      drawCard(currentPlayer, state);
-			
-      //+2 Actions
-      state->numActions = state->numActions + 2;
-			
-      //discard played card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-      return 0;
+        if (doVillage(state, currentPlayer, handPos) == 0)
+            return 0;
+        break;
 		
     case baron:
       state->numBuys++;//Increase buys by 1!
@@ -973,28 +936,11 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	}
       return 0;
 		
-    case steward:
-      if (choice1 == 1)
-	{
-	  //+2 cards
-	  drawCard(currentPlayer, state);
-	  drawCard(currentPlayer, state);
-	}
-      else if (choice1 == 2)
-	{
-	  //+2 coins
-	  state->coins = state->coins + 2;
-	}
-      else
-	{
-	  //trash 2 cards in hand
-	  discardCard(choice2, currentPlayer, state, 1);
-	  discardCard(choice3, currentPlayer, state, 1);
-	}
-			
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-      return 0;
+    case steward:;
+        int choices[3] = { choice1, choice3, choice3 };
+        if(doSteward(state, currentPlayer, handPos, choices) == 0)
+            return 0;
+        break;
 		
     case tribute:
       if ((state->discardCount[nextPlayer] + state->deckCount[nextPlayer]) <= 1){
@@ -1200,37 +1146,84 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case treasure_map:
-      //search hand for another treasure_map
-      index = -1;
-      for (i = 0; i < state->handCount[currentPlayer]; i++)
-	{
-	  if (state->hand[currentPlayer][i] == treasure_map && i != handPos)
-	    {
-	      index = i;
-	      break;
-	    }
-	}
-      if (index > -1)
-	{
-	  //trash both treasure cards
-	  discardCard(handPos, currentPlayer, state, 1);
-	  discardCard(index, currentPlayer, state, 1);
-
-	  //gain 4 Gold cards
-	  for (i = 0; i < 4; i++)
-	    {
-	      gainCard(gold, state, 1, currentPlayer);
-	    }
-				
-	  //return success
-	  return 1;
-	}
-			
-      //no second treasure_map found in hand
-      return -1;
+        if (doTreasureMap(state, currentPlayer, handPos, gold) == 0)
+            return 0;
+        break;
   }
 	
   return -1;
+}
+
+int doSteward(struct gameState *state, int currentPlayer, int handPos, int* choices)
+{
+    if (choices[0] == 1)
+    {
+        //+2 cards
+        drawCard(currentPlayer, state);
+        drawCard(currentPlayer, state);
+    }
+    else if (choices[0] == 2)
+    {
+        //+2 coins
+        state->coins = state->coins + 2;
+    }
+    else
+    {
+        //trash 2 cards in hand
+        discardCard(choices[1], currentPlayer, state, 1);
+        discardCard(choices[2], currentPlayer, state, 1);
+    }
+        
+    //discard card from hand
+    discardCard(handPos, currentPlayer, state, 0);
+    return 0;
+}
+
+int doTreasureMap(struct gameState *state, int currentPlayer, int handPos, int gold)
+{
+    //search hand for another treasure_map
+    int index = -1, i;
+    for (i = 0; i < state->handCount[currentPlayer]; i++)
+    {
+        if (state->hand[currentPlayer][i] == treasure_map && i != handPos)
+        {
+            index += i;
+            break;
+        }
+    }
+    if (index > -1)
+    {
+        //trash both treasure cards
+        discardCard(handPos, currentPlayer, state, 1);
+        discardCard(index, currentPlayer, state, 1);
+
+        //gain 4 Gold cards
+        for (i = 0; i < 4; i++)
+        {
+            gainCard(gold, state, 1, currentPlayer);
+        }
+                
+        //return success
+        return 1;
+    }
+        
+    //no second treasure_map found in hand
+    return -1;
+}
+
+int doVillage(struct gameState *state, int currentPlayer, int handPos)
+{
+    //+1 Card
+    drawCard(currentPlayer++, state);
+        
+    //+2 Actions
+    state->numActions = state->numActions + 2;
+        
+    //discard played card from hand
+    discardCard(handPos - 1, currentPlayer, state, 0);
+    state = NULL;
+    free(state);
+    return 0;
 }
 
 int doSmithy(struct gameState *state, int currentPlayer, int handPos)
