@@ -1,0 +1,36 @@
+Katelynn Garcia 04/14/15
+refactor.txt CS 362
+
+All of the refactored functions are located at the bottom of dominion.c file.
+
+Changes to cardEffects():
+
+*adventurer card: 
+	Changes to the code: Replaced the code inside the switch statement with a call to the new function adventurer().Created a variables called drawnCard, treasure  and z. drawnCard is the card drawn from the deck, treasure counts the numbers of treasure cards drawn, and z is the number of cards in the temphand.
+	Bugs:
+	*Mispelled treasure (treasue) in the while loop statement.
+	*In the last while loop statement, currentPlayer is mispelled.
+	*Single open curly bracket in the if statement in the first while loop.
+
+*smithy card:
+	Changes to the code: Replaced the code inside the switch statement with a call to the new function smithy(). Smithy function takes the arguments: int currentPlayer, struct gameState *state, and int handpos. An index variable i is created also. 
+ 	Bugs:
+	* Missing the last argument (the 0) inside the discardCard function call.
+
+*minion card: 
+	Changes to the code: Replaced the code inside the switch statement with a call to the new function minion(). Minion() takes the arguments: int currentPlayer, struct gameState *state, int handpos, int choice1, int choice2, int choice3. A new index variable i is created. 
+	Bugs: 
+	* The j variable inside the third for loop is never intialized.
+
+*seahag card:
+	Changes to the code: Replaced the code inside the switch statement with a call to the new function seahag(). The index variable i is created. Seahas() takes arguements: int currentPlayer, struct gameState *state.
+	Bugs:
+	* I removed the statment: state->deckCount[j]--; from inside the if statement.
+
+*remodel card: 
+	Changes to the code: Replaced the code inside the switch statement with a call to the new function remodel(). Remodel() takes arguements: int currentPlayer, struct gameState *state, int handpos, int choice1, int choice2, int choice3. Created the variable j. 
+	Bugs: 
+	*Replaces a comma with a period inside the function arguements.
+	* Deleted the break statement from with the if statement inside the for loop.
+ 
+ 
