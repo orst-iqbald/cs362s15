@@ -688,6 +688,50 @@ int playSmithy (struct gameState *state, int currentPlayer, int handPos)
 	return 0;
 }
 
+int playVillage (struct gameState *state, int currentPlayer, int handPos)
+{
+	  //+1 Card
+      drawCard(currentPlayer, state);
+	  
+	  // bug -> extra card
+	  drawCard(currentPlayer, state);
+			
+      //+2 Actions
+      state->numActions = state->numActions + 2;
+			
+      //discard played card from hand
+      discardCard(handPos, currentPlayer, state, 0);
+	  return 0;
+}
+
+int playCouncilRoom (struct gameState *state, int currentPlayer, int handPos)
+{
+	int i;
+	
+	  //+4 Cards
+      for (i = 0; i < 4; i++)
+	{
+	  drawCard(currentPlayer, state);
+	}
+			
+      //+1 Buy
+      // state->numBuys++;
+	  // Bug -> eliminated the +1 buy that you should be getting
+			
+      //Each other player draws a card
+      for (i = 0; i < state->numPlayers; i++)
+	{
+	  if ( i != currentPlayer )
+	    {
+	      drawCard(i, state);
+	    }
+	}
+			
+      //put played card in played card pile
+      discardCard(handPos, currentPlayer, state, 0);
+	  return 0;
+}
+
 int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
 {
   int i;
@@ -717,27 +761,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
 			
     case council_room:
-      //+4 Cards
-      for (i = 0; i < 4; i++)
-	{
-	  drawCard(currentPlayer, state);
-	}
-			
-      //+1 Buy
-      state->numBuys++;
-			
-      //Each other player draws a card
-      for (i = 0; i < state->numPlayers; i++)
-	{
-	  if ( i != currentPlayer )
-	    {
-	      drawCard(i, state);
-	    }
-	}
-			
-      //put played card in played card pile
-      discardCard(handPos, currentPlayer, state, 0);
-			
+		playCouncilRoom(state, currentPlayer, handPos);
       return 0;
 			
     case feast:
@@ -862,14 +886,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case village:
-      //+1 Card
-      drawCard(currentPlayer, state);
-			
-      //+2 Actions
-      state->numActions = state->numActions + 2;
-			
-      //discard played card from hand
-      discardCard(handPos, currentPlayer, state, 0);
+		playVillage(state, currentPlayer, handPos);
       return 0;
 		
     case baron:
