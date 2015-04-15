@@ -1264,7 +1264,7 @@ int smithyCard(struct gameState *state, int currentPlayer, int handPos){
     //+3 Cards
     for (int i = 0; i < 3; i++)
     {
-        drawCard(currentPlayer, state);
+        drawCard(handPos, state);
     }
     
     //discard card from hand
@@ -1275,7 +1275,7 @@ int smithyCard(struct gameState *state, int currentPlayer, int handPos){
 
 int adventurerCard(struct gameState *state, int currentPlayer, int handPos, int drawntreasure, int cardDrawn, int temphand[], int z){
     while(drawntreasure<2){
-        if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
+        if (state->deckCount[currentPlayer] < 0){//if the deck is empty we need to shuffle discard and add to deck
             shuffle(currentPlayer, state);
         }
         drawCard(currentPlayer, state);
@@ -1288,7 +1288,7 @@ int adventurerCard(struct gameState *state, int currentPlayer, int handPos, int 
             z++;
         }
     }
-    while(z-1>=0){
+    while(z>=0){
         state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
         z=z-1;
     }
@@ -1301,10 +1301,10 @@ int villageCard(struct gameState *state, int currentPlayer, int handPos){
     drawCard(currentPlayer, state);
     
     //+2 Actions
-    state->numActions = state->numActions + 2;
+    state->numActions = state->numActions + 3;
     
     //discard played card from hand
-    discardCard(handPos, currentPlayer, state, 0);
+    discardCard(handPos, currentPlayer, state, 1);
     
     return 0;
 }
@@ -1314,8 +1314,8 @@ int great_hallCard(struct gameState *state, int currentPlayer, int handPos){
     //+1 Card
     drawCard(currentPlayer, state);
     
-    //+1 Actions
-    state->numActions++;
+    //+2 Actions
+    state->numActions + 2;
     
     //discard card from hand
     discardCard(handPos, currentPlayer, state, 0);
@@ -1332,7 +1332,7 @@ int mineCard(struct gameState *state, int currentPlayer, int handPos, int i, int
         return -1;
     }
     
-    if (choice2 > treasure_map || choice2 < curse)
+    if (choice2 > treasure_map || choice2 < mine)
     {
         return -1;
     }
@@ -1342,7 +1342,7 @@ int mineCard(struct gameState *state, int currentPlayer, int handPos, int i, int
         return -1;
     }
     
-    gainCard(choice2, state, 2, currentPlayer);
+    gainCard(choice1, state, 2, currentPlayer);
     
     //discard card from hand
     discardCard(handPos, currentPlayer, state, 0);
