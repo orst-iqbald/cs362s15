@@ -1,0 +1,62 @@
+This file provides documentation of cards: smithy and adventurere, and functions discardCard() and updateCoins()
+
+/**********************************************************************************************
+smithy p. 7 Base-Architecture 
+
+dominion.h:
+Within enum Card: 
+
+dominion.c:
+function cardEffect()
+	Uses a switch statement to determine if this card is played.
+	-(for loop) is used to draw 3 cards
+	-discardCard() is called to discard the card played.
+
+function getCost(): returns 4
+
+***********************************************************************************************/
+/**********************************************************************************************
+adventurer 
+
+dominion.h:
+Within enum Card: Is identified as an int to determine range of action cards: index #7 (playcard())
+
+dominion.c:
+In function cardEffect()
+	Uses a switch statement to determine if the card is played.
+	- While loops is used to loop through functions until drawntreasure variable is > 2. 
+	  That means until two treasure cards have been drawn from the players deck.
+	- If there are no treasure cards, or only one treasure card is found, 
+	  the function will stop after the whole deck of cards has been viewed.
+	-(if Statement) if the deck is empty, the deck is shuffled, the card discarded and a card is added.
+	-(if statement) if a card is a treasure card (copper, silver, gold) the variable drawntreasure is incremented.
+	  (else) the top card, the recently drawn card is removed from the deck.
+	- (while loop) discards all cards in play that have been drawn.
+
+in function getCost(): returns 6
+
+***********************************************************************************************/
+/**********************************************************************************************
+discardCard() p 14 Base-Architecture
+In dominion.c
+	Parameters: int handPos, int currentPlayer, struct gameState *state, int trashFlag
+	returns: int 0 on success
+	-(if statement) if a card is not trashed, added to played pile
+	- sets played card to -1
+	- (if statement) checks for the card's position in hand to remove card from player's hand.
+	  (else if) if the player only has one card in hand
+	  (else) replaces the discarded card with the last card in hand. Reduces the card count in players hand.
+	  
+***********************************************************************************************/
+/**********************************************************************************************
+updateCoins() p 17 Base-Architecture
+In dominion.c
+	Parameters: int player, struct gameState *state, int bonus
+	returns: int 0 on success
+	- resets coin count
+	-(for loop) Sums coins for each treasure card in players hand. Iterates through the number of player cards in hand.
+		(if statement) gold add 3 to state->coins struct var, (else if) silver add 2 to state->coins struct var,
+		(else if) copper add 1 to state->coins struct var.
+	- add bonus coins if any were passed in the parameter
+
+***********************************************************************************************/
