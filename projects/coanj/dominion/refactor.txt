@@ -1,0 +1,49 @@
+newSmithy:
+	void newSmithy(int currentPlayer, int handPos, struct gameState* state)
+	
+	BUGS:
+		1.	Changed the for loop to check if i is equal to or less than 3. :line 649
+		2.	Incremented handPos+1	:line 653
+
+
+newAdventurer:
+	void newAdventurer(int drawntreasure, int currentPlayer, int cardDrawn,
+					   int temphand[MAX_HAND], int z, struct gameState* state)
+					   
+	BUGS:
+		1.	changed the while loop to while(!(drawntreasure<2)) :line 659
+		2.	removed discardCount incrementer where code discards all cards in play that have
+			been drawn. :line 676
+		3.	incremeted z (temphand[z++]) in the else statement :line 670
+
+
+newBaron:
+	void newBaron(int choice1, int currentPlayer, struct gameState* state)
+	
+	BUGS:
+		1.	numBuys no longer increments :line 683
+		2.	hand no longer increments :line 694
+		3.	changed card_not_discarded to equal 1 :line 713
+		4.	changed condition to always be a game ending condition unless
+			supplycount of estates == 0 :line 726
+
+
+newTribute:
+	void newTribute(int nextPlayer, int tributeRevealedCards[2], int currentPlayer, struct gameState* state)
+	
+	BUGS:
+		1.	changed both drawCard functions under victory card found to be nextPlayer instead
+			of current player. :line 791,792
+		2.	altered coins to be *= 2 instead of += 2, Yay! :line 784
+		3.	deckCount no longer increments :line 771
+		4.	shuffle function shuffles currentPlayer instead of nextPlayer. :line 762
+
+
+newCutpurse:
+	void newCutpurse(int currentPlayer, int handPos, struct gameState* state)
+	
+	BUGS:
+		1.	changed if statement to check if i is equal to currentPlayer. :line 806
+		2.	swapped k and i in hand array :line 816
+		3.	changed updateCoins statement to only 1 instead of 2. :line 804
+		4.	removed break statement. :line 810
