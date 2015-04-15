@@ -1,0 +1,35 @@
+Cards
+
+- Smithy Card
+
+Draw three more cards. Discard the smithy card.
+
+The code runs a loop three times calling drawCard() method on each iteration. 
+After that it calls discardCard() once to remove the smithy card.
+	
+- Adventurer Card
+
+DrawnTreasure is initialized to zero at the top of cardEffect method.  While the drawntreasure
+value is less than two keep drawing cards.  If the deck it empty then re-shuffle then draw
+a card.  If the card drawn is a copper, silver, or gold then increment the drawntreasure value.
+If the card drawn is not copper, silver, or gold then add the drawn card to the tempHand array.
+
+
+Methods
+
+ - discardCard()
+ Args: hand position (int), currentPlayer (int), gameState (struct prt), trashFlag (int)
+
+ First check to see if the current card is to be trashed.  If so then add it to the played
+ card pile.  Increment the played card count.
+ If the player has a card in their hand set handPos to play it.  If it's the players last
+ card then decrement handCount.  If the player has more than one card left discard the current
+ one and decrement the last card.  Decrement the player's handCount.   
+
+ - updateCoins()
+
+ Args: player (int), state (gameState prt), bonus (int)
+
+ Initialize coins to zero.  For each of the treasure cards in a players hand
+ add +1 for copper, +2 for silver, +3 for gold.  Then add an additional 
+ bonus number if given.
