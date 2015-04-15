@@ -128,6 +128,7 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 /* Set array position of each player who won (remember ties!) to
    1, others to 0 */
 
+   /*Card functions listed below see comments in dominion.c for descriptions of each function */
 int playAdventurer(int currentPlayer, struct gameState *state);
 
 int playSmithy(int handPos, int currentPlayer, struct gameState *state);
