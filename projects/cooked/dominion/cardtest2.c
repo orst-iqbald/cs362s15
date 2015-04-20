@@ -81,6 +81,10 @@ int main() {
 		printf("adventureTest(): All tests passed.\n");
 	}
 
+	//Set the deckCount to 0 and call effectAdventurer to force a shuffle
+	state->deckCount[whoseTurn(state)] = 0;
+	effectAdventurer(state, 0);
+
 	free(state);
 	return 0;
 }

@@ -30,6 +30,77 @@ int main() {
 	//Housekeeping variables for checking hands
 	int copperCount, estateCount;
 
+	//Attempt to initialize gamestate with too many players
+	numPlayer = 5;
+	if(initializeGame(numPlayer, cards, seed, state) != -1)
+	{
+		printf("initializeGame(): Failed to check for too many players.\n");
+		error = -1;
+	}
+	numPlayer = 2;
+
+	//Attempt to put in multiple of the same kingdom card
+	cards[1] = adventurer;
+	if(initializeGame(numPlayer, cards, seed, state) != -1)
+	{
+		printf("initializeGame(): Failed to check for duplicate kingdom cards.\n");
+		error = -1;
+	}
+	cards[1] = council_room;
+
+	//4 player initialization and curse check
+	numPlayer = 4;
+	if(initializeGame(numPlayer, cards, seed, state) != 0)
+	{
+		printf("initializeGame(): Game initialization failed.\n");
+		error = -1;
+	}
+
+	//Check that the number of curse cards was set properly
+	if(state->supplyCount[curse] != 30) 
+	{
+		printf("initializeGame(): Number of curse cards is incorrect.\n");
+		error = -1;
+	}
+
+	//3 player initialization and tests
+	numPlayer = 3;
+	if(initializeGame(numPlayer, cards, seed, state) != 0)
+	{
+		printf("initializeGame(): Game initialization failed.\n");
+		error = -1;
+	}
+
+	//Check that the number of curse cards was set properly
+	if(state->supplyCount[curse] != 20) 
+	{
+		printf("initializeGame(): Number of curse cards is incorrect.\n");
+		error = -1;
+	}
+
+	//Check that the number of estate cards was set properly
+	if(state->supplyCount[estate] != 12) 
+	{
+		printf("initializeGame(): Number of estate cards is incorrect.\n");
+		error = -1;
+	}
+
+	//Check that the number of duchy cards was set properly
+	if(state->supplyCount[duchy] != 12) 
+	{
+		printf("initializeGame(): Number of duchy cards is incorrect.\n");
+		error = -1;
+	}
+
+	//Check that the number of province cards was set properly
+	if(state->supplyCount[province] != 12) 
+	{
+		printf("initializeGame(): Number of province cards is incorrect.\n");
+		error = -1;
+	}
+
+	//2 player initialization and tests
+	numPlayer = 2;
 	//Initialize the gamestate
 	if(initializeGame(numPlayer, cards, seed, state) != 0) 
 	{
