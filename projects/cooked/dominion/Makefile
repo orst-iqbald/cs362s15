@@ -41,6 +41,48 @@ unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2
 	gcov -b dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
 
+fullcoverage: coverage1 coverage2 coverage3 coverage4 coverage5 coverage6 coverage7 coverage8
+
+coverage1: unittest1
+	./unittest1 > res1.out
+	gcov -b dominion.c >> res1.out
+	cat dominion.c.gcov >> res1.out
+
+coverage2: unittest2
+	./unittest2 > res2.out
+	gcov -b dominion.c >> res2.out
+	cat dominion.c.gcov >> res2.out
+
+coverage3: unittest3
+	./unittest3 > res3.out
+	gcov -b dominion.c >> res3.out
+	cat dominion.c.gcov >> res3.out
+
+coverage4: unittest4
+	./unittest4 > res4.out
+	gcov -b dominion.c >> res4.out
+	cat dominion.c.gcov >> res4.out
+
+coverage5: cardtest1
+	./cardtest1 > res5.out
+	gcov -b dominion.c >> res5.out
+	cat dominion.c.gcov >> res5.out	
+
+coverage6: cardtest2
+	./cardtest2 > res6.out
+	gcov -b dominion.c >> res6.out
+	cat dominion.c.gcov >> res6.out
+
+coverage7: cardtest3
+	./cardtest3 > res7.out
+	gcov -b dominion.c >> res7.out
+	cat dominion.c.gcov >> res7.out
+
+coverage8: cardtest4
+	./cardtest4 > res8.out
+	gcov -b dominion.c >> res8.out
+	cat dominion.c.gcov >> res8.out
+
 unittest1: unittest1.c dominion.o rngs.o
 	gcc -o unittest1 -g unittest1.c dominion.o rngs.o $(CFLAGS)
 

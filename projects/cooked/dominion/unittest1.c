@@ -35,26 +35,28 @@ int main() {
 
 	//Set the number of buys to 0
 	s->numBuys = 0;
+	s->coins = 50;
 	if(buyCard(cards[0], s) != -1) 
 	{
 		printf("buyCard(): failing to check for number of buys\n");
 		error = -1;
 	}
 	//Cleanup
-	s->numBuys = 1;
+	s->numBuys = 10;
 
 	//Set the card supply count to 0
-	s->supplyCount[0] = 0;
-	assert(supplyCount(0, s) == 0);
+	s->supplyCount[adventurer] = 0;
+	assert(supplyCount(adventurer, s) == 0);
 
 	//Test buyCard when the card supply count is 0
+	s->coins = 50;
 	if(buyCard(cards[0], s) != -1) 
 	{
 		printf("buyCard(): failing to check the target cards supply count\n");
 		error = -1;
 	}
 	//Cleanup
-	s->supplyCount[0] = 10;
+	s->supplyCount[adventurer] = 10;
 
 	//Set the current players coin count to 0
 	s->coins = 0;
@@ -68,6 +70,7 @@ int main() {
 
 	//Successfully buy a card and check the discard pile to make sure it was successfully purchased
 	//Use this block to also verify that coins are getting used and that buy is decremented
+	s->coins = 50;
 	b = s->numBuys;
 	c = s->coins;
 	if(buyCard(cards[0], s) == 0) 
