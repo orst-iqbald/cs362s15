@@ -1,0 +1,9 @@
+# Bugs found by unittest# anf cardtest# files
+
+See refactor.txt for further information on bugs intentionally added in Assignment 2.
+
+1. buyCard() ends with incorrect coin count
+
+2. actionAdventurer() ends with incorrect treasure count
+
+3. actionSmithy() ends with incorrect hand count
