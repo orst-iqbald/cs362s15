@@ -1,0 +1,21 @@
+Thomas Cox
+CS 362: Assignment 2
+4/12/2015
+Documentation.txt
+
+The smith card itself, if chosen runs a for loop.  The loop runs 3 times and the loop execution has a statement that calls
+drawCard function where the currentPlayer obtains 3 cards and the state of the currentPlayers gameState is updated.
+ 
+The adventurer uses a while loop to cycle through the currentPlayer hand until 2 treasure cards are drawn.   If the deckCount
+is 0 the cards are reshuffled, the cardDrawn is the top card and if the cardDrawn is copper, silver, or gold the drawn treasure 
+count is incremented.  If the card is not a treasure that card is removed as it is the most current top card and it is put into 
+a temphand array while the treasure cards are sought ought.  The temphand array is then discarded after 2 treasure cards are drawn.
+
+The discardCard() function takes 4 arguments, the location of the card in the hand to be discarded, the player who’s hand the card is
+in, the gameState struct  and the flag indicating if the card is to be trashed.  If the trashFlag is set to 0 the card is discarded.  
+This is where the playedCards array in the state struct is set equal to the hand position of the current player’s card that is played.
+The played card is set to -1 and that card is removed from the player’s hand and the total number of cards in the player’s hand is decremented.
+  
+The updateCoins() function loops through all the cards in the players hand.  For each copper card the player possesses the player gets +1,
+for each silver carder the player possesses the player gets +2 coins, for each gold card the player possesses the player gets +3 coins.  
+Nothing is added for other cards.  After the hand is looped through the bonus coins the player has acquired gets added to the coin total.
