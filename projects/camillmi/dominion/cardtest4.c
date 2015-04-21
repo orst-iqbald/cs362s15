@@ -31,7 +31,7 @@ int main() {
     // some variables to work with
     int hand = 0;
     int actions = 0;
-    
+
     // start the unit tests
     printf ("TESTING Great Hall:\n");
 
@@ -49,21 +49,21 @@ int main() {
     // Check size of hand
     if (G->handCount[0] == hand)
     {
-        printf("Village(): passed for hand count\n");
+        printf("greatHall(): passed for hand count\n");
     }
     else
     {
-        printf("Village(): failed for hand count\n");
+        printf("greatHall(): failed for hand count\n");
     }
 
     // Check number of actions
     if (G->numActions == actions + 1)
     {
-        printf("Village(): passed for actions count\n");
+        printf("greatHall(): passed for actions count\n");
     }
     else
     {
-        printf("Village(): failed for actions count\n");
+        printf("greatHall(): failed for actions count\n");
     }
 
     return 0;
