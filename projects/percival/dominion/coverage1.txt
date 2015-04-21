@@ -1,0 +1,170 @@
+Coverage file for Assignment 3
+-Lisa Percival
+
+Note: Clearly the overall coverage of the large dominion.c file by each
+individual test was minimal, so I focused on looking at the gcov file to 
+see what parts of the function being tested were covered.
+
+unittest1 tested the discardCard() function:
+------------------------------------------
+Overall Coverage of dominion.c (per gcov):
+Lines executed:17.62% of 579
+Branches executed:17.35% of 415
+Taken at least once:14.22% of 415
+Calls executed:7.37% of 95 
+
+The report on the function said 88% of blocks were executed.
+Of the actually meaningful lines in the function, only 1 was not executed. The
+line that was not executed existed in the only branch that was never taken. This
+lack of coverage was due to an issue with the function, as opposed to the unit
+test. The body of the else if statement on line 1286 is not reachable because
+the condition that it checks for will always be caught by the previous if 
+statement first. Namely, if there is only 1 card in the player's hand, the card
+being discarded will also be the last card in that player's hand, so it is handled
+by the if statement on line 1281 instead of the else if on line 1286.
+By looking at the file I calculated a line coverage (of meaningful lines) of
+12/13 = 92% and a branch coverage of 5/6 = 83%. However, as stated previously,
+this imperfect coverage does not mean the unit test is not good.
+
+
+unittest2 tested the gainCard() function:
+---------------------------------------
+Overall Coverage of dominion.c (per gcov):
+Lines executed:18.13% of 579
+Branches executed:17.35% of 415
+Taken at least once:14.46% of 415
+Calls executed:8.42% of 95
+
+The report on the function said 100% of blocks were executed.
+Looking at the function in the gcov file, all of the meaningful lines were
+executed and all of the branches were taken, giving the test 100% line and branch
+coverage of the gainCard() function.
+This is excellent coverage and, although it does not guarantee the unit test is
+the best it could be, it's a good sign.
+
+
+unittest3 tested the endTurn() function:
+---------------------------------------
+Overall Coverage of dominion.c (per gcov):
+Lines executed:19.34% of 579
+Branches executed:17.35% of 415
+Taken at least once:14.46% of 415
+Calls executed:10.53% of 95
+
+The report on the function said 100% of blocks were executed.
+Looking at the function in the gcov file, all of the meaningful lines were
+executed and all of the branches were taken, giving the test 100% line and branch
+coverage of the endTurn() function.
+This is excellent coverage and, although it does not guarantee the unit test is
+the best it could be, it's a good sign.
+
+
+unittest4 tested the buyCard() function:
+---------------------------------------
+Overall Coverage of dominion.c (per gcov):
+Lines executed:21.07% of 579
+Branches executed:25.54% of 415
+Taken at least once:15.66% of 415
+Calls executed:12.63% of 95
+
+The report on the function said 100% of blocks were executed.
+Looking at the function in the gcov file, all of the meaningful lines were
+executed and all of the branches were taken, giving the test 100% line and branch
+coverage of the buyCard() function.
+This is excellent coverage and, although it does not guarantee the unit test is
+the best it could be, it's a good sign.
+
+
+cardtest1 tested the cardEffectSmithy() function:
+---------------------------------------
+Overall Coverage of dominion.c (per gcov):
+Lines executed:17.96% of 579
+Branches executed:17.83% of 415
+Taken at least once:14.22% of 415
+Calls executed:9.47% of 95
+
+The report on the function said 100% of blocks were executed.
+Looking at the function in the gcov file, all of the meaningful lines were
+executed and all of the branches were taken, giving the test 100% line and branch
+coverage of the cardEffectSmithy() function.
+This is excellent coverage and, although it does not guarantee the unit test is
+the best it could be, it's a good sign.
+
+
+cardtest2 tested the cardEffectAdventurer() function:
+---------------------------------------
+Overall Coverage of dominion.c (per gcov):
+Lines executed:18.31% of 579
+Branches executed:18.80% of 415
+Taken at least once:15.18% of 415
+Calls executed:8.42% of 95
+
+The report on the function said 93% of blocks were executed.
+Of the actually meaningful lines in the function, only 1 was not executed. The
+line that was not executed existed in the only branch that was never taken. This
+branch was not taken because it tested for an empty deck, and the unit test did
+not arrange for that situation to occur. However, the body of that if statement
+simply runs the shuffle() function, and therefore does not seem to be especially
+critical for a unit test of the cardEffectAdventurer() function. The test could
+certainly be expanded in the future to obtain full coverage.
+By looking at the file I calculated a line coverage (of meaningful lines) of
+16/17 = 94% and a branch coverage of 7/8 = 88% for the cardEffectAdventurer()
+function. While this could be improved, it is still excellent coverage.
+
+
+cardtest3 tested the cardEffectGreatHall() function:
+---------------------------------------
+Overall Coverage of dominion.c (per gcov):
+Lines executed:18.31% of 579
+Branches executed:17.35% of 415
+Taken at least once:13.73% of 415
+Calls executed:9.47% of 95
+
+The report on the function said 100% of blocks were executed.
+Looking at the function in the gcov file, all of the meaningful lines were
+executed and all of the branches were taken, giving the test 100% line and branch
+coverage of the cardEffectGreatHall() function.
+This is excellent coverage and, although it does not guarantee the unit test is
+the best it could be, it's a good sign.
+
+
+cardtest4 tested the cardEffectSteward() function:
+---------------------------------------
+Overall Coverage of dominion.c (per gcov):
+Lines executed:19.34% of 579
+Branches executed:18.31% of 415
+Taken at least once:15.18% of 415
+Calls executed:12.63% of 95
+
+The report on the function said 100% of blocks were executed.
+Looking at the function in the gcov file, all of the meaningful lines were
+executed and all of the branches were taken, giving the test 100% line and branch
+coverage of the cardEffectSteward() function.
+This is excellent coverage and, although it does not guarantee the unit test is
+the best it could be, it's a good sign.
+
+
+Discussion of coverage of entire dominion.c by all tests combined:
+----------------------------------------------------------------
+Coverage of dominion.c when all tests run in sequence (per gcov):
+Lines executed:34.02% of 579
+Branches executed:32.77% of 415
+Taken at least once:22.65% of 415
+Calls executed:26.32% of 95
+
+The coverage reported by gcov is still minimal, because the set of 8 unit tests
+were only intended to cover a subset of the many functions included in the 
+dominion.c file.
+Some functions that were never called, which might be an area for future
+improvement of the overall test suite, include: newGame(), kingdomCards(), playCard(),
+fullDeckCount(), isGameOver(), scoreFor(), getWinners(), cardEffect(),
+and cardEffectTreasureMap().
+There were also a number of functions that were called indirectly by the test 
+suite, and therefore often have poor coverage of all their lines and branches,
+which would be another possible area for future improvement. These include:
+compare(), initializeGame(), shuffle(), whoseTurn(), drawCard(), getCost(), and
+updateCoins(). An example that already has pretty good coverage is shuffle(), 
+which was called 16 times and had 93% of its blocks executed. An example with
+lots of room for improvement is drawCard(), which was called 60 times but only
+had 36% of its blocks executed, largely because it was never called with an 
+empty deck.
