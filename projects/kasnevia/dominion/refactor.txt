@@ -1,0 +1,36 @@
+Andrew Kasnevich
+kasnevia@onid.oregonstate.edu
+CS 362 - Assignment 2
+April 14, 2015 (submitted with extension)
+
+REFACTORING DOCUMENTATION
+
+Smithy Card
+**********
+The Smithy card was implemented as its own function, int smithyCard(int handPos, int currentPlayer, struct gameState *state), which is called by in the Smithy case in the cardEffect() function.  
+
+The error inserted into the smithyCard function is in the first FOR loop: the loop driver i was previously used as (i = 0; i < 3; i++), but now has been changed to (i = 0; i < 4; i++).  This change means that the Smithy card will draw 4 cards when the rules of the game require it to draw only 3 cards.  While incorrect, this error should not cause the program to crash.  
+
+Adventurer Card
+**************
+The Adventurer Card was implemented as its own function, int adventurerCard(int currentPlayer, struct gameState *state), which is called by the Adventurer case in the cardEffect() function.  
+
+The first error inserted into the adventurerCard function is that the first WHILE loop, which should run until two Treasure cards are drawn, has been changed and based on the condition “while(drawntreasure < 3),” which means that three Treasure cards will be drawn instead of two, which violates the rules of the game.  Another inserted error is in the second WHILE loop, used to discard all cards in play that have been drawn.  This loop should be based on the condition “while(z-1>=0),” but has been rewritten as “while(z-1>0),” so it will not discard all of the cards it should have discarded and an additional card will remain in the player’s hand.  These errors will not cause the program to crash, but will result in clearly incorrect gameplay.  
+
+Salvager Card
+***********
+The Salvager Card was implemented as its own function, int salvagerCard(struct gameState *state, int currentPlayer, int handPos, int choice1), which is called by the Salvager case in the cardEffect() function.  
+
+In this function, the player should receive coins equal to a card trashed by the player, as shown in the “if(choice1)” statement.  If this statement is true and the extra coins are awarded, the discardCard() function is called to trash the player’s card.  However, the refactored function has been edited to remove the call to discardCard(), and that card will not be removed.  While causing incorrect gameplay, this will not result in the program crashing.  
+
+Great Hall Card
+*************
+The Great Hall card was implemented as its own function, int greatHallCard(int handPos, int currentPlayer, struct gameState *state), which is called by the Great Hall case in the cardEffect() function.  
+
+Under the Dominion rules, the Great Hall card is both an action card and a victory card.  When played, the player draws a card and may play another action.  The function should increment state->numActions to reflect this, but this step has been removed in the refactored function.  Thus, the player will not receive another action as is required.  This error will not cause the program to crash, but is clearly incorrect under the rules of the game.  
+
+Village Card
+**********
+The Village Card was implemented as its own function, int villageCard(int handPos, int currentPlayer, struct gameState *state), which is called by the Salvager case in the cardEffect() function.  
+
+This card gives the player the ability to generate +2 or more actions.  However, the refactored function has been edited to only generate 1 action instead, in violation of the game rules.  In addition, discardCard() should be called to discard the played card from the player’s hand, but this function call has been removed from the refactored function, and therefore the program will not remove the played card.  Neither of these errors will crash the program, but both contradict the game rules.  

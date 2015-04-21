@@ -1,8 +1,0 @@
-Adventurer - The adventurer card lets's you reveal the cards from your deck until you reach 2 treasure cards. Now you can use those two treasure, which increments the drawntreasure funciton, and discard the other cards that you revealed, decrementing the count of card the player has.
-
-Smithy -- The smithy cards adds three additional cards. This is done from the drawCard function.
-
-DiscardCard() - the discard card makes sure that the card beign called can be played (in the case of smithy, for example, it validates that it can be played and then draws additional cards)
-
-updateCoin() - this method returns the number of specific cards the player's deck has
-
