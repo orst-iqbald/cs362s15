@@ -36,6 +36,9 @@ testcard1: cardtest1.c dominion.o rngs.o
 testcard2: cardtest2.c dominion.o rngs.o
 	gcc -o cardtest2 -g  cardtest2.c dominion.o rngs.o $(CFLAGS)
 
+testcard3: cardtest3.c dominion.o rngs.o
+	gcc -o cardtest3 -g  cardtest3.c dominion.o rngs.o $(CFLAGS)
+
 testAll: dominion.o testSuite.c
 	gcc -o testSuite testSuite.c -g  dominion.o rngs.o $(CFLAGS)
 
