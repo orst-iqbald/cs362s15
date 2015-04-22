@@ -1221,21 +1221,21 @@ int updateCoins(int player, struct gameState *state, int bonus)
 
 int adventurer(int currentPlayer, struct gameState *state, int temphand[])
 {
-	int cardDrawn;
-	int drawntreasure = 0;
+	int drawnCard;
+	int treasure = 0;
 	int z = 0;
 
-	while(drawntreasue < 2){
+	while(treasue < 2){
 		if (state->deckCount[currentPlayer] <1){//if deck is empty we need to shuffle the discards and add then to the deck
 			shuffle(currentPlayer, state);
 		}
 
-		drawCard(currentPlayer, state);
-		cardDrawn = state->deckCount[currentPlayer][state->handCount[currentPlayer]-1]; //top card of hand is most recently drawn card
-		if(cardDrawn == copper || cardDrawn == silver || cardDrawn == gold){
-			drawntreasure++;
+		drawnCard(currentPlayer, state);
+		drawnCard = state->deckCount[currentPlayer][state->handCount[currentPlayer]-1]; //top card of hand is most recently drawn card
+		if(drawnCard == copper || cardDrawn == silver || cardDrawn == gold){
+			treasure++;
 		else{
-			temphand[z] = cardDrawn;
+			temphand[z] = drawnCard;
 			state->handCount[currentPlayer]--;
 			z++;
 		}
