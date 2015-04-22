@@ -27,10 +27,12 @@ interface.o: interface.h interface.c
 unittests: all unittest1.c unittest2.c
 	gcc -o unittest1 unittest1.c -g dominion.o rngs.o $(CFLAGS)
 	gcc -o unittest2 unittest2.c -g dominion.o rngs.o $(CFLAGS)
+	gcc -o unittest3 unittest3.c -g dominion.o rngs.o $(CFLAGS)
 	
 unittestresults.out: all unittests
 	./unittest1 &> unittestresult.out
-	./unittest2 >> unittestresult.out
+	./unittest2 &> unittestresult.out
+	./unittest3 &> unittestresult.out
 	gcov -b -c dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
