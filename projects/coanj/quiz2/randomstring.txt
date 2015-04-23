@@ -1,0 +1,20 @@
+James Coan
+Quiz 2: Random Testing
+
+After learning how the code functioned, I decided to ensure I was able to cause the error to occur in
+one go. So I created the ideal situation to test the code. I created an array with the characters that
+would be used to set the state and walked through them individually. I set the string directly to "reset\0".
+This would ensure I understood exactly what was to be expected and would give me some sort of start.
+
+After running the code, and watching the behavior, I then decided to create the inputChar function that
+would return a char randomly selected from the group of characters that would be used in testing the state.
+This would greatly reduce the amount of time needed for the test since all other characters are invalid
+anyway.
+
+I then began to work on the inputString function, which again I decided the characters that made up the
+string "reset\0" would be sufficient for testing. So I created a 6 char string array, looped through
+that array 6 times assigning a char randomly grabbed from the string "reset\0". This would build a string
+to be returned that was randomly constructed only from those characters and since all other characters
+are pointless in causing the error here, there was no reason to include any characters outside that set.
+In essence, this returns a randomly generated string from 6 randomly selected characters. Eventually after
+enough iterations the word "reset\0" would be returned and set the error message successfully.
