@@ -31,8 +31,8 @@ unittests: all unittest1.c unittest2.c
 	
 unittestresults.out: all unittests
 	./unittest1 &> unittestresult.out
-	./unittest2 &> unittestresult.out
-	./unittest3 &> unittestresult.out
+	./unittest2 &>> unittestresult.out
+	./unittest3 &>> unittestresult.out
 	gcov -b -c dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
