@@ -25,7 +25,6 @@ int main(int argc, char* argv[])
     int players[NUM_PLAYERS];
 	int playerHandCount[NUM_PLAYERS];
     int flag = 0;
-	enum CARD m_supplyPos;
 	
 	srand(time(NULL));
 	for(runs = 10; runs > 0; runs--)
