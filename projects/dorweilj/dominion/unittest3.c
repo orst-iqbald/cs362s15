@@ -21,7 +21,7 @@ int main () {
 
     int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
     
-
+    printf ("TESTING initializeGame():\n");
     for(i = 0; i < numTests; i++){
             for(j = 0; j < MAX_PLAYERS; j++){
             int seed = 1000+i;
