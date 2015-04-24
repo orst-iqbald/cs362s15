@@ -68,6 +68,10 @@ int main(int argc, char* argv[])
 						pass = 1;
 					}
 				}
+                if(m_state->hand[players[i][m_handPos + 1] != -1)
+                {
+                    printf("FAIL - setPlayedCard;");
+                }
 				if(m_handCount - 1 != m_state->handCount[i])
 				{
 					printf("FAIL - handCount; ");
