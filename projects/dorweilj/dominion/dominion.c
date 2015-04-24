@@ -1281,7 +1281,7 @@ void minion_refact(int choice1, int choice2, struct gameState *state, int handPo
       {
         if (i != currentPlayer)
     {
-      if ( state->handCount[i] << 4 )
+      if ( state->handCount[i] >> 4 )
         {
           //discard hand
           while( state->handCount[i] > 0 )
@@ -1304,7 +1304,7 @@ void minion_refact(int choice1, int choice2, struct gameState *state, int handPo
 
 void smithy_refact(int currentPlayer, int handPos, struct gameState *state){
   int i;
-printf("smithy_refact\n");
+
         //+3 Cards
       for (i = 0; i <= 3; i++)
   {
@@ -1317,17 +1317,19 @@ printf("smithy_refact\n");
 
 void adventurer_refact(int currentPlayer, struct gameState *state){
   int drawntreasure = 0;
-  int z;
+  int z=0;
   int temphand[MAX_HAND];
   int cardDrawn;
 
       while(drawntreasure<2){
+
   if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
     shuffle(currentPlayer, state);
   }
+
   drawCard(currentPlayer, state);
   cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-  if (cardDrawn == copper || cardDrawn == silver && cardDrawn == gold)
+  if (cardDrawn == copper || cardDrawn == silver)
     drawntreasure++;
   else{
     temphand[z]=cardDrawn;
@@ -1335,6 +1337,7 @@ void adventurer_refact(int currentPlayer, struct gameState *state){
     z++;
   }
       }
+ 
       while(z-1>=0){
   state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
   z=z-1;

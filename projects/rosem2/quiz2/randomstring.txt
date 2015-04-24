@@ -1,0 +1,7 @@
+The first thing to developing code that involves other code is understanding the code you are going to be working with. So the first thing I did was read through the code and understand how it works. We are trying to break out of an infinite loop by causing an exit(200). To do this we must do 2 things. First we must go increment state from 0 to 9, then we must return a string that spells out “reset\0”. 
+
+Since inputChar doesn’t require as much code, I started there. I decided, that including all the ascii characters was inefficient random testing because we know what characters we are looking for. Looking at it, I thought that this could simply be written in 2 lines. The first line was just declaring a char array with the characters that were possible values for c. The second line returned a random character from that array.
+
+I moved onto inputString. First off, reset\0 is a 6 character array, so I declared a 6 character array. I repeated the process that I did for inputChar, but within a loop and changing out the character array with an updated one with the letters e, r, s and t (the letters in reset) and the character \0. 
+
+After testing my code to verify that it worked. I wanted to see how well it worked so on a different file, I modified the code so that it would run 1,000,000 times and just print out the count if it was over 100,000. I also stored the highest count that I found. It turns out that my code takes less than 100,000 attempts over 98% of the time, but my worst run was took 391,160 attempts.
