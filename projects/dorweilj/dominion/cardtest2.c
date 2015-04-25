@@ -26,7 +26,8 @@ int main () {
     r = initializeGame(numPlayer, k, seed, G);
     srand(time(NULL));
     fail = 0;
-    
+
+    printf ("TESTING minion_refact():\n");
     for(i = 0; i< numTests; i++){
 
       r = initializeGame(numPlayer, k, seed, G);

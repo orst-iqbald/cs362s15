@@ -63,7 +63,7 @@ int main() {
             		rand_hand[i] = treasures[n];
             	}
 
-                printf("Test player %d with %d treasure card(s) and %d bonus.\n", p, handCount, bonus);
+                //printf("Test player %d with %d treasure card(s) and %d bonus.\n", p, handCount, bonus);
                 memset(&G, '-', sizeof(struct gameState));   // clear the game state
                 r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
                 G.handCount[p] = handCount;                 // set the number of cards on hand
@@ -76,28 +76,28 @@ int main() {
                 r = updateCoins(p, &G, bonus);
                 assert(r == 0);
 
-                printf("G.coins = %d, expected = %d\n", G.coins, handCount * 1 + bonus);
+                //printf("G.coins = %d, expected = %d\n", G.coins, handCount * 1 + bonus);
                 assert(G.coins == handCount * 1 + bonus); // check if the number of coins is correct
 
                 memcpy(G.hand[p], silvers, sizeof(int) * handCount); // set all the cards to silver
                 r = updateCoins(p, &G, bonus);
                 assert(r == 0);
 
-                printf("G.coins = %d, expected = %d\n", G.coins, handCount * 2 + bonus);
+                //printf("G.coins = %d, expected = %d\n", G.coins, handCount * 2 + bonus);
                 assert(G.coins == handCount * 2 + bonus); // check if the number of coins is correct
 
                 memcpy(G.hand[p], golds, sizeof(int) * handCount); // set all the cards to gold
                 r = updateCoins(p, &G, bonus);
                 assert(r == 0);
 
-                printf("G.coins = %d, expected = %d\n", G.coins, handCount * 3 + bonus);
+                //printf("G.coins = %d, expected = %d\n", G.coins, handCount * 3 + bonus);
                 assert(G.coins == handCount * 3 + bonus); // check if the number of coins is correct
 
                 memcpy(G.hand[p], rand_hand, sizeof(int) * handCount); // test a random hand
                 r = updateCoins(p, &G, bonus);
                 assert(r == 0);
 
-                printf("G.coins = %d, expected = %d\n", G.coins, total+bonus);
+                //printf("G.coins = %d, expected = %d\n", G.coins, total+bonus);
        	        assert(G.coins == total + bonus); // check if the number of coins is correct
             }
         }
