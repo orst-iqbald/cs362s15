@@ -104,32 +104,32 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
 
   //set number of Kingdom cards
   for (i = adventurer; i <= treasure_map; i++)       	//loop all cards
-    {
-      for (j = 0; j < 10; j++)           		//loop chosen cards
-	{
-	  if (kingdomCards[j] == i)
+  {
+    for (j = 0; j < 10; j++)           		//loop chosen cards
+	  {
+	   if (kingdomCards[j] == i)
 	    {
 	      //check if card is a 'Victory' Kingdom card
 	      if (kingdomCards[j] == great_hall || kingdomCards[j] == gardens)
-		{
-		  if (numPlayers == 2){
-		    state->supplyCount[i] = 8;
-		  }
-		  else{ state->supplyCount[i] = 12; }
-		}
+		    {
+		      if (numPlayers == 2){
+		      state->supplyCount[i] = 8;
+		      }
+		      else{ state->supplyCount[i] = 12; }
+		    }//if 2
 	      else
-		{
-		  state->supplyCount[i] = 10;
-		}
+		    {
+		      state->supplyCount[i] = 10;
+		    }
 	      break;
-	    }
-	  else    //card is not in the set choosen for the game
+	    }//if 1
+	     else    //card is not in the set choosen for the game
 	    {
 	      state->supplyCount[i] = -1;
 	    }
-	}
+	}//inner for
 
-    }
+}//outer for
 
   ////////////////////////
   //supply intilization complete
@@ -215,6 +215,7 @@ int shuffle(int player, struct gameState *state) {
     card = floor(Random() * state->deckCount[player]);
     newDeck[newDeckPos] = state->deck[player][card];
     newDeckPos++;
+    //for loop to remove card that was placed in newDeck and fill gap
     for (i = card; i < state->deckCount[player]-1; i++) {
       state->deck[player][i] = state->deck[player][i+1];
     }
