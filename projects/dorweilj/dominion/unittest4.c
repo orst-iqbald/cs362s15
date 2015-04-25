@@ -24,7 +24,7 @@ int main () {
     int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
 
     srand(time(NULL));
-    
+    printf ("TESTING buyCard():\n");
     // buyCard first checks to see that the player has buys     
     for(i = 0; i < numTests; i++){
       // test all the cards
@@ -59,7 +59,7 @@ int main () {
           // check game state after buying
           assert(G->numBuys < preBuys);
           assert(G->coins < preCoins);
-          
+
         } else {
           //printf("Assert -1\n");
           assert(r == -1);
