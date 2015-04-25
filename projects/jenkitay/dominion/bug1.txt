@@ -1,0 +1,341 @@
+/*******************************************************************************
+- Taylor Jenkins
+- jenkitay@onid.oregonstate.edu
+- CS 362 - Software Engineering II
+- Assignment 3
+- filename: bug1.txt
+- Description: A bug report outlining bugs found while executing unit tests.
+*******************************************************************************/
+
+////  Bug report 1
+////  Source file: dominion.c
+////  Test file: unittest2.c
+////  Tested Function: int* kingdomCards(int k1, int k2, int k3, int k4, int k5, 
+                                         int k6, int k7, int k8, int k9, int k10);
+
+      Description: Testing parameter inputs outside the expected range 0 - NUM_K_CARDS,
+         by testing with values of INT_MAX and INT_MIN, in place of parameters k1 - k10.
+         
+      Error message from unit test:
+         FAIL: Card 0 - 9 of kingdomCards failed to check for out of range input.
+         
+      How to reproduce:
+         Calling the functions as follows will reproduce teh results, by failing to 
+         generated a warning or error.
+         int kc = kingdomCards(INT_MAX, INT_MIN, INT_MAX, INT_MIN, INT_MAX, 
+                               INT_MIN, INT_MAX, INT_MIN, INT_MAX, INT_MIN);
+      
+////  Bug report 2
+////  Source file: dominion.c
+////  Test file: None
+////  Tested Function: int* kingdomCards(int k1, int k2, int k3, int k4, int k5, 
+                                         int k6, int k7, int k8, int k9, int k10);
+
+      Description: This function is entirely unused in the dominion project. I recommend 
+         incorporating it or removing to avoid confusion by other developers.
+         
+////  Bug report 3
+////  Source file: dominion.c
+////  Test file: unittest4.c
+////  Tested Function: int discardCard(int handPos, int currentPlayer, 
+                              struct gameState *state, int trashFlag);
+
+      Description: Beginning with the preconditions of game is initialized as follows:
+         initializeGame(2, kCards, 99, &state); Only 1 card is in hand, at handPos 0, 
+         all other positions of hand[p][handPos] initialized to -1, and 3 played cards, 
+         call discardCard(1, p, &state, 0); this requests the non-existent card in position 1
+         be discarded. the result is that discard places the out of range value of -1 in the 
+         played card array.
+
+      Error messages from unit test:
+         FAIL Test 4: played card was out of range for hand.
+                      handCount = 1 Player = 0
+         FAIL Test 4: played card was out of range for hand.
+                      handCount = 1 Player = 1
+                               
+////  Bug report 4
+////  Source file: dominion.c
+////  Test file: cardtest1.c
+////  Tested Function: smithyCardEffect(&state, handPos);
+
+      Description: Expected effect of play smithy card removes 1 card from hand, 
+         adds 3 cards to hand, removes 3 from deck, and adds 1 card to discard 
+         Set the size of the hand, and playedCardCount. Instead, the following 
+         results were produced with the stated preconditions. It appears smithy 
+         has no effect.
+      
+      Error messages from cardtest1:
+                      
+         Pre-conditions:
+          handCount = 1
+          deckCount = 4
+          discardCount = 4
+          playedCardCount = 4
+          turn = 0
+         Post-conditions:
+          handCount = 1
+          deckCount = 4
+          discardCount = 4
+          playedCardCount = 4
+          turn = 0
+         FAIL Test 1: handCount did not increase by two
+            Expected: 3. Returned: 1
+            starting handCount = 1 Player = 0
+         FAIL Test 2: deckCount did not decrease by three
+            Expected: 1. Returned: 4
+            starting handCount = 1 Player = 0
+         FAIL Test 3: discardCount count not increased by 1
+            Expected: 5. Returned: 4
+            starting handCount = 1 Player = 0
+         FAIL Test 4: playedCardCount count not increased by 1
+            Expected: 5. Returned: 4
+            starting handCount = 1 Player = 0
+                      
+         Pre-conditions:
+          handCount = 5
+          deckCount = 4
+          discardCount = 4
+          playedCardCount = 4
+          turn = 1
+         Post-conditions:
+          handCount = 5
+          deckCount = 4
+          discardCount = 4
+          playedCardCount = 4
+          turn = 1
+         FAIL Test 1: handCount did not increase by two
+            Expected: 7. Returned: 5
+            starting handCount = 5 Player = 1
+         FAIL Test 2: deckCount did not decrease by three
+            Expected: 1. Returned: 4
+            starting handCount = 5 Player = 1
+         FAIL Test 3: discardCount count not increased by 1
+            Expected: 5. Returned: 4
+            starting handCount = 5 Player = 1
+         FAIL Test 4: playedCardCount count not increased by 1
+            Expected: 5. Returned: 4
+            starting handCount = 5 Player = 1
+                               
+////  Bug report 5
+////  Source file: dominion.c
+////  Test file: cardtest2.c
+////  Tested Function: adventurerCardEffect(&state);
+
+      Expected behaviour: Effect of adventurer card
+         //    Reveal cards from your deck until you reveal 2 Treasure cards. 
+         //    Put those Treasure cards in your hand and discard the other 
+         //    revealed cards.
+
+      Description: memory addresses were initialized to -1, and game was initialized
+         for 2 players, 10 kingdomCards, random seed of 99, and a pointer to the 
+         game state struct. The player's hand, deck, and counts were initialized as follows:
+         
+         int initHand[] = {
+            adventurer,
+            copper,
+            estate,
+            copper,
+            estate,
+         };
+         
+         // initialize player's hand
+         state.handCount[p] = handCount;
+         for (handPos = 0; handPos < handCount; handPos++) {
+            state.hand[p][handPos] = initHand[handPos % (sizeof(initHand)/sizeof(int))];
+         }
+         
+         // initialize counts
+         state.discardCount[p] = 0;
+         state.playedCardCount = 0;
+         
+         // initialize deck
+         state.deckCount[p] = 7;
+         state.deck[p][0] = adventurer;
+         state.deck[p][1] = gold;
+         state.deck[p][2] = feast;
+         state.deck[p][3] = copper;
+         state.deck[p][4] = mine;
+         state.deck[p][5] = smithy;
+         state.deck[p][6] = silver;
+         
+         handPos = 0;
+    
+         Results of testing with given pre-conditions:
+            Note the interesting anomaly on the first listed test. It is the 
+            only case where test 6 did not fail.
+         
+         Pre-conditions:
+          handCount = 1
+          deckCount = 7
+          discardCount = 0
+          playedCardCount = 0
+          turn = 0
+         Post-conditions:
+          handCount = 1
+          deckCount = 7
+          discardCount = 0
+          playedCardCount = 0
+          turn = 0
+         FAIL Test 1: handCount did not increase by 2
+            Expected: 3. Returned: 1
+            starting handCount = 1 Player = 0
+         FAIL Test 2: deckCount did not decrease by 4
+            Expected: 3. Returned: 7
+            starting handCount = 1 Player = 0
+         FAIL Test 3: discardCount count not increased by 2
+            Expected: 2. Returned: 0
+            starting handCount = 1 Player = 0
+         FAIL Test 5: discard pile does not contain mine and smithy in that order.
+            Expected: [11, 13]. Returned: [-1, -1]
+            starting handCount = 1 Player = 0
+            
+         Pre-conditions:
+          handCount = 1
+          deckCount = 7
+          discardCount = 0
+          playedCardCount = 0
+          turn = 1
+         Post-conditions:
+          handCount = 1
+          deckCount = 7
+          discardCount = 0
+          playedCardCount = 0
+          turn = 1
+         FAIL Test 1: handCount did not increase by 2
+            Expected: 3. Returned: 1
+            starting handCount = 1 Player = 1
+         FAIL Test 2: deckCount did not decrease by 4
+            Expected: 3. Returned: 7
+            starting handCount = 1 Player = 1
+         FAIL Test 3: discardCount count not increased by 2
+            Expected: 2. Returned: 0
+            starting handCount = 1 Player = 1
+         FAIL Test 5: discard pile does not contain mine and smithy in that order.
+            Expected: [11, 13]. Returned: [-1, -1]
+            starting handCount = 1 Player = 1
+         FAIL Test 6: Last two cards in hand are not silver and copper in that order.
+            Expected: [5, 4]. Returned: [-1, -1]
+            starting handCount = 1 Player = 1
+
+         Pre-conditions:
+          handCount = 5
+          deckCount = 7
+          discardCount = 0
+          playedCardCount = 0
+          turn = 1
+         Post-conditions:
+          handCount = 5
+          deckCount = 7
+          discardCount = 0
+          playedCardCount = 0
+          turn = 1
+         FAIL Test 1: handCount did not increase by 2
+            Expected: 7. Returned: 5
+            starting handCount = 5 Player = 1
+         FAIL Test 2: deckCount did not decrease by 4
+            Expected: 3. Returned: 7
+            starting handCount = 5 Player = 1
+         FAIL Test 3: discardCount count not increased by 2
+            Expected: 2. Returned: 0
+            starting handCount = 5 Player = 1
+         FAIL Test 5: discard pile does not contain mine and smithy in that order.
+            Expected: [11, 13]. Returned: [1, -1]
+            starting handCount = 5 Player = 1
+         FAIL Test 6: Last two cards in hand are not silver and copper in that order.
+            Expected: [5, 4]. Returned: [-1, -1]
+            starting handCount = 5 Player = 1
+
+                               
+////  Bug report 6
+////  Source file: dominion.c
+////  Test file: cardtest3.c
+////  Tested Function: sea_hagCardEffect(&state);
+
+      Expected behaviour: Effect of sea hag card
+         //    Each other player discards the top card of his deck, then gains a
+         //    Curse card, putting it on top of his deck.
+
+      Description: memory addresses were initialized to -1, and game was initialized
+         for 2 players, 10 kingdomCards, random seed of 99, and a pointer to the 
+         game state struct. The player's hand, deck, and counts were initialized as follows:
+         
+         // initialize both players' decks
+         for (int d = 0; d < numPlayers; d++) {
+            // initialize each player's hand
+            state.handCount[d] = handCount;
+            for (handPos = 0; handPos < handCount; handPos++) {
+               state.hand[d][handPos] = initHand[handPos % (sizeof(initHand)/sizeof(int))];
+            }
+            
+            // initialize counts
+            state.discardCount[d] = 0;
+            state.playedCardCount = 0;
+            
+            // initialize deck
+            state.deckCount[d] = 7;
+            state.deck[d][0] = adventurer;
+            state.deck[d][1] = gold;
+            state.deck[d][2] = feast;
+            state.deck[d][3] = copper;
+            state.deck[d][4] = mine;
+            state.deck[d][5] = smithy;
+            state.deck[d][6] = silver;
+         }
+    
+         Results of testing with given pre-conditions:
+
+         Pre-conditions for player 0:
+          handCount = 5
+          deckCount = 7
+          discardCount = 0
+          playedCardCount = 0
+          player's turn = 1
+          Top of player 0's deck = 5
+          Top of player 0's discard = -1
+
+         Pre-conditions for player 1:
+          handCount = 5
+          deckCount = 7
+          discardCount = 0
+          playedCardCount = 0
+          player's turn = 1
+          Top of player 1's deck = 5
+          Top of player 1's discard = -1
+
+         Post-conditions for player 0:
+          handCount = 5
+          deckCount = 7
+          discardCount = 0
+          playedCardCount = 0
+          player's turn = 1
+          Top of player 0's deck = 5
+          Top of player 0's discard = -1
+
+         Post-conditions for player 0:
+          handCount = 7
+          deckCount = 3
+          discardCount = 3
+          playedCardCount = 0
+          player's turn = 1
+          Top of player 1's deck = 5
+          Top of player 1's discard = -1
+
+         FAIL Test 1: handCount changed for player 1
+            Expected: 5. Returned: 7
+         FAIL Test 2: deckCount changed for player 1
+            Expected: 7. Returned: 3
+         FAIL Test 3: other player's discardCount count not increased by 1
+            Expected: 1. Returned: 0
+         FAIL Test 3: player 1's discardCount count changed
+            Expected: 0. Returned: 3
+         FAIL Test 5: Top of other player's discard pile is not silver.
+            Expected: 5. Returned: 11
+         FAIL Test 5: Top of current player's discard pile is not empty.
+            Expected: -1. Returned: 11
+         FAIL Test 6: Top of other player's deck is not a curse card.
+            Expected: 0. Returned: 4
+         FAIL Test 6: Top of current player's deck is not a silver card.
+            Expected: 5. Returned: 1
+   
+
+   
