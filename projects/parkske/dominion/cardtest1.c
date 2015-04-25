@@ -7,6 +7,7 @@
 #define NUM_PLAYERS 2
 #define MYDEBUG
 #define NUMRUNS 10
+#define MAX_TEST_DECK 20
 
 int testDoAdventurer(struct gameState *state, int player, int* temphand, int drawntreasure, int cardDrawn, int z)
 {
@@ -57,25 +58,53 @@ int main(int argc, char* argv[])
 	//pre-test variables
 	int m_handCount = numHandCards(m_state);
 	int m_preTreasure = getTreasureCount(m_state, player);
+	int m_deckCount = m_state->deckCount[player];
 	
+	//fill the player's deck so we can run our tests
+	
+	int d;
+	for(d = m_deckCount; d < m_deckCount + 10; d++)
+	{
+		m_state->deck[player][d] = copper;
+		m_state->deckCount[player]++;
+	}
+	m_deckCount += 10;
+	
+	for(d = m_deckCount; d < m_deckCount + 10; d++)
+	{
+		m_state->deck[player][d] = curse;
+		m_state->deckCount[player]++;
+	}
+	m_deckCount += 10;
+	printf("m_deck: %d\n", m_deckCount);
 	for(i = 0; i < NUMRUNS; i++)
 	{
-		//odd test case 1: deckCount is empty
-		if(i == 1)
+		//odd test case 1: deckCount is 0
+		if(i == NUMRUNS - 1)
 		{
-			printf("Deck count: %d\n", m_state->deckCount[player]);
-			while(m_state->deckCount[player] >= 1)
+			printf("***Testing empty deck draw card case***\n");
+			while(m_state->deckCount[player] > 1)
 			{
 				if(drawCard(player, m_state) >= 0)
 					m_handCount++;
+				m_state->discard[player][m_state->discardCount[player] ] = m_state->hand[player][m_handCount - 1];
+				m_state->discardCount[player]++;
+				m_handCount--;
 			}
-			printf("End hand count: %d\n", m_handCount);
 		}
+		
 		//normal use case, gain 2 treasure cards, return without error
 		printf("Returns non-error.....");
 		if(testDoAdventurer(m_state, player, tempHand, drawntreasure, cardDrawn, z) < 0)
 		{
 			printf("FAIL - Adventurer returns negative\n");
+			printf("deCount %d; hCount: %d; tCount: %d; diCount: %d\n", m_state->deckCount[player], m_handCount, 
+														  getTreasureCount(m_state, player), m_state->discardCount[player]);
+			if(i == NUMRUNS - 1)
+			{
+				printf("***END empty deck draw card case***\n");
+			}
+			continue;
 		}
 		else
 			printf("PASS\n");
@@ -105,6 +134,10 @@ int main(int argc, char* argv[])
 			}
 			else
 				printf("PASS\n");
+		}
+		if(i == NUMRUNS - 1)
+		{
+			printf("***END empty deck draw card case***\n");
 		}
 	}
 	
