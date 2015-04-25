@@ -1,0 +1,26 @@
+//AUTHOR:                HOWARD CEHN
+//CLASS/Assignment:      CS362/Quiz2
+//TERM:                  Spring 2015
+//Filename:              randomstring.txt
+
+Basically, the testme() function will only progress through states 1-9 if the
+conditional statements are met. The first 9 conditional statements has 2
+requirements:
+    1. The random character generated from inputChar() has to equal the
+          character specified in the conditional statement.
+    2. The previous conditional statement has to be met before continuing to
+          the next.
+          
+The last conditional statement will only continue if the character string = 
+'reset' and all previous 9 conditional statements are met. 
+
+To pass these tests by randomization, we specify that the inputChar() function
+returns a random character. Since the characters we want fall between 32-126
+on the ASCII character encoding scheme, we can randomly select a number from
+32-126. To get the character, we just return the type casted (char)number.
+
+To pass the test of the final conditional statement of testme() by
+randomization, we set the inputString() function to return a 5 character string
+that has random sequences of e, r, s, t (only these letters are used to be
+able to past the final test). We could use every single character like
+inputChar(), but it would probably take days to find the sequence of r,e,s,e,t.

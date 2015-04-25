@@ -1,0 +1,17 @@
+Assignment3 Bug Report
+
+
+adventurerCard(): failed for hand count
+
+This bug is caused by the bug I introduced in assignment2 for this function:
+
+"BUG:	At the end, for discard revealed cards routine while(z-1>0), should be while(z-1>=0)."
+
+
+
+
+great_hallCard(): failed num actions
+
+This bug is caused by the bug I introduced in assignment2 for this function:
+
+"BUG:	numActions--, should be numActions++."
