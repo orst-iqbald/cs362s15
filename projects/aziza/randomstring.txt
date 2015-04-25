@@ -1,0 +1,15 @@
+Aryan Aziz
+Quiz 2 - Random Testing
+
+To Compile: gcc -o testme testme.c
+
+Before even beginning to code the program, I looked at what was already built and tried to break down what it was doing. The main function did nothing but seed the random and then run the testme() function. Inside the testme() function was the bulk of what we were checking, and looking at it, it did a few things. In an endless while loop, it ran the inputChar function and the inputString function. 
+
+From the looks of it, the inputChar() function was to set to return a random character and the inputString() a random string (obviously). But as we wanted to test the error functionality, I looked at what it would take to generate an error:
+1. inputChar must first be "[", then "(", then .... all the way until it hits state of 9. Then, and only then, will the function look at the inputString and check if it's the word "reset". 
+
+inputChar(): My implementation is pretty simple, I first created an array with 33 different ascii characters (the lowercase alphabet and the extra chars needed in the testme() function). Realistically, if I wanted the testing to occur even quicker, I could've stripped all of the unnecessary alphabet chars and just kept "a" and "x"; but that's no fun. Then I generated a random number between 0 and the size of the array, and returned that sucka. 
+
+inputString(): To restrict the length of testing, I decided to create an array with just the characters "r" "e" "s" "t"; because those are the only ones we care about. Including all 26 characters would result in long waiting as you have a 1:26 chance of each letter being what you wanted, whereas it's currently 1:4. The program loops through each spot in the string and then randomly chooses one of the values above and places it into the string. Another option could've been to create an array of random 5 letter strings, but I feel like that's more work on my end to think of various 5 letter strings rather than just implement it programmatically. 
+
+I ran 10 occurrances to see the average number of iterations it would take. It averaged out to producing the error result once out of every 868 iterations, with a peak of 1649 iterations and a minimum of 314 iterations. Again, that number could've been reduced by reducing my array in inputChar, but the current result is very reasonable. 
