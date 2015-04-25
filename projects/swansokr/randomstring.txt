@@ -1,0 +1,12 @@
+Steps taken in developing a random tester for testme.c that produces the error:
+
+1. I made sure the characters produced by charInput() were printable (ASCII 32-126).
+2. I restricted inputString()'s string length to 6 (so that the \0 would be at s[5]), filling the rest with
+	random characters from inputString().
+3. I tried restricting the characters that would be put into the string to lowercase alphabetical.
+4. I set the string to "reset\0" then replaced a random (0-5, not counting the '\0') number of characters 
+	with random characters from inputChar().  This worked.
+	
+	So the random characters produced from inputChar() cause testme() to progress through the "state"
+	values until state = 9; meanwhile, the string will occationally be exactly "reset\0" since one possibility
+	is that zero characters in the string will be set to random values.

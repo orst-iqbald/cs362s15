@@ -1,0 +1,27 @@
+/* 
+ * Michael Sigel
+ * CS 362 Quiz 2
+ * April 22nd 2015 
+ * I left the "TODO" comments in to show that is only where we worked
+ */
+ 
+ The object of this testme.c file was to create a random test that would cause the error message to be printed out.
+ Before starting I read through the code to make sure I understood what the code would do so I could get a better understanding
+ of what it was I needed to do. We are only evaluating a small set of characters in the control statements, so we
+ could decide that we should only generate random characters from that subset.
+ 
+ The input characters were only evaluated ahainst this subset of characters: 
+ ('[', '(', '{', ' ', 'a', 'x', '}', ')', ']').
+ In the inputChar() function our goal was to randomly select one of those characters to be returned.
+ 
+ The input string was an array of characters where the testMe() function only evalauated whether the following set of characters 
+ occured in a particular sequence:
+ ('r', 'e', 's', 't', '\0').
+ The function checks positions 0-5, so in the inputString() function we allocate memory for a string of length 6.
+ Then we populate each position with a randomly selected character from the set of the characters listed above.
+ 
+ After running the program multiple times we see that it quickly and successfully halts after printing the error message.
+ Once testMe() function enters the while loop it will not exit without printing the error message. Each iteration calls inputChar()
+ and inputString() which will then generate new random input each time. The input character is evaluated and as the appropriate
+ character is discoverd during the appropriate state, then the string is evaluated. when the characters of the string appear in the order
+ "reset\0" and the level is 9, the error message is printed.
