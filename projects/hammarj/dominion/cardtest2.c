@@ -16,13 +16,13 @@ int main() {
     int player = 0;
     struct gameState* state = malloc(sizeof(struct gameState));
     state->whoseTurn = player;
-    state->discardCount[player1] = 0;
+    state->discardCount[player] = 0;
     int handpos = 0;
     int res;      //return value of function
     
     //play village card when it's the only card in the player's hand
     state->hand[player][0] = village;
-    state->handCount[player1] = 1;
+    state->handCount[player] = 1;
     state->numActions = 1;
     loadDeck(player);
     res = cardVillage(handpos, state);
