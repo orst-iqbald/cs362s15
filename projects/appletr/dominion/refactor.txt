@@ -1,3 +1,4 @@
+Details the cards refactored and the bugs they introduce. All card effects were pulled out into separate functions
 
 Adventurer
 Bug introduced: deck is not checked
