@@ -1,0 +1,83 @@
+/*-------------------------------------------------------------------------
+ * Daryl Cooke - CS362
+ * Coverage testing
+ * 4/20/2015
+ *-----------------------------------------------------------------------*/
+
+/*-------------------------------------------------------------------------
+ * unittest1 : buyCard() function
+ *-----------------------------------------------------------------------*/
+ Lines executed: 21.73% of 566 from 'dominion.c'
+
+ Every line that was not a debug print statement was covered by my unit testing.
+ This unit test has 100% branch and statement coverage inside the buycard()
+ function.
+
+/*-------------------------------------------------------------------------
+ * unittest2 : initializeGame() function
+ *-----------------------------------------------------------------------*/
+ Lines executed: 17.49% of 566 from 'dominion.c'
+
+ Almost every line was covered by my unit testing.
+ This unit test has 98% branch and statement coverage inside the initializeGame()
+ function. This is extremely thorough coverage, and only fails to test the branch
+ where initializeGame() checks for the failure of another game function(shuffle())
+
+/*-------------------------------------------------------------------------
+ * unittest3 : shuffle() function
+ *-----------------------------------------------------------------------*/
+ Lines executed: 16.08% of 566 from 'dominion.c'
+
+ Every line was covered by my unit testing.
+ This unit test has 100% branch and statement coverage inside the shuffle()
+ function.
+
+/*-------------------------------------------------------------------------
+ * unittest4 : endTurn() function
+ *-----------------------------------------------------------------------*/
+ Lines executed: 19.79% of 566 from 'dominion.c'
+
+ Every line was covered by my unit testing.
+ This unit test has 100% branch and statement coverage inside the endTurn()
+ function. 
+
+/*-------------------------------------------------------------------------
+ * cardtest1 : effectSmithy() function
+ *-----------------------------------------------------------------------*/
+ Lines executed: 17.14% of 566 from 'dominion.c'
+
+ Every line was covered by my unit testing.
+ This unit test has 100% branch and statement coverage inside the 
+ effectSmithy() function.
+
+/*-------------------------------------------------------------------------
+ * cardtest2 : effectAdventurer() function
+ *-----------------------------------------------------------------------*/
+ Lines executed: 24.38% of 566 from 'dominion.c'
+
+ Every line was covered by my unit testing.
+ This unit test has 100% branch and statement coverage inside the 
+ effectAdventurer() function.
+
+/*-------------------------------------------------------------------------
+ * cardtest3 : effectCouncilRoom() function
+ *-----------------------------------------------------------------------*/
+ Lines executed: 19.79% of 566 from 'dominion.c'
+
+ Every line was covered by my unit testing.
+ This unit test has 100% branch and statement coverage inside the 
+ effectCouncilRoom() function.
+
+/*-------------------------------------------------------------------------
+ * cardtest4 : effectCutpurse() function
+ *-----------------------------------------------------------------------*/
+ Lines executed: 19.79% of 566 from 'dominion.c'
+
+ The coverage for this unit test is rather bad. However the fault lies in
+ the effectCutpurse() function rather than the unit test. There are several
+ branches of the effectCutpurse() function that are entirely unreachable,
+ and an indexing error (described in refactor.txt) is causing another branch
+ to fail even with proper testing input.
+
+ This unit test has 56% statement coverage and 50% branch coverage
+ inside the effectCutpurse() function.

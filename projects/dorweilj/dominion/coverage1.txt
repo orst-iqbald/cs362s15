@@ -1,0 +1,33 @@
+**coverage tests**
+
+- The overall coverage results are:
+	Lines executed:35.80% of 567
+	Branches executed:34.70% of 415
+	Taken at least once:26.51% of 415
+	Calls executed:25.77% of 97
+
+	The coverage seems low but that is because there are only 8 function being tested.  It could always be increased by adding tests for the other dominion.c functions.
+
+Unittest1:
+	This tested the update coins function.  All lines and branches were covered but the final else if statement was only taken by 1% of inputs.  This branch could use more coverage in future tests. 
+
+Unittest2:
+	This tested the shuffle function.  All lines and branch were covered.  The initial check that the player deck count is less than 1 was only covered by 1% of inputs.  All the other branches had coverage greater than 9%.
+
+Unittest3:
+	This tested the initializeGame function.  This was the hardest method to write tests for since it has many branches.  Because of that there are a few branches that were not covered.  The initial check that the number of players is in the correct bounds was never tested.  There are a few other branches in the assigning of cards that have low coverage below 5%.
+
+Unittest4:
+	This tested the buyCard function.  The only line that wasn't covered was the initial check that the player has a buy left.  Other than that all the other lines and branches were covered with more than 10%.
+
+Caredtest1:
+	This tested my refactored smithy function.  All lines were covered and all branches were covered with at least 20%.
+
+Cardtest2:
+	This tested my refactored minion function.  All lines were covered.  There are a few branches that were not covered but this a result of the bugs that I added to the code.  When those are removed all the branches are covered.
+
+Cardtest3:
+	This tested my refactored adventurer function.  All lines were covered and all branches were taken.  There is pretty low coverage on the first check that the player's deck needs to be shuffled.  That has a 3% branch coverage so it could be improved.
+
+Cardtest4:
+	This tested my refactored village function.  This is a pretty simple function with no branches so it was easy to get 100% coverage.
