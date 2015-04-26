@@ -72,4 +72,6 @@ int main() {
     assert(state->deck[player][0] == adventurer);
     assert(state->handCount[player] == 1);
     assert(state->hand[player][0] == card);
+    
+    return 0;
 }
