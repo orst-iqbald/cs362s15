@@ -9,9 +9,9 @@
 #define NUMRUNS 10
 //#define MYDEBUG
 
-int testDoSmithy(struct gameState *state, int player, int handPos)
+int testDoVillage(struct gameState *state, int player, int handPos)
 {
-    return doSmithy(state, player, handPos);
+    return doVillage(state, player, handPos);
 }
 
 int main(int argc, char* argv[])
@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
     if(argc == 2 && strcmp(argv[1], "-c") == 0)
         color = 1;
     int failedTests = 0;
-    printf("\n\n****BEGIN CARDTEST2: doSmithy****\n");
+    printf("\n\n****BEGIN CARDTEST3: doVillage****\n");
 	struct gameState *m_state = newGame();
     int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, 
            sea_hag, tribute, smithy};
@@ -32,22 +32,15 @@ int main(int argc, char* argv[])
     
     //pre-test variables
     int preHandCount = m_state->handCount[player];
+    int preActionCount = m_state->numActions;
     int preDeckCount = m_state->deckCount[player];
     int prePlayedCount = m_state->playedCardCount;
     int handPos = m_state->hand[player][preHandCount - 1];
     int discardCard = handCard(handPos, m_state);
-    
-#ifdef MYDEBUG
-    printf("preHandCount: %d\n", preHandCount);
-    printf("preDeckCount: %d\n", preDeckCount);
-    printf("prePlayedCount: %d\n", prePlayedCount);
-    printf("prePlayedCard: %d\n", prePlayedCard);
-    printf("handPos: %d\n", handPos);
-    printf("discardCard: %d\n", discardCard);
-#endif
-    
-    printf("Smithy returns 0.....");
-    if(testDoSmithy(m_state, player, handPos) != 0)
+
+    //test return succeeds without error
+    printf("Village returns 0.....");
+    if(testDoVillage(m_state, player, handPos) != 0)
     {
         printf("FAIL\n");
         failedTests++;
@@ -55,6 +48,7 @@ int main(int argc, char* argv[])
     else
         printf("PASS\n");
     
+    //test state is not null somehow
     printf("State not null.....");
     if(m_state == NULL)
     {
@@ -63,9 +57,10 @@ int main(int argc, char* argv[])
     }
     else
         printf("PASS\n");
-
-    printf("Test hand count.....");
-    if(preHandCount + 2 != m_state->handCount[player])
+    
+    //test that we gained 1 card in hand
+    printf("Gain 1 card.....");
+    if(preHandCount != m_state->handCount[player])
     {
         printf("FAIL\n");
         failedTests++;
@@ -73,7 +68,28 @@ int main(int argc, char* argv[])
     else
         printf("PASS\n");
     
-    printf("Test discardCard count.....");
+    //test that we decremented deck by 1 from drawCard
+    printf("Decrement deck.....");
+    if(preDeckCount - 1 != m_state->deckCount[player])
+    {
+        printf("FAIL\n");
+        failedTests++;
+    }
+    else
+        printf("PASS\n");
+    
+    //test that we gained 2 actions
+    printf("Gain 2 actions.....");
+    if(preActionCount + 2 != m_state->numActions)
+    {
+        printf("FAIL\n");
+        failedTests++;
+    }
+    else
+        printf("PASS\n");    
+    
+    //test that we discarded to playedcards 1 card
+    printf("Discard count.....");
     if(prePlayedCount + 1 != m_state->playedCardCount)
     {
         printf("FAIL\n");
@@ -82,7 +98,8 @@ int main(int argc, char* argv[])
     else
         printf("PASS\n");
     
-    printf("Test discardCard card.....");
+    //test that the card we discarded is last card on playedCards pile
+    printf("Discard card.....");
     if(discardCard != m_state->playedCards[m_state->playedCardCount - 1])
     {
         printf("FAIL\n");
@@ -90,24 +107,6 @@ int main(int argc, char* argv[])
     }
     else
         printf("PASS\n");
-    
-    printf("Test deckCount.....");
-    if(preDeckCount - 3 != m_state->deckCount[player])
-    {
-        printf("FAIL\n");
-        failedTests++;
-    }
-    else
-        printf("PASS\n");
-
-#ifdef MYDEBUG
-    printf("postHandCount: %d\n", m_state->handCount[player]);
-    printf("postDeckCount: %d\n", m_state->deckCount[player]);
-    printf("postPlayedCount: %d\n", m_state->playedCardCount);
-    printf("postPlayedCard: %d\n", m_state->playedCards[m_state->playedCardCount - 1]);
-    printf("postHandPos: %d\n", handPos);
-    printf("postDiscardCard: %d\n", handCard(handPos, m_state));
-#endif
 
     if(failedTests > 0)
         if(color)
@@ -119,6 +118,6 @@ int main(int argc, char* argv[])
             printf("\033[1;32mFailed %d tests\033[0m\n", failedTests);	
         else
             printf("Failed %d tests\n", failedTests);	
-    printf("****END CARDTEST2****\n");
+    printf("****END CARDTEST3****\n");
     return 0;
 }
