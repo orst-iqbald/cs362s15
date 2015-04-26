@@ -33,7 +33,8 @@ void testOutpost() {
 
 	/*
 	Outpost testing:
-		1. 
+		1. test outpost flag is set
+    2. test card was discarded
 	*/
 }
 
