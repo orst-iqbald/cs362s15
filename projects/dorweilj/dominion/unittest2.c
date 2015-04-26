@@ -23,7 +23,7 @@ int main() {
     int numTests = 10;
     int numPlayer = 2;
     int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
-    
+    printf ("TESTING shuffle():\n");
     for(i = 0; i < numTests; i++){
         // initialize a new game
         r = initializeGame(numPlayer, k, seed, G);

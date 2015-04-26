@@ -982,7 +982,9 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	  state->coins += 2;
 	}
 		    
-	else if (tributeRevealedCards[i] == estate || tributeRevealedCards[i] == duchy || tributeRevealedCards[i] == province || tributeRevealedCards[i] == gardens || tributeRevealedCards[i] == great_hall){//Victory Card Found
+	else if (tributeRevealedCards[i] == estate || tributeRevealedCards[i] == duchy 
+			|| tributeRevealedCards[i] == province || tributeRevealedCards[i] == gardens 
+			|| tributeRevealedCards[i] == great_hall){//Victory Card Found
 	  drawCard(currentPlayer, state);
 	  drawCard(currentPlayer, state);
 	}
@@ -1252,9 +1254,9 @@ int useAdventurer(struct gameState *state, int currentPlayer)
   int drawntreasure = 0;
   int temphand[MAX_HAND];
   int z = 0; //counter for temphand
-  while(drawntreasure<=2)
+  while(drawntreasure <= 2)
   {
-	  if (state->deckCount[currentPlayer] <1) //if the deck is empty we need to shuffle discard and add to deck
+	  if (state->deckCount[currentPlayer] < 1) //if the deck is empty we need to shuffle discard and add to deck
 	    shuffle(currentPlayer, state);
 
     drawCard(currentPlayer, state);
@@ -1316,7 +1318,7 @@ int useCouncil_room(struct gameState *state, int currentPlayer, int handPos)
   //Each other player draws a card
   for (i = 0; i < state->numPlayers; i++)  
   {
-    if ( i = currentPlayer )
+    if ( i == currentPlayer )
     {
       drawCard(i, state);
     }

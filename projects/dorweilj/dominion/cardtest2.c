@@ -1,5 +1,5 @@
 /*----------------------------------------------
-* testing smithy
+* testing minion_refact
 *
 * testcard1: cardtest1.c dominion.o rngs.o
 *  gcc -o cardtest1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
@@ -26,12 +26,13 @@ int main () {
     r = initializeGame(numPlayer, k, seed, G);
     srand(time(NULL));
     fail = 0;
-    
+
+    printf ("TESTING minion_refact():\n");
     for(i = 0; i< numTests; i++){
 
       r = initializeGame(numPlayer, k, seed, G);
       // random choice, both being sent doesn't make sense so no need to test that
-      choice1 = rand() % 1;
+      choice1 = rand() % 2;
       choice2 = !choice1;
 
       // set a random player
@@ -49,6 +50,7 @@ int main () {
       }
 
       actions = G->numActions;
+      coins = G->coins;
 
       minion_refact(choice1, choice2, G, 0);
       
