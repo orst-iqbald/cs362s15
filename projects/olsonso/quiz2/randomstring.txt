@@ -1,0 +1,11 @@
+************************
+Sonja Olson
+April 24 2015
+randomstring.txt
+************************
+ 
+This purpose of this testme.c is to be a test file that creates a random test to cause an error message to be printed when executed. 
+
+I used the input charcters that I came up with to randomize. I chose 6,  'a', 'b', '(', ')', 'c', 'z' to be evaluated and randomly select one of the chosen characters to be returned. 
+
+For the next function I used a different array of charcters, 'd', 'e', 'f', 'g'. This second function checks the positions form 0 to 4 with the memory lenght 5. Once the memory space is made then it goes through and puts a random charcter in the given array that was created. 
