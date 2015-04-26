@@ -1,0 +1,23 @@
+unittest1.c - testing initializeGame()
+	1. I did not catch any bugs here but believe the tests are sufficient and this function does not
+	   have any bugs
+
+unittest2.c - testing shuffle()
+	1. Not sure if this is a bug, but my initial idea was to test to see if at least half the cards were moved around. This didn't work and the asserts on this failed very often. So instead I decided to settle for at least 1 card moved around. However, the assert to check this still failed far too frequently, and I would only be able to pass the full suite maybe 1/50 times, which I thought was a little too much. So, I'd personally say the shuffle function has a bug in that it doesn't sufficiently shuffle them or protect against shuffling them to the same order, especially for small inputs, but it may be working as intended.
+
+unittest3.c - testing playCard()
+	1. I did not catch any bugs but feel I sufficiently tested the function for reliability
+
+unittest4.c - testing buyCard()
+	1. No bugs found but believe this function is tested thoroughly and is bugfree at the moment
+
+cardtest1.c - testing smithy
+
+
+cardtest2.c - testing adventurer
+
+
+cardtest3.c - testing
+
+
+cardtest4.c - testing

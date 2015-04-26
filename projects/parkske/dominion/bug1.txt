@@ -1,0 +1,14 @@
+#Bug Reports of dominion project
+#Author: Kevin Parks
+
+Bug 00001: 
+    Summary: 
+        A deadlock case occurs when doAdventurer attempts to drawCard but the deck is empty. Shuffle will return -1
+        and the discard pile is not moved into the deck and shuffled.
+    How to Reproduce:
+        Call the cardEffect > doAdventurer with deckCount <= 0.
+    Expected Outcome:
+        The empty deck is recombined with the discard and shuffled to make more cards available.
+    Actual Outcome:
+        Shuffle exits when the deck is empty, so doAdventurer is not able to complete its drawCard
+        routine for gathering treasure cards.

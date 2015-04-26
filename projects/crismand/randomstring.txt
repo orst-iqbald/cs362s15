@@ -1,0 +1,14 @@
+David Crisman (crismand)
+CS 362 Random Quiz 2
+4/24/2015
+
+Random Quiz 2 - 
+
+Write up the development of your random tester and how it finds the error message:
+
+My functions for generating random numbers went as follows.  inputChar() initializes a char variable and loads it with a random value between 32 and 125.  These are ASCII values between ' ' and the last bracket that changes the state.  Since there is only 1 of these generated, this random selection quickly passes the states from 1 to 9.
+
+My inputString() function creates a pointer to a char array, sets all the bits to null using memset, then creates an array of lower letters that make up the word reset.  This was perhaps a bit of a cheat, but since we can see what the conditions are, I went ahead with this implementation.  Since it is a string, each other possible character makes the odds of hitting the word 'reset' less likely by quite a bit.  I also opted not to include the null character in the array as that could cause undefined behavior.  
+
+The whole operation takes on average a few thousand iterations.  
+
