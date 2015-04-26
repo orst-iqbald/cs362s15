@@ -1,0 +1,78 @@
+Yong Lee
+
+Code coverage result for running tests for dominion:
+
+unittest1.c:
+TESTING isGameOver():
+
+Lines executed:17.29% of 584
+Branches executed:17.92% of 424
+Taken at least once:14.86% of 424
+Calls executed:7.29% of 96
+
+
+unittest2.c:
+TESTING gainCard():
+
+Lines executed:19.86% of 584
+Branches executed:19.34% of 424
+Taken at least once:16.27% of 424
+Calls executed:8.33% of 96
+
+
+unittest3.c:
+TESTING discardCard():
+
+Lines executed:21.23% of 584
+Branches executed:20.28% of 424
+Taken at least once:16.98% of 424
+Calls executed:8.33% of 96
+
+
+unittest4.c:
+TESTING fullDeckCount():
+
+Lines executed:22.77% of 584
+Branches executed:23.11% of 424
+Taken at least once:19.81% of 424
+Calls executed:8.33% of 96
+
+
+cardtest1.c:
+TESTING smithy card:
+
+Lines executed:26.71% of 584
+Branches executed:25.47% of 424
+Taken at least once:21.70% of 424
+Calls executed:13.54% of 96
+
+
+cardtest2.c:
+TESTING Adventurer card:
+
+Lines executed:29.62% of 584
+Branches executed:28.77% of 424
+Taken at least once:24.29% of 424
+Calls executed:15.63% of 96
+
+
+cardtest3.c:
+TESTING Village card:
+
+Lines executed:30.82% of 584
+Branches executed:29.25% of 424
+Taken at least once:24.76% of 424
+Calls executed:18.75% of 96
+
+
+cardtest4.c:
+TESTING great_hall card:
+
+Lines executed:32.02% of 584
+Branches executed:33.96% of 424
+Taken at least once:25.71% of 424
+Calls executed:20.83% of 96
+
+
+	It seems as though these tests only covered small parts of the dominion code as expected, but perhaps in the future I can increase the coverage by introducing much broader testing conditions. When I looked through the .gcov file, there were a lot of statements that weren’t executed which I should definitely keep in mind. Especially for the first four unit tests, I believe I can perhaps increase the coverage by introducing scenarios that make calls to other functions though not sure how at this point. (At this point, I’m somewhat satisfied with all the unit tests for the four card functions as I feel like my tests have covered enough of different scenarios that call these functions) Although the number of executed statements and branches are relatively low, the boundaries seem to be okay as the tests covered conditions when integer values could be positive, negative or 0 which I’m happy with. I tried my best to cover all the parameter boundary cases although I could do better in the future if I think more about it.
+

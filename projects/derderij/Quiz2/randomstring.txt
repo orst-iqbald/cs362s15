@@ -1,0 +1,33 @@
+Quiz 2 Random Testing
+Jon Derderian
+CS 362
+Spring 2015
+
+Compile: gcc -o testme testme.c
+Run: testme
+
+For this tester, it needed to pass two conditional statements in the testme() function. 
+One of nine specific ASCII characters had to be generated, 
+and then a specifc string had to be in a correct order. 
+These two conditions were found via two functions that we had to implement.
+
+inputChar(): For the first funcution inputChar(), 
+I wanted a semi-broad range of characters to choose from, so I encompassed the entire range
+between the first character and last character, numerically, in the ASCII table, 
+which happened to be between 32-125. So for this function, a
+random number is generated between 0-93, then 32 is added to it to get our random character 
+to be returned to the testme() function.
+
+intputString(): This function returns a five character string to testme(). 
+So then, I created an array of characters that contained each of the 
+four available characters in the needed string, 'r', 'e', 's' and 't'. 
+The function then creates the string to hold it, and runs a for loop to fill
+the array, and in the loop it randomly selects a position from the array holding 
+the characters and inserts it into the current position in the string.
+It then returns the finished string to the testme() function.
+
+The loop in the testme() function would then run until all the conditions were met. 
+In the number of times that I ran it, it averaged probably 
+somewhere between 1600-1800 iterations, though I had it complete the quickest around 800, 
+and at most around 5200 iterations.
+

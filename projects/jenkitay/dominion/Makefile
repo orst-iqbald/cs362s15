@@ -36,10 +36,10 @@ player: player.c interface.o
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so unittest1.exe unittest1 unittest2.exe unittest2 unittest3.exe unittest3 unittest4.exe unittest4 cardtest1.exe cardtest1 cardtest2.exe cardtest2 cardtest3.exe cardtest3 cardtest4.exe cardtest4 testDrawCard.exe testDrawCard badTestDrawCard.exe badTestDrawCard unittestresults.out
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so unittest1.exe unittest1 unittest2.exe unittest2 unittest3.exe unittest3 unittest4.exe unittest4 cardtest1.exe cardtest1 cardtest2.exe cardtest2 cardtest3.exe cardtest3 cardtest4.exe cardtest4 testDrawCard.exe testDrawCard badTestDrawCard.exe badTestDrawCard unittestresults.out cvrg.txt
 
 
-unittestresults.out: mytests runmytests
+unittestresults.out: mytests runmytests cvrg
 	
 mytests: utest1 utest2 utest3 utest4 ctest1 ctest2 ctest3 ctest4
 	
@@ -83,7 +83,7 @@ runmytests:
 	echo "******************                     ******************" >> unittestresults.out
 	echo "*********************************************************" >> unittestresults.out
 	echo " " >> unittestresults.out
-	gcov unittest1 >> unittestresults.out
+	gcov -b unittest1 >> unittestresults.out
 	echo " " >> unittestresults.out
 	cat unittest1.c.gcov >> unittestresults.out
 	echo " " >> unittestresults.out
@@ -101,7 +101,7 @@ runmytests:
 	echo "******************                     ******************" >> unittestresults.out
 	echo "*********************************************************" >> unittestresults.out
 	echo " " >> unittestresults.out
-	gcov unittest2 >> unittestresults.out
+	gcov -b unittest2 >> unittestresults.out
 	echo " " >> unittestresults.out
 	cat unittest2.c.gcov >> unittestresults.out
 	echo " " >> unittestresults.out
@@ -119,7 +119,7 @@ runmytests:
 	echo "******************                     ******************" >> unittestresults.out
 	echo "*********************************************************" >> unittestresults.out
 	echo " " >> unittestresults.out
-	gcov unittest3 >> unittestresults.out
+	gcov -b unittest3 >> unittestresults.out
 	echo " " >> unittestresults.out
 	cat unittest3.c.gcov >> unittestresults.out
 	echo " " >> unittestresults.out
@@ -137,7 +137,7 @@ runmytests:
 	echo "******************                     ******************" >> unittestresults.out
 	echo "*********************************************************" >> unittestresults.out
 	echo " " >> unittestresults.out
-	gcov unittest4 >> unittestresults.out
+	gcov -b unittest4 >> unittestresults.out
 	echo " " >> unittestresults.out
 	cat unittest4.c.gcov >> unittestresults.out
 	echo " " >> unittestresults.out
@@ -155,7 +155,7 @@ runmytests:
 	echo "******************                     ******************" >> unittestresults.out
 	echo "*********************************************************" >> unittestresults.out
 	echo " " >> unittestresults.out
-	gcov cardtest1 >> unittestresults.out
+	gcov -b cardtest1 >> unittestresults.out
 	echo " " >> unittestresults.out
 	cat cardtest1.c.gcov >> unittestresults.out
 	echo " " >> unittestresults.out
@@ -173,7 +173,7 @@ runmytests:
 	echo "******************                     ******************" >> unittestresults.out
 	echo "*********************************************************" >> unittestresults.out
 	echo " " >> unittestresults.out
-	gcov cardtest2 >> unittestresults.out
+	gcov -b cardtest2 >> unittestresults.out
 	echo " " >> unittestresults.out
 	cat cardtest2.c.gcov >> unittestresults.out
 	echo " " >> unittestresults.out
@@ -191,7 +191,7 @@ runmytests:
 	echo "******************                     ******************" >> unittestresults.out
 	echo "*********************************************************" >> unittestresults.out
 	echo " " >> unittestresults.out
-	gcov cardtest3 >> unittestresults.out
+	gcov -b cardtest3 >> unittestresults.out
 	echo " " >> unittestresults.out
 	cat cardtest3.c.gcov >> unittestresults.out
 	echo " " >> unittestresults.out
@@ -209,7 +209,7 @@ runmytests:
 	echo "******************                     ******************" >> unittestresults.out
 	echo "*********************************************************" >> unittestresults.out
 	echo " " >> unittestresults.out
-	gcov cardtest4 >> unittestresults.out
+	gcov -b cardtest4 >> unittestresults.out
 	echo " " >> unittestresults.out
 	cat cardtest4.c.gcov >> unittestresults.out
 	echo " " >> unittestresults.out
@@ -219,7 +219,7 @@ runmytests:
 	echo "******************                     ******************" >> unittestresults.out
 	echo "*********************************************************" >> unittestresults.out
 	echo " " >> unittestresults.out
-	gcov dominion >> unittestresults.out
+	gcov -b dominion >> unittestresults.out
 	echo " " >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
 	echo " " >> unittestresults.out
@@ -229,14 +229,174 @@ runmytests:
 	echo "******************                     ******************" >> unittestresults.out
 	echo "*********************************************************" >> unittestresults.out
 	echo " " >> unittestresults.out
-	gcov rngs >> unittestresults.out
+	gcov -b rngs >> unittestresults.out
 	echo " " >> unittestresults.out
 	cat rngs.c.gcov >> unittestresults.out
 	echo " " >> unittestresults.out
 
 
-	
-	
-	
+.IGNORE: cvrg
+cvrg: 
+	echo "*********************************************************" > cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "******************  gcov -b unittest1  ******************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo " " >> cvrg.txt
+	gcov -b unittest1 >> cvrg.txt
+	echo " " >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "******************  gcov -b unittest2  ******************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo " " >> cvrg.txt
+	gcov -b unittest2 >> cvrg.txt
+	echo " " >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "******************  gcov -b unittest3  ******************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo " " >> cvrg.txt
+	gcov -b unittest3 >> cvrg.txt
+	echo " " >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "******************  gcov -b unittest4  ******************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo " " >> cvrg.txt
+	gcov -b unittest4 >> cvrg.txt
+	echo " " >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "******************  gcov -b cardtest1  ******************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo " " >> cvrg.txt
+	gcov -b cardtest1 >> cvrg.txt
+	echo " " >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "******************  gcov -b cardtest2  ******************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo " " >> cvrg.txt
+	gcov -b cardtest2 >> cvrg.txt
+	echo " " >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "******************  gcov -b cardtest3  ******************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo " " >> cvrg.txt
+	gcov -b cardtest3 >> cvrg.txt
+	echo " " >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "******************  gcov -b cardtest4  ******************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo " " >> cvrg.txt
+	gcov -b cardtest4 >> cvrg.txt
+	echo " " >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "******************  gcov -b dominion.c ******************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo " " >> cvrg.txt
+	gcov -b dominion >> cvrg.txt
+	echo " " >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "******************   gcov -b rngs.c    ******************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo " " >> cvrg.txt
+	gcov -b rngs >> cvrg.txt
+	echo " " >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "******************   unittest1.c.gcov  ******************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo " " >> cvrg.txt
+	cat unittest1.c.gcov >> cvrg.txt
+	echo " " >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "******************   unittest2.c.gcov  ******************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo " " >> cvrg.txt
+	cat unittest2.c.gcov >> cvrg.txt
+	echo " " >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "******************   unittest3.c.gcov  ******************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo " " >> cvrg.txt
+	cat unittest3.c.gcov >> cvrg.txt
+	echo " " >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "******************   unittest4.c.gcov  ******************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo " " >> cvrg.txt
+	cat unittest4.c.gcov >> cvrg.txt
+	echo " " >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "******************   cardtest1.c.gcov  ******************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo " " >> cvrg.txt
+	cat cardtest1.c.gcov >> cvrg.txt
+	echo " " >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "******************   cardtest2.c.gcov  ******************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo " " >> cvrg.txt
+	cat cardtest2.c.gcov >> cvrg.txt
+	echo " " >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "******************   cardtest3.c.gcov  ******************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo " " >> cvrg.txt
+	cat cardtest3.c.gcov >> cvrg.txt
+	echo " " >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "******************   cardtest4.c.gcov  ******************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo " " >> cvrg.txt
+	cat cardtest4.c.gcov >> cvrg.txt
+	echo " " >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "******************   dominion.c.gcov   ******************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo " " >> cvrg.txt
+	cat dominion.c.gcov >> cvrg.txt
+	echo " " >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "******************     rngs.c.gcov     ******************" >> cvrg.txt
+	echo "******************                     ******************" >> cvrg.txt
+	echo "*********************************************************" >> cvrg.txt
+	echo " " >> cvrg.txt
+	cat rngs.c.gcov >> cvrg.txt
+	echo " " >> cvrg.txt
+
 	
 	
