@@ -4,7 +4,7 @@
 
 void loadDeck(int player) {
     int i;
-    for (i = 0; i < 5; ++1) {
+    for (i = 0; i < 5; ++i) {
         state->deck[player][i] = adventurer;
     }
     state->deckCount[player] = 5;
