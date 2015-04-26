@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
     if(argc == 2 && strcmp(argv[1], "-c") == 0)
         color = 1;
     int failedTests = 0;
-    printf("\n\n****BEGIN CARDTEST4: doSteward****\n");
+    printf("\n\n************** BEGIN CARDTEST 4: doSteward **************\n");
 	struct gameState *m_state = newGame();
     int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, 
            sea_hag, tribute, smithy};
@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
 
     for(i = 1; i < NUMRUNS; i++)
     {
-        printf ("State initalization.....");
+        printf ("Steward State initalization.....");
         initializeGame(NUM_PLAYERS, k, 5, m_state);
         printf("PASS\n");
         
@@ -67,7 +67,7 @@ int main(int argc, char* argv[])
             printf("PASS\n");
 
         //test discard card after action
-        printf("Discard count.....");
+        printf("Steward Discard count.....");
         if(prePlayedCount + 1 != m_state->playedCardCount)
         {
             printf("FAIL\n");
@@ -77,7 +77,7 @@ int main(int argc, char* argv[])
             printf("PASS\n"); 
 
         //check that the card we discarded is the one we expected
-        printf("Discard card.....");
+        printf("Steward Discard card.....");
         if(discardCard != m_state->playedCards[m_state->playedCardCount - 1])
         {
             printf("FAIL\n");
@@ -90,7 +90,7 @@ int main(int argc, char* argv[])
         {
         case 1:
                 //test hand +2
-                printf("Draw 2 cards.....");
+                printf("Steward Draw 2 cards.....");
                 if(preHandCount + 1 != m_state->handCount[player])
                 {
                     printf("FAIL\n");
@@ -100,7 +100,7 @@ int main(int argc, char* argv[])
                     printf("PASS\n");  
                 
                 //test deck -2
-                printf("Deck -2 cards.....");
+                printf("Steward Deck -2 cards.....");
                 if(preDeckCount - 2 != m_state->deckCount[player])
                 {
                     printf("FAIL\n");
@@ -110,7 +110,7 @@ int main(int argc, char* argv[])
                     printf("PASS\n");  
                 break;
         case 2:
-                printf("Coins +2.....");
+                printf("Steward Coins +2.....");
                 if(preCoinCount + 2 != m_state->coins)
                 {
                     printf("FAIL\n");
@@ -121,7 +121,7 @@ int main(int argc, char* argv[])
                 break;
         default:
                 //cards are trashed, not added to playedCardCount
-                printf("Trashed, not played.....");
+                printf("Steward Trashed, not played.....");
                 if(prePlayedCount + 1 != m_state->playedCardCount)
                 {
                     printf("FAIL\n");
@@ -143,6 +143,6 @@ int main(int argc, char* argv[])
             printf("\033[1;32mFailed %d tests\033[0m\n", failedTests);	
         else
             printf("Failed %d tests\n", failedTests);	
-    printf("****END CARDTEST4****\n");
+    printf("************** END CARDTEST 4: doSteward **************\n");
     return 0;
 }
