@@ -33,7 +33,13 @@ void testAdventurer() {
 
 	/*
 	Adventurer testing:
-		1. 
+		1. test that two treasure cards are drawn
+    2. test that additional cards that may have been drawn have been discarded
+    3. test that handcount is updated with new cards
+    4. test card is discarded after use
+    Notes: Use random value loop to run test multiple times
+          save deck before call then after test against deck to make sure it is the same (minus adventurer)
+              **account for treasure cards added** (so save size of deck before call too)
 	*/
 }
 

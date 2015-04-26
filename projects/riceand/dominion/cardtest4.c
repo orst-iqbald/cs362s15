@@ -33,7 +33,10 @@ void testCouncilRoom() {
 
 	/*
 	Council Room testing:
-		1. 
+		1. test 4 cards were drawn
+    2. test numBuys +1
+    3. test other players draw 1 card
+    4. make sure council room was discarded
 	*/
 }
 
