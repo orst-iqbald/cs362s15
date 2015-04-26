@@ -46,7 +46,7 @@ for(i = 0; i < state->numPlayers; ++i)
 
 Cutpurse
 --------
-The Cutpurse card gives you two bonus cards and requires that each other player discard a copper. If they do not have a copper to discard they must show their hand to everyone.
+The Cutpurse card gives you two bonus coins and requires that each other player discard a copper. If they do not have a copper to discard they must show their hand to everyone.
 This function is particularly interesting to insert a bug into as it has many nested control structures. However there is already a bug present in the code (which I wont yet fix)
 that was in the dominion base code. In particular calling updateCoins(currentPlayer, state, 2) will update the players coins by recounting the coins in his hand, plus the two extra
 from the action card. However if you play two cutpurses in one turn you only get 2 bonus coins instead of the 4 you are intended to have. There is also another bug in the dominion

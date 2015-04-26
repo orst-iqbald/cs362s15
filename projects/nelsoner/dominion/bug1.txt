@@ -1,0 +1,40 @@
+/***************************************************************************
+* Eric Nelson
+* Bug report
+* 4/23/2015
+***************************************************************************/
+
+/***************************************************************************
+* cardtest1 : testAdventurer()
+****************************************************************************/
+No bugs were found in this function while testing. 
+
+/***************************************************************************
+* cardtest2 : testSmithy()
+****************************************************************************/
+One bug was found in this function while testing. The function was taken from my modified dominion.c code when first implemented, in which a subtle bug was placed into the code. The assert that compares the original handCount with the new handCount failed due to this bug.
+/***************************************************************************
+* cardtest3 : testVillage()
+****************************************************************************/
+No bugs were found in this function while testing.
+/***************************************************************************
+* cardtest4 : testGreatHall()
+****************************************************************************/
+No bugs were found in this function while testing
+/***************************************************************************
+* unittest1 : testGetWinners()
+****************************************************************************/
+No bugs were found in this function while testing
+/***************************************************************************
+* unittest2 : testIsGameOver()
+****************************************************************************/
+No bugs were found in this function while testing
+/***************************************************************************
+* unittest3 : testGainCard()
+****************************************************************************/
+No bugs were found in this function while testing
+/***************************************************************************
+* unittest4 : testScoreFor()
+****************************************************************************/
+No bugs were found in this function while testing
+

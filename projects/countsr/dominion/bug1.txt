@@ -1,0 +1,28 @@
+﻿CS 362
+Assignment 3
+Bugs
+
+unittest1.c isGameOver()
+No bugs were found in this function.
+
+
+unittest2.c scoreFor()
+Three types of cards were tested for the correct score. Curse, Estate, and Gardens cards were used. A hand was tested with 1-5 cards which returned the correct score for all cards. A separate test was done for a hand of cards that contained 10 – 30 cards in 5 card increments. The Gardens card failed this test. 
+
+unittest3.c discardCard()
+No bugs were found in this function.
+
+unittest4.c gainCard()
+No bugs were found in this function.
+
+cardtest1.c smithyFunc()
+This test failed because a bug was introduced in an earlier class assignment. The test saves the count of cards in the hand before the function is called and then compares the size of the hand after to see if the hand count has increased by 2.
+
+cardtest2.c adventurerFunc()
+This test failed because a bug was introduced in an earlier class assignment. The test was run for 2 players. The first player tests passed and the second player tests did not. A hand of cards is tested after the function is called to check if two treasure cards are added. The reason it fails the second player could be because of the way drawCard() draws a pseudo random card for each player. 
+
+cardtest3.c stewardFunc()
+This test passes even though a bug was introduced in an earlier class assignment. When the trash card option is selected the cards are supposed to be trashed from a hand and trashed from the game. The bug should keep the card in the discard pile but when it is checked for the current card it is not in the pile.
+
+cardtest4.c remodelFunc()
+No bugs were found in this function.

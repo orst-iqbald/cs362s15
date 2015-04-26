@@ -1,0 +1,29 @@
+unittest1(getCost()):
+When this ran all the tests pass. To ensure it was actually working properly, I went into the
+dominion.c code and temporarily changed the values for a few of the card costs in the switch statement
+within the getCost() function. This produced the expected failure messages.
+
+unittest2(isGameOver()):
+After getting complete branch coverage for this function, it passed all of the tests I put it through.
+
+unittest3(initializeGame()):
+This was a tough function to test. I didn't find any bugs, but I was not able to achieve full branch coverage
+as there were 3 conditions that I was not able to get it to meet to return a -1.
+
+unittest4(handCard()):
+There were no bugs found in this function.
+
+cardtest1(smithy):
+I had previous inserted a bug into this function that added 4 cards to the players had instead of 3.
+This test found that extra card introduced by that bug.
+
+cardtest2(adventurer):
+For assignment 2, I inserted a bug that would cause the player to drawn until 3 treasure cards were
+found instead of 2. The tests here found that particular bug. No other bugs were found.
+
+cardtest3(village):
+This test has complete coverage of the function, all tests passed. I did not previously insert any bugs
+into this function so this was to be expected.
+
+cardtest4(cutpurse):
+This test found the bug I introduced in the previous assignment that adds 3 coins to the players count instead of 2.

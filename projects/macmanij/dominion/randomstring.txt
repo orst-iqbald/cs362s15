@@ -1,0 +1,16 @@
+Jason MacManiman
+04.26.15
+Random Test Quiz 2
+
+inputchar() creates an array containing the letters of the alphabet and the
+special symbols {, [, (, ), ], } and space. The rand() function is used to 
+choose a random number between 0-33 to pick a random element in the array.
+Since rand() is seeded in main(), it's not necessary in this function.
+The random character is returned, and eventually as they are found the 
+'state' variable will be incremented stepwise until it is '9'. 
+
+inputstring() chooses a random number between 0-9 and depending on the result
+will return one of ten random strings hard-coded. If the number is '9' then
+'result' is returned. Once the 'state' variable is '9' and the string is set
+to 'reset' the error will occur. Most of my test runs have this happening 
+between iterations 250-300.

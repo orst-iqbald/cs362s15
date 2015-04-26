@@ -1,0 +1,15 @@
+Daryl Cooke
+CS325 - Spring 2015
+4/22/2015
+
+Random Testing Quiz 2
+
+Compile: gcc -o testme testme.c
+
+Solving testme: testme.c finds the error message by receiving a random character from inputChar() between the ascii characters (32)' ' and (125)'}'. Each state requires a different character to move to the next state. It also receives a random string of length 5 from inputString() which will hit the error if the string is equal to 'reset'.
+
+inputChar(): My implementation selects between the ASCII characters (32)' ' and (125)'}'. With this implementation we should pass into each state in approximately 94 calls to inputChar(). Realistically this is fairly common, so there was very little restriction needed in the output range for this function.
+
+inputString(): A naive implementation of inputString() would use the same range from inputChar for each character. If we used ASCII 32-125 and limited the number of characters to 5 we would only hit the error 1 in every 7,339,040,224 iterations. This is obviously an unrealistic number of iterations, so we need to add some restriction to the random character choice. If we only selected from lowercase letters we would still only hit the error 1 in every 11,881,376 iterations. By limiting the character selection for the string to 'r', 'e', 's', 't', we should hit the string 'reset' 1 in 1024 iterations. This is finally a realistic number of iterations, and will be a working solution for our random tester.
+
+Expected results: In testing we should expect an average of 1870 iterations until we hit the error block. That is (94 * 9) for the 9 states and (1/4)^5 for the 'reset' string. After running the testme application 500 times I got an average iteration of 1823.1 iterations with a standard deviation of 1080.1 iterations. This is very close to what we expected, and testme.c appears to be working properly as a random tester.
