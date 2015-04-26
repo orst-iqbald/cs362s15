@@ -12,10 +12,12 @@ unittest4.c - testing buyCard()
 	1. No bugs found but believe this function is tested thoroughly and is bugfree at the moment
 
 cardtest1.c - testing smithy
-
+	1. My tests found the bug that I had put in, namely drawing 4 cards instead of 3 in a sneaky forloop condition change
 
 cardtest2.c - testing adventurer
-
+	1. Test found the bug I introduced, namely an extra drawntreasure++ call so that at most 2 cards will be drawn even if they aren't treasure
+	2. Test found bug in original code - it does not discard the adventurer card after use
+	3. Test found additional bug caused by my bug - since it doesn't draw properly it doesn't properly update handcount to be 2 more than it was before the call, so that fails as well
 
 cardtest3.c - testing
 
