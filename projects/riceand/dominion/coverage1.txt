@@ -1,1 +1,160 @@
 Assignment 3 - Coverage discussion on unittest1 through unittest4 and cardtest1 through cardtest4
+
+-----------------
+Coverage for Unit Test 1 - Testing the initializeGame() function
+
+Total Coverage:
+File 'dominion.c'
+Lines executed:18.04% of 643
+Branches executed:16.31% of 417
+Taken at least once:14.63% of 417
+No Calls
+
+Function Coverage:
+Function 'initializeGame'
+Lines executed:97.44% of 78
+Branches executed:100.00% of 46
+Taken at least once:95.65% of 46
+No Calls
+
+Discussion:
+-----------------
+
+-----------------
+Coverage for Unit Test 2 - Testing the shuffle() function
+
+Total Coverage:
+File 'dominion.c'
+Lines executed:18.35% of 643
+Branches executed:16.31% of 417
+Taken at least once:15.11% of 417
+No Calls
+
+Function Coverage:
+Function 'shuffle'
+Lines executed:100.00% of 18
+Branches executed:100.00% of 8
+Taken at least once:100.00% of 8
+No Calls
+
+Discussion:
+-----------------
+
+-----------------
+Coverage for Unit Test 3 - Testing the playCard() function
+
+Total Coverage:
+File 'dominion.c'
+Lines executed:23.33% of 643
+Branches executed:26.14% of 417
+Taken at least once:18.23% of 417
+No Calls
+
+Function Coverage:
+Function 'playCard'
+Lines executed:78.57% of 14
+Branches executed:100.00% of 10
+Taken at least once:60.00% of 10
+No Calls
+
+Discussion:
+-----------------
+
+-----------------
+Coverage for Unit Test 4 - Testing the buyCard() function
+
+Total Coverage:
+Lines executed:27.37% of 643
+Branches executed:35.73% of 417
+Taken at least once:20.86% of 417
+No Calls
+
+Function Coverage:
+Function 'buyCard'
+Lines executed:100.00% of 13
+Branches executed:100.00% of 6
+Taken at least once:100.00% of 6
+No Calls
+
+Discussion:
+-----------------
+
+-----------------
+Coverage for Card Test 1 - Testing the smithy card
+
+Total Coverage:
+File 'dominion.c'
+Lines executed:29.86% of 643
+Branches executed:37.65% of 417
+Taken at least once:22.06% of 417
+No Calls
+
+Function Coverage:
+Function 'playSmithy'
+Lines executed:100.00% of 5
+Branches executed:100.00% of 2
+Taken at least once:100.00% of 2
+No Calls
+
+Discussion:
+-----------------
+
+-----------------
+Coverage for Card Test 2 - Testing the adventurer card
+
+Total Coverage:
+File 'dominion.c'
+Lines executed:29.86% of 643
+Branches executed:37.65% of 417
+Taken at least once:22.06% of 417
+No calls
+
+Function Coverage:
+Function 'playAdventurer'
+Lines executed:61.11% of 18
+Branches executed:66.67% of 12
+Taken at least once:41.67% of 12
+No calls
+
+Discussion:
+-----------------
+
+-----------------
+Coverage for Card Test 3 - Testing the outpost card
+
+Total Coverage:
+File 'dominion.c'
+Lines executed:30.64% of 643
+Branches executed:37.65% of 417
+Taken at least once:22.30% of 417
+No calls
+
+Function Coverage:
+Function 'playOutpost'
+Lines executed:100.00% of 3
+No branches
+No calls
+
+Discussion:
+-----------------
+
+-----------------
+Coverage for Card Test 4 - Testing the council room card
+
+Total Coverage:
+File 'dominion.c'
+Lines executed:32.19% of 643
+Branches executed:39.09% of 417
+Taken at least once:23.74% of 417
+No calls
+No Calls
+
+Function Coverage:
+Function 'playCouncilRoom'
+Lines executed:100.00% of 10
+Branches executed:100.00% of 6
+Taken at least once:100.00% of 6
+No calls
+
+Discussion:
+-----------------
