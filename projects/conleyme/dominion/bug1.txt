@@ -1,0 +1,77 @@
+cardtest1 - smithy
+
+The following tests were conducted:
+	- Hand count is increased by 2 : FAIL
+	- Discard pile has a smithy card on top : PASS
+	
+	My test found the bug I introduced that causes it to draw 2 cards instead of 3, described in refactor.txt.
+
+cardtest2 - adventurer
+
+The following tests were conducted:
+	- Hand contains 1 fewer adventurer card after card is used : PASS
+	- Player has 2 more treasure cards after effect than before: FAIL
+	
+	The test found the bug introduced as described in refactor.txt, which does not count copper as a treasure card, and will result in too many treasure cards drawn.
+
+cardtest3 - council room
+
+The following tests were conducted:
+	- After card effect, the player who used the card should have 3 more cards, the other players should have 1 additional card : FAIL
+	- The number of buys should have increased by one : PASS
+	- The council room card should be on the top of the discard pile : PASS
+	
+This card fails the test which confirms if the hand counts were updated properly. It gives the player who used the card 4 extra cards instead of 3, and the other player 0 extra cards instead of 1. This is due to the bug I introduced described in refactor.txt.
+
+cardtest4 - cutpurse
+
+The following tests were conducted:
+	- The gamestate's coins should have increased by the bonus given to current player, minus however many coins were taken from others: PASS	
+	- All players besides the current player should have 1 less copper in hand: PASS	
+	- Cutpurse card should be on top of discard pile: PASS
+	
+	The cutpurse card is functioning as it should.
+
+unittest1 - updateCoins
+
+The following tests were conducted:
+	- The gamestate's coin count is properly calculated when all treasure cards are copper: PASS
+	- The gamestate's coin count is properly calculated when all treasure cards are silver: PASS
+	- The gamestate's coin count is properly calculated when all treasure cards are gold: PASS
+	- The gamestate's coin count is properly calculated when there are no treasure cards: PASS
+	
+	Because it calculates each independent case correctly, it can be inferred that even with a mixture of treasure cards, it will calculate the correct amount of coins.
+	
+unittest2 - discardCard
+
+The following tests were conducted:
+	- If the card is the last card in the player's hand and the trash flag is not set, the card is added to the played pile, it is no longer in the player's hand, and the player's hand count has decreased by 1: PASS
+	- If the trash flag is set, the card is removed from play, the player's hand has decreased by 1: PASS
+	- If the card is the only card in hand and the trash flag is not set, the card is added to the played pile, it is no longer in the player's hand, and the player's hand count has decreased by 1: PASS
+	- If the card to be discarded is not the only card in the hand and the trash flag is not set, the card should be added to the played card pile, the player's hand count should decrease by one, and the card that was previously in the last position of the hand is now in the position of the discarded card: PASS
+	
+	No bugs were found during these unit tests.
+
+unittest3 - endTurn
+
+The following tests were conducted:
+	- The discard count is increased by the size of the player's hand: PASS
+	- The top of the discard pile is the previously last card in the player's hand: PASS
+	- The next player has a hand of 5 cards: PASS
+	- Game state variables have been reset to the appropriate values: PASS
+	- If the current player is the last player, the current turn loops around to player 1: PASS
+	
+	No bugs were found during these unit tests.
+	
+unittest4 - buyCard
+
+The following tests were conducted:
+	- The function returns -1 if there are not enough buys: PASS
+	- The function returns -1 if there are not enough coins: PASS	
+	- The function returns -1 if there are not enough of the card being purchased: PASS
+	- The function is successful if there is enough buys, coins, and cards: PASS
+	- The function decreases coins by the price of the card: PASS
+	- The function decreases the number of buys by 1: PASS
+	- The function decreases the supply count of the purchased card by 1: PASS
+	
+	No bugs were found during these unit tests.
