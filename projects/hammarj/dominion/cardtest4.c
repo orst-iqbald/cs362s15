@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <stdlib.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
 
@@ -16,7 +17,7 @@ int main() {
     state->deck[player][1] = gold;
     state->deckCount[player] = 2;
     state->hand[player][handpos] = adventurer;
-    state->handCount[player1] = 1;
+    state->handCount[player] = 1;
     res = cardAdventurer(state, handpos);
     assert(res == 0);
     assert(state->discardCount[player] == 1);
@@ -30,7 +31,7 @@ int main() {
     state->deck[player][2] = gold;
     state->deckCount[player] = 3;
     state->hand[player][handpos] = adventurer;
-    state->handCount[player1] = 1;
+    state->handCount[player] = 1;
     res = cardAdventurer(state, handpos);
     assert(res == 0);
     assert(state->discardCount[player] == 2);
@@ -45,7 +46,7 @@ int main() {
     state->deck[player][3] = gold;
     state->deckCount[player] = 4;
     state->hand[player][handpos] = adventurer;
-    state->handCount[player1] = 1;
+    state->handCount[player] = 1;
     res = cardAdventurer(state, handpos);
     assert(res == 0);
     assert(state->discardCount[player] == 2);
@@ -59,7 +60,7 @@ int main() {
     state->deck[player][2] = remodel;
     state->deckCount[player] = 3;
     state->hand[player][handpos] = adventurer;
-    state->handCount[player1] = 1;
+    state->handCount[player] = 1;
     res = cardAdventurer(state, handpos);
     assert(res == 0);
     assert(state->discardCount[player] == 3);
