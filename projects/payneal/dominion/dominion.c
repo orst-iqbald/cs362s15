@@ -1397,9 +1397,7 @@ int cardEmbargo(gameState *state, int choice1, int currentPlayer, int handPos)
     return -1;
 }
 
-
 //5 added/converted functions
-
 
 
 //end of dominion.c
