@@ -49,8 +49,6 @@ int main(int argc, char* argv[])
 	int z = 0;
 	int i = 0;
 	
-	srand(time(NULL));
-	
 	printf ("State initalization.....");
 	initializeGame(NUM_PLAYERS, k, 5, m_state);
 	printf("PASS\n");
