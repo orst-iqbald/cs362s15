@@ -25,7 +25,7 @@ Adventurer Refactor:
         Refactor details:
             all code was moved in to the playAdventurer() function and the necessary variables were passed. The rest of the variables were created inside the function. The case was changed the same way as smithy, by returning the return value from playAdventurer() call
         Bugs introduced:
-            added an additional drawntreasure++ after the first while loop
+            added an additional drawntreasure++ after the first while loop, so at most the loop will run twice when it should run until two treasures are drawn
 
 Council Room Refactor:
     Moved code to playCouncilRoom() function

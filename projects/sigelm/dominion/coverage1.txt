@@ -1,0 +1,86 @@
+Michael Sigel
+CS 362
+Assignment 3
+April 22nd 2015
+
+coverage1.txt
+
+/*---------------------------------------------------------------------------------------------*/
+unittest1: kingdomCards() function
+Lines executed:2.30% of 566
+Branches executed:0.00% of 396
+Taken at least once:0.00% of 396
+Calls executed:0.00% of 94
+
+Overall this test was pretty bad. However, within the kingdomCards() function this unit test had 100% branch coverage.
+
+/*---------------------------------------------------------------------------------------------*/
+unittest2: playCard() function
+Lines executed:28.09% of 566
+Branches executed:29.29% of 396
+Taken at least once:18.94% of 396
+Calls executed:17.02% of 94
+
+This coverage had covered almost every line in the unit testing. It had 100% coverage within the branch coverage as well. This was very thorough coverage.
+
+/*---------------------------------------------------------------------------------------------*/
+unittest3: initializeGame() function
+Lines executed:29.68% of 566
+Branches executed:29.80% of 396
+Taken at least once:20.71% of 396
+Calls executed:17.02% of 94
+
+Almost every line was covered in this unit testing. It also had 100% branch coverage within the
+test. This coverage was very thorough and was similar to the playCard() coverage. They both had great coverage.
+
+/*---------------------------------------------------------------------------------------------*/
+unittest4: updateCoins() function
+Lines executed:30.04% of 566
+Branches executed:29.80% of 396
+Taken at least once:21.21% of 396
+Calls executed:17.02% of 94
+
+Just under 83% of the lines were covered in this unit testing. Again, we see 100% branch coverage 
+by this test, as we have seen with the other unittests. This coverage was very thorough.
+
+/*---------------------------------------------------------------------------------------------*/
+cardtest1: effectSmithy() function
+Lines executed:30.92% of 566
+Branches executed:30.30% of 396
+Taken at least once:21.72% of 396
+Calls executed:19.15% of 94
+
+Nearly 84% of the lines were covered in this unit testing.
+We also had 100% branch coverage for this unit test.
+
+/*---------------------------------------------------------------------------------------------*/
+cardtest2: effectAdventure() function
+Lines executed:34.10% of 566
+Branches executed:31.31% of 396
+Taken at least once:23.48% of 396
+Calls executed:21.28% of 94
+
+Nearly 85% of our lines were covered in this unit test.
+Once again we had 100% branch coverage. Very thorough coverage overall.
+
+/*---------------------------------------------------------------------------------------------*/
+cardtest3: effectCouncilRoom() function
+Lines executed:35.69% of 566
+Branches executed:32.32% of 396
+Taken at least once:24.49% of 396
+Calls executed:25.53% of 94
+
+For this unit testing we had 73% line coverage which is not quite as good as the other tests.
+However, we still had 100% branch coverage in this unit test.
+
+/*---------------------------------------------------------------------------------------------*/
+cardttest4: effectCutPurse() function
+Lines executed:37.10% of 566
+Branches executed:33.84% of 396
+Taken at least once:25.76% of 396
+Calls executed:28.72% of 94
+
+This was the worst of the coverage tests (except for my first unittest). So I guess just for cardtests.
+We only had 67% line coverage and 78% branch coverage. I think that within the effectCutPurse() function there
+are branches that are just not reachable.
+/*---------------------------------------------------------------------------------------------*/
