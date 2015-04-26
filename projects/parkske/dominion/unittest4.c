@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
     if(argc == 2 && strcmp(argv[1], "-c") == 0)
         color = 1;
     int failedTests = 0;
-    printf("\n\n****BEGIN UNITTEST4: isGameOver****\n");
+    printf("\n\n************** BEGIN UNITTEST 4: IsGameOver **************\n");
 	struct gameState *m_state = newGame();
     int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, 
            sea_hag, tribute, smithy};
@@ -31,11 +31,11 @@ int main(int argc, char* argv[])
 	
 	for(runs = NUMRUNS; runs > 0; runs--)
 	{
-		printf ("State initalization.....");
+		printf ("IsGameOver State initalization.....");
 		initializeGame(NUM_PLAYERS, k, 5, m_state);
 		printf("PASS\n");
 		
-		printf("ProvCountTest.....");
+		printf("IsGameOver ProvCountTest.....");
 		int flag = 0;
 		int setProvs = rand() % 2;
 		
@@ -66,11 +66,11 @@ int main(int argc, char* argv[])
 	}
 	for(runs = NUMRUNS; runs > 0; runs--)
 	{
-		printf ("State initalization.....");
+		printf ("IsGameOver State initalization.....");
 		initializeGame(NUM_PLAYERS, k, 5, m_state);
 		printf("PASS\n");
 		
-		printf("SupplyCountTest.....");
+		printf("IsGameOver SupplyCountTest.....");
 		int flag = 0;
 		int supplyCount = 0;
 		for(i = 0; i < 25; i++)
@@ -110,6 +110,6 @@ int main(int argc, char* argv[])
             printf("\033[1;32mFailed %d tests\033[0m\n", failedTests);	
         else
             printf("Failed %d tests\n", failedTests);	
-	printf("****END UNITTEST 4****\n");
+	printf("************** END UNITTEST 4: IsGameOver **************\n");
     return 0;
 }

@@ -7,7 +7,7 @@
 
 #define NUM_PLAYERS 2
 #define TOFLAGMAX 1
-#define MYDEBUG
+//#define MYDEBUG
 
 int testDiscardCard(int m_handPos, int player, struct gameState *state, int flag)
 {
@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
     if(argc == 2 && strcmp(argv[1], "-c") == 0)
         color = 1;
     int failedTests = 0;
-    printf("\n\n****BEGIN UNITTEST3: DiscardCard****\n");
+    printf("\n\n************** BEGIN UNITTEST 3: DiscardCard **************\n");
 	struct gameState *m_state = newGame();
     int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, 
            sea_hag, tribute, smithy};
@@ -34,7 +34,7 @@ int main(int argc, char* argv[])
 	srand(time(NULL));
 	for(runs = 10; runs > 0; runs--)
 	{
-		printf ("State initalization.....");
+		printf ("DiscardCard State initalization.....");
 		initializeGame(NUM_PLAYERS, k, 5, m_state);
 		printf("PASS\n");
 		
@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
 				}
 				else
 					flag = 1;
-				printf("P%d testDiscardCard ", i+1);
+				printf("DiscardCard P%d ", i+1);
 				printf("flag:%d ", flag);
 				printf("discard %d.....", m_handCount);
 				if(testDiscardCard(m_handPos, i, m_state, flag) == 0)
@@ -141,6 +141,6 @@ int main(int argc, char* argv[])
             printf("\033[1;32mFailed %d tests\033[0m\n", failedTests);	
         else
             printf("Failed %d tests\n", failedTests);	  
-    printf("****END UNITTEST 3****\n");
+    printf("************** END UNITTEST 3: DiscardCard **************\n");
     return 0;
 }    

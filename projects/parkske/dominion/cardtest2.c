@@ -20,13 +20,13 @@ int main(int argc, char* argv[])
     if(argc == 2 && strcmp(argv[1], "-c") == 0)
         color = 1;
     int failedTests = 0;
-    printf("\n\n****BEGIN CARDTEST2: doSmithy****\n");
+    printf("\n\n************** BEGIN CARDTEST 2: doSmithy **************\n");
 	struct gameState *m_state = newGame();
     int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, 
            sea_hag, tribute, smithy};
 	int player = 0;
 	
-	printf ("State initalization.....");
+	printf ("Smithy State initalization.....");
 	initializeGame(NUM_PLAYERS, k, 5, m_state);
 	printf("PASS\n");
     
@@ -55,7 +55,7 @@ int main(int argc, char* argv[])
     else
         printf("PASS\n");
     
-    printf("State not null.....");
+    printf("Smithy State not null.....");
     if(m_state == NULL)
     {
         printf("FAIL\n");
@@ -64,7 +64,7 @@ int main(int argc, char* argv[])
     else
         printf("PASS\n");
 
-    printf("Test hand count.....");
+    printf("Smithy Test hand count.....");
     if(preHandCount + 2 != m_state->handCount[player])
     {
         printf("FAIL\n");
@@ -73,7 +73,7 @@ int main(int argc, char* argv[])
     else
         printf("PASS\n");
     
-    printf("Test discardCard count.....");
+    printf("Smithy Test discardCard count.....");
     if(prePlayedCount + 1 != m_state->playedCardCount)
     {
         printf("FAIL\n");
@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
     else
         printf("PASS\n");
     
-    printf("Test discardCard card.....");
+    printf("Smithy Test discardCard card.....");
     if(discardCard != m_state->playedCards[m_state->playedCardCount - 1])
     {
         printf("FAIL\n");
@@ -91,7 +91,7 @@ int main(int argc, char* argv[])
     else
         printf("PASS\n");
     
-    printf("Test deckCount.....");
+    printf("Smithy Test deckCount.....");
     if(preDeckCount - 3 != m_state->deckCount[player])
     {
         printf("FAIL\n");
@@ -119,6 +119,6 @@ int main(int argc, char* argv[])
             printf("\033[1;32mFailed %d tests\033[0m\n", failedTests);	
         else
             printf("Failed %d tests\n", failedTests);	
-    printf("****END CARDTEST2****\n");
+    printf("************** END CARDTEST 2: doSmithy **************\n");
     return 0;
 }
