@@ -1,0 +1,5 @@
+Quiz2 write up
+
+Looking at the code that I needed to test I could see that the inputChar function would need to return characters int the correct order to incremennt the state variable.  It made sense to me to limit the possible characters to only the ones that are used in the conditional.  
+
+Once the state variable reaches 9 I needed the string to be equal to "reset\0".  It made sense to me that the inputString function would just generate a random string using those characters and add '\0' as the final character.  The tester find the correct state in a few hundred iterations but sometiems up to a few thousand.     
