@@ -7,7 +7,7 @@
 
 #define NUM_PLAYERS 2
 #define TOFLAGMAX 1
-#define MYDEBUG
+//#define MYDEBUG
 
 int testDiscardCard(int m_handPos, int player, struct gameState *state, int flag)
 {
