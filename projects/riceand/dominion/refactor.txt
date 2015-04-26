@@ -39,7 +39,7 @@ Council Room Refactor:
         Refactor Details:
             all necessary variables passed. Case was adjusted to return the call to playCouncilRoom()
         Bugs introduced:
-            the discardCard() call at the end passes 1 as the trash flag instead of 0 like it should
+            +1 buy completely removed
 
 Great Hall Refactor:
     Moved code to playGreatHall() function
