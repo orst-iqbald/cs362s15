@@ -19,7 +19,8 @@ cardtest2.c - testing adventurer
 	2. Test found bug in original code - it does not discard the adventurer card after use
 	3. Test found additional bug caused by my bug - since it doesn't draw properly it doesn't properly update handcount to be 2 more than it was before the call, so that fails as well
 
-cardtest3.c - testing
+cardtest3.c - testing outpost
+	1. I did not introduce bugs to this one, so the tests did not find any bugs.
 
-
-cardtest4.c - testing
+cardtest4.c - testing council room
+	1. Correctly found the bug I introduced - where the +1 buy is not granted at all
