@@ -133,7 +133,7 @@ int main()
   int j;
   struct gameState testGame;
 
-  //display play message for unittest1
+  //display testing message for unittest1
   printf ("----------------------------------------\n");
   printf ("FUNCTION scoreFor() BEING TESTED...\n");
   printf ("RANDOM TESTS...\n");
