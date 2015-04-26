@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
 
@@ -14,7 +15,11 @@ int testGainCard(int m_supplyPos, struct gameState *m_state, int toFlag, int pla
 
 int main(int argc, char* argv[])
 {
+    int color = 0;
+    if(argc == 2 && strcmp(argv[1], "-c") == 0)
+        color = 1;
     printf("\n\n****BEGIN UNITTEST2: GainCard****\n");
+    int failedTests = 0;
 	struct gameState *m_state = newGame();
     int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, 
            sea_hag, tribute, smithy};
@@ -52,16 +57,19 @@ int main(int argc, char* argv[])
                         {
                             printf("FAIL - supplyCount; ");
                             pass = 1;
+                            failedTests++;
                         }   
                         if(m_state->deckCount[players[i]] != deckCount + 1)
                         {
                             printf("FAIL - deckCount; ");
                             pass = 1;
+                            failedTests++;
                         }
                         if(m_state->deck[players[i]][m_state->deckCount[players[i]] - 1] != m_supplyPos)
                         {
                             printf("FAIL - gain card mismatch; ");
                             pass = 1;
+                            failedTests++;
                         }
                         if(pass == 0)
                         {
@@ -86,16 +94,19 @@ int main(int argc, char* argv[])
                         {
                             printf("FAIL - supplyCount; ");
                             pass = 1;
+                            failedTests++;
                         }   
                         if(m_state->handCount[players[i]] != handCount + 1)
                         {
                             printf("FAIL - handCount; ");
                             pass = 1;
+                            failedTests++;
                         }
                         if(m_state->hand[players[i]][m_state->handCount[players[i]] - 1] != m_supplyPos)
                         {
                             printf("FAIL - gain card mismatch; ");
                             pass = 1;
+                            failedTests++;
                         }
                         if(pass == 0)
                         {
@@ -120,16 +131,19 @@ int main(int argc, char* argv[])
                         {
                             printf("FAIL - supplyCount; ");
                             pass = 1;
+                            failedTests++;
                         }   
                         if(m_state->discardCount[players[i]] != discardCount + 1)
                         {
                             printf("FAIL - dicardCount; ");
                             pass = 1;
+                            failedTests++;
                         }
                         if(m_state->discard[players[i]][m_state->discardCount[players[i]] - 1] != m_supplyPos)
                         {
                             printf("FAIL - gain card mismatch; ");
                             pass = 1;
+                            failedTests++;
                         }
                         if(pass == 0)
                         {
@@ -150,6 +164,16 @@ int main(int argc, char* argv[])
             }
         }
     }
+    if(failedTests > 0)
+        if(color)
+            printf("\033[1;31mFailed %d tests\033[0m\n", failedTests);
+        else
+            printf("Failed %d tests\n", failedTests);
+    else
+        if(color)
+            printf("\033[1;32mFailed %d tests\033[0m\n", failedTests);	
+        else
+            printf("Failed %d tests\n", failedTests);	
     printf("****END UNITTEST 2****\n");
     return 0;
 }    

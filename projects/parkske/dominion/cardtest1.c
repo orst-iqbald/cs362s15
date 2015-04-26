@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
 
@@ -38,6 +39,10 @@ int getTreasureCount(struct gameState *state, int player)
 
 int main(int argc, char* argv[])
 {
+    int color = 0;
+    if(argc == 2 && strcmp(argv[1], "-c") == 0)
+        color = 1;
+    int failedTests = 0;
     printf("\n\n****BEGIN CARDTEST1: doAdventurer****\n");
 	struct gameState *m_state = newGame();
     int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, 
@@ -45,7 +50,7 @@ int main(int argc, char* argv[])
 	int player = 0;
 	int tempHand[MAX_HAND];
 	int drawntreasure = 0;
-	int cardDrawn;
+	int cardDrawn = 0;
 	int z = 0;
 	int i = 0;
 	
@@ -56,7 +61,6 @@ int main(int argc, char* argv[])
 	//pre-test variables
 	int m_handCount = numHandCards(m_state);
 	int m_preTreasure = getTreasureCount(m_state, player);
-	int m_deckCount = m_state->deckCount[player];
 	
 	//stack the player's deck so we can run our tests
     //the deck will likely run out, but shuffle should give us more
@@ -193,17 +197,22 @@ int main(int argc, char* argv[])
             }
         }
         
+        //test cases
 		printf("Returns non-error.....");
 		if(testDoAdventurer(m_state, player, tempHand, drawntreasure, cardDrawn, z) < 0)
 		{
 			printf("FAIL - Adventurer returns negative\n");
+            failedTests++;
 			if(m_state->deckCount[player] <= 0)
             {
                 if(m_state->discardCount[player] > 0)
                 {
                     printf("Testing shuffle.....");
                     if(shuffle(player, m_state) != 0)
+                    {
                         printf("FAIL - Cannot shuffle empty deck\n");
+                        failedTests++;
+                    }
                 }
             }
 			if(i == NUMRUNS - 1)
@@ -218,8 +227,8 @@ int main(int argc, char* argv[])
 		printf("State is not null.....");
 		if(m_state == NULL)
 		{
-			printf("FAIL - stateNull -- ABORTING TEST\n");
-			return -1;
+			printf("FAIL - stateNull\n");
+            failedTests++;
 		}
 		else
 		{
@@ -229,6 +238,7 @@ int main(int argc, char* argv[])
 			if(numHandCards(m_state) != m_handCount)
 			{
 				printf("FAIL - handCount\n");
+                failedTests++;
 			}
 			else
 				printf("PASS\n");
@@ -237,6 +247,7 @@ int main(int argc, char* argv[])
 			if(m_preTreasure != getTreasureCount(m_state, player))
 			{
 				printf("FAIL - treasureCount\n");
+                failedTests++;
 			}
 			else
 				printf("PASS\n");
@@ -246,9 +257,15 @@ int main(int argc, char* argv[])
         {
             printf("Discard test.....");
             if(m_state->deckCount[player] != fakeDeckCount - fakeStartDeckCount)
+            {
                 printf("FAIL - deckCount mismatch;");
+                failedTests++;
+            }
             if(m_state->discardCount[player] != fakeDiscardCount - fakeStartDiscardCount)
+            {
                 printf("FAIL - discardCount mismatch;");
+                failedTests++;
+            }
             else //test that the discarded cards match the simulation
             {
                 int flag = 0;
@@ -259,7 +276,10 @@ int main(int argc, char* argv[])
                         flag = 1;
                 }
                 if(flag != 0)
+                {
                     printf("FAIL - discardCards mismatch");
+                    failedTests++;
+                }
                 else
                     printf("PASS");
             }
@@ -271,7 +291,16 @@ int main(int argc, char* argv[])
 		}
 	}
 	
-	
+    if(failedTests > 0)
+        if(color)
+            printf("\033[1;31mFailed %d tests\033[0m\n", failedTests);
+        else
+            printf("Failed %d tests\n", failedTests);
+    else
+        if(color)
+            printf("\033[1;32mFailed %d tests\033[0m\n", failedTests);	
+        else
+            printf("Failed %d tests\n", failedTests);	
 	printf("****END CARDTEST1****\n");
     return 0;
 }
