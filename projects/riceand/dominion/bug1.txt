@@ -20,6 +20,6 @@ cardtest2.c - testing adventurer
 	3. Test found additional bug caused by my bug - since it doesn't draw properly it doesn't properly update handcount to be 2 more than it was before the call, so that fails as well
 
 cardtest3.c - testing
-
+	1. I did not introduce bugs to this one, so the tests did not find any bugs.
 
 cardtest4.c - testing
