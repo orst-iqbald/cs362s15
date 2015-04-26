@@ -14,14 +14,18 @@ char inputChar()
   return c[rand() % sizec];
 }
 
+
+
+
 char *inputString()
 {
     // TODO: rewrite this function
-  char c[] = {'d', 'e','f','g'}
+  char c[4] = {'d', 'e','f','g'};
+  int i;
   int sizec = sizeof(c);
-  char *new = malloc(5);
-  for (int i =0, i < sizeof(new); i++){
-    new[i] = c[rand() % sizec ];
+  char* new = malloc(sizeof(char) * 5);
+  for (int i =0; i < sizec; i++){
+    new[i] = c[rand() % sizec];
   }
 
     return new;
