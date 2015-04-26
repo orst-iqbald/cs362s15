@@ -696,9 +696,6 @@ int playCouncilRoom(struct gameState *state, int currentPlayer, int handPos)
       drawCard(currentPlayer, state);
     }
 
-      //+1 Buy
-      state->numBuys++;
-
       //Each other player draws a card
       for (i = 0; i < state->numPlayers; i++)
     {
@@ -709,7 +706,7 @@ int playCouncilRoom(struct gameState *state, int currentPlayer, int handPos)
     }
 
       //put played card in played card pile
-      discardCard(handPos, currentPlayer, state, 1);
+      discardCard(handPos, currentPlayer, state, 0);
 
       return 0;
 }
