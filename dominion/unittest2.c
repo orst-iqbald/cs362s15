@@ -21,8 +21,6 @@ int main() {
     struct gameState G;
 	int player = 0;
 	
-	printf("estate = %d, duchy = %d, province = %d\n\n", estate, duchy, province);
-
 	
 	printf("\nTest 1: Depleting 1 non-province pile.\n");
 	
