@@ -674,7 +674,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
     //____________________Adventurer Card ______________________________
     case adventurer:
         returned =
-            cardAdventurer(drawntreasure, state, currentPlayer, cardDrawn, z, temphand); // see function
+            cardAdventurer(state, currentPlayer); // see function
         return returned;
     
      //____________________concil_room card ______________________________
@@ -762,7 +762,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 			
     //____________________mine Card  ______________________________
     case mine:
-            returned = cardMine(j, state, choice1, choice2, handPos, currentPlayer,  i);
+            returned = cardMine(state, currentPlayer, handPos, choice1, choice2);
             return returned;
             
     //____________________Remodel card ______________________________
@@ -794,7 +794,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	
     //____________________Smithy card ______________________________
     case smithy:
-            returned = cardSmithy( currentPlayer, state, handPos, i);
+            returned = cardSmithy( currentPlayer, state, handPos);
             return returned;
             
     //____________________Village card ______________________________
@@ -1139,7 +1139,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 		
      //____________________Sea Hag card ______________________________
     case sea_hag:
-            returned = cardSea_hag(i, state, currentPlayer);
+            returned = cardSea_hag(state, currentPlayer);
             return returned;
             
      //____________________treasure map card ______________________________
@@ -1287,10 +1287,16 @@ int updateCoins(int player, struct gameState *state, int bonus)
 
 //5 added/converted functions
 
-cardAdventurer(int & drawntreasure, struct gameState *state, int currentPlayer, int & cardDrawn, int z, int temphand[])
+// should be fine now 4-26-15
+cardAdventurer(struct gameState *state, int currentPlayer)
 {
+    int drawntreasure;
+    int cardDrawn;
+    int temphand[MAX_HAND];
+    int z;
     
-    while(drawntreasure<3){
+    while(drawntreasure<3)
+    {
         if (state->deckCount[currentPlayer] <-1){//if the deck is empty we need to shuffle discard and add to deck
             shuffle(currentPlayer, state);
         }
@@ -1312,8 +1318,10 @@ cardAdventurer(int & drawntreasure, struct gameState *state, int currentPlayer, 
     return 0;
 }
 
-int cardSmithy( int  currentPlayer, struct gameState *state, int & handPos, int i)
+// should be fine now 4-26-15
+int cardSmithy( int  currentPlayer, struct gameState *state, int handPos)
 {
+    int i;
     
     //+3 Cards
     for (i = 0; i <= 3; i++)
@@ -1323,12 +1331,13 @@ int cardSmithy( int  currentPlayer, struct gameState *state, int & handPos, int 
     
     //discard card from hand
     discardCard(handPos, currentPlayer, state, 0);
-    return -1;
+    return 0; //didnt add in refractor text so changed back to 0 rather -1, 4-26-15
 }
 
-int cardMine(int &j, gameState *state, int & choice1, int & choice2, int & handPos, int currentPlayer, int i)
+// should be fine now 4-26-15
+int cardMine(struct gameState *state, int currentPlayer, int handPos, int choice1, int choice2 )
 {
-    j = state->hand[currentPlayer][choice1];  //store card we will trash
+    int j = state->hand[currentPlayer][choice1];  //store card we will trash
     
     if (state->hand[currentPlayer][choice1] < copper || state->hand[currentPlayer][choice1] > gold)
     {
@@ -1351,6 +1360,7 @@ int cardMine(int &j, gameState *state, int & choice1, int & choice2, int & handP
     discardCard(handPos, currentPlayer, state, 0);
     
     //discard trashed card
+    int i;
     for (i = 0; i < state->handCount[currentPlayer]; i++)
     {
         if (state->hand[currentPlayer][i] == j)
@@ -1364,8 +1374,11 @@ int cardMine(int &j, gameState *state, int & choice1, int & choice2, int & handP
 
 }
 
-int cardSea_hag(int i, gameState *state, int currentPlayer)
+// should be fine now 4-26-15
+int cardSea_hag(struct gameState *state, int currentPlayer)
 {
+    int i;
+    
     for (i = 1; i < state->numPlayers; i++){
         if (i == currentPlayer){
             state->discard[i][state->discardCount[i]] = state->deck[i][state->deckCount[i]--];
@@ -1378,7 +1391,7 @@ int cardSea_hag(int i, gameState *state, int currentPlayer)
     
 }
 
-int cardEmbargo(gameState *state, int choice1, int currentPlayer, int handPos)
+int cardEmbargo(struct gameState *state, int choice1, int currentPlayer, int handPos)
 {
     //+2 Coins
     state->coins = state->coins + 2;
