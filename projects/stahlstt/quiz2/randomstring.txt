@@ -13,7 +13,7 @@ to between 250 - 1100 or so (it does vary a bit).
 inputChar() made random characters from the ASCII table, 32 - 126 (space to ~). 
 This was done by selecting a random integer between 32 and 126, and then 
 assigning that value to a character variable, which was returned from the 
-inputChar function. Using this base I successfull got to the error state many 
+inputChar function. Using this base I successfully got to the error state many 
 times. I then reduced inputChar() to just the characters that advance state by 
 randomly selecting them out of the string "[({ ax})]".
 

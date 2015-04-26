@@ -13,10 +13,10 @@ char inputChar()
     // create random char from ascii characters 32 -126 
     // create random char from known set [,(, {, ' ', a, x, }, ), ]
     
-//     int max = 126;
-//     int min = 32;
-//     int r = rand() % (max+1-min)+min;
-//     char fluffy = r;
+    //  int max = 126;
+    //  int min = 32;
+    //  int r = rand() % (max+1-min)+min;
+    //  char fluffy = r;
 
     char fluffy[] = "{[( ax)]}";
     char thisOne = fluffy[rand() % 9];
@@ -33,13 +33,13 @@ char *inputString()
      
     char *testStr = malloc(sizeof(char)*6);
     int i;    
-//     int min = 97;
-//     int max = 122;
+    // int min = 97;
+    // int max = 122;
     
-//     for(i = 0; i < 5; i++) {
-//         testStr[i] = (char)(rand() % (max+1-min)+min);
-//     }
-//     testStr[6] = '\0';  
+    // for(i = 0; i < 5; i++) {
+    //    testStr[i] = (char)(rand() % (max+1-min)+min);
+    //  }
+    //  testStr[6] = '\0';  
     
     char reset[6] = "reset";
     for(i=0; i < 5; i++){
