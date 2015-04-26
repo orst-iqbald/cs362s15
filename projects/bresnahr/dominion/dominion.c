@@ -10,7 +10,7 @@ int newAdventurer(int currentPlayer, struct gameState *state);
 int newRemodel(int currentPlayer, struct gameState *state, int handPos, int choice1, int choice2);
 int newCouncil_room(int currentPlayer, struct gameState *state, int handPos);
 int newSea_hag(int currentPlayer, struct gameState *state);
-
+int newVillage(int currentPlayer, struct gameState *state, int handPos);
 int compare(const void* a, const void* b) {
   if (*(int*)a > *(int*)b)
     return 1;
@@ -866,7 +866,8 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 		
     case village:
       //+1 Card
-      drawCard(currentPlayer, state);
+     /*
+       drawCard(currentPlayer, state);
 			
       //+2 Actions
       state->numActions = state->numActions + 2;
@@ -874,6 +875,9 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       //discard played card from hand
       discardCard(handPos, currentPlayer, state, 0);
       return 0;
+     */
+      getNew = newVillage(currentPlayer, state, handPos);
+      return getNew;
 		
     case baron:
       state->numBuys++;//Increase buys by 1!
@@ -1359,6 +1363,17 @@ int updateCoins(int player, struct gameState *state, int bonus)
 
 //end of dominion.c *original code
 //refactored code
+int newVillage(int currentPlayer, struct gameState *state, int handPos)
+{
+  //+1 Card
+  drawCard(currentPlayer, state);
+  //+2 Actions
+  state->numActions = state->numActions + 2;
+
+  //discard played card from hand
+  discardCard(handPos, currentPlayer, state, 0);
+  return 0;
+}
 int newSmithy(int currentPlayer, struct gameState *state, int handPos)
 {
   int i;
