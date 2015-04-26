@@ -5,6 +5,10 @@ Bug 00001:
     Summary: 
         A deadlock case occurs when doAdventurer attempts to drawCard but the deck is empty. Shuffle will return -1
         and the discard pile is not moved into the deck and shuffled.
+    Priority:
+        High
+    Severity:
+        Low
     How to Reproduce:
         Call the cardEffect > doAdventurer with deckCount <= 0.
     Expected Outcome:
