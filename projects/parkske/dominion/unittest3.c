@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
 
@@ -15,6 +16,10 @@ int testDiscardCard(int m_handPos, int player, struct gameState *state, int flag
 
 int main(int argc, char* argv[])
 {
+    int color = 0;
+    if(argc == 2 && strcmp(argv[1], "-c") == 0)
+        color = 1;
+    int failedTests = 0;
     printf("\n\n****BEGIN UNITTEST3: DiscardCard****\n");
 	struct gameState *m_state = newGame();
     int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, 
@@ -69,12 +74,14 @@ int main(int argc, char* argv[])
 						{
 							printf("FAIL - playedCardCount; ");
 							pass = 1;
+                            failedTests++;
 						}
 						//check that the card in question in last card there
 						if(m_state->playedCards[m_playedCount] != m_handCard)
 						{
 							printf("FAIL - playedCards; ");
 							pass = 1;
+                            failedTests++;
 						}
 					}
 					//check that m_handPos is -1 then since it's last card
@@ -84,6 +91,7 @@ int main(int argc, char* argv[])
 						{
 							printf("FAIL - lastCardEnd;");
 							pass = 1;
+                            failedTests++;
 						}					
 					}
 					//if index isn't last in hand or only card, make sure gap is filled
@@ -94,12 +102,14 @@ int main(int argc, char* argv[])
 						{
 							printf("FAIL - fillHandPos;");
 							pass = 1;
+                            failedTests++;
 						}
 						//make sure last card swapped to gap is -1
 						if(m_state->hand[i][m_handCount - 1] != -1)
 						{
 							printf("FAIL - lastCard;");
 							pass = 1;
+                            failedTests++;
 						}
 					}
 					//make sure handCount decremented
@@ -107,6 +117,7 @@ int main(int argc, char* argv[])
 					{
 						printf("FAIL - handCount; ");
 						pass = 1;
+                        failedTests++;
 					}
 					if(pass != 0)
 					{
@@ -120,6 +131,16 @@ int main(int argc, char* argv[])
 			}
 		}
 	}
+    if(failedTests > 0)
+        if(color)
+            printf("\033[1;31mFailed %d tests\033[0m\n", failedTests);
+        else
+            printf("Failed %d tests\n", failedTests);
+    else
+        if(color)
+            printf("\033[1;32mFailed %d tests\033[0m\n", failedTests);	
+        else
+            printf("Failed %d tests\n", failedTests);	  
     printf("****END UNITTEST 3****\n");
     return 0;
 }    
