@@ -20,13 +20,14 @@ int main(int argc, char* argv[])
     if(argc == 2 && strcmp(argv[1], "-c") == 0)
         color = 1;
     int failedTests = 0;
-    printf("\n\n****BEGIN CARDTEST3: doVillage****\n");
+    
+    printf("\n\n************** BEGIN CARDTEST 3: doVillage **************\n");
 	struct gameState *m_state = newGame();
     int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, 
            sea_hag, tribute, smithy};
 	int player = 0;
 	
-	printf ("State initalization.....");
+	printf ("Village State initalization.....");
 	initializeGame(NUM_PLAYERS, k, 5, m_state);
 	printf("PASS\n");
     
@@ -49,7 +50,7 @@ int main(int argc, char* argv[])
         printf("PASS\n");
     
     //test state is not null somehow
-    printf("State not null.....");
+    printf("Village State not null.....");
     if(m_state == NULL)
     {
         printf("FAIL\n");
@@ -59,7 +60,7 @@ int main(int argc, char* argv[])
         printf("PASS\n");
     
     //test that we gained 1 card in hand
-    printf("Gain 1 card.....");
+    printf("Village Gain 1 card.....");
     if(preHandCount != m_state->handCount[player])
     {
         printf("FAIL\n");
@@ -69,7 +70,7 @@ int main(int argc, char* argv[])
         printf("PASS\n");
     
     //test that we decremented deck by 1 from drawCard
-    printf("Decrement deck.....");
+    printf("Village Decrement deck.....");
     if(preDeckCount - 1 != m_state->deckCount[player])
     {
         printf("FAIL\n");
@@ -79,7 +80,7 @@ int main(int argc, char* argv[])
         printf("PASS\n");
     
     //test that we gained 2 actions
-    printf("Gain 2 actions.....");
+    printf("Village Gain 2 actions.....");
     if(preActionCount + 2 != m_state->numActions)
     {
         printf("FAIL\n");
@@ -89,7 +90,7 @@ int main(int argc, char* argv[])
         printf("PASS\n");    
     
     //test that we discarded to playedcards 1 card
-    printf("Discard count.....");
+    printf("Village Discard count.....");
     if(prePlayedCount + 1 != m_state->playedCardCount)
     {
         printf("FAIL\n");
@@ -99,7 +100,7 @@ int main(int argc, char* argv[])
         printf("PASS\n");
     
     //test that the card we discarded is last card on playedCards pile
-    printf("Discard card.....");
+    printf("Village Discard card.....");
     if(discardCard != m_state->playedCards[m_state->playedCardCount - 1])
     {
         printf("FAIL\n");
@@ -118,6 +119,6 @@ int main(int argc, char* argv[])
             printf("\033[1;32mFailed %d tests\033[0m\n", failedTests);	
         else
             printf("Failed %d tests\n", failedTests);	
-    printf("****END CARDTEST3****\n");
+    printf("************** END CARDTEST 3: doVillage **************\n");
     return 0;
 }
