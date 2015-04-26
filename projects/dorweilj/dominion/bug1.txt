@@ -15,7 +15,7 @@ smithy:
 	I added in a bug that will allow the player to draw one more card than it should.  My tests correctly found this bug. 
 
 minion:
-	I added a bug this this function that will return an incorrect number of cards in the players hand.  The player will have onf extra card after calling the function.  My tests correctly find this bug. 
+	I added a bug this this function that will return an incorrect number of cards in the players hand.  The player will have one extra card after calling the function.  My tests correctly find this bug. 
 
 adventurer:
 	I removed the check that a player has a gold card.  The effect of this is that only copper and silver cards are counted as being treasure cards, gold cards are ignored.  In order to find this bug I explicitly set one of the cards in the players deck to be a gold.  Even with that it can sometimes take more than 10 iterations to find the bug.  It does correctly find it if given enough tests though. 

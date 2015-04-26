@@ -2,7 +2,7 @@
 
 - Minion Card
 
-Added a minion_refact function that is called in the minion card switch in the cardEffect function.  Changed the conditional that checks if state->handCount < 4.  Instad of checking the conditional it will instead apply a left bit shift to handCount[i].
+Added a minion_refact function that is called in the minion card switch in the cardEffect function.  Changed the conditional that checks if state->handCount < 4.  Instead of checking the conditional it will instead apply a left bit shift to handCount[i].
 
 - Smithy Card
 

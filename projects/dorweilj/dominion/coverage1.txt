@@ -6,6 +6,8 @@
 	Taken at least once:26.51% of 415
 	Calls executed:25.77% of 97
 
+	The coverage seems low but that is because there are only 8 function being tested.  It could always be increased by adding tests for the other dominion.c functions.
+
 Unittest1:
 	This tested the update coins function.  All lines and branches were covered but the final else if statement was only taken by 1% of inputs.  This branch could use more coverage in future tests. 
 
