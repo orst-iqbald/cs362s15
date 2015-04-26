@@ -9,3 +9,15 @@ unittest3.c - testing playCard()
 	1. I did not catch any bugs but feel I sufficiently tested the function for reliability
 
 unittest4.c - testing buyCard()
+	1. No bugs found but believe this function is tested thoroughly and is bugfree at the moment
+
+cardtest1.c - testing smithy
+
+
+cardtest2.c - testing adventurer
+
+
+cardtest3.c - testing
+
+
+cardtest4.c - testing
