@@ -13,7 +13,8 @@
 
 void testBuyCard(){
 	//set up gamestate
-	int player = 1;
+	int player = 0;
+  int p = 2;
 	int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
   	srand(time(0));
   	int randSeed = (rand() % 10000) + 1;
