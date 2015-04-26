@@ -1,0 +1,29 @@
+Tina Stahlstedt
+stahlstt@onid.oregonstate.edu
+CS362-400 Spring 2015
+randomstring.txt
+
+
+Looking at the instructions, I first tried generating random characters and 
+strings from a large pool of characters. Once I studied the code, I realized 
+that I only needed certain characters in order to get to the error message. So I 
+refactored my code to use just those characters, and got the iterations down 
+to between 250 - 1100 or so (it does vary a bit).
+
+inputChar() made random characters from the ASCII table, 32 - 126 (space to ~). 
+This was done by selecting a random integer between 32 and 126, and then 
+assigning that value to a character variable, which was returned from the 
+inputChar function. Using this base I successfully got to the error state many 
+times. I then reduced inputChar() to just the characters that advance state by 
+randomly selecting them out of the string "[({ ax})]".
+
+inputString() made strings of 5 characters from the ASCII lowercase alphabet 
+(61 - 122). This crashed my test computer before I could reach the error state. 
+So, I adjusted inputString() to make a string from the characters in "reset". I 
+selected a random character from "reset" to populate each space in a new test 
+string of length 6. This string was returned from inputString().
+    
+This tester finds the error message by brute force testing a subset of random 
+characters to boost the state to 9, all the while shuffling "reset" until it 
+gets back to being "reset". Once those two conditions are met (state = 9 and 
+s[] = "reset"), the error message is printed. 

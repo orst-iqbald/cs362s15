@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
 
@@ -57,6 +58,10 @@ int createCoins(struct gameState *state, int player, int card)
 
 int main(int argc, char* argv[])
 {
+    int color = 0;
+    if(argc == 2 && strcmp(argv[1], "-c") == 0)
+        color = 1;
+    int failedTests = 0;
     printf("\n\n****BEGIN UNITTEST1: UpdateCoins****\n");
     struct gameState state;
     int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, 
@@ -78,13 +83,19 @@ int main(int argc, char* argv[])
         if(createCoins(&state, players[i], curse) == 0)
             printf("PASS\n");
         else
+        {
             printf("FAIL\n");
+            failedTests++;
+        }
     
         printf("Player%d UpdateCoins test 0.....", i+1);
         if(testUpdateCoins(&state, players[i], curse, 0) == calculateCoins(state.handCount[players[i]], curse))
             printf("PASS\n");
         else
+        {
             printf("FAIL\n");
+            failedTests++;
+        }
 #ifdef MYDEBUG
         printf("Player%d updatecoins: %d\t CalcCoins: %d\n", i+1, testUpdateCoins(&state, players[i], curse, 0), calculateCoins(state.handCount[players[i]], curse));
 #endif
@@ -92,7 +103,10 @@ int main(int argc, char* argv[])
         if(testUpdateCoins(&state, players[i], copper, 0) == calculateCoins(state.handCount[players[i]], copper))
             printf("PASS\n");
         else
+        {
             printf("FAIL\n");
+            failedTests++;
+        }
 #ifdef MYDEBUG
         printf("Player%d updatecoins: %d\t CalcCoins: %d\n", i+1, testUpdateCoins(&state, players[i], copper, 0), calculateCoins(state.handCount[players[i]], copper));
 #endif
@@ -100,14 +114,30 @@ int main(int argc, char* argv[])
         if(testUpdateCoins(&state, players[i], silver, 0) == calculateCoins(state.handCount[players[i]], silver))
             printf("PASS\n");
         else
+        {
             printf("FAIL\n");
+            failedTests++;
+        }
         
         printf("Player%d UpdateCoins gold test.....", i+1);
         if(testUpdateCoins(&state, players[i], gold, 0) == calculateCoins(state.handCount[players[i]], gold))
             printf("PASS\n");
         else
+        {
             printf("FAIL\n");
+            failedTests++;
+        }
     }
+    if(failedTests > 0)
+        if(color)
+            printf("\033[1;31mFailed %d tests\033[0m\n", failedTests);
+        else
+            printf("Failed %d tests\n", failedTests);
+    else
+        if(color)
+            printf("\033[1;32mFailed %d tests\033[0m\n", failedTests);	
+        else
+            printf("Failed %d tests\n", failedTests);	
     printf("****END UNITTEST 1****\n");
     return 0;
 }
