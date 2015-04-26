@@ -1,19 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
 
 #define NUM_PLAYERS 2
-#define MYDEBUG
+//#define MYDEBUG
 #define NUMRUNS 10
-#define MAX_TEST_DECK 20
+#define STACK_DECK 10
 
+//test wrapper for the actual doAdventurer call
 int testDoAdventurer(struct gameState *state, int player, int* temphand, int drawntreasure, int cardDrawn, int z)
 {
 	return doAdventurer(state, player, temphand, drawntreasure, cardDrawn, z);
 }
 
+//simple procedure to count all treasure amount
 int getTreasureCount(struct gameState *state, int player)
 {
 	int treasures = 0;
@@ -38,52 +41,63 @@ int getTreasureCount(struct gameState *state, int player)
 
 int main(int argc, char* argv[])
 {
-    printf("\n\n****BEGIN CARDTEST1: doAdventurer****\n");
+    int color = 0;
+    if(argc == 2 && strcmp(argv[1], "-c") == 0)
+        color = 1;
+    int failedTests = 0;
+    printf("\n\n************** BEGIN CARDTEST 1: doAdventurer **************\n");
 	struct gameState *m_state = newGame();
     int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, 
            sea_hag, tribute, smithy};
 	int player = 0;
 	int tempHand[MAX_HAND];
 	int drawntreasure = 0;
-	int cardDrawn;
+	int cardDrawn = 0;
 	int z = 0;
 	int i = 0;
 	
-	srand(time(NULL));
-	
-	printf ("State initalization.....");
+	printf ("Adventurer State initalization.....");
 	initializeGame(NUM_PLAYERS, k, 5, m_state);
 	printf("PASS\n");
 	
 	//pre-test variables
 	int m_handCount = numHandCards(m_state);
 	int m_preTreasure = getTreasureCount(m_state, player);
-	int m_deckCount = m_state->deckCount[player];
 	
-	//fill the player's deck so we can run our tests
-	
+	//stack the player's deck so we can run our tests
+    //the deck will likely run out, but shuffle should give us more
 	int d;
-	for(d = m_deckCount; d < m_deckCount + 10; d++)
+	for(d = 0; d < STACK_DECK; d++)
 	{
-		m_state->deck[player][d] = copper;
-		m_state->deckCount[player]++;
+		gainCard(copper, m_state, 1, player);
+        gainCard(silver, m_state, 1, player);
+        gainCard(gold, m_state, 1, player);
 	}
-	m_deckCount += 10;
+	for(d = 0; d < STACK_DECK; d++)
+	{
+		gainCard(curse, m_state, 1, player);
+	}
 	
-	for(d = m_deckCount; d < m_deckCount + 10; d++)
-	{
-		m_state->deck[player][d] = curse;
-		m_state->deckCount[player]++;
-	}
-	m_deckCount += 10;
-	printf("m_deck: %d\n", m_deckCount);
 	for(i = 0; i < NUMRUNS; i++)
 	{
-		//odd test case 1: deckCount is 0
+		int doTempCompare = 0;
+        int fakeDeckCounter = m_state->deckCount[player];//Create holder for the deck count
+        int fakeHand[player][MAX_HAND]; //create fake hand
+        int fakeHandCount = 0;
+        int fakeDeck[player][MAX_DECK]; //create fake deck
+        int fakeDeckCount = 0;
+        int fakeDiscard[player][MAX_DECK]; //create fake discard
+        int fakeDiscardCount = 0;
+        int fakeTempHand[MAX_DECK];
+        int fakeTempHandCounter = 0;
+        int fakeStartDiscardCount = fakeDiscardCount;
+        int fakeStartDeckCount = fakeDeckCount;
+        
+        //odd test case 1: deckCount is 0, force shuffle
 		if(i == NUMRUNS - 1)
 		{
-			printf("***Testing empty deck draw card case***\n");
-			while(m_state->deckCount[player] > 1)
+			printf("***  Testing empty deck draw card case  ***\n");
+			while(m_state->deckCount[player] > 0)
 			{
 				if(drawCard(player, m_state) >= 0)
 					m_handCount++;
@@ -93,55 +107,202 @@ int main(int argc, char* argv[])
 			}
 		}
 		
-		//normal use case, gain 2 treasure cards, return without error
-		printf("Returns non-error.....");
+		//normal use case, gain 2 treasure cards, return without error, discard all other cards
+        
+        //simulate the drawing process without a shuffle to track discarded cards for testing
+        //if we have to shuffle, this becomes difficult to track, so don't
+        if(m_state->deckCount[player] <= 0)
+        {
+            printf("Shuffle required, cannot track discard\n");
+            doTempCompare = 1;
+        }
+        else
+        {
+            fakeDeckCounter = m_state->deckCount[player];//Create holder for the deck count
+            fakeHandCount = 0;
+            fakeDeckCount = 0;
+            fakeDiscardCount = 0;
+            fakeTempHandCounter = 0;
+            //populate fake Hand to emulate actual hand
+            int i;
+            for(i = 0; i < m_state->handCount[player]; i++)
+            {
+                fakeHand[player][i] = handCard(i, m_state);
+                fakeHandCount++;
+            }
+            //populate the fake Deck to emulate actual deck
+            for(i = 0; i < m_state->deckCount[player]; i++)
+            {
+                fakeDeck[player][i] = m_state->deck[player][i];
+                fakeDeckCount++;
+            }
+            //populate the fake Discard to emulate actual discard
+            for(i = 0; i < m_state->discardCount[player]; i++)
+            {
+                fakeDiscard[player][i] = m_state->discard[player][i];
+                fakeDiscardCount++;
+            }
+            //make sure the counts match
+            if(fakeHandCount != m_state->handCount[player])
+            {
+                printf("fakeHandCount mismatch\n");
+                doTempCompare = 1;
+                break;
+            }
+            if(fakeDeckCount != m_state->deckCount[player])
+            {
+                printf("fakeDeckCount mismatch\n");
+                doTempCompare = 1;
+                break;
+            }
+            if(fakeDiscardCount != m_state->discardCount[player])
+            {
+                printf("fakeDiscardCount mismatch\n");
+                doTempCompare = 1;
+                break;
+            }
+            
+            //simulate the adventurer
+            i = 0;
+            while(i < 2)
+            {
+                if(fakeDeckCount <= 0) //means we need to shuffle, abort test
+                {
+                    doTempCompare = 1;
+                    break;
+                }
+                fakeHand[player][fakeHandCount] = fakeDeck[player][fakeDeckCount - 1];
+                fakeDeckCount--;
+                fakeHandCount++;
+                int fakeCard = fakeHand[player][fakeHandCount - 1];
+                switch(fakeCard)
+                {
+                    case copper:
+                    case silver:
+                    case gold:
+                        i++;
+                        break;
+                    default:
+                        fakeTempHand[fakeTempHandCounter] = fakeCard;
+                        fakeHandCount--;
+                        fakeTempHandCounter++;
+                }
+            }
+            if(doTempCompare == 0)
+            {
+                while (fakeTempHandCounter - 1 > 0)
+                {
+                    fakeDiscard[player][fakeDiscardCount] = fakeTempHand[z - 1];
+                    fakeDiscardCount++;
+                    fakeTempHandCounter--;
+                }
+            }
+        }
+        
+        //test cases
+		printf("Adventurer Returns non-error.....");
 		if(testDoAdventurer(m_state, player, tempHand, drawntreasure, cardDrawn, z) < 0)
 		{
-			printf("FAIL - Adventurer returns negative\n");
-			printf("deCount %d; hCount: %d; tCount: %d; diCount: %d\n", m_state->deckCount[player], m_handCount, 
-														  getTreasureCount(m_state, player), m_state->discardCount[player]);
+			printf("FAIL - returns negative\n");
+            failedTests++;
+			if(m_state->deckCount[player] <= 0)
+            {
+                if(m_state->discardCount[player] > 0)
+                {
+                    printf("Adventurer testing shuffle.....");
+                    if(shuffle(player, m_state) != 0)
+                    {
+                        printf("FAIL - Cannot shuffle empty deck\n");
+                        failedTests++;
+                    }
+                }
+            }
 			if(i == NUMRUNS - 1)
 			{
-				printf("***END empty deck draw card case***\n");
+				printf("*** END empty deck draw card case ***\n");
 			}
 			continue;
 		}
 		else
 			printf("PASS\n");
 		
-		printf("State is not null.....");
+		printf("Adventurer State is not null.....");
 		if(m_state == NULL)
 		{
-			printf("FAIL - stateNull -- ABORTING TEST\n");
-			return -1;
+			printf("FAIL - stateNull\n");
+            failedTests++;
 		}
 		else
 		{
 			printf("PASS\n");
-			printf("Hand Count +2.....");
+			printf("Adventurer Hand Count +2.....");
 			m_handCount += 2;
 			if(numHandCards(m_state) != m_handCount)
 			{
 				printf("FAIL - handCount\n");
+                failedTests++;
 			}
 			else
 				printf("PASS\n");
-			printf("Treasure +2.....");
+			printf("Adventurer Treasure +2.....");
 			m_preTreasure += 2;
 			if(m_preTreasure != getTreasureCount(m_state, player))
 			{
 				printf("FAIL - treasureCount\n");
+                failedTests++;
 			}
 			else
 				printf("PASS\n");
 		}
+        //compare simulated discards to actual
+        if(doTempCompare == 0)
+        {
+            printf("Adventurer Discard test.....");
+            if(m_state->deckCount[player] != fakeDeckCount - fakeStartDeckCount)
+            {
+                printf("FAIL - deckCount mismatch;");
+                failedTests++;
+            }
+            if(m_state->discardCount[player] != fakeDiscardCount - fakeStartDiscardCount)
+            {
+                printf("FAIL - discardCount mismatch;");
+                failedTests++;
+            }
+            else //test that the discarded cards match the simulation
+            {
+                int flag = 0;
+                int j;
+                for(j = fakeDiscardCount - 1; j >= 0; j--)
+                {
+                    if(m_state->discard[player][j] != fakeDiscard[player][j])
+                        flag = 1;
+                }
+                if(flag != 0)
+                {
+                    printf("FAIL - discardCards mismatch");
+                    failedTests++;
+                }
+                else
+                    printf("PASS");
+            }
+            printf("\n");
+        }
 		if(i == NUMRUNS - 1)
 		{
-			printf("***END empty deck draw card case***\n");
+			printf("*** END empty deck draw card case ***\n");
 		}
 	}
 	
-	
-	printf("****END CARDTEST1****\n");
+    if(failedTests > 0)
+        if(color)
+            printf("\033[1;31mFailed %d tests\033[0m\n", failedTests);
+        else
+            printf("Failed %d tests\n", failedTests);
+    else
+        if(color)
+            printf("\033[1;32mFailed %d tests\033[0m\n", failedTests);	
+        else
+            printf("Failed %d tests\n", failedTests);	
+	printf("************** END CARDTEST 1: doAdventurer **************\n");
     return 0;
 }
