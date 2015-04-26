@@ -18,6 +18,9 @@ Taken at least once:95.65% of 46
 No Calls
 
 Discussion:
+	I was surprised to see that only 97.44% was covered in the function itself, but analyzing it again I see that it is likely the part that checks the 10 kingdom cards passed to make sure they are different.
+	This will be a good way to improve the test and get 100% coverage. 
+	100% of the branches were executed, however, so that is a good sign. I am reasonably confident in this test.
 -----------------
 
 -----------------
@@ -38,6 +41,7 @@ Taken at least once:100.00% of 8
 No Calls
 
 Discussion:
+	This reported 100% coverage across the board! I felt very confident testing this function, and it looks as though I was correct.
 -----------------
 
 -----------------
@@ -58,6 +62,7 @@ Taken at least once:60.00% of 10
 No Calls
 
 Discussion:
+	This one I think both the lines executed and taken at least once "lack" of coverage is due to the if statement that calls cardEffect(). I did not pass bad values in there to check for -1. This will be a good place to start when improving this test. I also think some coverage loss occurred due to the card = handCard(handPos, state) line, but I am not entirely sure if that should be tested in this or a separate function for testing handCard...
 -----------------
 
 -----------------
@@ -77,6 +82,7 @@ Taken at least once:100.00% of 6
 No Calls
 
 Discussion:
+	This test I was very happy with. Another 100% coverage across the board, and I expected that. The function itself was among the longer ones, but after analyzing it I was able to see clearly the different settings that would have to be played with to test the function thoroughly. 
 -----------------
 
 -----------------
@@ -97,6 +103,7 @@ Taken at least once:100.00% of 2
 No Calls
 
 Discussion:
+	This card was an easy card to test as it is doesn't do too much, but due to the bug I entered for assignment2 I couldn't test as thoroughly as I wanted since it would just fail. So for now it just checks the handCount when testing for the bug, but I would also add in a test to loop and check the new cards, as well as make sure handCount was updated correctly.
 -----------------
 
 -----------------
@@ -117,6 +124,7 @@ Taken at least once:41.67% of 12
 No calls
 
 Discussion:
+	This was the one that gave me the most trouble. I expected a low coverage on it, to be honest. I think a large part of that was due to the bug I introduced for assignment 2, which makes it so the while loop to draw 2 treasure cards never completes properly, but some of it could also be difficulty designing the tests. At the moment I feel this test covers everything it can with such a bad bug in it, but in the future I would make sure to give it plenty of scenarios to accurately cover the if/elses inside the first while loop, which I believe is where most of the coverage loss occurs. 
 -----------------
 
 -----------------
@@ -136,6 +144,7 @@ No branches
 No calls
 
 Discussion:
+	This card is very basic, but it was one I updated so I decided to choose it. There isn't much to test here, so I was fairly confident in 100% coverage and thorough testing.
 -----------------
 
 -----------------
@@ -157,4 +166,5 @@ Taken at least once:100.00% of 6
 No calls
 
 Discussion:
+	For these tests I got to do what I wanted for the smithy, namely loop through the added cards and check those as well as checking that the handCount was updated. This would essentially be the exact code I would add to smithy. Also, it helped in this function that the bug I introduced in assignment 2, while breaking the card and removing one of its benefits entirely, it was easy to write a simple if statement test for and still achieve 100% coverage. I am very confident in the thoroughness of this test. 
 -----------------
