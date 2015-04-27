@@ -1,0 +1,6 @@
+CS 362
+Quiz 2
+
+The first function inputChar() generates a random char that is within the domain of all of the chars that the test me() function is searching. After the first char is found in the if statement the state variable is set which allows the next if statement to be checked. The same process continues until the character array is reached. 5 random chars are returned in an array and are compared in the last if statement. 
+
+In my testing the error message was printed after approximately 7000 - 60000 iterations. 94 random chars are generated as well as a 5 character string is generated from 7 chars. Because I’m able to do white box testing and see the code I am able to create a fairly small domain of input that I know testme() is looking for. If I were unable to see the source code my domain would be considerably larger which would take the test much longer to run before all of the inputs were generated in the correct sequence.

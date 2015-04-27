@@ -1,0 +1,82 @@
+Michael Marven
+Assignment 3
+CS362 Spring 2015
+04/26/2015
+
+Coverage report
+
+unittest1.c:
+
+File 'dominion.c'
+Lines executed:19.45% of 581
+Branches executed:23.49% of 413
+Taken at least once:15.25% of 413
+Calls executed:10.53% of 95
+
+
+unittest2.c:
+
+File 'dominion.c'
+Lines executed:17.56% of 581
+Branches executed:17.92% of 413
+Taken at least once:15.50% of 413
+Calls executed:7.37% of 95
+
+
+unittest3.c:
+
+File 'dominion.c'
+Lines executed:18.93% of 581
+Branches executed:20.34% of 413
+Taken at least once:17.19% of 413
+Calls executed:7.37% of 95
+
+
+unittest4.c:
+
+File 'dominion.c'
+Lines executed:20.65% of 581
+Branches executed:20.82% of 413
+Taken at least once:18.16% of 413
+Calls executed:8.42% of 95
+
+
+cardtest1.c:
+
+File 'dominion.c'
+Lines executed:25.13% of 581
+Branches executed:28.33% of 413
+Taken at least once:19.85% of 413
+Calls executed:12.63% of 95
+
+
+cardtest2.c:
+
+File 'dominion.c'
+Lines executed:27.02% of 581
+Branches executed:30.27% of 413
+Taken at least once:21.31% of 413
+Calls executed:14.74% of 95
+
+
+cardtest3.c:
+
+File 'dominion.c'
+Lines executed:27.71% of 581
+Branches executed:30.27% of 413
+Taken at least once:21.55% of 413
+Calls executed:16.84% of 95
+
+
+cardtest4.c:
+
+File 'dominion.c'
+Lines executed:29.78% of 581
+Branches executed:37.53% of 413
+Taken at least once:22.52% of 413
+Calls executed:22.11% of 95
+
+
+Each of the tests had similar coverage and the coverage was much less than 100%. The tests targeted specific functions and the game states were altered before the tests ran, so much of the code that was not relevant to the functions did not run. For instance, playCard() was never called because I was bypassing it and calling cardEffect(). If a game were actually played in the tests, much more coverage could be achieved.
+
+But even with the coverage being far from 100%, some bugs were discovered in the functions that were tested. Since I was concentrating on isolating smaller parts of the program, and I was trying to make the tests as effective as possible, the tests were successful even without 100% coverage.

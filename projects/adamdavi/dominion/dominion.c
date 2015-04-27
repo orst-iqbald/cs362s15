@@ -55,15 +55,15 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
 
   //check selected kingdom cards are different
   for (i = 0; i < 10; i++)
+  {
+    for (j = 0; j < 10; j++)
     {
-      for (j = 0; j < 10; j++)
-        {
-	  if (j != i && kingdomCards[j] == kingdomCards[i])
-	    {
-	      return -1;
-	    }
-        }
+      if (j != i && kingdomCards[j] == kingdomCards[i])
+      {
+        return -1;
+      }
     }
+  }
 
 
   //initialize supply
@@ -104,32 +104,31 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
 
   //set number of Kingdom cards
   for (i = adventurer; i <= treasure_map; i++)       	//loop all cards
+  {
+    for (j = 0; j < 10; j++)           		//loop chosen cards
     {
-      for (j = 0; j < 10; j++)           		//loop chosen cards
-	{
-	  if (kingdomCards[j] == i)
-	    {
-	      //check if card is a 'Victory' Kingdom card
-	      if (kingdomCards[j] == great_hall || kingdomCards[j] == gardens)
-		{
-		  if (numPlayers == 2){ 
-		    state->supplyCount[i] = 8; 
-		  }
-		  else{ state->supplyCount[i] = 12; }
-		}
-	      else
-		{
-		  state->supplyCount[i] = 10;
-		}
-	      break;
-	    }
-	  else    //card is not in the set choosen for the game
-	    {
-	      state->supplyCount[i] = -1;
-	    }
-	}
-
+      if (kingdomCards[j] == i)
+      {
+        //check if card is a 'Victory' Kingdom card
+        if (kingdomCards[j] == great_hall || kingdomCards[j] == gardens)
+        {
+          if (numPlayers == 2){ 
+            state->supplyCount[i] = 8; 
+          }
+          else { state->supplyCount[i] = 12; }
+        }
+        else
+        {
+          state->supplyCount[i] = 10;
+        }
+        break;
+      }
+      else    //card is not in the set choosen for the game
+      {
+        state->supplyCount[i] = -1;
+      }
     }
+  }
 
   ////////////////////////
   //supply intilization complete
@@ -392,24 +391,20 @@ int isGameOver(struct gameState *state) {
   int j;
 	
   //if stack of Province cards is empty, the game ends
-  if (state->supplyCount[province] == 0)
-    {
-      return 1;
-    }
+  if (state->supplyCount[province] == 0) {
+    return 1;
+  }
 
   //if three supply pile are at 0, the game ends
   j = 0;
-  for (i = 0; i < 25; i++)
-    {
-      if (state->supplyCount[i] == 0)
-	{
-	  j++;
-	}
-    }
-  if ( j >= 3)
-    {
+  for (i = 0; i < 25; i++) {
+    if (state->supplyCount[i] == 0) {
+	   j++;
+	  }
+  }
+  if ( j >= 3) {
       return 1;
-    }
+  }
 
   return 0;
 }
@@ -1248,7 +1243,7 @@ int playAdventurer(struct gameState *state, int currentPlayer)
   }
   
   while(z >= 0){
-    state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z - 1]; // discard all cards in play that have been drawn
+    state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[z - 1]; // discard all cards in play that have been drawn
     z = z - 1;
   }
 
@@ -1261,7 +1256,7 @@ int playSmithy(struct gameState *state, int currentPlayer, int handPos)
   int i;
 
   //+3 Cards
-  for (i = 0; i < 3; i--) {
+  for (i = 0; i < 4; i++) {
     drawCard(currentPlayer, state);
   }
       

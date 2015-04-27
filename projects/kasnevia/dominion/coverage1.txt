@@ -1,0 +1,64 @@
+coverage1.txt
+====
+cardtest1.c - testing Adventurer Card
+Lines executed:27.59% of 580
+Branches executed:27.34% of 417
+Taken at least once:18.94% of 417
+Calls executed:13.98% of 93
+
+Although test covered slightly more than one quarter of the lines and branches of dominion.c, it covered 86% of the lines in the adventurer function.  
+====
+cardtest2.c - testing Smithy Card
+Lines executed:32.34% of 580
+Branches executed:35.40% of 417
+Taken at least once:22.18% of 417
+Calls executed:14.86% of 93
+
+This test covered 100% of the lines of the Smithy card function, and accordingly it is a thorough test of this card's features.  
+====
+cardtest3.c - testing Village Card
+Lines executed:22.46% of 580
+Branches executed:24.04% of 417
+Taken at least once:15.01% of 417
+Calls executed:12.89% of 93
+
+This test covered 100% of the lines of the Village card function, and accordingly it is a thorough test of this card's features.  
+====
+cardtest4.c - testing Great Hall Card
+Lines executed:24.25% of 580
+Branches executed:29.03% of 417
+Taken at least once:16.81% of 417
+Calls executed:11.53% of 93
+
+This test covered 100% of the lines of the Great Hall card function, and accordingly it is a thorough test of this card's features.  
+====
+unittest1 - testing supplyCount function
+Lines executed:36.58% of 580
+Branches executed:37.87% of 417
+Taken at least once:19.48% of 417
+Calls executed:16.85% of 93
+
+This test covered 80% of the lines of the supplyCount function, and accordingly it is a thorough but not complete test of this function.  
+====
+unittest2 - testing getCost function
+Lines executed:34.18% of 580
+Branches executed:39.49% of 417
+Taken at least once:22.63% of 417
+Calls executed:15.45% of 93
+
+This test covered 40% of the lines of the supplyCount function, and accordingly it is not a complete or thorough test of this function. 
+====
+unittest3 - testing shuffle functionLines executed:27.59% of 580
+Branches executed:37.60% of 417
+Taken at least once:17.04% of 417
+Calls executed:11.56% of 93
+
+This test covered 60% of the lines of the supplyCount function, and accordingly it is not a complete or thorough test of this function. 
+====
+unittest4 - testing kingdomCards functionLines executed:27.59% of 580
+Branches executed:29.41% of 417
+Taken at least once:17.13% of 417
+Calls executed:15.21% of 93
+
+This test covered 100% of the lines of the kingdomCards function, and accordingly it is a thorough test of this function.  
+====

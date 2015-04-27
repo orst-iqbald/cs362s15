@@ -1,0 +1,26 @@
+Random Testing Quiz 2
+
+Per the quiz instructions, testme.c was edited to include implementations of the 
+inputChar() and inputString() functions to support random testing.  The testme program
+can be compiled using "gcc -o testme testme.c" and if so compiled, can be executed using "testme".  
+Both functions include comments covering much of the discussion below.  
+
+The inputChar() function is called by testme() to provide an input character used to evaluate the series 
+of IF statements that set the program state.  It has been implemented to 1) create an array of only the 
+characters tested by those IF statements, and 2) randomly return one character of this array.  The tested 
+characters are contained in a character array 
+char c_array[] = {'[', '(', '{', ' ', 'a', 'x', '}', ')', ']'}, 
+and the rand() function, bounded by the length of this array, is used to set the array index and select a 
+character randomly from the array.  
+
+The inputString() function is called by testme() to provide an input string 
+evaluated by the final IF statement.   It has been implemented in a similar 
+manner to inputChar().  In this implementation, inputString() will 1) allocate 
+memory to store the string to be generated, 2) create an array of only the tested characters, and 
+3) use a FOR loop to build the string character by character by randomly setting the array index.  
+
+These functions allowed the testme program to detect an error each time the program was run.  However, given 
+the nature of the randomly selected characters, a wide range of iterations were observed before the error 
+was generated.  In the four most program executions I ran, I observed 999, 1634, 3831, and 4649 iterations 
+before detecting an error.  However, as this is a simple program, none of these executions lasted more 
+than a second.  

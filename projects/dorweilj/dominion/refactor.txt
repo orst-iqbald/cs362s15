@@ -2,7 +2,7 @@
 
 - Minion Card
 
-Added a minion_refact function that is called in the minion card switch in the cardEffect function.  Changed the conditional that checks if state->handCount < 4.  Instad of checking the conditional it will instead apply a left bit shift to handCount[i].
+Added a minion_refact function that is called in the minion card switch in the cardEffect function.  Changed the conditional that checks if state->handCount < 4.  Instead of checking the conditional it will instead apply a left bit shift to handCount[i].
 
 - Smithy Card
 
@@ -10,7 +10,7 @@ Added smithy_refact function that is called in the smithy card switch in the car
 
 - Adventurer 
 
-Added adventurer_refact function that is called in the adventurer card switch in the cardEffect function.  I changed the logic of the conditional that checks if a treasure card has been drawn.  I changed it from || to &&.  This means that only coppers are counted as being treasure cards.
+Added adventurer_refact function that is called in the adventurer card switch in the cardEffect function.  I changed the logic of the conditional that checks if a treasure card has been drawn.  I removed gold cards from the conditional.  This means that only coppers and silvers are counted as treasure cards.
 
 - Village
 

@@ -1,0 +1,46 @@
+/***********************
+* Author: Jon Derderian
+* ONID ID: derderij
+* Class: CS 362
+* Assignment: Assignment 3
+* Filename: bug1.txt
+* Description: Bug report for Unit and Card tests
+*************************/
+-I seemed to have some slight problems in testing my card functions, as was sometimes
+adding a weird number of card to the hand, instead of following what I had specified
+in the functions in dominion.c I had added, and the bugs that were introduced didn't seem
+to have as great an effect as intended. 
+
+****************
+unittest1: shuffle()
+	-No bugs were found in this function during tests
+
+****************
+unittest2: isGameOver()
+	-No bugs were found in this function during tests
+
+****************
+unittest3: kingdomCards()
+	-No bugs were found in this function during tests
+
+****************
+unittest4: buyCard()
+	-No bugs were found in this function during tests
+
+****************
+cardtest1: smithy
+	-Test fails, as it adds 4 cards to the hand instead of 3, as the bug I put in previously.
+	It also doesn't discard it properly, as I have it being trashed instead.
+
+****************
+cardtest2: adventurer
+	-Test fails, as it adds incorrect amount of treasure cards to the hand
+
+****************
+cardtest3: Cutpurse
+	-Sometimes fails, as the incorrect number of gold has been added to the hand. There are
+	also times the incorrect amount of copper is discarded.
+
+****************
+cardtest4: Village
+	-Test fails, as it subtracts actions instead of giving the player 2

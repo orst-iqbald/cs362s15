@@ -673,6 +673,7 @@ int adventurerEffect(struct gameState *state, int currentPlayer) {
 
 //smithyEffect function
 int smithyEffect(struct gameState *state, int currentPlayer, int handPos) {
+  int i;
   for (i = 0; i <= 3; i++) {
     drawCard(currentPlayer, state);
   }
@@ -879,7 +880,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case smithy:
-      return smithEffect(state, currentPlayer, handPos);
+      return smithyEffect(state, currentPlayer, handPos);
 
     case village:
       return villageEffect(state, currentPlayer, handPos);
