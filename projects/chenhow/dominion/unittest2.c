@@ -125,8 +125,12 @@ int testGetWinners(int players[MAX_PLAYERS], struct gameState *after)
     }
   }
   
-  assert(beforeOut == afterOut);
-
+  //assert(beforeOut == afterOut);
+  if (beforeOut != afterOut) 
+  {
+    printf("getWinners() Failed Test\n");
+    printf("getWinners() Not Calculating Winners Properly!\n");
+  }
   return 0;
 }
 
