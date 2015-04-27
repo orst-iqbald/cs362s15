@@ -57,4 +57,3 @@ clean:
 
 cleanall: 
 	rm unittestresults.out unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 *.gcda *.gcno *.gcov *.o
-
