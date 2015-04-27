@@ -1,0 +1,24 @@
+// Student: Philip Lewallen
+// Class: CS362-400
+// Spring 2015
+// Random Testing Quiz 2
+// randomstring.txt
+
+First I tried to make the tester entirely random.  for the first part of the program where the
+tester is only looking to compare single characters this worked well.  I only limited my tester to the 
+ASCII spectrum of 0 - 127.  The tester behaved as expected.
+
+For the second part of the tester where we were comparing entire string this proved to be a larger problem. 
+The issue was the possible combinations.  Even by limiting the potential input to the lower case alphabet i.e.
+char values 97 - 122 this still allows for 11881376 possible combinations.
+
+Since I was dealing with a range of the lower alphabet and then a single outlying integer in the form of a NULL
+terminating character I decided that at this point I should simply add that particular piece of the string in manually.
+I still find that for this test this is the way to go as I had let the random tester go until iteration ~300,000 on the server 
+and this I think is not a very good use of the resources of the school.  Also this only 1/39th of the possible combinations.
+
+After this what I decided to do was to put the values into the string and then scramble the string.
+This way the positions would be moved and we could reduce the amount of throw away states, and still test to ensure our 
+logic was sound when we did get a positive test condition.
+
+Even with simply reordering the string randomly it still took 10552 iterations to find the correct state.
