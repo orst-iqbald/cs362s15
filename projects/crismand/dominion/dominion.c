@@ -522,62 +522,61 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state) {
   return 0;
 }
 
-int drawCard(int player, struct gameState *state)
-{	int count;
-  int deckCounter;
-  if (state->deckCount[player] <= 0){//Deck is empty
+int drawCard(int player, struct gameState *state){	
+
+	int count;
+	int deckCounter;
+	if (state->deckCount[player] <= 0){//Deck is empty
     
-    //Step 1 Shuffle the discard pile back into a deck
-    int i;
-    //Move discard to deck
-    for (i = 0; i < state->discardCount[player];i++){
-      state->deck[player][i] = state->discard[player][i];
-      state->discard[player][i] = -1;
-    }
+		//Step 1 Shuffle the discard pile back into a deck
+		int i;
+		//Move discard to deck
+		for (i = 0; i < state->discardCount[player];i++){
+			state->deck[player][i] = state->discard[player][i];
+			state->discard[player][i] = -1;
+		}
 
-    state->deckCount[player] = state->discardCount[player];
-    state->discardCount[player] = 0;//Reset discard
+		state->deckCount[player] = state->discardCount[player];
+		state->discardCount[player] = 0;//Reset discard
 
-    //Shufffle the deck
-    shuffle(player, state);//Shuffle the deck up and make it so that we can draw
+		//Shufffle the deck
+		shuffle(player, state);//Shuffle the deck up and make it so that we can draw
    
-    if (DEBUG){//Debug statements
-      printf("Deck count now: %d\n", state->deckCount[player]);
-    }
+		if (DEBUG){//Debug statements
+			printf("Deck count now: %d\n", state->deckCount[player]);
+		}
     
-    state->discardCount[player] = 0;
+		state->discardCount[player] = 0;
 
-    //Step 2 Draw Card
-    count = state->handCount[player];//Get current player's hand count
+		//Step 2 Draw Card
+		count = state->handCount[player];//Get current player's hand count
     
-    if (DEBUG){//Debug statements
-      printf("Current hand count: %d\n", count);
-    }
+		if (DEBUG){//Debug statements
+			printf("Current hand count: %d\n", count);
+		}
     
-    deckCounter = state->deckCount[player];//Create a holder for the deck count
+		deckCounter = state->deckCount[player];//Create a holder for the deck count
 
-    if (deckCounter == 0)
-      return -1;
+		if (deckCounter == 0)
+			return -1;
 
-    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to hand
-    state->deckCount[player]--;
-    state->handCount[player]++;//Increment hand count
-  }
+		state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to hand
+		state->deckCount[player]--;
+		state->handCount[player]++;//Increment hand count
+	} else {
+		int count = state->handCount[player];//Get current hand count for player
+		int deckCounter;
+		if (DEBUG){//Debug statements
+			printf("Current hand count: %d\n", count);
+		}
 
-  else{
-    int count = state->handCount[player];//Get current hand count for player
-    int deckCounter;
-    if (DEBUG){//Debug statements
-      printf("Current hand count: %d\n", count);
-    }
+		deckCounter = state->deckCount[player];//Create holder for the deck count
+		state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
+		state->deckCount[player]--;
+		state->handCount[player]++;//Increment hand count
+	}
 
-    deckCounter = state->deckCount[player];//Create holder for the deck count
-    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
-    state->deckCount[player]--;
-    state->handCount[player]++;//Increment hand count
-  }
-
-  return 0;
+	return 0;
 }
 
 int getCost(int cardNumber)
@@ -1264,6 +1263,7 @@ int pFeast(struct gameState *state, int choice1, int handPos){
 			if (DEBUG){
 				printf("Cards Left: %d\n", supplyCount(choice1, state));
 			}
+			return -1;
 		}
 		else if (state->coins < getCost(choice1)){
 			printf("That card is too expensive!\n");
@@ -1271,6 +1271,7 @@ int pFeast(struct gameState *state, int choice1, int handPos){
 			if (DEBUG){
 				printf("Coins: %d < %d\n", state->coins, getCost(choice1));
 			}
+			return -1;
 		}
 		else{
 			if (DEBUG){
@@ -1298,7 +1299,7 @@ int pFeast(struct gameState *state, int choice1, int handPos){
 
 int pAdventurer(struct gameState *state, int handPos){
 	
-	int z, drawntreasure;
+	int z = 0, drawntreasure;
 	int cardDrawn;
 	int currentPlayer = whoseTurn(state);
 	int temphand[MAX_HAND];
