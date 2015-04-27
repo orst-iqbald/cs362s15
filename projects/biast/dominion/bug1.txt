@@ -1,4 +1,4 @@
-UNIT TEST 1: Discard Card
+UNIT TEST 1: discardCard
 
 This function is broken in two ways:
 
@@ -17,3 +17,57 @@ This function does handle trashing correctly. Cards that are processed with the 
 set are successfully removed from the player's hand and removed from the game entirely.
 
 
+UNIT TEST 2: isGameOver
+
+This function works correctly as far as I can tell. I ran it through a number of tests,
+trying all sorts of combinations of depleted province piles and depleted 'other' piles.
+It correctly determines that the game has ended whenever 3 piles are gone or the province
+pile is gone.
+
+
+UNIT TEST 3: fullDeckCount
+
+This function works correctly. I had it count up various types of cards spread across all
+three possible locations (deck, hand, discard pile). It correctly tallied up each type of
+card in all circumstances.
+
+
+UNIT TEST 4: getWinners
+
+This function appears to have a problem, though as far as I can tell it is not directly the
+fault of getWinners but rather an issue with scoreFor, which getWinners relies on to calculate
+the score. scoreFor appears to look at the discard pile's count when it should be looking at
+the deck's count. As a result, if the discard pile is empty, as it is in parts of my test,
+it will not examine any cards in the player's deck and thus miscalculate the score.
+
+
+CARD TEST 1: adventurer
+
+I introduced a bug into adventurer for the last assignment, and my tests have correctly picked it
+out. The card fails to pick up silvers, but does correctly draw coppers and golds. As a result it
+fails many parts of the test, which is comparing expected hand coinage value to the calculated hand
+value. It is made obvious that silver is the problematic element in a single test that plays the
+adventurer when only a single silver is in the deck, and then fails to draw any cards.
+
+
+CARD TEST 2: smithy
+
+I attempted to introduce a bug into this card for the last assignment, but my tests have shown that
+I failed to do so. The smithy works correctly. The original bug had been a subtle one, I thought,
+where I tried to manipulate the value of the hand by using a call to updateCoins within the smithy
+function. It turns out that the way the smithy function is called, which is by means of an intermediary
+function playCards, results in a recalculation of the coin value after the point where my bug was supposed
+to occur. Therefore the bad coin value gets erased and the correct one is put in place before anything
+else can be done.
+
+
+CARD TEST 3: great hall
+
+The great hall is a very simple card and it works perfectly.
+
+
+CARD TEST 4: village
+
+The village is broken. I introduced the bug last assignment that causes it to draw a bonus card. My tests
+catch this error and indicate that the number of cards in the hand is not the expected value. The village
+accurately gives 2 actions.
