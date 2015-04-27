@@ -57,7 +57,7 @@ int main() {
     
     //give player a smithy card
     play->hand[whoseTurn(play)][0] = smithy;
-    int cat = cardSmithy(whoseTurn(play), play, 0);
+   cardSmithy(whoseTurn(play), play, 0);
     
     int cardsinHand2= play->handCount[0];
     int cardsinDeck2 = play->deckCount[0];

@@ -1,3 +1,41 @@
+TESTING updateCoins():
+the value of curse PASSED 
+the value of estate PASSED 
+the value of duchy PASSED 
+the value of province PASSED 
+the value of copper PASSED 
+the value of silver PASSED 
+the value of gold PASSED 
+the value of adventurer PASSED 
+the value of council_room PASSED 
+the value of feast PASSED 
+the value of gardens PASSED 
+the value of mine PASSED 
+the value of remodel PASSED 
+the value of smithy PASSED 
+the value of village PASSED 
+the value of baron PASSED 
+the value of great_hall PASSED 
+the value of minion PASSED 
+the value of steward PASSED 
+the value of tribute PASSED 
+the value of ambassador PASSED 
+the value of cutpurse PASSED 
+the value of embargo PASSED 
+the value of outpost PASSED 
+the value of salvager PASSED 
+the value of sea_hag PASSED 
+the value of treasure_map PASSED 
+0 cards where of the wrong value
+27 cards where of the correct vale
+All tests passed!
+File 'dominion.c'
+Lines executed:38.80% of 652
+Branches executed:38.37% of 417
+Taken at least once:32.13% of 417
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
         -:    0:Source:dominion.c
         -:    0:Graph:dominion.gcno
         -:    0:Data:dominion.gcda

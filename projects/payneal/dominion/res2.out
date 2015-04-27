@@ -1,7 +1,63 @@
+TESTING isGameOver():
+Game just initilized with 2 players: Passed
+Players = 2 Providens = 0  game is over: PASSED
+Players = 2 Providens = 1  game is alive: :PASSED
+Players = 2 Providens = 2  game is alive: :PASSED
+Players = 2 Providens = 3  game is alive: :PASSED
+Players = 2 Providens = 4  game is alive: :PASSED
+Players = 2 Providens = 5  game is alive: :PASSED
+Players = 2 Providens = 6  game is alive: :PASSED
+Players = 2 Providens = 7  game is alive: :PASSED
+Players = 2 Providens = 8  game is alive: :PASSED
+Game just initilized with 3 players: Passed
+Players = 3 Providens = 0  game is over: PASSED
+Players = 3 Providens = 1  game is alive: :PASSED
+Players = 3 Providens = 2  game is alive: :PASSED
+Players = 3 Providens = 3  game is alive: :PASSED
+Players = 3 Providens = 4  game is alive: :PASSED
+Players = 3 Providens = 5  game is alive: :PASSED
+Players = 3 Providens = 6  game is alive: :PASSED
+Players = 3 Providens = 7  game is alive: :PASSED
+Players = 3 Providens = 8  game is alive: :PASSED
+Players = 3 Providens = 9  game is alive: :PASSED
+Players = 3 Providens = 10  game is alive: :PASSED
+Players = 3 Providens = 11  game is alive: :PASSED
+Players = 3 Providens = 12  game is alive: :PASSED
+Game just initilized with 4 players: Passed
+Players = 4 Providens = 0  game is over: PASSED
+Players = 4 Providens = 1  game is alive: :PASSED
+Players = 4 Providens = 2  game is alive: :PASSED
+Players = 4 Providens = 3  game is alive: :PASSED
+Players = 4 Providens = 4  game is alive: :PASSED
+Players = 4 Providens = 5  game is alive: :PASSED
+Players = 4 Providens = 6  game is alive: :PASSED
+Players = 4 Providens = 7  game is alive: :PASSED
+Players = 4 Providens = 8  game is alive: :PASSED
+Players = 4 Providens = 9  game is alive: :PASSED
+Players = 4 Providens = 10  game is alive: :PASSED
+Players = 4 Providens = 11  game is alive: :PASSED
+Players = 4 Providens = 12  game is alive: :PASSED
+there are 0 supply piles with 0 item, game not over
+Pass game still playable
+there is 1 supply piles with 0 items, game not over
+Pass game still playable
+there are 2 supply piles with 0 items game not over
+Pass game still playable
+there are 3 supply piles with 0 items game should be over
+Pass game is over 
+ the # of fails = 0
+ the # of passes = 40
+Program PassedFile 'dominion.c'
+Lines executed:38.80% of 652
+Branches executed:38.37% of 417
+Taken at least once:32.13% of 417
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
         -:    0:Source:dominion.c
         -:    0:Graph:dominion.gcno
         -:    0:Data:dominion.gcda
-        -:    0:Runs:29
+        -:    0:Runs:28
         -:    0:Programs:1
         -:    1:#include "dominion.h"
         -:    2:#include "dominion_helpers.h"
@@ -772,16 +828,16 @@ branch  1 taken 100%
       680:  580:  return 0;
       680:  581:}
         -:  582:
-function getCost called 169 returned 100% blocks executed 96%
+function getCost called 142 returned 100% blocks executed 96%
         -:  583:int getCost(int cardNumber)
         -:  584:{
-      169:  585:  switch( cardNumber ) 
+      142:  585:  switch( cardNumber ) 
 branch  0 taken 3%
 branch  1 taken 3%
 branch  2 taken 3%
 branch  3 taken 3%
-branch  4 taken 9%
-branch  5 taken 17%
+branch  4 taken 10%
+branch  5 taken 20%
 branch  6 taken 3%
 branch  7 taken 3%
 branch  8 taken 3%
@@ -806,63 +862,63 @@ branch 26 taken 3%
 branch 27 taken 0%
         -:  586:    {
         -:  587:    case curse:
-        5:  588:      return 0;
+        4:  588:      return 0;
         -:  589:    case estate:
-        5:  590:      return 2;
+        4:  590:      return 2;
         -:  591:    case duchy:
-        5:  592:      return 5;
+        4:  592:      return 5;
         -:  593:    case province:
-        5:  594:      return 8;
+        4:  594:      return 8;
         -:  595:    case copper:
-       15:  596:      return 0;
+       14:  596:      return 0;
         -:  597:    case silver:
-       29:  598:      return 3;
+       28:  598:      return 3;
         -:  599:    case gold:
-        5:  600:      return 6;
+        4:  600:      return 6;
         -:  601:    case adventurer:
-        5:  602:      return 6;
+        4:  602:      return 6;
         -:  603:    case council_room:
-        5:  604:      return 5;
+        4:  604:      return 5;
         -:  605:    case feast:
-        5:  606:      return 4;
+        4:  606:      return 4;
         -:  607:    case gardens:
-        5:  608:      return 4;
+        4:  608:      return 4;
         -:  609:    case mine:
-        5:  610:      return 5;
+        4:  610:      return 5;
         -:  611:    case remodel:
-        5:  612:      return 4;
+        4:  612:      return 4;
         -:  613:    case smithy:
-        5:  614:      return 4;
+        4:  614:      return 4;
         -:  615:    case village:
-        5:  616:      return 3;
+        4:  616:      return 3;
         -:  617:    case baron:
-        5:  618:      return 4;
+        4:  618:      return 4;
         -:  619:    case great_hall:
-        5:  620:      return 3;
+        4:  620:      return 3;
         -:  621:    case minion:
-        5:  622:      return 5;
+        4:  622:      return 5;
         -:  623:    case steward:
-        5:  624:      return 3;
+        4:  624:      return 3;
         -:  625:    case tribute:
-        5:  626:      return 5;
+        4:  626:      return 5;
         -:  627:    case ambassador:
-        5:  628:      return 3;
+        4:  628:      return 3;
         -:  629:    case cutpurse:
-        5:  630:      return 4;
+        4:  630:      return 4;
         -:  631:    case embargo: 
-        5:  632:      return 2;
+        4:  632:      return 2;
         -:  633:    case outpost:
-        5:  634:      return 5;
+        4:  634:      return 5;
         -:  635:    case salvager:
-        5:  636:      return 4;
+        4:  636:      return 4;
         -:  637:    case sea_hag:
-        5:  638:      return 4;
+        4:  638:      return 4;
         -:  639:    case treasure_map:
-        5:  640:      return 4;
+        4:  640:      return 4;
         -:  641:    }
         -:  642:	
     #####:  643:  return -1;
-      169:  644:}
+      142:  644:}
         -:  645:
         -:  646:
         -:  647://5 added/converted functions
