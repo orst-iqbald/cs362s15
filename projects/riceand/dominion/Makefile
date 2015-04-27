@@ -33,7 +33,50 @@ runtests: testDrawCard
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
+unittestresults.out: dominion.o rngs.o unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c cardtest2.c cardtest3.c cardtest4.c
+	echo "Dominion Test Results (Assignment 3)" > unittestresults.out
+
+	echo "Unit Test 1:" >> unittestresults.out
+	gcc dominion.o rngs.o unittest1.c -o unittest1 $(CFLAGS)
+	unittest1 >> unittestresults.out
+	gcov -f -b dominion.c >> unittestresults.out
+
+	echo "Unit Test 2:" >> unittestresults.out
+	gcc dominion.o rngs.o unittest2.c -o unittest2 $(CFLAGS)
+	unittest2 >> unittestresults.out
+	gcov -f -b dominion.c >> unittestresults.out
+
+	echo "Unit Test 3:" >> unittestresults.out
+	gcc dominion.o rngs.o unittest3.c -o unittest3 $(CFLAGS)
+	unittest3 >> unittestresults.out
+	gcov -f -b dominion.c >> unittestresults.out
+
+	echo "Unit Test 4:" >> unittestresults.out
+	gcc dominion.o rngs.o unittest4.c -o unittest4 $(CFLAGS)
+	unittest4 >> unittestresults.out
+	gcov -f -b dominion.c >> unittestresults.out
+
+	echo "Card Test 1:" >> unittestresults.out
+	gcc dominion.o rngs.o cardtest1.c -o cardtest1 $(CFLAGS)
+	cardtest1 >> unittestresults.out
+	gcov -f -b dominion.c >> unittestresults.out
+
+	echo "Card Test 2:" >> unittestresults.out
+	gcc dominion.o rngs.o cardtest2.c -o cardtest2 $(CFLAGS)
+	cardtest2 >> unittestresults.out
+	gcov -f -b dominion.c >> unittestresults.out
+
+	echo "Card Test 3:" >> unittestresults.out
+	gcc dominion.o rngs.o cardtest3.c -o cardtest3 $(CFLAGS)
+	cardtest3 >> unittestresults.out
+	gcov -f -b dominion.c >> unittestresults.out
+
+	echo "Card Test 4:" >> unittestresults.out
+	gcc dominion.o rngs.o cardtest4.c -o cardtest4 $(CFLAGS)
+	cardtest4 >> unittestresults.out
+	gcov -f -b dominion.c >> unittestresults.out
+
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so *.out unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
