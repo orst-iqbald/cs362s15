@@ -1,6 +1,6 @@
-rnel Clayton
-unittest2.c
-Testing suffle() function from Dominion.c
+Darnel Clayton
+unittest4.c
+Testing shuffle() function from Dominion.c
 Referenced testUpdateCoins.c example.
 CS 362
 */
