@@ -1359,7 +1359,19 @@ int remodel(int currentPlayer, struct gameState *state, int handpos, int choice1
 
 
       return 0;
+}
 
+int great_hall(int cuurentPlayer, struct gameState *state, int handpos)
+{
+	//+1 Card
+      drawCard(currentPlayer, state);
+			
+      //+1 Actions
+      state->numActions++;
+			
+      //discard card from hand
+      discardCard(handPos, currentPlayer, state, 0);
+      return 0;
 }
 //end of dominion.c
 <<<<<<< HEAD
