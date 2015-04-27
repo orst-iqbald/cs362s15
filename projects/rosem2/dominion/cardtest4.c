@@ -29,7 +29,7 @@ int main ()
     struct gameState *game = malloc(sizeof(struct gameState));
     initializeGame(playerCount, k, seed, game);
 
-    printf ("TESTING newCouncilRoom() card:\n");
+    printf ("TESTING newVillage() card:\n");
     for(p = 0; p < playerCount; p++)
     {
         game->whoseTurn = p;

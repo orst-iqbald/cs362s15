@@ -3,9 +3,12 @@ Sonja Olson
 April 24 2015
 randomstring.txt
 ************************
- 
-This purpose of this testme.c is to be a test file that creates a random test to cause an error message to be printed when executed. 
+
+This purpose of this testme.c is to be a test file that creates a random test to cause an error message to be printed when executed. I spent a lof of time to look at the code and study to see what as expected and thought of ways that I could make the test work. 
 
 I used the input charcters that I came up with to randomize. I chose 6,  'a', 'b', '(', ')', 'c', 'z' to be evaluated and randomly select one of the chosen characters to be returned. 
 
-For the next function I used a different array of charcters, 'd', 'e', 'f', 'g'. This second function checks the positions form 0 to 4 with the memory lenght 5. Once the memory space is made then it goes through and puts a random charcter in the given array that was created. 
+For the next function I used a different array of charcters, that would spell reset and stop once it accomplished.  This second function checks the positions form 0 to 5 with the memory lenght 6. Once the memory space is made then it goes through and puts a random charcter in the given array that was created. 
+
+I complied this code multiple times and found many mistakes a long the way. A couple of times it just ran until I was foreced to quit the program, to find that the string was never made so it was never finished. I had to work through creating the correct size of array to make sure it was possible. It was originally always creating an array of a certain size making it impossible to get the word reset. 
+

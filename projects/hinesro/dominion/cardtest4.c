@@ -1,51 +1,60 @@
-/********************************
-*  	   Test for great hall	    *
-********************************/
+/****************************
+*    Cutpurse card test     *
+****************************/
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include <assert.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include "rngs.h"
 
+#define OUTPUT_TEST_RESULTS 1
+
 int main() {
-	struct gameState *testState = malloc(sizeof(struct gameState));
-    int randSeed = 1024;
-    int playerCount = 2;
-    int currentHand = 0;
-    int actions = 0;
-    int cards[10] = {
-    	estate, 
-        duchy, 
-        province, 
-        copper, 
-        silver, 
-        gold, 
+    struct gameState *testState = malloc(sizeof(struct gameState));
+    int i;
+    int randSeed = 1000;
+    int playerCount = 4;
+    int priorCoins = 0;
+    int k[10] = {
         adventurer, 
-        smithy, 
+        council_room, 
+        cutpurse, 
         gardens, 
-        feast
+        mine, 
+        remodel, 
+        smithy, 
+        village, 
+        baron, 
+        great_hall
     };
-
-    printf("Begin great hall card test:\n");
-    initializeGame(playerCount, cards, randSeed, testState);
-    testState->currentHand[0][0] = great_hall;
-    currentHand = testState->handCount[0];
-    actions = testState->numActions;
-    actionGreat_hall();
-
-    if (testState->handCount[0] == currentHand) {
-    	printf("Great hall card hand count test passed.\n");
-    } else {
-    	printf("Great hall card hand count test FAILED.\n");
+    
+    printf ("Beginning cutpurse test...\n");  
+    #if (OUTPUT_TEST_RESULTS == 1)
+        printf("Testing that p1 has cutpurse card and all players except last have 1 copper.\n");
+    #endif
+    initializeGame(playerCount, k, randSeed, testState);
+    for (i = 0; i < playerCount; ++i) {
+        testState->handCount[i] = 5;
     }
-
-    if(testState->numActions == actions + 1 ) {
-    	printf("Great hall card action count test passed.\n");
-    } else {
-    	printf("Great hall card action count test FAILED.\n");
-    }
+    testState->hand[0][0] = cutpurse;
+    testState->hand[1][0] = copper;
+    testState->hand[2][0] = copper;
+    priorCoins = testState->coins;
+    playCutpurse(0, testState, 0);
+    #if (OUTPUT_TEST_RESULTS == 1)
+        printf("Coin count = %d, expected = %d\n", testState->coins, priorCoins + 2);
+        for (i = 0; i < playerCount; ++i) {
+            printf("Hand count for player %d after cutpurse is played.\n", i);
+            if (i == 3) {
+                printf("No copper found. Expected: %d, Actual: %d\n", 5, testState->handCount[i]);
+            } else {
+                printf("Copper found. Expected: %d, Actual: %d\n", 4, testState->handCount[i]);
+            }
+        }
+    #endif
 
     return 0;
 }

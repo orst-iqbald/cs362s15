@@ -1,0 +1,14 @@
+Michael Marven
+04/26/15
+CS362 Spring 2015
+Random Testing Quiz 2
+
+The testme() function will print an error if 2 conditions are met. The first is that the state variable advances from 0 to 9, and the second is that the string provided by inputString() is "reset" and terminated with the null character. The state variable advances once certain characters are passed to the function by the inputChar() function, in this order: "[", "(", "{", " ", "a", "x", "}", ")", "]".
+
+I designed the inputChar() function to provide random characters in the range of the decimal values of 32 to 126, which correspond to the printable characters on the ASCII encoding scheme.
+
+I originally designed the inputString() function to provide random character values in the range of lower case letters for the first 5 positions and had the null character, \0 in the final position for every call of the function. The first time I ran this version, it took 14,354,141 iterations to print the error and most of that time was spent with the state variable at 9.
+
+I then tried a version in which the inputString() function submitted the "reset" string every time and was not randomized. I ran this version 5 times and the error printed in 1180, 733, 1162, 655, and 1059 iterations. I left the code in the function for this version but commented it out.
+
+The final version has the random string generation and will usually take many, many iterations to print the error.

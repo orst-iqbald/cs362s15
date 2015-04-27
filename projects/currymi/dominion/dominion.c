@@ -664,7 +664,7 @@ int adventuererEffect(int currentPlayer, struct gameState *state){
     int temphand[MAX_HAND];
     int z = 0;
 
-    while(drawntreasure<1){
+    while(drawntreasure<2){
         if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
             shuffle(currentPlayer, state);
         }
@@ -695,7 +695,7 @@ int councilRoomEffect(int currentPlayer, int handPos, struct gameState *state){
     }
         
     //+1 Buy
-    state->numBuys = 2;
+    state->numBuys += 1;
         
     //Each other player draws a card
     for (i = 0; i < state->numPlayers; i++)
@@ -1355,7 +1355,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
 	}
       else if (state->hand[player][i] == gold)
 	{
-	  state->coins += 3;
+	  state->coins += 1;
 	}	
     }	
 

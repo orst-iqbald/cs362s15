@@ -1,6 +1,6 @@
 /*
 Darnel Clayton
-unittest2.c
+unittest1.c
 Testing supplyCount() function from Dominion.c
 Referenced testUpdateCoins.c example.
 CS 362
