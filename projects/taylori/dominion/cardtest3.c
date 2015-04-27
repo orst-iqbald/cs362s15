@@ -1,6 +1,6 @@
 //  Ian Taylor
 //  CS 362 - Assignment 3
-//  cardtest1.c: great_hall() test
+//  cardtest3.c: great_hall() test
 //
 //
 
