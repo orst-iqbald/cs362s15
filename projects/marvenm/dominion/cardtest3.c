@@ -39,6 +39,8 @@ int main(int argc, char *argv[])
     int actionCount;
     int calculatedHandCount;
     int calculatedActionCount;
+	int topCard;
+	int discardCount;
     int player     = 0;
     int coin_bonus = 0;
     int handPos    = 0;
@@ -92,6 +94,19 @@ int main(int argc, char *argv[])
                 G.numActions, calculatedActionCount);
 #endif
         assert(G.numActions == calculatedActionCount);
+		
+#if (NOISY_TEST == 1)
+        printf("Test that Village card was discarded properly.\n");
+#endif
+        // If village card was discarded it would be on top of played card pile
+		discardCount = G.playedCardCount;
+        topCard = G.playedCards[discardCount - 1];
+        
+#if (NOISY_TEST == 1)
+        printf("Player %d top discard = %d, expected %d.\n", 
+                player, topCard, village);
+#endif
+        assert(topCard == village);
         
     }
     
