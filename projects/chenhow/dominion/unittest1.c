@@ -118,11 +118,16 @@ int testScoreFor(int player, struct gameState *after)
       score = score + ( fullDeckCount(player, 0, &before) / 10 );
     }
   }
-  //total score for player
+  //total score for player through scoreFor()
   outCome = scoreFor(player, after);
-  assert(outCome == score);
-  assert(memcmp(&before, after, sizeof(struct gameState)) == 0);
-
+  
+  //assert(outCome == score);
+  if (outCome != score)
+  {
+    printf("scoreFor() Failed Test\n");
+    printf("scoreFor() Not Calculating Score Properly!\n");
+  }
+  assert(memcmp(&before, after, sizeof(struct gameState)) == 0)
   return outCome;
 }
 
