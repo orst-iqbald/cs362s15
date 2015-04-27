@@ -1,0 +1,16 @@
+drawCard (unittest1) - 21% statement coverage, 17% of branches are executed but only 13% are taken. The issue is none of the tests check for behavior with an empty deck. That's a pretty big whole that would need to be filled.
+
+scoreFor (unittest 2) - 25% statement coverage, 27% of branches executed and 20% taken. Many of the cards didn't get tested because they were in the deck which wasn't getting checked properly
+
+fullDeckCount (unittest3) - 20% statement coverage, 19% percent branches executed but only 15% taken. However all of the paths not taken were in the newGame or initializeState functions and every line and branch in fullDeckCount was covered.
+
+buyCard (unittest4) - 25% statement coverage, 28% branches executed and only 17% taken. Like unittest3 all of the not taken branches were in other functions not being tested.
+
+
+smithy (cardtest1) - 19% statement coverage, 19% branches executed and 15% taken. 100% branch coverage within smithyEffect.
+
+adventurer (cardtest2) - 24% statement coverage, 20% branches executed and 16% taken. This only tests copper so the branches for gold and silver are never taken. That would be something good to remedy.
+
+sea_hag (cardtest3) - 21% statement coverage, 22% branch execution and 14% branches taken. 100% brach coverage within the sea_hag case.
+
+embargo (cardtest4) - 22% statement coverage, 23% branches executed and 14% taken. 100% brach coverage within the embargo case.

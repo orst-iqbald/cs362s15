@@ -1,0 +1,44 @@
+//******************************************************************************
+// Taylor Jenkins
+// jenkitay@onid.oregonstate.edu
+// CS 362 - Software Engineering II
+// Random Testing Quiz 2 
+//     Write up of the development of my random tester for testme.c, and how it 
+//     finds the error message.
+// filename: randomstring.txt
+//******************************************************************************
+
+The first thing I did in developing my random tester, was to study the code, to 
+gain an understanding of how it worked, what it did, and what I was supposed to 
+achieve. The objective was to create a random test that would cause the error 
+message to be printed out. 
+
+I noticed that there was only a small subset of characters that were evaluated 
+by the control statements, so I knew that I should generate random characters
+from only that subset of characters, to better guide my testing. 
+
+The input character was only evaluated against this subset of characters: 
+('[', '(', '{', ' ', 'a', 'x', '}', ')', ']'), so in the inputChar() function, 
+I randomly selected one of those characters and returned it.
+
+The input string was an array of characters, form which the testMe() function 
+only evaluated whether the following set of characters occurred in a particular
+sequence: ('r', 'e', 's', 't', '\0'). The function checked spring positions 0-5,
+so in the inputString() function, I allocated memory for a string of length 6,
+and populated each position with a randomly selected character from the set of
+characters: ('r', 'e', 's', 't', '\0').
+
+I compiled and ran the program several times, and each time it quickly and 
+successfully halted after printing the error message.
+
+Once the testMe() functions enters the while loop, it cannot exit without
+printing the error message. Each iteration calls the inputChar() and 
+inputString() functions which generate new random input each time. The input
+character is evaluated, and as the appropriate character is discovered at the 
+appropriate state, the state is incremented, until the state of 9 is reached. At
+that point, the input string is evaluated, and when the characters of the string
+appear in the order, "reset\0", and the level is 9, then the error message is 
+printed.
+
+I used the following line to compile the program:
+gcc -g -Wall -std=c99 testme.c -o testme

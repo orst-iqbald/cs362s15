@@ -1,0 +1,34 @@
+Smithy:
+
+Smithy separated into its own function.  However, the function introduces
+a bug in which drawCard uses the handPos value in place of the currentPlayer
+argument.
+
+Adventurer:
+
+Adventurer separated into its own function.  However, the function introduces
+two bugs:
+	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1]
+	is instead:
+	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer-1]];
+
+     state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temp_hand[z-1]; 
+     is instead:
+     state->discard[currentPlayer][state->discardCount[currentPlayer++]]=temp_hand[z-1]; 
+
+Great Hall:
+
+Great Hall separated into its own function.  However, the function introduces
+a bug in which when discardCard is called, handPos and currentPlayer are
+swapped in the arguments.
+
+Cutpurse:
+
+Cutpurse separated into its own function.  However, a bug has been introduced
+in which all instances of state->handCount[i] have been replaced with
+state->handCount[j].
+
+Council Room:
+
+Council Room separated into its own function.  However, a bug has been 
+introduced where i != currentPlayer has been switched to i == currentPlayer.
