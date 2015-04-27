@@ -13,20 +13,20 @@ int checkSmithy(int player, struct gameState *post, int handpos)
 	memcpy(&pre, post, sizeof(struct gameState));
 	
 	//testing smithy fucntion
-	int r = smithy(player, *post, handpos);
+	int r = smithy(player, post, handpos);
 	
 	//What smithy function is supposed to do.
 	int k;
 	for( k = 0; k < 3; k++)
 	{
-		drawCard(p,&pre);
+		drawCard(player,&pre);
 	}
-	discardCard(handpos, p, &pre, 0)
+	discardCard(handpos, player, &pre, 0)
 
 	//Check if the two gameStates are the same
-	if(pre->discardCount[player] == post->discardCount[p])
+	if(pre.discardCount[player] == post->discardCount[p])
 	{
-		if(pre->handCount[player] == post->handCOunt[player])
+		if(pre.handCount[player] == post->handCOunt[player])
 		{
 			return 0;
 		}
@@ -42,7 +42,7 @@ int main()
 	int i, j;
 	int seed = 9999;
 	//int numPlayer = 2;
-	kingdomCards[10] = {adventure, concil_room, feast, 
+	kingdomCards[10] = {adventurer, council_room, feast, 
 	gardens, mine, remodel, smithy, minion, seahag, baron};
 	struct gameState G;
 	//intializeGame(numPlayer, kingdomCards, seed, &G);
@@ -54,9 +54,10 @@ int main()
 		//Randomize gameState
 		for ( i = 0; i < sizeof(struct gameState); i++)
 		{
-			((char*)&G[i] = florr(Random() * 256);
+			((char*)&G)[i] = floor(Random() * 256);
 		}
-		//random player and player's hand, deck and discard pil
+		//random player and player's hand, deck and discard pile
+		G.numPlayers = 2;
 		p = floor(Random() * 2)
 		G.deckCount[p] = floor(Random() * MAX_DECK);
 		G.discardCount[p] = floor(Random() * MAX_DECK);
@@ -64,7 +65,7 @@ int main()
 		
 		//since I am testing the Smithy card I am inserting it into the 
 		// 0 hand postion
-
+		G.hand[p][0] = smithy;
 		int test = checkSmithy(p, &G, 0);
 		if (test != 0 )
 		{
