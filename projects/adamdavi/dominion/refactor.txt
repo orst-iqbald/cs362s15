@@ -22,11 +22,16 @@ to play a smithy card. This function has the following function prototype:
 	int playSmithy(struct gameState *state, int currentPlayer, int handPos);
 
 	Bugs introduced to function:
-	1. In the for loop, it decrements i (i--) instead of incrementing i, which
+	1.  ***SEE BELOW NOTE***
+		In the for loop, it decrements i (i--) instead of incrementing i, which
 		is what it originally did. This should create an infinite loop.
 	2. The trash flag has been changed in the discardCard function so that it
 		has a value of 1 instead of 0. This will cause this card to be trashed
 		when it shouldn't be.
+***NOTE: During my work on Assignment 3, I realized that introducing a bug that
+		creates an infinite loop probably isn't the best sort of bug for what
+		we are doing. Therefore, I went in and changed bug #1 so that now
+		there is a bug that makes it so that Smithy draws 4 cards instead of 3.***
 
 
 Refactoring changes made for the Cutpurse card:

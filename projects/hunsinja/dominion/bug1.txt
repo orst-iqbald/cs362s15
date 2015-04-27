@@ -1,0 +1,15 @@
+Jack Hunsinger
+CS 362 Assignment 3
+
+gameOverTest(...)
+No bugs found.
+
+getCostTest(...)
+No bugs found.
+
+shuffleTest(...)
+No bugs found.
+
+endTurnTest(...)
+Initially came across fatal bugs on every run. However, I realized that my unit test was faulty. After I fixed the test itself,
+the function performed as expected.

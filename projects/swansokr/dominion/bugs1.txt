@@ -1,0 +1,45 @@
+Bugs found in the unit and card tests for assignment 3:
+
+Unittest1 – discardCard()
+	The specifications for the constraints on the parameters are not clear:  
+	Does discardCard require handPos < handCount and handCount > 0?  It is possible that the below two failures are violations of preconditions and should be handled by the calling function.
+	Bugs found:
+	1. It fails if you try to discard (or trash) from an empty hand.
+	2. It fails if you try to discard from a hand position (handPos) that is >= to the handCount.
+
+Unittest2 – scoreFor()
+	Bugs found:
+	1. Gardens are not calculated correctly (they are always 0).
+	2. The hand and discard piles are fine, but the deck is not gone through properly: it seems that the discardCount is being used, so if the discardCount >= to the deckCount it is scored correctly, otherwise  the cards in the deck are not scored.
+
+Unittest3 - endTurn()
+	A couple specifications are not clear:
+	Is endTurn() responsible for doing something if an Outpost was played or does that happen somewhere else?
+	Shouldn’t endTurn() draw for the player whose turn just ended?  Otherwise how is something like Cutpurse to work?!
+	Bugs found:
+	1. Not all cards are discarded correctly when playedCardCount is greater than 0.
+	2. A new hand of 5 cards is not draw for the player whose turn just ended.
+
+Unittest4 - updateCoins()
+	The specifications are not clear: is the bonus an additional bonus or the total of all bonuses?
+	If it is supposed to be the total bonuses, than the following bug may not be the fault of updateCoins(). 
+	Bugs found:
+	1. When a coin bonus already exists, calling updateCoins() again messes up the coin count (both when it is adding a new bonus and when the "new bonus" is 0)
+	
+Cardtest1 - Smithy
+	Bugs found:
+	1. The number of cards played is always wrong (this is the bug I introduced in refactor.txt)
+	
+Cardtest2 - Adventurer
+	Bugs found:
+	1. There is a segmentation fault if both the deck and the discard have zero cards.
+	2. If something other than a treasure (an estate) is bypassed, the deck+discard count is incorrect. (This is likely the bug I introduced in refactor.txt)
+	3. Even if the first two cards drawn are treasures, the played card count is incorrect.
+	
+Cardtest3 - Cutpurse
+	Bugs found:
+	1. If another player has a copper, it fails to be placed in their discard pile correctly.
+		
+Cardtest4 - Sea Hag
+	Bugs found:
+	1. The top card of the other player's deck does not have a curse.  When I tried a few follow up tests, it appear that the other player's deckCount is also wrong, and possibly one or more cards in the deck is wrong.

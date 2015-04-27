@@ -1,0 +1,19 @@
+Smithy:
+	Placed Smithy card action in its own function, int playSmithy().
+	Introduced a bug wherein drawCard() is passed handPos instead of currentPlayer. This will hopefully lead to unexpected behavior if handPos != currentPlayer, or if handPos > MAX_SIZE.
+
+Adventurer:
+	Adventurer action now takes place in playAdventurer(). 
+	Introduced a bug where the temphand array is recreated every time it is needed, which will result in an infinite loop.
+
+Remodel:
+	Remodel action now takes place in playRemodel().
+	Introduced a bug wherein gainCard() receives choice1 instead of choice2 as an argument, so the player will receive the card s/he just destroyed.
+
+Minion:
+	Minion action now takes place within playMinion().
+	Introduced a bug where currentPlayer will draw cards for every player who discards. Effectively this leaves all players but one with empty hands, and one player with a hand exceeding MAX_SIZE.
+
+Cutpurse:
+	Cutpurse action now takes place within playCutpurse.
+	I did not introduce any bugs intentionally into this function.

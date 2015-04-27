@@ -656,8 +656,6 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   int tributeRevealedCards[2] = {-1, -1};
   int temphand[MAX_HAND];// moved above the if statement
   int drawntreasure=0;
-  int cardDrawn;
-  int z = 0;// this is the counter for the temp hand
   if (nextPlayer > (state->numPlayers - 1)){
     nextPlayer = 0;
   }
@@ -667,7 +665,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-      adventurerCard(currentPlayer, drawntreasure, state, temphand, cardDrawn, z);
+      adventurerCard(currentPlayer, drawntreasure, state);
     case council_room:
       //+4 Cards
       for (i = 0; i < 4; i++)
@@ -1270,7 +1268,11 @@ int updateCoins(int player, struct gameState *state, int bonus)
   return 0;
 }
 
-int adventurerCard(int currentPlayer, int drawntreasure, struct gameState *state, int temphand[], int cardDrawn, int z) {
+int adventurerCard(int currentPlayer, int drawntreasure, struct gameState *state) {
+  int cardDrawn;
+  int z = 0;// this is the counter for the temp hand
+  int temphand[MAX_HAND];// moved above the if statement
+
   while(drawntreasure<2){
     if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
         shuffle(currentPlayer, state);
@@ -1305,7 +1307,7 @@ int smithyCard(int currentPlayer, struct gameState *state, int handPos) {
     }
     
     //discard card from hand
-    discardCard(handPos, currentPlayer, state, 1);  //BUG: Trash Flag set to 1, should be 0;
+    discardCard(handPos, currentPlayer, state, 1);
     
     return 0;
 }
