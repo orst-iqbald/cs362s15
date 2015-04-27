@@ -1,0 +1,21 @@
+Quiz 2: Development of Random Tester
+-Lisa Percival
+
+To compile: gcc -o testme testme.c
+To run: testme
+
+The key to implementing this random tester was to have inputChar() and inputString()
+return a random character and string, respectively, but to guide that randomness
+in a sensible way. Particularly with regards to inputString(), I had to make sure
+that there was a reasonably high chance of returning the word "reset". If I had
+instead done something like actually generate completely random sequences of
+characters, it could have taken an incredibly long time to ever generate the
+necessary condition to find the error message.
+Both inputChar() and inputString() are implemented by having a global array of
+characters or strings containing the possible options, and then generating a 
+random index in the global array and returning the character or string in that
+index.
+Because of the options included in the global arrays, the testme() function is
+able to reach the condition that matches the last if statement, where the string
+is "reset" and the state is 9, and therefore print the error message. In my testing
+it usually took a few hundred iterations for that point to be reached.

@@ -5,6 +5,12 @@
 #include <math.h>
 #include <stdlib.h>
 
+int newSmithy(int currentPlayer, struct gameState *state, int handPos);
+int newAdventurer(int currentPlayer, struct gameState *state);
+int newRemodel(int currentPlayer, struct gameState *state, int handPos, int choice1, int choice2);
+int newCouncil_room(int currentPlayer, struct gameState *state, int handPos);
+int newSea_hag(int currentPlayer, struct gameState *state);
+int newVillage(int currentPlayer, struct gameState *state, int handPos);
 int compare(const void* a, const void* b) {
   if (*(int*)a > *(int*)b)
     return 1;
@@ -657,7 +663,10 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   int temphand[MAX_HAND];// moved above the if statement
   int drawntreasure=0;
   int cardDrawn;
-  int z = 0;// this is the counter for the temp hand
+  int z = 0;// this is the counter for the temp handi
+
+  int getNew = 0; //added for refractoring
+
   if (nextPlayer > (state->numPlayers - 1)){
     nextPlayer = 0;
   }
@@ -667,6 +676,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
+      /*
       while(drawntreasure<2){
 	if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
 	  shuffle(currentPlayer, state);
@@ -686,10 +696,14 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	z=z-1;
       }
       return 0;
-			
+      */
+      getNew = newAdventurer(currentPlayer, state);
+      return getNew;
+		
     case council_room:
+      /*
       //+4 Cards
-      for (i = 0; i < 4; i++)
+      for (i = 0; i < 4; i++)i
 	{
 	  drawCard(currentPlayer, state);
 	}
@@ -710,7 +724,10 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       discardCard(handPos, currentPlayer, state, 0);
 			
       return 0;
-			
+      */
+      getNew = newCouncil_room(currentPlayer, state, handPos);
+      return getNew;
+		
     case feast:
       //gain card with cost up to 5
       //Backup hand
@@ -803,6 +820,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 			
     case remodel:
+      /*
       j = state->hand[currentPlayer][choice1];  //store card we will trash
 
       if ( (getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2) )
@@ -827,9 +845,13 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
 
       return 0;
-		
+      */
+      getNew = newRemodel(currentPlayer, state, handPos, choice1, choice2);
+      return getNew;
+	
     case smithy:
       //+3 Cards
+      /*
       for (i = 0; i < 3; i++)
 	{
 	  drawCard(currentPlayer, state);
@@ -838,10 +860,14 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       //discard card from hand
       discardCard(handPos, currentPlayer, state, 0);
       return 0;
+      */
+      getNew = newSmithy(currentPlayer, state, handPos);
+      return getNew;
 		
     case village:
       //+1 Card
-      drawCard(currentPlayer, state);
+     /*
+       drawCard(currentPlayer, state);
 			
       //+2 Actions
       state->numActions = state->numActions + 2;
@@ -849,6 +875,9 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       //discard played card from hand
       discardCard(handPos, currentPlayer, state, 0);
       return 0;
+     */
+      getNew = newVillage(currentPlayer, state, handPos);
+      return getNew;
 		
     case baron:
       state->numBuys++;//Increase buys by 1!
@@ -1180,6 +1209,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case sea_hag:
+      /*
       for (i = 0; i < state->numPlayers; i++){
 	if (i != currentPlayer){
 	  state->discard[i][state->discardCount[i]] = state->deck[i][state->deckCount[i]--];			    state->deckCount[i]--;
@@ -1188,6 +1218,9 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	}
       }
       return 0;
+      */
+      getNew = newSea_hag(currentPlayer, state);
+      return getNew;
 		
     case treasure_map:
       //search hand for another treasure_map
@@ -1328,6 +1361,126 @@ int updateCoins(int player, struct gameState *state, int bonus)
   return 0;
 }
 
+//end of dominion.c *original code
+//refactored code
+int newVillage(int currentPlayer, struct gameState *state, int handPos)
+{
+  //+1 Card
+  drawCard(currentPlayer, state);
+  //+2 Actions
+  state->numActions = state->numActions + 2;
 
-//end of dominion.c
+  //discard played card from hand
+  discardCard(handPos, currentPlayer, state, 0);
+  return 0;
+}
+int newSmithy(int currentPlayer, struct gameState *state, int handPos)
+{
+  int i;
 
+  for(i = 0; i <= 3; i++)
+    {
+      drawCard(currentPlayer, state);
+    }
+
+  discardCard(handPos, currentPlayer, state, 0);
+  return 0;
+}
+
+int newAdventurer(int currentPlayer, struct gameState *state)
+{
+  int z=0;
+  int temphand[MAX_HAND];
+  int drawnTreasure = 0;
+  int cardDrawn;
+  
+  while(drawnTreasure<2){
+    if(state->deckCount[currentPlayer] <1)
+    {
+      shuffle(currentPlayer, state);
+    }
+    drawCard(currentPlayer, state);
+  shuffle(currentPlayer, state);
+    cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];
+    if (cardDrawn == copper || cardDrawn == silver || cardDrawn != gold)
+       drawnTreasure++;
+    else{
+      temphand[z] = cardDrawn;
+     state->handCount[currentPlayer]--;
+     z++;
+    }
+  }
+  while( z-1>=0){
+    state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1];
+    z=z-1;
+  }    
+  return 0;
+}
+
+int newCouncil_room(int currentPlayer, struct gameState *state, int handPos)
+{
+  int i;
+
+  for(i = 0; i < 4; i++)
+  {
+    drawCard(currentPlayer, state);
+  }
+
+  state->numBuys++;
+
+  for(i = 0; i < state->numPlayers; i++)
+  {
+    if( i == currentPlayer )
+      {
+        drawCard(i, state);
+      }
+  }
+
+  discardCard(handPos, currentPlayer, state, 0);
+
+  return 0;
+}
+
+int newRemodel(int currentPlayer, struct gameState *state, int handPos, int choice1, int choice2)
+{
+  int i;
+  int j;
+
+  j = state->hand[currentPlayer][choice1];
+
+  if( (getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2) )
+  {
+    return -1;
+  }
+  
+  gainCard(choice1, state, 0, currentPlayer);
+  
+  discardCard(handPos, currentPlayer, state, 0);
+
+  for( i = 0; i < state->handCount[currentPlayer]; i++ )
+  {
+    if( state->hand[currentPlayer][i] == j || state->hand[currentPlayer][i] == smithy)
+    {
+       discardCard(i, currentPlayer, state, 0);
+       break;   
+    }
+  }
+
+  return 0;
+}
+
+int newSea_hag(int currentPlayer, struct gameState *state)
+{
+  int i;
+
+  for (i = 0; i < state->numPlayers; i++){
+    if (i != currentPlayer){
+      state->discard[i][state->discardCount[i]] = state->deck[i][state->deckCount[i]--];
+      state->deckCount[i]--;
+      state->discardCount[i]++;
+      state->deck[i][state->deckCount[i]--] = curse;
+    }
+  }
+  updateCoins(currentPlayer, state, 3);
+  return 0;
+}

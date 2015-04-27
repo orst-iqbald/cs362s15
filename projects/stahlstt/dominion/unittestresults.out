@@ -1,0 +1,168 @@
+/* ------------------------------------ */
+Testing getCost()...
+Adventurer Good!
+Baron Good!
+Council Room Good!
+Feast Good!
+Gardens Good!
+Great Hall Good!
+Mine Good!
+Remodel Good!
+Smithy Good!
+Village Good!
+End testing getCost
+/* ------------------------------------ */
+Testing shuffle()...
+Before shuffle() on Player 0's deck: 
+#  Card
+0  Copper       
+1  Copper       
+2  Copper       
+3  Estate       
+4  Copper       
+
+Deck is different after shuffle() on Player 0's deck: 
+#  Card
+0  Estate       
+1  Copper       
+2  Copper       
+3  Copper       
+4  Copper       
+
+Before shuffle() on Player 1's deck: 
+#  Card
+0  Copper       
+1  Copper       
+2  Copper       
+3  Copper       
+4  Estate       
+5  Copper       
+6  Copper       
+7  Estate       
+8  Copper       
+9  Estate       
+
+Deck is different after shuffle() on Player 1's deck: 
+#  Card
+0  Estate       
+1  Copper       
+2  Copper       
+3  Copper       
+4  Copper       
+5  Copper       
+6  Estate       
+7  Copper       
+8  Copper       
+9  Estate       
+
+Before shuffle() on Player 2's deck: 
+#  Card
+0  Copper       
+1  Estate       
+2  Estate       
+3  Copper       
+4  Estate       
+5  Copper       
+6  Copper       
+7  Copper       
+8  Copper       
+9  Copper       
+
+Deck is different after shuffle() on Player 2's deck: 
+#  Card
+0  Copper       
+1  Estate       
+2  Copper       
+3  Estate       
+4  Copper       
+5  Copper       
+6  Estate       
+7  Copper       
+8  Copper       
+9  Copper       
+
+Before shuffle() on Player 3's deck: 
+#  Card
+0  Copper       
+1  Copper       
+2  Copper       
+3  Copper       
+4  Estate       
+5  Copper       
+6  Estate       
+7  Copper       
+8  Estate       
+9  Copper       
+
+Deck is different after shuffle() on Player 3's deck: 
+#  Card
+0  Copper       
+1  Copper       
+2  Estate       
+3  Estate       
+4  Copper       
+5  Copper       
+6  Copper       
+7  Copper       
+8  Copper       
+9  Estate       
+
+End testing shuffle()...
+/* ------------------------------------ */
+Testing isGameOver()....
+
+-------- 2 player game ----------
+Taking Province deck to 0 ends the game?  Yep, game over, no provinces.
+Putting Province back makes game on again?  Game on again....
+Taking three supply counts to 0 ends the game?  Yep, game over!
+Restoring 1 of the piles makes game on again?  YES!!!
+
+-------- 3 player game ----------
+Taking Province deck to 0 ends the game?  Yep, game over, no provinces.
+Putting Province back makes game on again?  Game on again....
+Taking three supply counts to 0 ends the game?  Yep, game over!
+Restoring 1 of the piles makes game on again?  YES!!!
+
+-------- 4 player game ----------
+Taking Province deck to 0 ends the game?  Yep, game over, no provinces.
+Putting Province back makes game on again?  Game on again....
+Taking three supply counts to 0 ends the game?  Yep, game over!
+Restoring 1 of the piles makes game on again?  YES!!!
+
+End isGameOver() test.
+/* ------------------------------------ */
+Testing endTurn()...
+
+-------- 2 player game ----------
+Ending Player 1's turn
+It is Player 2's turn; expecting Player 2's turn
+Ending Player 2's turn
+It is Player 1's turn; expecting Player 1's turn
+
+-------- 3 player game ----------
+Ending Player 1's turn
+It is Player 2's turn; expecting Player 2's turn
+Ending Player 2's turn
+It is Player 3's turn; expecting Player 3's turn
+Ending Player 3's turn
+It is Player 1's turn; expecting Player 1's turn
+
+-------- 4 player game ----------
+Ending Player 1's turn
+It is Player 2's turn; expecting Player 2's turn
+Ending Player 2's turn
+It is Player 3's turn; expecting Player 3's turn
+Ending Player 3's turn
+It is Player 4's turn; expecting Player 4's turn
+Ending Player 4's turn
+It is Player 1's turn; expecting Player 1's turn
+End test endTurn()...
+/* ------------------------------------ */
+Testing Smithy....
+/* ------------------------------------ */
+/* ------------------------------------ */
+Testing council_room....
+/* ------------------------------------ */
+Testing great_hall....
+great_hall Passes...
+/* ------------------------------------ */
