@@ -2,10 +2,8 @@
 This file will test the supplyCount function.  
 
 The tests below will check the following aspects of the supplyCount function:
-1) The initial 
-
-
-Whether getCost returns the correct values of given cards
+1) Whether the function correctly returns the number of cards held by the 
+player.  
 */
 
 #include "dominion.h"
