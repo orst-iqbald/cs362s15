@@ -9,11 +9,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 // REFACTORED FUNCTION PROTOTYPES FOR ASSIGNMENT TWO
 ///////////////////////////////////////////////////////////////////////////////
-int adventurerEffect(int currentPlayer, struct gameState *state); 
-int feastEffect(int choice1, struct gameState *state, int currentPlayer);
-int smithyEffect(int currentPlayer, struct gameState *state, int handPos);
-int remodelEffect(int currentPlayer, struct gameState *state, int handPos, int choice1, int choice2);
-int villageEffect(int currentPlayer, struct gameState *state, int handPos);
+//int adventurerEffect(int currentPlayer, struct gameState *state); 
+//int feastEffect(int choice1, struct gameState *state, int currentPlayer);
+//int smithyEffect(int currentPlayer, struct gameState *state, int handPos);
+//int remodelEffect(int currentPlayer, struct gameState *state, int handPos, int choice1, int choice2);
+//int villageEffect(int currentPlayer, struct gameState *state, int handPos);
 
 
 int compare(const void* a, const void* b) {
