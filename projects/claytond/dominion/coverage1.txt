@@ -2,44 +2,96 @@ Darnel Clayon
 CS362 Software Engineering II
 Coverage1.txt
 
-unittest1.c: supplyCountFile 'dominion.c'Lines executed:17.65% of 714Branches executed:15.83% of 417
+unittest1.c: supplyCount
+
+File 'dominion.c'
+Lines executed:17.65% of 714
+Branches executed:15.83% of 417
 Taken at least once:12.71% of 417
-dominion.c:creating 'dominion.c.gcov'
+dominion.c:creating 'dominion.c.gcov'
+
 -Called 30 times with 100% coverage.
 -All lines executed. Good through test.
 
 unittest2.c: isGameOver
 
-File 'dominion.c'Lines executed:17.19% of 576Branches executed:17.75% of 417Taken at least once:14.63% of 417Calls executed:7.22% of 97dominion.c:creating 'dominion.c.gcov'
+File 'dominion.c'
+Lines executed:17.19% of 576
+Branches executed:17.75% of 417
+Taken at least once:14.63% of 417
+Calls executed:7.22% of 97
+dominion.c:creating 'dominion.c.gcov'
+
 -Function called 8 times and has 91% coverage.
 -Nearly all lines executed.
 -Not executed when all province cards are depleted(province cards =0). 
 
-unittest3.c: getCostFile 'dominion.c'Lines executed:21.57% of 714Branches executed:22.54% of 417Taken at least once:19.42% of 417dominion.c:creating 'dominion.c.gcov'
+unittest3.c: getCost
+File 'dominion.c'
+Lines executed:21.57% of 714
+Branches executed:22.54% of 417
+Taken at least once:19.42% of 417
+dominion.c:creating 'dominion.c.gcov'
+
 -Function called 27 times with 94% coverage.
 -Nearly all lines run.
 -May be improved.
 
-unittest4.c: shuffleFile 'dominion.c'Lines executed:15.80% of 576Branches executed:15.83% of 417Taken at least once:13.19% of 417Calls executed:7.22% of 97dominion.c:creating 'dominion.c.gcov'
+unittest4.c: shuffle
+File 'dominion.c'
+Lines executed:15.80% of 576
+Branches executed:15.83% of 417
+Taken at least once:13.19% of 417
+Calls executed:7.22% of 97
+dominion.c:creating 'dominion.c.gcov'
+
 -Shuffle function called 17 times and has 93% coverage.
 -Nearly all lines executed when game is played.
 -May be improved.
 -Call function when deck is empty.
 
-cardtest1.c: villageFile 'dominion.c'Lines executed:20.03% of 714Branches executed:17.27% of 417Taken at least once:13.67% of 417dominion.c:creating 'dominion.c.gcov'-Function is called once and has 100% coverage.
--All information gathered.
+cardtest1.c: village
+
+File 'dominion.c'
+Lines executed:20.03% of 714
+Branches executed:17.27% of 417
+Taken at least once:13.67% of 417
+dominion.c:creating 'dominion.c.gcov'
+
+-Function is called once and has 100% coverage.
+-All information gathered.
+
 cardtest2.c: adventurer
-File 'dominion.c'Lines executed:18.40% of 576Branches executed:18.71% of 417Taken at least once:15.11% of 417Calls executed:8.25% of 97dominion.c:creating 'dominion.c.gcov'
+File 'dominion.c'
+Lines executed:18.40% of 576
+Branches executed:18.71% of 417
+Taken at least once:15.11% of 417
+Calls executed:8.25% of 97
+dominion.c:creating 'dominion.c.gcov'
+
 -Function called 14 times and has 91% coverage.
 -However, function has 100% branch coverage.
 
 cardtest3.c: great hall
 
-File 'dominion.c'Lines executed:18.40% of 576Branches executed:17.27% of 417Taken at least once:13.67% of 417Calls executed:10.31% of 97dominion.c:creating 'dominion.c.gcov'
+File 'dominion.c'
+Lines executed:18.40% of 576
+Branches executed:17.27% of 417
+Taken at least once:13.67% of 417
+Calls executed:10.31% of 97
+dominion.c:creating 'dominion.c.gcov'
+
 -Function called once and has 100% coverage.
 -All information from function is gathered.
 -All lines executed when game is played.
 
-cardtest4: smithyLines executed:34.14% of 577Branches executed:34.05% of 417Taken at least once:23.26% of 417Calls executed:20.00% of 95dominion.c:creating 'dominion.c.gcov'
+cardtest4: smithy
+
+Lines executed:34.14% of 577
+Branches executed:34.05% of 417
+Taken at least once:23.26% of 417
+Calls executed:20.00% of 95
+dominion.c:creating 'dominion.c.gcov'
+
 -Smithy card function called 12 times and has 96% line coverage.
 -However 100% branch coverage. 
