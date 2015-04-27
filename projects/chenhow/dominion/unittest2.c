@@ -140,6 +140,7 @@ int main()
   int i;
   int n;
   int j;
+  int gameIterations = 2000; //change for the number of test games
   int players[MAX_PLAYERS];
   struct gameState testGame;
 
@@ -153,7 +154,7 @@ int main()
   PutSeed(3);
 
   //testing for 2000 iterations
-  for(n = 0; n < 2000; n++)
+  for(n = 0; n < gameIterations; n++)
   {
     for(i = 0; i < sizeof(struct gameState); i++)
     {
