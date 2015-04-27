@@ -38,11 +38,38 @@ I fully put this function through its paces I think.
 
 UNIT TEST 3: fullDeckCount
 
+File 'dominion.c'
+Lines executed:17.31% of 566
+Branches executed:18.80% of 415
+Taken at least once:15.90% of 415
+Calls executed:7.22% of 97
 
+Function 'fullDeckCount'
+Lines executed:100.00% of 9
+Branches executed:100.00% of 12
+Taken at least once:100.00% of 12
+
+Again, I feel confident that my test of this function did a good job of examining
+all aspects of it.
 
 
 UNIT TEST 4: getWinners
 
+File 'dominion.c'
+Lines executed:24.56% of 566
+Branches executed:31.81% of 415
+Taken at least once:25.06% of 415
+Calls executed:9.28% of 97
+
+Function 'getWinners'
+Lines executed:95.83% of 24
+Branches executed:100.00% of 22
+Taken at least once:95.45% of 22
+Calls executed:100.00% of 2
+
+It looks like the only area I failed to test was a circumstance where there are fewer
+than 4 active players and the non-active players have their values set to -9999. Other
+than that, I think that the test for getWinners is fairly thorough based on these results.
 
 
 CARD TEST 1: adventurer
