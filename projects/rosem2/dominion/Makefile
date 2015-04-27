@@ -55,7 +55,7 @@ cardtest4: cardtest4.c dominion.o rngs.o
 
 
 
-unittestresults: dominion.o unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
+unittestresults.out: dominion.o unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
 	echo "Results of card and unit tests:" > unittestresults.out
 	echo "cardtest1:" >> unittestresults.out
 	./cardtest1 >> unittestresults.out
