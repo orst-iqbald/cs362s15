@@ -1,63 +1,68 @@
-/********************************
-*      Test for adventurer      *
-********************************/
+/*****************************
+*    Adventurer card test    *
+*****************************/
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <assert.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include "rngs.h"
-#include <stdio.h>
-#include <string.h>
-#include <assert.h>
+
+#define OUTPUT_TEST_RESULTS 1
 
 int main() {
-    struct gameState testState;
-    int handCount = testState.handCount[0];
-    int randSeed = 1024;
-    int test = 0;
-    int treasure = 0;
-    int i = 0;
+    struct gameState *testState = malloc(sizeof(struct gameState));
+    int i, startCoins, newCoins, p, handCount;
+    int randSeed = 1000;
+    int playerCount = 2;
+    int maxHand = 5;
     int cards[10] = {
-        estate, 
-        duchy, 
-        province, 
-        copper, 
-        silver, 
-        gold, 
         adventurer, 
-        smithy, 
+        council_room, 
+        feast, 
         gardens, 
-        feast
+        mine, 
+        remodel, 
+        smithy, 
+        village, 
+        baron, 
+        great_hall
     };
 
-    initializeGame(2, cards, randSeed, &testState);
-    printf ("Begin adventure card test:\n");  
-    testState.hand[0][0] = adventurer;
-
-    for (i = 0; i < testState.handCount[0]; i++) {
-        if (testState.hand[0][i] == copper || testState.hand[0][i] == silver || testState.hand[0][i] == gold) {
-            treasure++;
+    printf ("Beginning adventurer test...\n");
+    for (p = 0; p < playerCount; p++) {
+        for (handCount = 1; handCount <= maxHand; handCount++) {
+            startCoins = 0;
+            newCoins = 0;
+            #if (OUTPUT_TEST_RESULTS == 1)
+                printf("Testing player %d with adventure card and %d cards in hand...\n", p, handCount);
+            #endif        
+            initializeGame(playerCount, cards, randSeed, testState);
+            testState->handCount[p] = handCount;
+            testState->hand[p][0] = adventurer;
+            for (i = 0; i < testState->handCount[p]; ++i) {
+                if ( testState->hand[p][i] == gold || testState->hand[p][i] == silver || testState->hand[p][i] == copper ) {
+                    startCoins++;
+                }
+            }
+            playAdventurer(p, testState);
+            for (i = 0; i < testState->handCount[p]; ++i) {
+                if ( testState->hand[p][i] == gold || testState->hand[p][i] == silver || testState->hand[p][i] == copper ) {
+                    newCoins++;
+                }
+            }
+            #if (OUTPUT_TEST_RESULTS == 1)
+                printf("Testing player %d for treasure cards, %d in hand and at least 2 in deck...", p, startCoins);
+                if (newCoins == startCoins + 2) {
+                    printf("Passed test. New count is %d. Expected = %d\n", newCoins, startCoins + 2);
+                } else {
+                    printf("FAILED test. New count is %d. Expected = %d\n", newCoins, startCoins + 2);
+                }
+            #endif
         }
     }
 
-    adventurerCard(0, 0, &testState);
-
-    for (i = 0; i < testState.handCount[0]; i++) {
-        if (testState.hand[0][i] == copper || testState.hand[0][i] == silver || testState.hand[0][i] == gold) {
-            test++;
-        }
-    }
-
-    if (test == treasure + 2) {
-        printf("Adventure card treasure test passed.\n");
-    } else {
-        printf("Adventure card treasure test FAILED.\n");
-    }
-
-    if(testState.handCount[0] == handCount + 1 ) {
-        printf("Adventure card hand count test passed.\n");
-    } else {
-        printf("Adventure card hand count test FAILED.\n");
-    }
-
-    return 0; 
+    return 0;
 }
