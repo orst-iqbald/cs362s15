@@ -1,8 +1,11 @@
 #include <assert.h>
+#include <stdlib.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
 
-void loadDeck(int player) {
+void loadDeck(struct gameState* state) {
+    int player = state->whoseTurn;
+    
     int i;
     for (i = 0; i < 5; ++i) {
         state->deck[player][i] = adventurer;
@@ -32,7 +35,7 @@ int main() {
     //end the first player's turn, who has no cards in their hand
     state->discardCount[player1] = 0;
     state->handCount[player1] = 0;
-    loadDeck(player2);
+    loadDeck(state);
     res = endTurn(state);
     assert(res == 0);
     checkState(state);
@@ -43,7 +46,7 @@ int main() {
     state->discardCount[player2] = 0;
     state->hand[player2][0] = mine;
     state->handCount[player2] = 1;
-    loadDeck(player1);
+    loadDeck(state);
     res = endTurn(state);
     assert(res == 0);
     checkState(state);
@@ -55,7 +58,7 @@ int main() {
     state->hand[player1][0] = village;
     state->hand[player1][1] = remodel;
     state->handCount[player1] = 2;
-    loadDeck(player2);
+    loadDeck(state);
     res = endTurn(state);
     assert(res == 0);
     checkState(state);

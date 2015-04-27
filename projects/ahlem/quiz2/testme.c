@@ -1,3 +1,9 @@
+/* 
+ * Matthew Ahle
+ * CS 362 Quiz 2
+ * 4/23/2015
+ */
+
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
@@ -5,30 +11,20 @@
 
 char inputChar()
 {
-    // TODO: rewrite this function
-    //I choose 6 random chars myself 
-  char c[] ={ 'a', 'b', '(', ')', 'c', 'z'};
-  int sizec = sizeof(c);
-  // return c[rand() % 6];
-  //uses rand() to produce randomized 
-  return c[rand() % sizec];
+    char c[] = {'[', '(', '{', ' ', 'a', 'x', '}', ')', ']'};
+    int sizec = sizeof(c);
+    return c[rand() % sizec];
 }
-
-
-
 
 char *inputString()
 {
-    // TODO: rewrite this function
-  char c[4] = {'d', 'e','f','g'};
-  int i;
-  int sizec = sizeof(c);
-  char* new = malloc(sizeof(char) * 5);
-  for (int i =0; i < sizec; i++){
-    new[i] = c[rand() % sizec];
-  }
-
-    return new;
+    char c[] = {'r', 'e', 's', 't', '\0'};
+    int sizec = sizeof(c);
+    char *s = malloc(6); 
+    for ( int i = 0; i < sizeof(s); i++) {
+       s[i] = c[rand() % sizec];
+    }
+    return s;
 }
 
 void testme()
@@ -64,3 +60,9 @@ void testme()
   }
 }
 
+
+int main(int argc, char *argv[])
+{
+    srand(time(NULL));
+    testme();
+    return 0;
