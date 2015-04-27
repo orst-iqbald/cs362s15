@@ -1,0 +1,27 @@
+# Code coverage
+
+File 'dominion.c'
+Lines executed:30.31% of 584
+Branches executed:33.57% of 417
+Taken at least once:22.06% of 417
+Calls executed:19.15% of 94
+
+Depending upon which metric is looked at code coverage is between about 19 and and 33%. This amount of coverage is very low. The reason coverage is so low is that only an arbitrary and low number of tests were written as part of this assignment. 
+
+Of 20 action cards available, only the effects of 4 were tested. Action cards are good candidates for unit testing because they act as discrete functional units during gameplay and are implemented as such in the code.
+
+Of 15 gameplay functions (not action card functions), only 4 were tested. And none of those are the arguably most important functions of the game, the game setup functions: newGame(), kingdomCards(), initializeGame().
+
+4/20 action function coverage and 4/15 gameplay function coverage is consistent with the amount of coverage reported by gcov.
+
+A better test suite would test all of the game's functions and do so in a way that tests a broader range of cases than the current testing paradigm and does so in a more consistent and systematic way. For example, such a test suite might proceed as follows:
+
+1. setup a random, but reasonable and realistic game state using all of the setup functions
+2. for each action card
+	a. create a copy of the random game state
+	b. proceed through a turn and incorporate the action card
+	c. check that the effects of the action card on the game state are as expected.
+	d. check of end of game
+3. repeat thousands of times
+
+That hypothetical stands to be improved, but demonstrates an improvement over the present tests. Such a test suite could achieve near 100% line, branch, and call coverage. Functions used to the 

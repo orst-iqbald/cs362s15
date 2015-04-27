@@ -1,0 +1,13 @@
+Megan Conley
+conleyme
+Quiz 2
+
+To compile the test: gcc -std=c99 testme.c -o testme
+
+My implementation of testme.c generally finds the error as fast as 400 iterations of the program, and as slow as 1000. In general, the average was around 800.
+
+inputChar() : It picks a random char using ASCII values 32-125 (between ' ' and '}'), which includes all chars the program checks for, including all punctuation, and returns it.
+
+inputString(): I initialize the string as what the code is looking for, 'reset\0'. It then iterates through the string of 'reset' and at each position, it has a 25% chance of replacing the char with something randomly selected by inputChar(). This means that it will each time return a string of 'reset\0', a string of 6 random chars, or something in between.
+
+This tester could be easily modified to require more iterations before it finds the 'reset' bug by upping the percentage of the chance that a character is replaced in the inputString() function, or increasing the range of inputChar() so it becomes less probable that it will return the necessary char to change state or to end up with a string of 'reset'. For the purpose of this quiz I made the tester take less time to find the bug.
