@@ -1,0 +1,30 @@
+Jaden Diefenbaugh
+CS362 Quiz 2
+
+I used the principles of a "guided" random tester to implement my testing.
+In both the 'inputStr()' function and 'inputChar()' function I implemented
+guided testing by randomly choosing 1 of two paths each time the function was
+called:
+	1. Return a truly random string/character
+	2. Return a fixed value that is necessary to procede through the code.
+
+For the inputChar() function, the two possibilities are as follows:
+	1. (Random) Generate a random ASCII character (0x00 <= c <= 0x7F) and
+		return it.
+	2. (Fixed) Randomly return one character from a set list of known
+		characters that change the state of the program.
+
+For the inputString() function, the two possibilities are as follows:
+	1. (Random) Generate a random-length string (0 <= n <= 50) with random
+		characters (0x00 <= c <= 0x7F) and return that.
+	2. (Fixed) Return the only "special" string: "reset".
+
+This (practically) ensures that the failing case is met, but also
+(practically) ensures that other, random strings/characters are used as well.
+
+Gcov stats:
+	"
+	File 'testme.c'
+	Lines executed:97.44% of 39
+	Creating 'testme.c.gcov'
+	"
