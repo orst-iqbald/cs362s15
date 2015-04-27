@@ -18,8 +18,23 @@ unittest3.c
 This unit test tested the function was to test if the correct values were assigned to the right cards within dominion.c
 No bugs found.
 
-
 unittest4.c
 This unit test tested the buyCard() function within dominion.c
+no bugs found.
 
+cardtes1.c 
+This card test was to test the Smithy card function.
+I found when I ran this it found that there was no bugs like I would have expected since I originally changed this function
+
+cardtest2.c
+This card test was to test the Village card function.
+This one as epected I did not find any bugs
+
+cardtest3.c
+This card test was on the Great_hall card function.
+This test again had no bugs found. This was expected since I did not mess or change anything in this code.
+
+cardtest4.c
+This card test was on the adventurer card. 
+This test made me find that the value was not getting decreased as it shold have been affected. The card was never getting discarded like it shoud have. 
 

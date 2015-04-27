@@ -18,18 +18,17 @@ int main () {
     
     srand(time(NULL));
     printf ("Testing to check buyCard():\n"); 
-
-
     for(i = 0; i < numTests; i++){
-      // test all 10 cards in array k
       for(j = 0; j < 10; j++){
         // start with new game 
         start = initializeGame(numPlayer, k, seed, G);
         G->numBuys = rand() % 9;
         // this will store the first set of buys. 
         firstBuys = G->numBuys;
-        G->supplyCount[j] = rand() % 9;
-        G->coins = rand() % 9;
+        G->supplyCount[j] = rand() % 9+2;
+        G->coins = rand() % 9+2;
+        //save the value of the coins like the same with buys
+        //used later to compare
         firstCoins = G->coins;
         cost = getCost(k[j]);
 
@@ -45,7 +44,7 @@ int main () {
           assert(G->coins < firstCoins);
 
         } else {
-          assert(start== -1);
+          assert(start== 1);
         }
       }
     }
