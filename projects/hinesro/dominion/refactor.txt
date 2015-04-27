@@ -1,6 +1,10 @@
 This document outlines the changes I've made to 5 action cards that I've refactored.
 
-1. adventurer
+1. smithy
+
+Added bug where 4 cards are added to the player's hand instead of 3. 
+
+2. adventurer
 
 Added bug where treasure is drawn until drawnTreasure is <= 2, instead of just < 2.
 This should loop an extra time and yield 3 treasure cards for the player instead of
@@ -8,29 +12,17 @@ just 2. Also added bug where the temporary hand is not fully discarded, which sh
 result in the player ending up with an extra non-treasure card in their hand in most
 situations.
 
+3. cutpurse
 
-2. council_room
-
-Refactored the code into its own function without the intentional addition of any
-new bugs. This should behave as expected. 
+Added bug that causes the player to gain two extra coints. 
 
 
-3. feast
+4. sea hag
 
-Introduced subtle bug where a 5-cost card (or less) can be drawn when there is a 
-negative supply of that card on the board. If supply is 0 or more, the action 
-should still behave as expected.
-
-
-4. mine
-
-Added possibly severe bug where cards matching the player's choice will continuously
-be discarded if occuring in their hand in successive order.
+Added bug that causes the player playing the card to receive the curse instead of
+all the other characters.
 
 
-5. smithy
+5. village
 
-Added bug where the card is not discarded at the end of the turn, which should 
-result in a persistant smithy card any time the player calls this action.
-
-
+Refactored code into its own function without (intentionally) adding any bugs. 

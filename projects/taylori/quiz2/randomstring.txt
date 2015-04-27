@@ -1,0 +1,31 @@
+Ian Taylor
+CS 362 Quiz 2: Random Testing
+04/26/2015
+
+-- DEVELOPMENT OF THE RANDOM TESTER --
+
+inputChar():
+    A simple function that generates a random char with ascii values 32 to 126.
+    I used asciitable.com to choose a suitable set of char values. This charset 
+    generates all standard "text" symbols, including the space, but does not 
+    generate special symbols like DEL or SI (shift in). I felt this reasonable,
+    considering that this test could be used on a text file, for example, to test
+    for invalid character and string sequences. 
+    
+    Once I wrote the function, I tested it by commenting out the final if-branch which
+    checks the string, and set the "state 8" branch to produce an error message. This way,
+    I could run the program and only need to worry about the single char, to see if it would
+    eventually produce the chars necessary to reach state 9. When I ran this program several
+    times, it would successfully reach state 9 in around 700 – 1000 iterations. 
+    
+inputString():
+    At first I developed this function to generate a random string of length 5 using only lowercase
+    letters. This approach did not work at all -- it became obvious that the probability of
+    randomly generating the word "reset" was far too low. I decided to have my program randomly select
+    from the possible "trigger" characters, 'r', 'e', 's', 't', '\0'. This successfully triggered the 
+    error after at most some 3,000 iterations. 
+    
+    An alternate approach that I considered is to randomly choose words from a dictionary text 
+    file list of words. Even if I did not restrict the size of words, there are really only about 172,000 
+    total that would need to be tested. When I simply tried random letters, my program ran millions of 
+    iterations without stopping, so a few hundred thounsand iterations would not be too bad. 

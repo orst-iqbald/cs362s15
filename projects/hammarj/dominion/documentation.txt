@@ -1,0 +1,8 @@
+Adventurer card: Keep drawing cards from your deck until you accumulate two treasure cards.  If you deplete your deck while doing this, shuffle your discard pile back into your deck (this is redundant since drawCard() does this for you).  Discard any non-treasure cards you draw. (This method fails to discard the played Adventurer card).
+
+Smithy: Draw three cards from your deck and discard the Smithy card you just played.
+
+discardCard(): Unless the card was trashed, add card to played card pile.  Then remove the card from the player's hand.
+
+updateCoins(): Set the player's coins to zero.  Then, for every card in their hand; if it's a copper, add 1 to their coins; if it's a silver, add 2 to their coins; and if it's a gold, add 3 to their coins.  Finally, if there's a bonus amount, add that to their coins.
+

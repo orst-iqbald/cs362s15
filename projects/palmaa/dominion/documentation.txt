@@ -1,0 +1,57 @@
+filename:  documentation.txt
+author:  Andrew Palma
+--------------------------------------------------------------------------------
+
+--------------
+- description/understanding of smithy card code (in case smithy):
+----------------------------------------------
+  execute drawCard(currrentPlayer, state) in a for loop 3 times
+  to add/draw 3 cards to your hand from deck
+
+  execute discardCard(handPos, currentPlayer, state, 0)
+  to discard the smithy (current) card from player's hand
+
+
+-------------
+- description/understanding of adventurer card code(in case adventurer):
+----------------------------------------------
+  until 2 treasure cards drawn from deck and placed in hand
+    if deck empty
+      reshuffle discards and add them to deck 
+          ****NOTE:  seems like subtle bug here with code when deck is empty.
+          ****       it calls shuffle() directly, with an empty deck and
+          ****       shuffle function first check is if deck empty, where it will fail
+          ****       the calling of drawCard function will take discards
+          ****       add them to empty deck and then call shuffle
+    draw a card 
+    if drawn card is treasure card
+      add treasure card to hand
+    else
+      add drawn card to a temp deck/hand (not discard, yet)
+
+  after exit above loop, discard all cards in the temp deck/hand
+
+  (keeping the adventurer card in hand)
+
+
+-------------
+- description/understanding of discardCard():
+-----------------------------------------------
+ if card is not to be trashed
+   then place/add card to played/discard pile
+
+ set value of played card in hand[index] to -1
+
+ if played card was last card of player hand or the only card in player hand
+   then reduce player's hand count (of cards) by 1
+   else  switch values of hand[index] with that of the last card in player hand (array)
+
+ reduce player's hand count by 1
+
+
+-------------
+- description/understanding of updateCoins():
+----------------------------------------------
+ set initial total of coins in hand to zero
+ iterate through hand and generate total value of coins in hand
+ finally add whatever bonus value to get the total value
