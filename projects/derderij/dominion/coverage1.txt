@@ -23,6 +23,7 @@ dominion.c:creating 'dominion.c.gcov'
 
 ****************
 unittest2: isGameOver()
+
 File 'dominion.c'
 Lines executed:26.52% of 577
 Branches executed:24.46% of 417
@@ -36,6 +37,7 @@ dominion.c:creating 'dominion.c.gcov'
 
 ****************
 unittest3: kingdomCards()
+
 File 'dominion.c'
 Lines executed:28.77% of 577
 Branches executed:24.46% of 417
@@ -49,6 +51,7 @@ dominion.c:creating 'dominion.c.gcov'
 
 ****************
 unittest4: buyCard()
+
 File 'dominion.c'
 Lines executed:34.14% of 577
 Branches executed:34.05% of 417
@@ -61,6 +64,7 @@ dominion.c:creating 'dominion.c.gcov'
 
 ****************
 cardtest1: smithy
+
 Lines executed:34.14% of 577
 Branches executed:34.05% of 417
 Taken at least once:23.26% of 417
@@ -73,6 +77,7 @@ dominion.c:creating 'dominion.c.gcov'
 
 ****************
 cardtest2: adventurer
+
 File 'dominion.c'
 Lines executed:34.14% of 577
 Branches executed:34.05% of 417
@@ -87,6 +92,7 @@ dominion.c:creating 'dominion.c.gcov'
 
 ****************
 cardtest3: Cutpurse
+
 Lines executed:34.14% of 577
 Branches executed:34.05% of 417
 Taken at least once:23.26% of 417
@@ -99,6 +105,7 @@ dominion.c:creating 'dominion.c.gcov'
 
 ****************
 cardtest4: Village
+
 File 'dominion.c'
 Lines executed:34.14% of 577
 Branches executed:34.05% of 417
