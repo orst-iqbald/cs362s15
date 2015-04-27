@@ -1,0 +1,19 @@
++Smithy
+--
+Bug introduced: Now requires is +2 cards by adding an equal sign to the for loop.
+
++Adventurer
+--
+Bug introduced: Require 2 or greater treasure rather than 3 or greater treasure.
+
++Baron
+--
+Bug introduced: no longer increase number of buys by one.
+
++Steward
+--
+If choice1 == 2 subtract one coin rather than add two.
+
++Gardens
+--
+No change.

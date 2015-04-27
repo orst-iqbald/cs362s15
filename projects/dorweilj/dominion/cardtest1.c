@@ -24,6 +24,7 @@ int main () {
     int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
     r = initializeGame(numPlayer, k, seed, G);
 
+    printf ("TESTING smithy_refact():\n");
     for(i = 0; i < numPlayer; i++){
       G->whoseTurn = i;
       // store hand count

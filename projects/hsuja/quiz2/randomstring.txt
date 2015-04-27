@@ -1,0 +1,13 @@
+Jason Hsu
+hsuja@onid.oregonstate.edu
+4/26/15
+CS362-400
+Quiz 2 - randomstring.txt
+
+I first started at the conditions needed for the error message to be produced. The error message needed the string "reset" to be produced by inputString() and the state needed to be 9. The state would only reach 9 after inputChar() produced a particular sequence of characters, one character in the sequence not necessarily immediately after the previous character. 
+
+For inputChar(), I produced random integers between 0 and 126 to output the corresponding random ASCII character. 
+
+For inputString(), I also produced random integers between 0 and 126 to output the corresponding random ASCII characters and assigned the characters to the first 5 characters of a string. I then added the terminating 0 to the last spot in the string. 
+
+Testing to produce the error message was taking quite a long time, so I reduced the range of the random integers produced in inputString() so that only lowercase letters a through z would be produced. This allowed testme.c to reach the error message in a more reasonable amount of time.

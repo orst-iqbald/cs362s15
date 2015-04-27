@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
 
@@ -14,7 +15,11 @@ int testGainCard(int m_supplyPos, struct gameState *m_state, int toFlag, int pla
 
 int main(int argc, char* argv[])
 {
-    printf("\n\n****BEGIN UNITTEST2: GainCard****\n");
+    int color = 0;
+    if(argc == 2 && strcmp(argv[1], "-c") == 0)
+        color = 1;
+    printf("\n\n************** BEGIN UNITTEST 2: GainCard **************\n");
+    int failedTests = 0;
 	struct gameState *m_state = newGame();
     int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, 
            sea_hag, tribute, smithy};
@@ -24,7 +29,7 @@ int main(int argc, char* argv[])
     int flag = 0;
 	enum CARD m_supplyPos;
 	
-    printf ("State initalization.....");
+    printf ("GainCard State initalization.....");
     initializeGame(NUM_PLAYERS, k, 5, m_state);
     printf("PASS\n");
 	
@@ -40,7 +45,7 @@ int main(int argc, char* argv[])
             for(flag=0; flag < TOFLAGMAX; flag++)
             {
                 int pass = 0;
-                printf("Player%d testGainCard flag:%d card:%d.....", i+1, flag, m_supplyPos);
+                printf("GainCard Player%d flag:%d card:%d.....", i+1, flag, m_supplyPos);
                 int supply = supplyCount(m_supplyPos, m_state);
                 switch(flag)
                 {
@@ -52,16 +57,19 @@ int main(int argc, char* argv[])
                         {
                             printf("FAIL - supplyCount; ");
                             pass = 1;
+                            failedTests++;
                         }   
                         if(m_state->deckCount[players[i]] != deckCount + 1)
                         {
                             printf("FAIL - deckCount; ");
                             pass = 1;
+                            failedTests++;
                         }
                         if(m_state->deck[players[i]][m_state->deckCount[players[i]] - 1] != m_supplyPos)
                         {
                             printf("FAIL - gain card mismatch; ");
                             pass = 1;
+                            failedTests++;
                         }
                         if(pass == 0)
                         {
@@ -86,16 +94,19 @@ int main(int argc, char* argv[])
                         {
                             printf("FAIL - supplyCount; ");
                             pass = 1;
+                            failedTests++;
                         }   
                         if(m_state->handCount[players[i]] != handCount + 1)
                         {
                             printf("FAIL - handCount; ");
                             pass = 1;
+                            failedTests++;
                         }
                         if(m_state->hand[players[i]][m_state->handCount[players[i]] - 1] != m_supplyPos)
                         {
                             printf("FAIL - gain card mismatch; ");
                             pass = 1;
+                            failedTests++;
                         }
                         if(pass == 0)
                         {
@@ -120,16 +131,19 @@ int main(int argc, char* argv[])
                         {
                             printf("FAIL - supplyCount; ");
                             pass = 1;
+                            failedTests++;
                         }   
                         if(m_state->discardCount[players[i]] != discardCount + 1)
                         {
                             printf("FAIL - dicardCount; ");
                             pass = 1;
+                            failedTests++;
                         }
                         if(m_state->discard[players[i]][m_state->discardCount[players[i]] - 1] != m_supplyPos)
                         {
                             printf("FAIL - gain card mismatch; ");
                             pass = 1;
+                            failedTests++;
                         }
                         if(pass == 0)
                         {
@@ -150,6 +164,16 @@ int main(int argc, char* argv[])
             }
         }
     }
-    printf("****END UNITTEST 2****\n");
+    if(failedTests > 0)
+        if(color)
+            printf("\033[1;31mFailed %d tests\033[0m\n", failedTests);
+        else
+            printf("Failed %d tests\n", failedTests);
+    else
+        if(color)
+            printf("\033[1;32mFailed %d tests\033[0m\n", failedTests);	
+        else
+            printf("Failed %d tests\n", failedTests);	
+    printf("************** END UNITTEST 2: GainCard **************\n");
     return 0;
 }    

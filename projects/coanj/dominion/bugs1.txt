@@ -1,0 +1,38 @@
+All functions tested passed using assertions to test each.
+
+Card functions weren't so lucky, due to introduced bugs. Each one tested
+displayed the bugs that were introduced, which also cause other issues in
+some cases.
+
+In the newSmithy card, the number of cards in hand should have incremented by 3, but
+instead incremented by 2, which was checked for two players playing the newSmithy card.
+Both returned errors with the result displayed.
+TESTING newSmithy() card:
+	Failed - Player 0 number of cards in hand incorrect. Expected = 7, Returned = 8
+	Failed - Player 1 number of cards in hand incorrect. Expected = 2, Returned = 3
+FINISHED newSmithy() card:
+
+The newAdventurer card failed to retrieve the proper number of treasure cards from the
+temp hand. This was tested against two players and in each case, the number retrieved
+was one more than expected, as shown below.
+TESTING newAdventurer() card:
+	Failed - Player 0 number of treasure cards incorrect. Expected = 5, Returned = 6
+	Failed - Player 1 number of treasure cards incorrect. Expected = 2, Returned = 3
+FINISHED newAdventurer() card:
+
+The newBaron card was supposed to increment the players ability to buy by two, but instead
+only incremented by one, shown below. In addition player two's estate card was chosen to be discarded,
+however it was never discarded which displayed a bug shown below.
+TESTING newBaron() card:
+	Failed - Player 0 buy not incremented properly: Expected 2, Returned 1
+	Failed - Player 1 buy not incremented properly: Expected 2, Returned 1
+	Failed - Player 1 estate count not decremented after choosing to discard. Expected = 1, Returned = 2
+FINISHED newBaron() card:
+
+newCutpurse was tested and it should have incremented the players coins by 2, instead it only
+incremented the coin count by 1. In addition to that error, the second player should have had
+a copper card discarded, but the copper card count remained the same in the end as shown below.
+TESTING newCutpurse() card:
+	Failed - Player 0 coins did not increment properly: Expected 6, Returned 5
+	Failed - Player 1 copper cards did not decrement properly: Expected 3, Returned 3
+FINISHED newCutpurse() card:
