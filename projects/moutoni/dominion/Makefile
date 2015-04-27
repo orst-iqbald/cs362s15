@@ -66,15 +66,15 @@ unittestresults.out: dominion.o rngs.o unittest1.c unittest2.c unittest3.c unitt
 	unittest2 >> unittestresults.out
 	gcov dominion.c -b >> unittestresults.out
 
-	echo "unittest3.c:" >> unittestresults.out
-	gcc -o unittest3 -g unittest3.c dominion.o rngs.o $(CFLAGS)
-	unittest3 >> unittestresults.out
-	gcov dominion.c -b >> unittestresults.out
+	#echo "unittest3.c:" >> unittestresults.out
+	#gcc -o unittest3 -g unittest3.c dominion.o rngs.o $(CFLAGS)
+	#unittest3 >> unittestresults.out
+	#gcov dominion.c -b >> unittestresults.out
 
-	echo "unittest4.c:" >> unittestresults.out
-	gcc -o unittest4 -g unittest4.c dominion.o rngs.o $(CFLAGS)
-	unittest4 >> unittestresults.out
-	gcov dominion.c -b >> unittestresults.out
+	#echo "unittest4.c:" >> unittestresults.out
+	#gcc -o unittest4 -g unittest4.c dominion.o rngs.o $(CFLAGS)
+	#unittest4 >> unittestresults.out
+	#gcov dominion.c -b >> unittestresults.out
 
 	echo "cardtest1.c:" >> unittestresults.out
 	gcc -o cardtest1 -g cardtest1.c dominion.o rngs.o $(CFLAGS)

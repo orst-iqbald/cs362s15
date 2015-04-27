@@ -1,0 +1,54 @@
+unittest1.c:
+File 'dominion.c'
+Lines executed:15.93% of 565
+Branches executed:15.83% of 417
+Taken at least once:12.95% of 417
+Calls executed:7.78% of 90
+dominion.c:creating 'dominion.c.gcov'
+
+unittest2.c:
+!File 'dominion.c'
+Lines executed:16.46% of 565
+Branches executed:22.54% of 417
+Taken at least once:13.19% of 417
+Calls executed:7.78% of 90
+dominion.c:creating 'dominion.c.gcov'
+
+unittest3.c:
+This dominion implementation has bugs regarding handling a wide range of numbers causing it to crash.
+
+unittest4.c:
+This dominion implementation has bugs regarding handling a wide range of numbers causing it to crash.
+
+
+cardtest1.c:
+File 'dominion.c'
+Lines executed:20.88% of 565
+Branches executed:29.98% of 417
+Taken at least once:14.87% of 417
+Calls executed:11.11% of 90
+dominion.c:creating 'dominion.c.gcov'
+
+cardtest2.c:
+File 'dominion.c'
+Lines executed:22.30% of 565
+Branches executed:31.89% of 417
+Taken at least once:16.31% of 417
+Calls executed:12.22% of 90
+dominion.c:creating 'dominion.c.gcov'
+
+cardtest3.c:
+File 'dominion.c'
+Lines executed:23.01% of 565
+Branches executed:31.89% of 417
+Taken at least once:16.55% of 417
+Calls executed:14.44% of 90
+dominion.c:creating 'dominion.c.gcov'
+
+cardtest4.c:
+File 'dominion.c'
+Lines executed:23.01% of 565
+Branches executed:31.89% of 417
+Taken at least once:16.55% of 417
+Calls executed:14.44% of 90
+dominion.c:creating 'dominion.c.gcov'

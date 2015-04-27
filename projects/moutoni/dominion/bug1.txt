@@ -8,12 +8,11 @@ No bugs found.
 
 Unit Test 3 -- Discard card
 --
-No bugs found.
+Segmentation fault. Program should restrict what ranges should be discarded.
 
 Unit Test 4 -- Deck count
 --
-No bugs found.
-
+Segmentation fault. Program should restrict what ranges that should be counted.
 
 Card Test 1 Smithy
 --
