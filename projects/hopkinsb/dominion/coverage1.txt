@@ -1,0 +1,8 @@
+Brittany Hopkins
+coverage.txt
+Assignment 3
+
+Due to the bugs mentioned in the bugs1.txt file, many of my tests did not perform very well at all. Some tests, like unittest3 
+had very high coverages and others, like cardtest 1 were very low. Most of this was due to my test's inability
+to function properly. If you look at the unittestresults.out file, you will see that my overall coverage was very low. This leads
+me to think that I need ALOT more practice in unit testing

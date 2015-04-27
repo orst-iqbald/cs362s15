@@ -3,7 +3,7 @@ If their deck no longer has three cards, they can draw as many cards as possible
 drawing their remaining cards from the new deck. The smithy card can be bought during the player's buy phase, during which it 
 costs 4.
 
-The adventurer card can be played during the action phase of a player. The player then draws cards from their duck until they find two 
+The adventurer card can be played during the action phase of a player. The player then draws cards from their deck until they find two 
 treasure cards. If their deck no longer has two treasure cards in it, they can draw as many cards as possible before shuffling their
 discard pile and drawing from the new deck. The adventurer card can be bought during the player's buy phase, during which it costs 6. 
 
