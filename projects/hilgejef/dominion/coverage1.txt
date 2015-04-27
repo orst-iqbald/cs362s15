@@ -1,31 +1,117 @@
+<<<<<<< HEAD
 unittest1.c:
 
+=======
+unittest1.c
+Function tested: updateCoins
+
+Total coverage:
+>>>>>>> 34f692064229093d88a77d81c01bd92b8f92927c
 Lines executed:16.79% of 560
 Branches executed:15.83% of 417
 Taken at least once:13.19% of 417
 Calls executed:7.37% of 95
 
+<<<<<<< HEAD
 unittest2.c:
 
+=======
+Function coverage:
+Lines executed:100.00% of 11
+Branches executed:100.00% of 8
+Taken at least once:100.00% of 8
+
+Thoughts: Function coverage is solid!
+
+
+unittest2.c
+Function tested: whoseTurn
+
+Total coverage:
+>>>>>>> 34f692064229093d88a77d81c01bd92b8f92927c
 Lines executed:17.14% of 560
 Branches executed:15.83% of 417
 Taken at least once:13.19% of 417
 Calls executed:7.37% of 95
 
+<<<<<<< HEAD
 unittest3.c:
 
+=======
+Function covarege:
+Lines executed:100.00% of 2
+
+Thoughts: Line execution is 100%.
+
+
+unittest3.c:
+Function tested: supplyCount
+
+Total coverage:
+>>>>>>> 34f692064229093d88a77d81c01bd92b8f92927c
 Lines executed:17.50% of 560
 Branches executed:15.83% of 417
 Taken at least once:13.19% of 417
 Calls executed:7.37% of 95
 
+<<<<<<< HEAD
 unittest4.c:
 
+=======
+Function coverage:
+Lines executed:100.00% of 2
+
+Thoughts: Line execution is again 100%. 
+
+
+unittest4.c
+Function tested: handCard
+
+Total coverage:
 Lines executed:18.04% of 560
 Branches executed:15.83% of 417
 Taken at least once:13.19% of 417
 Calls executed:8.42% of 95
 
+Function coverage:
+Lines executed:100.00% of 3
+Calls executed:100.00% of 1
+
+Thoughts: 100% line and call execution.
+
+
+Card tests for 1 and 2 can not be executed because bug introductions
+in refactor.txt have caused them to produce segfaults.
+
+cardtest3.c
+Card tested: Council Room
+
+Total coverage:
+Lines executed:20.89% of 560
+Branches executed:18.71% of 417
+Taken at least once:14.87% of 417
+Calls executed:12.63% of 95
+
+Function coverage:
+Lines executed:100.00% of 9
+Branches executed:100.00% of 6
+Taken at least once:100.00% of 6
+Calls executed:100.00% of 3
+
+Thoughts: 100% function coverage.
+
+
+cardtest4.c
+Card tested: Great Hall
+
+Total coverage:
+>>>>>>> 34f692064229093d88a77d81c01bd92b8f92927c
+Lines executed:18.04% of 560
+Branches executed:15.83% of 417
+Taken at least once:13.19% of 417
+Calls executed:8.42% of 95
+
+<<<<<<< HEAD
 Unit tests all currently have low branch and line coverage rates, and
 could be improved.
 
@@ -42,3 +128,20 @@ Taken at least once:50.00% of 4
 Calls executed:71.43% of 7
 
 Card tests have solid branch and line coverage but also cover less area.
+=======
+Function coverage:
+Lines executed:100.00% of 5
+Calls executed:100.00% of 2
+
+Thoughts: 100% function coverage.
+
+
+Overall thoughts:  Overall, I think my test cases did a pretty good job
+of covering the lines, branches, and calls of the functions that 
+they were designed to test.  Still, I think my error messages could be
+more clear and the test cases somewhat more robust.  Additionally, I was
+unsure if the bugs introduced in refactor.txt on Assignment 2 should
+remain, as they prevented test coverage of Smithy and Adventurer. These bugs,
+which create segfaults when executing either the playSmithy or playAdventurer
+functions, have been denoted in bug1.txt.
+>>>>>>> 34f692064229093d88a77d81c01bd92b8f92927c

@@ -1,0 +1,1 @@
+The program grabs a random character and as it is a specific character it increments the phase until 8 is reached. After that it begins to check the randomly generated string. If the randomly generated string "reset\0", then the error message is generated halting the execution of the program.
