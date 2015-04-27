@@ -5,30 +5,18 @@
 
 char inputChar()
 {
-    // TODO: rewrite this function
-    //I choose 6 random chars myself 
-  char c[] ={ 'a', 'b', '(', ')', 'c', 'z'};
-  int sizec = sizeof(c);
-  // return c[rand() % 6];
-  //uses rand() to produce randomized 
-  return c[rand() % sizec];
+    char chars[] = {'[', '(', '{', ' ', 'a', 'x', '}', ')', ']'};
+    return chars[rand() % 9];
 }
-
-
-
 
 char *inputString()
 {
-    // TODO: rewrite this function
-  char c[4] = {'d', 'e','f','g'};
-  int i;
-  int sizec = sizeof(c);
-  char* new = malloc(sizeof(char) * 5);
-  for (int i =0; i < sizec; i++){
-    new[i] = c[rand() % sizec];
-  }
-
-    return new;
+    char chars[] = {'r', 'e', 's', 't', '\0'};
+    char *returnMe = malloc(6); 
+    for ( int i = 0; i < sizeof(returnMe); i++) {
+       returnMe[i] = chars[rand() % 5];
+    }
+    return returnMe;
 }
 
 void testme()
@@ -64,3 +52,10 @@ void testme()
   }
 }
 
+
+int main(int argc, char *argv[])
+{
+    srand(time(NULL));
+    testme();
+    return 0;
+}
