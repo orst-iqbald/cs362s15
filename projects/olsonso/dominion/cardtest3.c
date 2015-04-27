@@ -28,6 +28,7 @@ int main() {
     int treasures = 0;
     int i = 0;
     int test = 0;
+    int actions = 0;
 
     //start by storing original hand count, actions, and treasures
 
@@ -35,7 +36,7 @@ int main() {
     actions = G->numActions;
     for (i = 0; i < G->handCount[0]; i++){
         if (G->hand[0][i] == gold || G->hand[0][i] == silver || G->hand[0][i] == copper){
-            treasures++
+            treasures++;
         }
     }
 
@@ -46,7 +47,7 @@ int main() {
   	// verify number of treasures by first storing in test variable 
      for (i = 0; i < G->handCount[0]; i++){
         if (G->hand[0][i] == gold || G->hand[0][i] == silver || G->hand[0][i] == copper){
-            test++
+            test++;
         }
     }
 

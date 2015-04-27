@@ -1,0 +1,30 @@
+Michael Marven
+Assignment 3
+CS362 Spring 2015
+04/26/2015
+
+Bug report
+
+unittest1:
+    unittest1 tests the shuffle() function and no bugs were found.
+	
+unittest2:
+    unittest2 tests the isGameOver() function and it found a bug. To check for the end of the game, the function first checks if the province pile is empty, then if it is not empty, it attempts to check each pile to see if it is set to 0. The for loop used to check each pile has an error. The limit of the loop is 25, but there are 27 piles of cards that should be checked. If either of the last two piles of cards are empty, the function does not return the correct value.
+    
+unittest3:
+    unittest3 tests the fullDeckCount() function and it found a bug. The function is only used in the scoreFor() function when calculating the score for a garden card. The garden card should be worth 1 point for every ten cards that are present in the player's deck, rounded down. So if the player has 19 cards, the garden card is worth two points. Thus, the fullDeckCount() function should return a count of every card in the player's full deck, the deck, hand, and discard piles. The fullDeckCount() function as it is written will count the number of specific cards that are in the full deck. The function should be checking for all cards equal to or greater than 0, or all cards from curse to treasure_map, rather tahn 1 specific card
+    
+unittest4:
+    unittest4 tests the numHandCards() function and no bugs were found.
+    
+cardtest1:
+    cardtest1 tests the smithy card and it found the bug present in Smithy. Instead of drawing 3 cards, the Smithy card function draws 5 cards.
+    
+cardtest2:
+    cardtest2 tests the adventurer card and it found a bug present which I am pretty sure is in Adventurer. The function has a bug that will put it in an infinite loop unless it finds two gold cards, rather than 2 treasure cards of copper, silver, and gold. Through print statements, I determined that cardEffect() starts once, then calls drawCard() until a segmentation fault ius reached and the program crashes. I am confident the bug lies in the Adventurer card function, but it could be in the drawCard() function.
+    
+cardtest3:
+    cardtest3 tests the villager card and no bugs were found.
+    
+cardtest4:
+    cardtest4 tests the salvager card and no bugs were found.

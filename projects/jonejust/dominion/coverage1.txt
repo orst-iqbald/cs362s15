@@ -1,0 +1,161 @@
+Justin Jones
+jonejust
+CS362
+Assignment 3 - coverage1.txt
+
+///////////////////////////////////////////////////////////////////////////////
+unittest1.c discardCard() test Coverage
+File 'dominion.c'
+Lines executed:17.62% of 579
+Branches executed:17.35% of 415
+Taken at least once:13.98% of 415
+Calls executed:7.45% of 94
+dominion.c:creating 'dominion.c.gcov'
+
+ 88% statement coverage for
+this function. All branches of the discardCard function were taken except for one, and all
+statements were executed except for one. The boundary case where one card
+is in the hand and that card is discarded is handled differently than the
+others. In the future, boundary cases like that should be tested.
+
+///////////////////////////////////////////////////////////////////////////////
+unittest2.c  drawCard() test coverage
+
+File 'dominion.c'
+Lines executed:18.31% of 579
+Branches executed:16.87% of 415
+Taken at least once:13.98% of 415
+Calls executed:8.51% of 94
+dominion.c:creating 'dominion.c.gcov'
+
+93% statement coverage, 100% block coverge. All statements and branches of
+this function were executed except for one. 
+In the case where the deck still has zero cards AFTER shuffling the discard
+pile and putting it into the deck. This could occur if the discardCount
+and deckCount are zero before calling drawCard. In this case, drawCard
+should return -1. This boundary case should have been tested to ensure
+the drawCard function behaves properly when it is unable to draw a card.
+
+///////////////////////////////////////////////////////////////////////////////
+unittest3.c - gainCard() test coverage
+
+File 'dominion.c'
+Lines executed:18.13% of 579
+Branches executed:17.35% of 415
+Taken at least once:14.22% of 415
+Calls executed:8.51% of 94
+dominion.c:creating 'dominion.c.gcov'
+
+
+All statements and branches were executed multiple times resulting in
+100% coverage of the function, including 
+cases where gainCard fails to gain a card because of the boundary
+case where the supplyCount of a card is zero. All flags, 0, 1, 2
+were all all tried as well. This was a test that also revealed
+several bugs as noted in bugs.txt.
+
+///////////////////////////////////////////////////////////////////////////////
+unittest4.c - buyCard() test coverage
+File 'dominion.c'
+Lines executed:22.45% of 579
+Branches executed:25.54% of 415
+Taken at least once:17.35% of 415
+Calls executed:12.77% of 94
+dominion.c:creating 'dominion.c.gcov'
+
+All statements and branches were executed acheiving 100% branch and statement
+coverage of the FUNCTION, not of dominion.c of course. Bugs were revealed
+with this unittest as well. 
+
+
+///////////////////////////////////////////////////////////////////////////////
+cardtest1.c - smithyEffect() test coverage
+File 'dominion.c'
+Lines executed:21.24% of 579
+Branches executed:19.28% of 415
+Taken at least once:15.42% of 415
+Calls executed:10.64% of 94
+dominion.c:creating 'dominion.c.gcov'
+
+There was 100% statement and branch coverage of this function, but this 
+function also calls three other functions and the statement coverage of
+those was as follows:
+
+drawCard() - 93% - missed the case where the deckcount is zero AND discard
+count is zero returning -1.
+
+discardCard() - 88% - missed the case where hand count is 1.
+
+shuffle() - 93% - missed the case where function returns -1. 
+
+Once again, the boundary cases were not always hit. In the future, more of
+an effort to hit on boundary cases and ways that might potentially make
+functions fail needs to be explored to achieve better coverage.
+
+
+///////////////////////////////////////////////////////////////////////////////
+cardtest2.c - adventurerEffect() test coverage
+File 'dominion.c'
+Lines executed:21.07% of 579
+Branches executed:19.76% of 415
+Taken at least once:16.39% of 415
+Calls executed:9.57% of 94
+dominion.c:creating 'dominion.c.gcov'
+
+100% statement and branch coverage of this function was achieved;however, it
+the drawCard() and shuffle() functions are called here and once again as in
+cardtest1.c the same boundary cases were not triggered in those functions. 
+
+It is also interesting to note that while the discardCard function is not
+called by the adventureEffect function, it should have been called. This
+bug was found by this test but if it hadn't have been, this test still 
+could have achieved 100% branch and statement coverage without finding that
+bug since it's a statement that should have been there but was not.
+
+///////////////////////////////////////////////////////////////////////////////
+cardtest3.c - remodelEffect() test coverage
+File 'dominion.c'
+Lines executed:21.93% of 579
+Branches executed:27.47% of 415
+Taken at least once:16.63% of 415
+Calls executed:12.77% of 94
+dominion.c:creating 'dominion.c.gcov'
+
+Only 79% coverage was achieved with this function. It was an if statement
+block that was missed which had a discard card function looking for the
+card to trash after it
+has already been trashed. This could have been found or at least triggered
+by introducing an interesting case of trashing a card, but gaining the same
+card back. That is the only way that one could have been triggered and it
+would have been a good case and could have then showed that the hand would
+then be short a card because it would have discarded both the trashed card
+and the gained card. Once again, looking for unusual cases could have
+revealed this one.  
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+cardtest4.c - villageEffect() test coverage
+File 'dominion.c'
+Lines executed:20.55% of 579
+Branches executed:18.80% of 415
+Taken at least once:14.70% of 415
+Calls executed:10.64% of 94
+dominion.c:creating 'dominion.c.gcov'
+
+Every line of the villageEffect() function that was refactored in assignment 2
+was covered. 100% statment and branch coverage, However, this function calls
+two other functions:
+
+discardCard() - Because this function is called it might have been good to 
+test the boundary case where the village card was the only card in the hand
+for example. discardCard() handles this differently. We did already test
+this in unittest1 but if we hadn't, it might have been even more important
+to think about boundary cases relating to the discardCard function like
+what happens if there is nothing in the discard pile when village is called.
+Does that change anything for example.
+
+drawCard() - Similarly to discard, it might have been good to think about the
+case where the deck count was zero just as it was in unittest2 when we 
+tested drawCard().
+
