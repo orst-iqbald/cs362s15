@@ -86,6 +86,10 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
 /* Responsible for initializing all supplies, and shuffling deck and
    drawing starting hands for all players.  Check that 10 cards selected
    are in fact (different) kingdom cards, and that numPlayers is valid. 
+<<<<<<< HEAD
+
+=======
+>>>>>>> ca267ada2aaba20c57458bee951f8545b72cfd13
 Cards not in game should initialize supply position to -1 */
 
 int shuffle(int player, struct gameState *state);

@@ -1,0 +1,73 @@
+// CS362-400 Spring 2014
+// Student:  Philip Lewallen
+// Assignment 3
+
+unittest1.c
+function tested: countCoins
+Results:
+	Coverage: 97.73% of 44 lines
+
+	This function is suppose to count the total treasure a person is holding in their hand.  To do this
+		I seeded the hand with either all copper, silver, or gold coins.  This should represent the boudnary conditions of the
+	possible treasures availble to the user.
+		I ran the test multiple times and checked the totals the function returned.
+		At this time I do not have any suggestions on what to improve upon.
+
+unittest2.c
+function tested:  makeTurn
+Results: 
+	Coverage: 95.25% of 21 lines
+
+		I would increase the range to improve the boundaries of the test.  I would run it just past 
+	the acceptable input boundary, once to ensure the error checking works.
+
+		Currently the test covers all of the lines in the test.
+
+unittest3.c
+function tested: supplyCount
+Results:
+	Coverage: 95% of 20 lines
+
+		I would again extend the input values to cause the test to faile once on a value which could
+	only cause a failure condition.
+
+unittest4.c
+function tested: handCard
+Results:
+	Coverage: 95% of 20 lines
+
+		I check to make sure the value returned by the function matches the stored value inside of the 
+	gameState struct.  I had no failures.  
+		If more tests were needed we could ensure the values do not match and cause a fail condition.  
+	Which would drive up the coverage.
+
+cardtest1.c
+card tested: smithy
+Results:
+	Coverage: 95% of 20 lines
+
+		It would be possible to incrase the amount of cards in the hand at the start of the test over the max hand limit size.
+	This should caue an overflow and a fail condition.
+
+cardtest2.c
+card tested: adventurer
+Results:
+	Coverage: 90.48% of 42 lines
+
+		Different coins could be added in the hand and the deck to test each individual branch of the if statement.
+
+cardtest3.c
+card tested: gardens
+Results:
+	Coverage: 90.91% 11 lines
+
+		I could manually break the card to check the test.  The function is simple enough I do not have
+	any further ideas on how to improve the test.
+
+cardtest4.c
+card tested: village
+Results:
+	Coverage: 92.59% 27 lines
+
+		I would change the card position to a higher position in the array.  I would do this more often in aloop.
+	I would do this only after the seeding of the deck to acheive a more random distribution of the card types in the deck.
