@@ -1,0 +1,31 @@
+Unit Test 1 -- Update coins
+--
+No bugs found; however, the counter will overflow.
+
+Unit Test 2 -- Get cost of card
+--
+No bugs found. 
+
+Unit Test 3 -- Discard card
+--
+Segmentation fault. Program should restrict what ranges should be discarded.
+
+Unit Test 4 -- Deck count
+--
+Segmentation fault. Program should restrict what ranges that should be counted.
+
+Card Test 1 Smithy
+--
+Number of cards in play is one less than it should be.
+
+Card Test 2 Adventurer
+-- 
+Number of cards is one more than it should be.
+
+Card Test 3 Village
+--
+No bugs found.
+
+Card Test 4 Great Hall
+--
+No bugs found.

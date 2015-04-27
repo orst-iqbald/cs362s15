@@ -1,0 +1,46 @@
+Ian Taylor
+04/26/2015
+CS 362 Software Engr 2
+
+-- COVEREAGE ANALYSIS --
+
+Basic States from gcov: 
+File 'dominion.c'
+Lines executed:33.90% of 649
+Branches executed:34.05% of 417
+Taken at least once:26.38% of 417
+
+Based on the above, it is highly likely that I am misusing gcov -- as I developed my tests, I sometimes had a much higher percentage of coverage. Having recompiled and re-run my tests, my coverage is almost 10% lower than what I expected. This does not seem possible, considering I introduced more tests. However, I will briefly analyze what I can:
+
+unittest1: updateCoins()
+    function updateCoins called 38 returned 100% blocks executed 100%
+    Was able to use some random generation to run a few extra tests
+    
+unittest2: drawCard()
+    function drawCard called 182 returned 100% blocks executed 91%
+    did not run any of the DEBUG if statements. 
+    
+unittest3: isGameOver()
+    function isGameOver called 6 returned 100% blocks executed 100%
+    only two major testing branches make it possibly to easily test each branch: province cards at 0, or supply of three other cards at 0. 
+
+unittest4: scoreFore()
+    function scoreFor called 16 returned 100% blocks executed 70%
+    this function contains three loops with numerous inner if statements. as a result, my coverage was lower. using random testing, I could greatly increase the number of tests. however, my tests did reveal a bug that I had not expected to find, namely that the score tally-loop for the player's deck iterates through the discard pile instead of through the deck. 
+    
+cardtest1: smithyCard()
+    function smithyCard called 4 returned 100% blocks executed 100%
+    linear code makes for easy checking of basic conditions. was able to reveal bug by testing conditions for player 1 and player 2.
+    
+cardtest2: villageCard()
+    function villageCard called 4 returned 100% blocks executed 100%
+    
+cardtest3: great_hallCard()
+    function great_hallCard called 4 returned 100% blocks executed 100%
+    
+    As with the village and smithy card, this card has a linear, non-branching code. easily found bugs in terms of the discrepencies of number of cards/actions vs the expectation. 
+    
+    
+cardtest4: adventurerCard()
+    function adventurerCard called 4 returned 100% blocks executed 73%
+    I had a lot of difficulty with this card -- I found myself unsure of how to invoke the function I created (not a good sign). I will have to review and possibly refactor this function so that I can appropriately write tests for it. 
