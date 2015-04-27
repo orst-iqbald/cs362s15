@@ -9,7 +9,7 @@
 
 char inputChar()
 {
-	//ASCII: SPACE=32, ()=40 41, []=91 93, {}=123 125, a=97, x=120
+    //ASCII: SPACE=32, ()=40 41, []=91 93, {}=123 125, a=97, x=120
     char ch = rand()%(126-32)+32;	
     return ch;
 }
