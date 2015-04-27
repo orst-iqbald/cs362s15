@@ -1,6 +1,6 @@
 /*
 Darnel Clayton
-unittest2.c
+unittest3.c
 Testing getCost() function from Dominion.c
 Referenced testUpdateCoins.c example.
 CS 362
