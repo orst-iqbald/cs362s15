@@ -1,0 +1,47 @@
+Rory Bresnahan
+bresnahr@oid.oregonstate.edu
+CS362 bug1.txt
+Assignment 3
+
+----------------------------
+unittest1	isGameOver()
+----------------------------
+No bugs found
+
+-----------------------------
+unittest2	updateCoins()
+-----------------------------
+No bugs found
+
+-------------------------------
+unittest3	fullDeckCount()
+-------------------------------
+No bugs found
+
+-------------------------
+unittest4	shuffle()
+-------------------------
+No bugs found
+
+---------------------------
+cardtest1	smithy card
+---------------------------
+bug found- hand count was not inreased properly after smithy card is played for player 1
+bug found- hand count was not inreased properly after smithy card is played for player 2
+bug found- smithy card was not discarded properly after being played for player 2, it was not in correct playCards position 
+
+-------------------------------
+cardtest2	adventurer card
+-------------------------------
+no bugs found
+
+----------------------------
+cardtest3	village card
+----------------------------
+no bugs found
+
+---------------------------------
+cardtest4	council room card
+---------------------------------
+bug found- extra card was added to current player after council room card was played (handCount was off by 1)
+bug found- player 2 did not recieve an extra card after council card was called by player 1

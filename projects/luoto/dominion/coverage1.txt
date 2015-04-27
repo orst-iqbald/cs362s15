@@ -1,0 +1,116 @@
+Notes
+==========================================================================
+1. gcov results were taken from indiviual runs.
+2. verbal description referenced the cummulative gcov run of all tests listed below.
+
+
+unittest1.c:
+int drawCard(int player, struct gameState *state)
+==========================================================================
+File 'dominion.c'
+Lines executed:15.63% of 576
+Branches executed:15.83% of 417
+Taken at least once:12.95% of 417
+Calls executed:7.22% of 97
+dominion.c:creating 'dominion.c.gcov'
+
+This function was called 63 times and 36% of the blocks were executed.
+This suggests that more work could and should be done here, specifically testing when the deck is empty. This could potentially increase the statement coverage of this test for this function to 100%.
+
+
+unittest2.c:
+int isGameOver(struct gameState *state)
+==========================================================================
+File 'dominion.c'
+Lines executed:17.19% of 576
+Branches executed:17.75% of 417
+Taken at least once:14.63% of 417
+Calls executed:7.22% of 97
+dominion.c:creating 'dominion.c.gcov'
+
+
+This function was called 8 times and 91% of the blocks were executed, which is pretty good. To improve coverage, we need to test this function when supplyCount[province] == 0 (when there are no more province cards on the field).
+
+
+unittest3.c:
+int shuffle(int player, struct gameState *state)
+==========================================================================
+File 'dominion.c'
+Lines executed:15.80% of 576
+Branches executed:15.83% of 417
+Taken at least once:13.19% of 417
+Calls executed:7.22% of 97
+dominion.c:creating 'dominion.c.gcov'
+
+This function was called 17 times and 93% of the blocks were executed. To achieve 100% statement coverage, we need to test for when the deck is empty.
+
+
+unittest4.c:
+int buyCard(int supplyPos, struct gameState *state)
+==========================================================================
+File 'dominion.c'
+Lines executed:20.31% of 576
+Branches executed:25.42% of 417
+Taken at least once:14.87% of 417
+Calls executed:12.37% of 97
+dominion.c:creating 'dominion.c.gcov'
+
+
+This function was called 2 times and 76% of the blocks were executed. We could have gotten better coverage here if we tested for when supply count of the desired card is zero.
+
+
+cardtest1.c:
+int smithyCard(int handPos, int currentPlayer, struct gameState *state)
+==========================================================================
+File 'dominion.c'
+Lines executed:18.40% of 576
+Branches executed:17.75% of 417
+Taken at least once:14.15% of 417
+Calls executed:9.28% of 97
+dominion.c:creating 'dominion.c.gcov'
+
+This function was called 1 time and 100% of the blocks were executed. This tells us that we got everything we needed from this function, so it was up to the unit test to make sure that the post and pre conditions were as expected.
+
+
+cardtest2.c:
+int adventurerCard(int currentPlayer, struct gameState *state)
+==========================================================================
+File 'dominion.c'
+Lines executed:18.40% of 576
+Branches executed:18.71% of 417
+Taken at least once:15.11% of 417
+Calls executed:8.25% of 97
+dominion.c:creating 'dominion.c.gcov'
+
+This function was called 1 time and 93% of the blocks were executed. It looks like that the only thing that was not covered was for when the deck is empty.
+
+
+cardtest3.c:
+int villageCard(int handPos, int currentPlayer, struct gameState *state)
+==========================================================================
+File 'dominion.c'
+Lines executed:18.58% of 576
+Branches executed:17.27% of 417
+Taken at least once:13.67% of 417
+Calls executed:10.31% of 97
+dominion.c:creating 'dominion.c.gcov'
+
+This function was called 1 time and 100% of the blocks were executed. This tells us that we got everything we needed from this function, so it was up to the unit test to make sure that the post and pre conditions were as expected.
+
+
+cardtest4.c:
+int great_hallCard(int handPos, int currentPlayer, struct gameState *state)
+==========================================================================
+File 'dominion.c'
+Lines executed:18.40% of 576
+Branches executed:17.27% of 417
+Taken at least once:13.67% of 417
+Calls executed:10.31% of 97
+dominion.c:creating 'dominion.c.gcov'
+
+This function was called 1 time and 100% of the blocks were executed. This tells us that we got everything we needed from this function, so it was up to the unit test to make sure that the post and pre conditions were as expected.
+
+
+Reflection
+==========================================================================
+It looks like we our coverage would have increased significantly for these functions if we tested for when the deck was emtpy.

@@ -1,0 +1,71 @@
+Cards Refactored: Smithy, Adventurer, Council Room, Great Hall, Outpost
+
+Smithy Refactor:
+    Moved code to playSmithy() function.
+    playSmithy() function:
+        Input:
+            int currentPlayer - the currentPlayer's turn
+            int handPos - the position of the card in the player's hand
+            struct gameState *state - pointer to gamestate struct
+        Output:
+            always returns 0
+    Refactor details:
+        all necessary variables were passed to the playSmithy function, and the case smithy: was changed to simply return the return value from the playSmithy() function call
+    Bugs introduced:
+        changed the for loop to be i <= 3. Very subtle change but will cause 4 cards to be drawn instead of 3
+
+Adventurer Refactor:
+    Moved code to playAdventurer() function.
+    playAdventurer() function:
+        Input:
+            struct gameState *state - pointer to gamestate
+            int currentPlayer - current player's turn
+        Output:
+            always 0
+        Refactor details:
+            all code was moved in to the playAdventurer() function and the necessary variables were passed. The rest of the variables were created inside the function. The case was changed the same way as smithy, by returning the return value from playAdventurer() call
+        Bugs introduced:
+            added an additional drawntreasure++ after the first while loop, so at most the loop will run twice when it should run until two treasures are drawn
+
+Council Room Refactor:
+    Moved code to playCouncilRoom() function
+    playCouncilRoom() function:
+        Input:
+            struct gameState *state - pointer to gamestate struct
+            int currentPlayer - the currentPlayer's turn
+            int handPos - the position of the card in the player's hand
+        Output:
+            always 0
+        Refactor Details:
+            all necessary variables passed. Case was adjusted to return the call to playCouncilRoom()
+        Bugs introduced:
+            +1 buy completely removed
+
+Great Hall Refactor:
+    Moved code to playGreatHall() function
+    playGreatHall() function:
+        Input:
+            struct gameState *state - pointer to gamestate struct
+            int currentPlayer - the currentPlayer's turn
+            int handPos - the position of the card in the player's hand
+        Output:
+            always 0
+        Refactor details:
+            all necessary variables passed. Case was adjusted to return the call to playCouncilRoom()
+        Bugs introduced:
+            state->numActions++; removed so card does not add an action like it should
+
+
+Outpost Refactor:
+    Moved code to playOutpost() function
+    playOutpost() function:
+        Input:
+            struct gameState *state - pointer to gamestate struct
+            int currentPlayer - the currentPlayer's turn
+            int handPos - the position of the card in the player's hand
+        Output:
+            always 0
+        Refactor details:
+            all necessary variables passed. Case was adjusted to return the call to playOutpost()
+        Bugs introduced:
+            None for this refactor

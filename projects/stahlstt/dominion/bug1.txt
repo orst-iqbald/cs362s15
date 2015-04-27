@@ -1,0 +1,27 @@
+Tina Stahlstedt
+stahlstt@onid.oregonstate.edu
+CS362 - 400 Spring 2015
+Assignment 3
+
+check council room
+Assertion failed: (pre.handCount[pre.whoseTurn] == post->handCount[pre.whoseTurn]), 
+	function testCouncil_Room, file cardtest3.c, line 57.
+expected, as the player drew a card rather than the other players. 
+
+check adventurer
+/bin/sh: line 1: 86511 Segmentation fault: 11 
+from the refactored Adventurer code (commenting out the line that call that 
+cardEffect allows the code to run normally). 
+expected, as the player is drawing an extra card. 
+
+the ultimate failure was less expected, since I was sure the dominion.c code 
+worked last week. Returning the refactored code to the correct state does not
+make the error go away. There is another error in the funtion.
+
+check smithy
+Assertion failed: (pre.handCount[pre.whoseTurn] == post->handCount[pre.whoseTurn]), 
+	function checkSmithy, file cardtest1.c, line 46.
+expected, as the player drew one less card than needed. 
+
+check great_hall
+no errors found. since I haven't introduced any, that's probably good. 
