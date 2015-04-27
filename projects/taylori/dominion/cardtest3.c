@@ -1,6 +1,6 @@
 //  Ian Taylor
 //  CS 362 - Assignment 3
-//  cardtest1.c: villageCard() test
+//  cardtest1.c: great_hall() test
 //
 //
 
@@ -27,15 +27,16 @@ int main(){
     
     struct gameState state;
     
-    printf ("TESTING villageCard():\n");
+    printf ("TESTING great_hallCard():\n");
     
     memset(&state, 23, sizeof(struct gameState));   // clear the game state
     r = initializeGame(numPlayer, k, seed, &state); // initialize a new game
     
-    state.hand[whoseTurn(&state)][0] = village; // player has village card in hand
+    state.hand[whoseTurn(&state)][0] = great_hall; // player has great_hall card in hand
     numCards = state.handCount[whoseTurn(&state)]; // get the current number of cards in player's hand
     numActions = state.numActions; // get the current number of actions
     
+
     // PLAYER 1 TESTS
     // Print hand before test
     printf("\nPreconditions:\n");
@@ -43,31 +44,29 @@ int main(){
     printf("\tHand Count: %d\n", numHandCards(&state));
     printf("\tNumber of Actions: %d\n", state.numActions);
     
-    
-    // Call the Village Card
-    villageCard(&state, whoseTurn(&state), 0);
+    // Call the Great Hall Card
+    great_hallCard(&state, whoseTurn(&state), 0);
     
     printf("\nPostconditions:\n");
     printf("\tCurrent Player: %d\n", whoseTurn(&state));
     printf("\tHand Count: %d\n", numHandCards(&state));
     printf("\tNumber of Actions: %d\n", state.numActions);
     
-    // Player should have 0 more cards in their hand, because they discard the village card and gaine one card.
+    // HandCount Test Results:
     if(state.handCount[whoseTurn(&state)] == numCards) {
-        printf("villageCard() handCount test PASSED:\n");
+        printf("great_hall() handCount test PASSED.\n");
     }
     else {
-        printf("villageCard() handCount test FAILED: incorrect number of cards in player's hand.\n");
+        printf("great_hall() handCount test FAILED: incorrect number of cards in player's hand.\n");
     }
     
-    // Player should have 2 more cards in their available, because they gain 2 from village card
-    if(state.numActions == numActions + 2) {
-        printf("villageCard() numActions test PASSED:\n");
+    // numActions Test Results:
+    if(state.numActions == numActions + 1) {
+        printf("great_hall() numActions test PASSED.\n");
     }
     else {
-        printf("villageCard() numActions test FAILED: incorrect number of actions available to the player.\n");
+        printf("great_hall() numActions test FAILED: incorrect number of actions available to the player.\n");
     }
-    
     
     
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -78,12 +77,10 @@ int main(){
     
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
     
-    
-    state.hand[whoseTurn(&state)][0] = village; // player has village card in hand
+
+    state.hand[whoseTurn(&state)][0] = great_hall; // player has great_hall card in hand
     numCards = state.handCount[whoseTurn(&state)]; // get the current number of cards in player's hand
     numActions = state.numActions; // get the current number of actions
-
-    
     
     // PLAYER 2 TESTS
     // Print hand before test
@@ -92,34 +89,31 @@ int main(){
     printf("\tHand Count: %d\n", numHandCards(&state));
     printf("\tNumber of Actions: %d\n", state.numActions);
     
-    
-    // Call the Village Card
-    villageCard(&state, whoseTurn(&state), 1);
+    // Call the Great Hall Card
+    great_hallCard(&state, whoseTurn(&state), 0);
     
     printf("\nPostconditions:\n");
     printf("\tCurrent Player: %d\n", whoseTurn(&state));
     printf("\tHand Count: %d\n", numHandCards(&state));
     printf("\tNumber of Actions: %d\n", state.numActions);
     
-    
-    // Player should have 0 more cards in their hand, because they discard the village card and gaine one card.
+    // HandCount Test Results:
     if(state.handCount[whoseTurn(&state)] == numCards) {
-        printf("villageCard() handCount test PASSED:\n");
+        printf("great_hall() handCount test PASSED.\n");
     }
     else {
-        printf("villageCard() handCount test FAILED: incorrect number of cards in player's hand.\n");
+        printf("great_hall() handCount test FAILED: incorrect number of cards in player's hand.\n");
     }
     
-    // Player should have 2 more cards in their available, because they gain 2 from village card
-    if(state.numActions == numActions + 2) {
-        printf("villageCard() numActions test PASSED:\n");
+    // numActions Test Results:
+    if(state.numActions == numActions + 1) {
+        printf("great_hall() numActions test PASSED.\n");
     }
     else {
-        printf("villageCard() numActions test FAILED: incorrect number of actions available to the player.\n");
+        printf("great_hall() numActions test FAILED: incorrect number of actions available to the player.\n");
     }
-    
-    
+
+
+
     return 0;
 }
-
-
