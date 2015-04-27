@@ -52,7 +52,7 @@ int main ()
             succ = 0;
         }
     if(succ == 1){
-        printf("TEST SUCCEEDED -- All tests passed.");
+        printf("TEST SUCCEEDED -- All tests passed.\n");
     }
     printf("END TEST\n");
     return 0;
