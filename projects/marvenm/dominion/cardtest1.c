@@ -35,6 +35,8 @@ int main(int argc, char *argv[])
     // Declare variables needed for test
     int r, t;
     int handCount;
+	int topCard;
+	int discardCount;
     int calculatedHandCount;
     int player     = 0;
     int coin_bonus = 0;
@@ -81,6 +83,19 @@ int main(int argc, char *argv[])
 			// printf statement inserted because assert causing program exit
 			printf("cardtest1: cardtest1.c:78 main: G.handCount[player] != calculatedHandCount.\n");
 		}
+		
+#if (NOISY_TEST == 1)
+        printf("Test that Smithy card was discarded properly.\n");
+#endif
+        // If smithy card was discarded it would be on top of played card pile
+		discardCount = G.playedCardCount;
+        topCard = G.playedCards[discardCount - 1];
+        
+#if (NOISY_TEST == 1)
+        printf("Player %d top discard = %d, expected %d.\n", 
+                player, topCard, smithy);
+#endif
+        assert(topCard == smithy);
     }
     
     printf("All tests passed!\n");
