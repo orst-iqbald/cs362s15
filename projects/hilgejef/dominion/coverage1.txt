@@ -1,0 +1,44 @@
+unittest1.c:
+
+Lines executed:16.79% of 560
+Branches executed:15.83% of 417
+Taken at least once:13.19% of 417
+Calls executed:7.37% of 95
+
+unittest2.c:
+
+Lines executed:17.14% of 560
+Branches executed:15.83% of 417
+Taken at least once:13.19% of 417
+Calls executed:7.37% of 95
+
+unittest3.c:
+
+Lines executed:17.50% of 560
+Branches executed:15.83% of 417
+Taken at least once:13.19% of 417
+Calls executed:7.37% of 95
+
+unittest4.c:
+
+Lines executed:18.04% of 560
+Branches executed:15.83% of 417
+Taken at least once:13.19% of 417
+Calls executed:8.42% of 95
+
+Unit tests all currently have low branch and line coverage rates, and
+could be improved.
+
+cardtest3.c:
+Lines executed:87.50% of 16
+Branches executed:100.00% of 4
+Taken at least once:50.00% of 4
+Calls executed:71.43% of 7
+
+cardtest4.c:
+Lines executed:87.50% of 16
+Branches executed:100.00% of 4
+Taken at least once:50.00% of 4
+Calls executed:71.43% of 7
+
+Card tests have solid branch and line coverage but also cover less area.
