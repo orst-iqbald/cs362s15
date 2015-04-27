@@ -1,6 +1,6 @@
 //  Ian Taylor
 //  CS 362 - Assignment 3
-//  cardtest1.c: villageCard() test
+//  cardtest2.c: villageCard() test
 //
 //
 
@@ -78,6 +78,11 @@ int main(){
     
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
     
+    
+    state.hand[whoseTurn(&state)][0] = village; // player has village card in hand
+    numCards = state.handCount[whoseTurn(&state)]; // get the current number of cards in player's hand
+    numActions = state.numActions; // get the current number of actions
+
     
     
     // PLAYER 2 TESTS

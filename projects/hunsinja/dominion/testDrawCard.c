@@ -9,10 +9,10 @@
 #define NOISY_TEST 1
 
 int checkDrawCard(int p, struct gameState *post) {
+	int r;
   struct gameState pre;
   memcpy (&pre, post, sizeof(struct gameState));
 
-  int r;
   //  printf ("drawCard PRE: p %d HC %d DeC %d DiC %d\n",
   //	  p, pre.handCount[p], pre.deckCount[p], pre.discardCount[p]);
     

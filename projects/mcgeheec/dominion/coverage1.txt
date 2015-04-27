@@ -1,0 +1,48 @@
+Coverage of Tests
+
+unittest1:
+	This tested the buyCard() function. Statement coverage for this function was 100% (not
+	counting the print statements for when debugging is turned on). The function was called
+	14 times. 11 times it passed through to the end of the function and the other 3 times,
+	it returned early because a precondition was not met, as was expected. 100% branch 
+	coverage was also achieved for this function.
+	
+unittest2:
+	Testing the scoreFor() function. While this test did achieve 100% line coverage, that 
+	number doesn't show that the function was covered well because there are many one-line
+	if statements. Branch coverage for this test was 84%. I believe that if this function
+	was not buggy, the test harness would have achieved 100% branch coverage.
+	
+unittest3:
+	For the discardCard() function. Branch coverage was a mere 63%. The function was only
+	called 2 times, so if I were to write tests for this again in the future, I would because
+	sure to call the function more times. I believe that it is impossible to achieve 100% 
+	branch coverage because of unreachable code. One if statement checks if the card being
+	discarded is the last one in the hand and then the next if statement checks if it is the
+	only one in the hand. If it was the only one in the hand, then it would also be the last
+	one in the hand, so the first branch would always be executed.
+	
+unittest4:
+	This tested the gainCard() function. Statement coverage and branch coverage was 100% for
+	this test. There were a few lines that only were executed once, so a better test suite
+	would make sure that these lines are covered with greater frequency.
+	
+cardtest1:
+	For the smithy card. I had 100% branch and statement coverage. This is a pretty simple
+	function, so it didn't take much.
+	
+cardtest2:
+	Tested the adventurer card. This test only got 67% branch coverage. In my test, I only
+	had copper in my deck, so because of that I missed some branches. I also didn't run the
+	test on an empty deck, but I think that branch can be deleted because the drawCard()
+	function checks if the deck is empty. It turns out that my tests drew treasures right
+	away so I didn't test the functionality of the part that discarded the cards that weren't
+	treasure.
+	
+cardtest3:
+	This tested the council room card. It reached 100% branch and statement coverage. I could 
+	have tested it more times since I only played the card once.
+	
+cardtest4:
+	For the village card. This one also had 100% branch and statement coverage although it'scoreFor
+	pretty much impossible not to get full coverage.

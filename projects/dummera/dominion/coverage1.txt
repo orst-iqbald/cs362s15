@@ -1,0 +1,3 @@
+When the gcov file is run, only 9.67% of lines were executed, 5.76% of all the possible branches were exectued, 4.56% of branches were taken at least once, and 3.16% of calls were executed.  These numbers seem extremely low to me so I'm sure that the tests could be drastically improved.
+Functions that were not covered: newGame, kingdomCards, initializeGame, playCard, buyCard, numHandCards, handCard, supplyCound, fullDeckCount, whoseTurn, endTurn, isGameOver, scoreFor, getWinners, drawCard, getCost, cardEffect, discardCard, gainCard, updateCoins, smithyCard, adventureCard, villageCard.  
+The implication here is that the majority of dominion.c was not covered, and in the future the coverage should be greatly improved during testing.

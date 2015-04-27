@@ -1314,8 +1314,8 @@ int great_hallCard(struct gameState *state, int currentPlayer, int handPos){
     //+1 Card
     drawCard(currentPlayer, state);
     
-    //+2 Actions
-    state->numActions + 2;
+    //+1 Actions
+    
     
     //discard card from hand
     discardCard(handPos, currentPlayer, state, 0);

@@ -25,7 +25,7 @@ int main() {
     // Assign the hand to village and give variables
     G->hand[0][0] = smithy;
     int hand = 0;
-    int actions = 0;
+   // int actions = 0;
 
     // When playing a smithy card, discard 1, add 3 card
     //start by storing original hand
@@ -35,7 +35,7 @@ int main() {
   	actionSmithy(0,0, G);
 
   	// compare two hands after being played
-}	//verify number of cards in hand
+	//verify number of cards in hand
 	// gained 3 but discarded one, should = 2 
 	if(G->handCount[0] == hand + 2)
 	{
@@ -46,4 +46,6 @@ int main() {
         printf("Smithy(): failed for hand count\n");
 
 	}
+
 	return 0; 
+}

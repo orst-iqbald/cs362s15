@@ -1,0 +1,21 @@
+/* Randomize game state */
+   /* Randomize Players? */ more than 1?
+   /* Phase */
+   /* Hand + hand count */
+   /* Num actions */ more than 1?
+  
+/* Randomize play card */
+    /* Handpos */
+    /* Choice1 */
+    /* Choice2 */
+    /* choice3 */
+
+/* Set execpt to what should be expected */
+    /* If Handpos == treasure || kindomcard */
+        exepct -1
+
+if phase != 0
+    exepct -1
+
+if numactions == 0
+    exeect -1
