@@ -3,9 +3,9 @@ Unit Tests
 
 unittest1.c:
 ------------
-Num fails 0 of 2000 tests
+Num fails 2 of 10000 tests
 File 'tests/unitTests/unittest1.c'
-Lines executed:95.65% of 23
+Lines executed:100.00% of 23
 tests/unitTests/unittest1.c:creating 'unittest1.c.gcov'
 
 
