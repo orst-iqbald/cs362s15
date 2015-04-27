@@ -30,7 +30,27 @@
 #include <assert.h>
 #include "rngs.h"
 
+#include <limits.h>
+
 int main()
 {
     
+    int seed = 500;
+    int player = 2;
+    struct gameState state;
+    int k[10] = {adventurer, council_room, feast, gardens, mine,
+        remodel, smithy, village, baron, great_hall};
+    
+    initializeGame(player, k, seed, &state);
+    
+
+
+    for (int i = 0; i <= INT_MAX; ++i) {
+        if(!updateCoins(player, &state, i)){
+            printf("Test fail to add coins!\n");
+            break;;
+        }
+        printf("Passed all tests to add coins!\n");
+
+    }
 }
