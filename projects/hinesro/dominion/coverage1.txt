@@ -1,7 +1,38 @@
-(40 points) Use gcov to measure code coverage for all of these tests. 
-Report your findings by discussing your tests' coverages (statement, 
-branch, boundary, etc.), and describe their implications for the tests 
-in a file called coverage1.txt, also checked in to your dominion 
-directory. I want you to look at the dominion code coverage and find 
-out what parts of your code are not covered so that in future you can 
-improve your test suite.
+After running all tests, gcov showed 32.12% statement coverage for the eight 
+unit tests out of the entire dominion project. 
+
+
+## Card test 1 -- Smithy ##
+Full statement coverage.
+
+
+## Card test 2 -- Adventurer ##
+Nearly full statement coverage. There is a scenario my test was unable to cover,
+where the player's deck is empty. This is highly unlikely in normal gameplay and
+was difficult behavior to produce. 
+
+
+## Card test 3 -- Village ##
+Full statement coverage.
+
+
+## Card test 4 -- Cutpurse ##
+Nearly full statement coverage. 
+
+
+## Unit test 1 -- getCost ##
+Full path coverage by checking for out of range card values.
+
+
+## Unit test 2 -- isGameOver ##
+Full path coverage. 
+
+
+## Unit test 3 -- initializeGame ##
+Incomplete statement coverage due to several impossible (or improbable) branch 
+outcomes in dominion.c. 
+
+
+## Unit test 4 -- handCard ##
+Complete statement coverage, only 2 statements.
+
