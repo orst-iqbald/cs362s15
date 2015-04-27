@@ -48,7 +48,6 @@ int main() {
     }
 
 
-}
 	//verify number of cards in hand
 	// should be equal since discard and gained new card both = 0
 	if(G->handCount[0] == hand)
@@ -61,3 +60,4 @@ int main() {
 
 	}
 	return 0; 
+}
