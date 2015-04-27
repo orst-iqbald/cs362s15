@@ -14,7 +14,7 @@ void loadDeck(struct gameState* state) {
     state->deckCount[player] = 5;
 }
 
-//tests cardSmithy()
+//tests cardVillage()
 int main() {
     int player = 0;
     struct gameState* state = malloc(sizeof(struct gameState));
@@ -23,15 +23,17 @@ int main() {
     int handpos = 0;
     int res;      //return value of function
     
-    //play smithy card when it's the only card in the player's hand
-    state->hand[player][0] = smithy;
+    //play village card when it's the only card in the player's hand
+    state->hand[player][0] = village;
     state->handCount[player] = 1;
+    state->numActions = 1;
     loadDeck(state);
-    res = cardSmithy(state, handpos);
+    res = cardVillage(state, handpos);
     assert(res == 0);
-    assert(state->deckCount[player] == 2);
+    assert(state->deckCount[player] == 4);
     assert(state->discardCount[player] == 1);
-    assert(state->handCount[player] == 3);
+    assert(state->handCount[player] == 1);
+    assert(state->numActions == 3);
     
     return 0;
 }
