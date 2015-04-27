@@ -1,0 +1,4 @@
+discardCard has superfluos branch. line 1249 will never be executed because it's case will be caught by 1241 first.
+ 
+adventurer doesn't discard itself.
+

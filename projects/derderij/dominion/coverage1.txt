@@ -1,0 +1,118 @@
+/***********************
+* Author: Jon Derderian
+* ONID ID: derderij
+* Class: CS 362
+* Assignment: Assignment 3
+* Filename: coverage1.txt
+* Description: Code Coverage for Unit and Card tests
+*************************/
+
+
+****************
+unittest1: shuffle()
+
+File 'dominion.c'
+Lines executed:24.78% of 577
+Branches executed:22.54% of 417
+Taken at least once:18.94% of 417
+Calls executed:14.74% of 95
+dominion.c:creating 'dominion.c.gcov'
+	
+	-Was called 13 times, 92.86% lines of coverage, and it had 100% branch coverage.
+	-We had about 93% coverage, which is pretty good and thorough. 
+
+****************
+unittest2: isGameOver()
+
+File 'dominion.c'
+Lines executed:26.52% of 577
+Branches executed:24.46% of 417
+Taken at least once:20.86% of 417
+Calls executed:14.74% of 95
+dominion.c:creating 'dominion.c.gcov'
+
+	-Was called 27 times and had 100% coverage
+	-We had complete line coverage here, so it's nice and thorough and gets what we want 
+	to be covered from this function.
+
+****************
+unittest3: kingdomCards()
+
+File 'dominion.c'
+Lines executed:28.77% of 577
+Branches executed:24.46% of 417
+Taken at least once:20.86% of 417
+Calls executed:14.74% of 95
+dominion.c:creating 'dominion.c.gcov'
+
+	-Was called 6 times, 85.71% lines of coverage, and it had 100% branch coverage.
+	-This function had the lowest amount of line coverage and calls, though it had 100% branch coverage.
+	It wasn't a very complex function to test, so I thought it was a pretty thorough test.
+
+****************
+unittest4: buyCard()
+
+File 'dominion.c'
+Lines executed:34.14% of 577
+Branches executed:34.05% of 417
+Taken at least once:23.26% of 417
+Calls executed:20.00% of 95
+dominion.c:creating 'dominion.c.gcov'
+
+	--Was called 28 times and had 100% coverage
+	-Like isGameOver(), we had complete line coverage, so we had a good and thorough coverage test.
+
+****************
+cardtest1: smithy
+
+Lines executed:34.14% of 577
+Branches executed:34.05% of 417
+Taken at least once:23.26% of 417
+Calls executed:20.00% of 95
+dominion.c:creating 'dominion.c.gcov'
+
+	-Was called 12 times, 95.65% lines of coverage, and it had 100% branch coverage.
+	-We had pretty thorough coverage here, with just over 95% of lines covered along with
+	100% branch coverage.
+
+****************
+cardtest2: adventurer
+
+File 'dominion.c'
+Lines executed:34.14% of 577
+Branches executed:34.05% of 417
+Taken at least once:23.26% of 417
+Calls executed:20.00% of 95
+dominion.c:creating 'dominion.c.gcov'
+
+	-Was called 14 times, 90.63% lines of coverage, and it had 100% branch coverage.
+	-Coverage was once again pretty thorough with around 90% line coverage and 100% branch
+	coverage.
+
+
+****************
+cardtest3: Cutpurse
+
+Lines executed:34.14% of 577
+Branches executed:34.05% of 417
+Taken at least once:23.26% of 417
+Calls executed:20.00% of 95
+dominion.c:creating 'dominion.c.gcov'
+
+	-Was called 10 times, 94.12% lines of coverage, and it had 100% branch coverage.
+	-Coverage was here, once again pretty thorough, with around 94% line coverage in Cutpurse
+	and 100% branch	coverage.
+
+****************
+cardtest4: Village
+
+File 'dominion.c'
+Lines executed:34.14% of 577
+Branches executed:34.05% of 417
+Taken at least once:23.26% of 417
+Calls executed:20.00% of 95
+dominion.c:creating 'dominion.c.gcov'
+
+	-Was called 11 times, 86.96% lines of coverage, and it had 100% branch coverage.
+	-This was the least covered of the card functions with just under 87% line coverage,
+	but it still had 100% branch coverage, so still pretty thorough.
