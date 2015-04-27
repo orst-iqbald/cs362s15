@@ -25,6 +25,7 @@ int testScoreFor(int player, struct gameState *after)
   int score = 0;
   struct gameState before;
   memcpy(&before, after, sizeof(struct gameState));
+  outCome = scoreFor(player, after);
 
   //this is the score from hand
   for (i = 0; i < before.handCount[player]; i++)
@@ -118,11 +119,14 @@ int testScoreFor(int player, struct gameState *after)
       score = score + ( fullDeckCount(player, 0, &before) / 10 );
     }
   }
-  //total score for player
-  outCome = scoreFor(player, after);
-  assert(outCome == score);
+  
+  if (outCome != score)
+  {
+    printf("scoreFor() Failed Test\n");
+    printf("scoreFor() Not Calculating Score Properly!\n");
+  }
+  
   assert(memcmp(&before, after, sizeof(struct gameState)) == 0);
-
   return outCome;
 }
 
@@ -131,6 +135,7 @@ int main()
   int i; 
   int n; 
   int j;
+  int gameIterations = 2000; //change for the number of test games
   struct gameState testGame;
 
   //display testing message for unittest1
@@ -143,7 +148,7 @@ int main()
   PutSeed(3);
 
   //testing for 2000 iterations
-  for(n = 0; n < 2000; n++)
+  for(n = 0; n < gameIterations; n++)
   {
     for(i = 0; i < sizeof(struct gameState); i++)
     {
