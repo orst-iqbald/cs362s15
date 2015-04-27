@@ -1,8 +1,9 @@
 #include <assert.h>
+#include <stdlib.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
 
-void loadDeck(int player) {
+void loadDeck(struct gameState* state, int player) {
     int i;
     for (i = 0; i < 5; ++i) {
         state->deck[player][i] = adventurer;
@@ -17,7 +18,6 @@ void checkState(struct gameState* state) {
     assert(state->coins == 0);
     assert(state->numBuys == 1);
     assert(state->playedCardCount == 0);
-    assert(state->handCount[state->whoseTurn] == 0);
 }
 
 //tests endTurn()
@@ -32,21 +32,23 @@ int main() {
     //end the first player's turn, who has no cards in their hand
     state->discardCount[player1] = 0;
     state->handCount[player1] = 0;
-    loadDeck(player2);
+    loadDeck(state, player2);
     res = endTurn(state);
     assert(res == 0);
     checkState(state);
-    assert(state->whoseTurn == player2);
+    assert(state->handCount[player1] == 0);
+		assert(state->whoseTurn == player2);
     assert(state->handCount[player2] == 5);
     
     //end the second player's turn, who has 1 card in their hand
     state->discardCount[player2] = 0;
     state->hand[player2][0] = mine;
     state->handCount[player2] = 1;
-    loadDeck(player1);
+    loadDeck(state, player1);
     res = endTurn(state);
     assert(res == 0);
     checkState(state);
+		assert(state->handCount[player2] == 0);
     assert(state->whoseTurn == player1);
     assert(state->handCount[player1] == 5);
     
@@ -55,10 +57,11 @@ int main() {
     state->hand[player1][0] = village;
     state->hand[player1][1] = remodel;
     state->handCount[player1] = 2;
-    loadDeck(player2);
+    loadDeck(state, player2);
     res = endTurn(state);
     assert(res == 0);
     checkState(state);
+		assert(state->handCount[player1] == 0);
     assert(state->whoseTurn == player2);
     assert(state->handCount[player2] == 5);
     

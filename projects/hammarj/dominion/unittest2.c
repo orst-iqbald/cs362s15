@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <stdlib.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
 
@@ -64,7 +65,7 @@ int main() {
     //gain card to hand
     card = adventurer;
     state->supplyCount[card] = 2;
-    res = gainCard(card, state, toDeck, player);
+    res = gainCard(card, state, toHand, player);
     assert(res == 0);
     assert(state->supplyCount[card] == 1);
     assert(state->discardCount[player] == 2);

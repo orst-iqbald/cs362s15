@@ -1,0 +1,116 @@
+        -:    0:Source:tests/unitTests/cardTest3.c
+        -:    0:Graph:cardTest3.gcno
+        -:    0:Data:cardTest3.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include <string.h>
+        -:    2:#include <stdio.h>
+        -:    3:#include <assert.h>
+        -:    4:#include <math.h>
+        -:    5:
+        -:    6:#include "rngs.h"
+        -:    7:#include "dominion.h"
+        -:    8:#include "dominion_helpers.h"
+        -:    9:
+        -:   10:
+        1:   11:int main (int argc, char **argv) {
+        -:   12:
+        1:   13:  int NUM_TESTS = 100;
+        1:   14:  int numDraws = 0;
+        -:   15:  int j, i, n, p, r;
+        1:   16:  int handPos, fails = 0;
+        -:   17:
+        -:   18:  struct gameState G;
+        -:   19:  struct gameState post;
+        1:   20:  SelectStream(2);
+        1:   21:  PutSeed(3);
+        -:   22:
+      101:   23:    for (r = 0; r < NUM_TESTS; r++) {
+  2630100:   24:        for (i = 0; i < sizeof(struct gameState); i++) {
+  2630000:   25:          ((char *) &G)[i] = floor(Random() * 256);
+        -:   26:        }
+        -:   27://        printf("Council Room test %d of %d \n", r, NUM_TESTS);
+        -:   28:
+      100:   29:        G.numPlayers = MAX_PLAYERS;
+      100:   30:        G.numBuys = floor(Random() * 15);
+      100:   31:        G.playedCardCount = floor(Random() * 20);
+        -:   32:
+        -:   33:        /* Randomly assign Counts to each player */
+      600:   34:        for(n = 0; n <= G.numPlayers; n++){
+      500:   35:            G.handCount[n] = floor(Random() * MAX_HAND);
+      500:   36:            G.deckCount[n] = floor(Random() * MAX_DECK);
+      500:   37:            G.discardCount[n] = floor(Random() * MAX_DECK);
+        -:   38:
+        -:   39:            /*
+        -:   40:            printf("\tPlayer %d HandCount = %d\n", n, G.handCount[n]);
+        -:   41:            printf("\t\t DiscardCount= %d\n", G.discardCount[n]);
+        -:   42:            printf("\t\t DeckCount= %d\n\n", G.deckCount[n]);
+        -:   43:            */
+        -:   44:
+        -:   45:            /* Randomly Assign Cards to each player */
+   100826:   46:            for (i = 0; i < G.handCount[n]; i++){
+   100326:   47:                G.hand[n][i] = floor(Random() * 26);
+        -:   48:            }
+   126671:   49:            for (i = 0; i < G.discardCount[p]; i++){
+   126171:   50:                G.discard[n][i] = floor(Random() * 26);
+        -:   51:            }
+    60969:   52:            for (i = 0; i < G.discardCount[p]; i++){
+    60469:   53:                G.deck[n][i] = floor(Random() * 26);
+        -:   54:            }
+        -:   55:            
+        -:   56:        }
+        -:   57:
+        -:   58:        
+        -:   59:
+      100:   60:        handPos = floor(Random() * G.handCount[p]);
+      100:   61:        p = floor(Random() * 4);
+        -:   62:
+        -:   63:        /*
+        -:   64:        printf("\tPlayer        = %d\n", p);
+        -:   65:        printf("\tDeckcount     = %d\n", G.deckCount[p]);
+        -:   66:        printf("\tDiscardCount  = %d\n", G.discardCount[p]);
+        -:   67:        printf("\tHandpos       = %d\n", handPos);
+        -:   68:        printf("\tNumBuys       = %d\n", G.numBuys);
+        -:   69:        */
+        -:   70:
+      100:   71:        memcpy((void *) &post, (void *) &G, sizeof(struct gameState));
+        -:   72:
+        -:   73:
+        -:   74:
+      600:   75:        for(n = 0; n <= G.numPlayers; n++){
+      500:   76:            if(n == p){
+      100:   77:                post.handCount[p] += 4; //added four cards
+        -:   78:            }else{
+      400:   79:                post.handCount[n]++;
+        -:   80:            }
+        -:   81:        }
+      100:   82:        post.numBuys += 1;
+        -:   83:
+      100:   84:        councilRoomEffect(1, handPos, &G);
+        -:   85:        
+        -:   86://        printf("Expected Buys %d, reecived %d\n", post.numBuys, G.numBuys);
+        -:   87:
+      600:   88:        for(n = 0; n <= G.numPlayers; n++){
+      500:   89:            if(post.handCount[n] != G.handCount[n]){
+        -:   90:                //printf("\t\t\tFAILED!\n");
+      279:   91:                fails++;
+        -:   92:            }
+      500:   93:            if(post.numBuys != G.numBuys){
+        -:   94:                //printf("\t\t\tFAILED NUM BUYS!\n");
+    #####:   95:                fails++;
+        -:   96:            }
+        -:   97:        }
+        -:   98:
+        -:   99:        
+        -:  100:
+        -:  101:    } 
+        -:  102:
+        -:  103:
+        1:  104:        printf("%d num of fails out of %d!\n", fails, NUM_TESTS); 
+        -:  105:
+        -:  106:
+        1:  107:    return 0;
+        -:  108:}
+        -:  109:
+        -:  110:
+        -:  111:

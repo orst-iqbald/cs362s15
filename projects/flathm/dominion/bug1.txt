@@ -1,0 +1,38 @@
+/********************************************
+Michael Flath
+CS362
+Assignment2
+
+********************************************/
+
+unittest1.c
+This file tests updateCoins():
+	There seems to be a bug in the way the function counts coins in the hand. 
+	It is possible the 2-d array state.hand[player][i] is not correctly implemented or 
+	possibly the for-loop isn't reaching to the end of the hand.
+	
+unittest2.c
+This file tests getCost():
+	The tests I ran didn't discover any bugs.
+	Tests were ran to check if the cardNumber matched the card, if the correct cost was returned, and if the function
+	detected bad input cardnumbers.
+
+unittest3.c
+This file tests fullDeckCount()
+	There is a bug when placing random cards in the deck and retrieving the specific amount for a particular card. 
+
+
+unittest4.c
+This file tests isGameOver()
+	The function isGameOver() breaks when called a large number of times. 
+	
+cardtest1.c 
+
+cardtest2.c
+
+cardtest3.c 
+
+cardtest4.c 
+
+
+

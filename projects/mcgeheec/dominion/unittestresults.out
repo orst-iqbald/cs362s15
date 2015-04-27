@@ -1,0 +1,88 @@
+unittest1.c:
+TESTING buyCard():
+All tests passed!
+File 'dominion.c'
+Lines executed:48.12% of 586
+Branches executed:54.44% of 417
+Taken at least once:39.81% of 417
+Calls executed:35.00% of 100
+dominion.c:creating 'dominion.c.gcov'
+
+unittest2.c:
+TESTING scoreFor():
+FAILED: score is 1, should be 3
+FAILED: score is 0, should be 3
+FAILED: score is 2, should be 8
+FAILED: score is 58, should be 33
+FAILED: score is 33, should be 23
+FAILED: score is 29, should be 25
+File 'dominion.c'
+Lines executed:48.12% of 586
+Branches executed:54.44% of 417
+Taken at least once:39.81% of 417
+Calls executed:35.00% of 100
+dominion.c:creating 'dominion.c.gcov'
+
+unittest3.c:
+TESTING discardCard():
+All tests passed!
+File 'dominion.c'
+Lines executed:48.12% of 586
+Branches executed:54.44% of 417
+Taken at least once:39.81% of 417
+Calls executed:35.00% of 100
+dominion.c:creating 'dominion.c.gcov'
+
+unittest4.c:
+TESTING gainCard():
+All tests passed!
+File 'dominion.c'
+Lines executed:48.12% of 586
+Branches executed:54.44% of 417
+Taken at least once:39.81% of 417
+Calls executed:35.00% of 100
+dominion.c:creating 'dominion.c.gcov'
+
+cardtest1.c:
+TESTING smithy card:
+FAILED: cards in hand is 4, should be 8
+FAILED: cards in deck is 4, should be 2
+File 'dominion.c'
+Lines executed:48.12% of 586
+Branches executed:54.44% of 417
+Taken at least once:39.81% of 417
+Calls executed:35.00% of 100
+dominion.c:creating 'dominion.c.gcov'
+
+cardtest2.c:
+TESTING adventurer card:
+FAILED:  cards in hand is 8, should be 7
+File 'dominion.c'
+Lines executed:48.12% of 586
+Branches executed:54.44% of 417
+Taken at least once:39.81% of 417
+Calls executed:35.00% of 100
+dominion.c:creating 'dominion.c.gcov'
+
+cardtest3.c:
+TESTING council room card:
+FAILED: player 1 has 1 cards, should have 6
+FAILED: player 2 has 1 cards, should have 6
+FAILED: player 3 has 1 cards, should have 6
+File 'dominion.c'
+Lines executed:48.12% of 586
+Branches executed:54.44% of 417
+Taken at least once:39.81% of 417
+Calls executed:35.00% of 100
+dominion.c:creating 'dominion.c.gcov'
+
+cardtest4.c:
+TESTING village card:
+All tests passed!
+File 'dominion.c'
+Lines executed:48.12% of 586
+Branches executed:54.44% of 417
+Taken at least once:39.81% of 417
+Calls executed:35.00% of 100
+dominion.c:creating 'dominion.c.gcov'
+

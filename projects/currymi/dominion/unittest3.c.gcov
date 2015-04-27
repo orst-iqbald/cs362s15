@@ -1,0 +1,111 @@
+        -:    0:Source:tests/unitTests/unittest3.c
+        -:    0:Graph:unittest3.gcno
+        -:    0:Data:unittest3.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include <string.h>
+        -:    2:#include <stdio.h>
+        -:    3:#include <assert.h>
+        -:    4:#include <math.h>
+        -:    5:
+        -:    6:#include "rngs.h"
+        -:    7:#include "dominion.h"
+        -:    8:#include "dominion_helpers.h"
+        -:    9:
+        -:   10:/* Discard Card Unit Tests */
+        -:   11:
+        1:   12:int main (int argc, char** argv[]) {
+        -:   13:
+        1:   14:  int NUM_TESTS = 2000;
+        -:   15:  int numDraws;
+        -:   16:  
+        -:   17:  /* Check handCount
+        -:   18:   * Check playedCards if trashFlag is not set 
+        -:   19:   * Check lastCard in players hand 
+        -:   20:   */
+        -:   21:        /* Discard Multiple cards during test */
+        -:   22:            /* Either randomly trash or discard them */
+        -:   23:            /* if trashed - playedCardCount not updated */
+        -:   24:            /* if not trashed not updated */
+        -:   25:        
+        -:   26:        /* if trashed */
+        -:   27:            /* deckCount + handCount + playedCards = changed */
+        -:   28:            /* if not trashed -- not changed */
+        -:   29:
+        -:   30:  int j, i, n, p, q, r, s, t;
+        -:   31:  int trash, numCards, handPos;
+        1:   32:  int fails = 0;
+        -:   33:
+        1:   34:  SelectStream(2);
+        1:   35:  PutSeed(3);
+        -:   36:
+        -:   37:  struct gameState G;
+        -:   38:  struct gameState post;
+        -:   39:
+     2001:   40:    for (n = 0; n < NUM_TESTS; n++) {
+ 52602000:   41:        for (i = 0; i < sizeof(struct gameState); i++) {
+ 52600000:   42:          ((char*)&G)[i] = floor(Random() * 256);
+        -:   43:        }
+        -:   44:        //printf("Discard Test %d of %d \n", n, NUM_TESTS);
+        -:   45:
+        -:   46:        /* Randomize GameState stuff */
+     2000:   47:        p = floor(Random() * 4);
+     2000:   48:        G.deckCount[p] = floor(Random() * MAX_DECK);
+     2000:   49:        G.discardCount[p] = floor(Random() * MAX_DECK);
+     2000:   50:        G.playedCardCount = floor(Random() * MAX_DECK);
+     2000:   51:        G.handCount[p] = floor(Random() * MAX_HAND);
+        -:   52:
+        -:   53:        /* Randomize test stuff */
+        -:   54:        //numCards = floor(Random() * 8) + 1;
+     2000:   55:        numCards = 1;
+        -:   56:
+        -:   57:        /* Randomize Hand */
+   506220:   58:        for(j = 0; j < G.handCount[p]; j++){
+   504220:   59:            G.hand[p][j] = floor(Random() * 26);
+        -:   60:        }
+        -:   61:        
+        -:   62:        /*
+        -:   63:        printf("\tPlayer        = %d\n", p);
+        -:   64:        printf("\tDeckcount     = %d\n", G.deckCount[p]);
+        -:   65:        printf("\tDiscardCount  = %d\n", G.discardCount[p]);
+        -:   66:        printf("\tPlayedCardCount = %d\n", G.playedCardCount);
+        -:   67:        printf("\tHandCount     = %d\n", G.handCount[p]);
+        -:   68:        printf("\tNumDiscards   = %d\n", numCards);
+        -:   69:        */
+        -:   70:
+     2000:   71:        memcpy((void *) &post, (void *) &G, sizeof(struct gameState));
+        -:   72:
+        -:   73:
+        -:   74:
+        -:   75:        /* Discard/Trash */
+        -:   76:        //printf("\t\tDiscarding/trashing %d cards\n", numCards);
+     4000:   77:        for(j = 0; j < numCards; j++){
+     2000:   78:            handPos = floor(Random() * G.handCount[p]);
+        -:   79:            //trash = floor(Random() * 2);
+        -:   80:            /*
+        -:   81:            printf("\t\t\tCard = %d", j);
+        -:   82:            printf(" Handpos = %d", handPos);
+        -:   83:            printf(" TrashFlag = %d\t", trash);
+        -:   84:            */
+        -:   85:            
+     2000:   86:            discardCard(handPos, p, &G, 0);
+        -:   87:
+        -:   88:            //printf("Played Card Count %d\n", post.playedCardCount);
+        -:   89:            //printf("Played Card Count %d\n", G.playedCardCount);
+     2000:   90:            if(G.playedCardCount == post.playedCardCount){
+        -:   91:                //printf("\nDiscard Count wrong!\n");   
+        -:   92:                //printf("FAIL!\n");
+    #####:   93:                fails++;
+        -:   94:            }
+        -:   95:            //printf("Test PASSED!\n");
+        -:   96:            
+        -:   97:        }
+        -:   98:
+        -:   99:    }       
+        -:  100:
+        1:  101:    printf("\n %d test of %d failed!", fails, NUM_TESTS);
+        -:  102:
+        1:  103:  return 0;
+        -:  104:}
+        -:  105:
+        -:  106:

@@ -1,0 +1,64 @@
+/***************************************
+Michael Flath
+CS362
+Assignment2
+coverage1.txt
+
+***************************************/
+
+unittest1.c 
+	lines executed: 100 of 57
+	branches executed: 100% of 28
+	
+	updateCoins() is executed 99 times: After setting the initial hand with copper silver and gold cards.
+	Both the assert branch for check number of coins, and handCount were one sided. For the most part, the if statement 
+	shows for both that branch 1 and 3 are executed 100% of the time whereas branch 2 was not executed. Although, this matter is 
+	trivial because we are really concerned with whether the function has failed or not.
+	bonus was not checked or asserted
+	
+	The number of times to test the function updateCoins() could be increased to check for the robustness of the function. This would
+	test whether the system breaks with large amount of data. This is one way to improve this test.
+
+unittest2.c 
+	lines executed: 91.67% of 24
+	branches executed: 100% of 12
+	
+	getCost() was run 1027 times. 27 times covered each card's cost. 1001 times covered calls to random cards.
+	getCost() was run 99 times with false card numbers. Each time 
+		The fail branch from the if statement never executed  because there was no bugs found. 
+	
+
+unittest3.c 
+	lines executed: 98.43% of 127
+	branches executed: 100.00% of 42
+	the fullDeckCount function is executed around 29 times
+		2 for upper and lower boundaries
+		27 for random card input
+	
+	The overall statement coverage is comprehensive. 
+	Each for-loop is executed the proper amount of times and verifies the correct output.
+	
+	The branch coverage is very detailed in the switch statement indicates
+	cards have been added to the deck, hand, and discard piles. This reveals how the switch statement was working and that
+	there is not a similar count in the fullDeckCount function.
+	Branch 27 was taken 0%: this means one of the boundary branches were not covered.
+	
+unittest4.ca
+	lines executed: 96.30% of 27
+	branches executed: 100% of 20
+	
+	isGameOver() is run 1100 times. The first 100 times the branches determine whether the game has ended based on the number of province cards.
+	Once province cards == 0, the game ends, and it ends indeed.
+		-When the function is called within a for loop that iterates 100 times, the output is consistent. On the other hand,
+		when the for-loop runs 1000 times, isGameOver() fails the test, and the oracle prints the fail statement. This reveals that
+		of isGameOver() is not a robust function, and breaks. Or this reveals a possible bug in the function. 
+
+cardtest1.c 
+
+cardtest2.c 
+
+cardtest3.c 
+
+cardtest4.c 
+		
+		

@@ -1,0 +1,65 @@
+        -:    0:Source:unittest2.c
+        -:    0:Graph:unittest2.gcno
+        -:    0:Data:unittest2.gcda
+        -:    0:Runs:2
+        -:    0:Programs:1
+        -:    1:/********************************
+        -:    2: * Unit Test for isGameOver()
+        -:    3: * *****************************/
+        -:    4:
+        -:    5:#include "dominion.h"
+        -:    6:#include "dominion_helpers.h"
+        -:    7:#include <string.h>
+        -:    8:#include <stdio.h>
+        -:    9:#include <assert.h>
+        -:   10:#include "rngs.h"
+        -:   11:
+        2:   12:int main(){
+        -:   13:	int i;
+        -:   14:	struct gameState G;
+        -:   15:	int p, r;
+        2:   16:	int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
+        -:   17:
+        2:   18:	printf("Testing isGameOver...\n");
+        -:   19:
+        2:   20:	r = initializeGame(2,k,1000,&G);
+        -:   21:	//Test with all supplyCounts == 0
+       56:   22:	for (i = 0; i <= 26; i++){
+       54:   23:		G.supplyCount[i] = 0;
+        -:   24:	}
+        2:   25:	p = isGameOver(&G);
+        2:   26:	assert (p == 1);
+        2:   27:	printf("Passed test 1\n");
+        -:   28:
+        -:   29:	//Test that play proceeds under normal circumstances
+       56:   30:	for (i = 0; i <= 26; i++){
+       54:   31:		G.supplyCount[i] = 1;
+        -:   32:	}
+        2:   33:	p = isGameOver(&G);
+        2:   34:	assert(p != 1);
+        2:   35:	printf("Passed test 2!\n");
+        -:   36:
+        -:   37:	//Test for player out of range
+        2:   38:	G.whoseTurn = 3;
+        2:   39:	p = isGameOver(&G);
+        2:   40:	printf("Does not break on out-of-range player (Passed test3)\n");
+        -:   41:
+        -:   42:	//Test for provinces empty
+        2:   43:	G.supplyCount[province] = 0;
+        2:   44:	p = isGameOver(&G);
+        2:   45:	assert (p == 1);
+        2:   46:	printf("Passed test 4!\n");
+        -:   47:
+        -:   48:	//Test for curse cards empty and two other cards
+       56:   49:	for (i = 0; i <= 26; i++){
+       54:   50:		G.supplyCount[i] = 1;
+        -:   51:	}
+        2:   52:	G.supplyCount[curse] = 0;
+        2:   53:	G.supplyCount[adventurer] = 0;
+        2:   54:	G.supplyCount[council_room] = 0;
+        2:   55:	p = isGameOver(&G);
+        2:   56:	assert(p == 1);
+        2:   57:	printf("Passed test 5!\n");
+        -:   58:
+        2:   59:	return 0;
+        -:   60:}

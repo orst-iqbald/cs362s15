@@ -28,3 +28,6 @@ Bug: Returns 1 on success, -1 on failure, but check statement in cardEffect assu
 /***Steward***/
 Moved steward case to its own function doSteward. Passed all necessary args from cardEffect into function call. 
 Made int array of choices to pass into function to cut down on param list size.
+
+4/26/2015:
+doAdventurer: Had to change return value check of drawCard to "< 0" otherwise this func halted.
