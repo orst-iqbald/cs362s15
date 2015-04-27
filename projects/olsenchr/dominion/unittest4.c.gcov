@@ -1,0 +1,54 @@
+        -:    0:Source:unittest4.c
+        -:    0:Graph:unittest4.gcno
+        -:    0:Data:unittest4.gcda
+        -:    0:Runs:2
+        -:    0:Programs:1
+        -:    1:/******************************
+        -:    2: * Unit Test for gainCard()
+        -:    3: *****************************/
+        -:    4:
+        -:    5:#include "dominion.h"
+        -:    6:#include "dominion_helpers.h"
+        -:    7:#include <string.h>
+        -:    8:#include <stdio.h>
+        -:    9:#include <assert.h>
+        -:   10:#include "rngs.h"
+        -:   11:
+        2:   12:int main(){
+        -:   13:	int i;
+        -:   14:	struct gameState G;
+        -:   15:	int p, r;
+        2:   16:	int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
+        2:   17:	r = initializeGame(2, k, 1000, &G);
+        -:   18:
+        2:   19:	printf("Testing gainCrad...\n");
+        -:   20:
+        -:   21:	//assert return val of -1 for empty pile
+        2:   22:	G.supplyCount[1] = 0;
+        2:   23:	p = gainCard(1, &G, 1, 1);
+        2:   24:	assert(p == -1);
+        2:   25:	printf("Passed test 1\n");	
+        -:   26:
+        -:   27:	//Test all three values of toFlag
+        8:   28:	for(i = 0; i < 3; i++) {
+        6:   29:		G.supplyCount[1] = 1;
+        6:   30:		G.handCount[1] = 2;
+        6:   31:		G.discardCount[1] = 2;
+        6:   32:		G.deckCount[1] = 20;
+        6:   33:		p = gainCard(1, &G, i, 1);
+        -:   34:			//Make sure supply decreases
+        6:   35:		assert(G.supplyCount[1] == 0);
+        6:   36:		if(i ==2) {
+        2:   37:			assert (G.handCount[1] == 3);
+        -:   38:		}
+        4:   39:		else if(i == 1) {
+        2:   40:			assert (G.deckCount[1] = 21);	
+        -:   41:		}
+        -:   42:		else { 
+        2:   43:			assert(G.discardCount[1] = 3);
+        -:   44:		}
+        -:   45:	}
+        2:   46:	printf("Passed test 2\n");
+        -:   47:		
+        2:   48:	return 0;	
+        -:   49:}
