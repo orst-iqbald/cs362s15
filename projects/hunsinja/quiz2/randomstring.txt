@@ -1,0 +1,13 @@
+Jack Hunsinger
+CS 362 Quiz 2
+
+inputChar() returns a random character from the set ('[', '(', '{', ' ', 'a', 'x', '}', ')', ']').
+
+inputString() returns a string consisting of a subset of the set of characters ('r', 'e', 's', 't', '\0').
+
+The testme() function after initialization and entering an endless while loop calls inputChar() and inputString().
+These values are evaluated against a series of if statements. The first nine involve checking the character returned
+by inputChar(), and only advancing a state by one if the character is at the index of the given set of the current
+state (ie if the state is 2, the state will only increment to 3 if the returned character is '{'). After the state
+has reached 9, it is possible for the final if statement to resolve. This waits until the returned string equals
+'reset\0'. At this point, it prints out an error message and exits with the code 200.
