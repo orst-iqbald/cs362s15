@@ -1,6 +1,6 @@
 //  Ian Taylor
 //  CS 362 - Assignment 3
-//  cardtest1.c: villageCard() test
+//  cardtest2.c: villageCard() test
 //
 //
 

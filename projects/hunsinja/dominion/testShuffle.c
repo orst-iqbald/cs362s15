@@ -1,18 +1,20 @@
 #include "dominion.h"
 #include <stdio.h>
 #include <assert.h>
+#include <memory.h>
+#include <stdlib.h>
+#include <search.h>
 
 int compare(const int* a, const int* b);
 
 int main () {
   struct gameState G;
   struct gameState G2;
+  int ret = shuffle(0,&G);
 
   // Initialize G.
 
   memcpy (&G2, &G, sizeof(struct gameState));
-
-  int ret = shuffle(0,&G);
 
   if (G.deckCount[0] > 0) {
     assert (ret != -1);
