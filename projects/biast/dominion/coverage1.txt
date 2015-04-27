@@ -1,0 +1,61 @@
+UNIT TEST 1: discardCard
+
+File 'dominion.c'
+Lines executed:21.73% of 566
+Branches executed:18.80% of 415
+Taken at least once:15.66% of 415
+Calls executed:10.31% of 97
+
+Function 'discardCard'
+Lines executed:92.31% of 13
+Branches executed:100.00% of 6
+Taken at least once:83.33% of 6
+No calls
+
+A fairly thorough test of discardCard. I was able to detect the errors in it. It appears that the only
+line I failed to execute was the one triggered by the conditional checking to see if you have only one
+card in your hand. I do put the function through this circumstance, but it triggered the preceding
+conditional as well, and so it bypassed this else if check.
+
+
+UNIT TEST 2: isGameOver
+
+File 'dominion.c'
+Lines executed:17.49% of 566
+Branches executed:17.83% of 415
+Taken at least once:14.94% of 415
+Calls executed:7.22% of 97
+
+Function 'isGameOver'
+Lines executed:100.00% of 10
+Branches executed:100.00% of 8
+Taken at least once:100.00% of 8
+No calls
+
+I fully put this function through its paces I think.
+
+
+
+UNIT TEST 3: fullDeckCount
+
+
+
+
+UNIT TEST 4: getWinners
+
+
+
+CARD TEST 1: adventurer
+
+
+
+CARD TEST 2: smithy
+
+
+
+CARD TEST 3: great hall
+
+
+
+CARD TEST 4: village
+
