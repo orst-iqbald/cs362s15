@@ -1,0 +1,10 @@
+inputChar()
+
+For this fucntion, I decided to use the ASCII character set between 32 and 125, as that got me all the way up to the '{' character which testme() uses as a state case.
+
+
+inputString()
+
+I initially used a basic char array, intialized as: char reset[] = "reset\0". This worked fine, but since it needed to be returned from the function it was defined in, the compiler issued a warning on its local scope. I decided to switch to the current pointer to char array method instead. Since we need some sort of way to guide the "random" test, I decided to change the chars roughly 1/3 of the time and I also decided to leave the null terminator unmodified.
+
+testme() finds the error when the input string is 'reset' in state 9

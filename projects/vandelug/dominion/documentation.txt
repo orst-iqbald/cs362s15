@@ -1,0 +1,7 @@
+Smithy: this card loops in order to draw three cards and after exiting the loop performs a call to the discard function
+
+Adventurer:this card checks the deck to see if empty in preparation for the action, cycles through player's deck until two treasure cards 	are drawn, finally it discards any non-treasure cards that were drawn during the previous step
+
+discardCard():this card checks the trash flag to verify discard status and adjusts the player's hand and discard pile accordingly by incrementing and decrementing the respective locations
+
+updateCoins(): this card resets the coin state to 0, loops in order to add coins by type (copper, silver, gold) based on the treasure cards in the player's hand

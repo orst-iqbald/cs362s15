@@ -1,0 +1,32 @@
+/*Author: Jon Derderian
+ *Title: documentation.txt
+ *CS 362_400
+ *GitHub: Jderderian
+ */
+ 
+Smithy: 
+	When the Smithy card is played, the player draws 3 cards. This is achieved by looping through the drawCard() function 3 times. 
+	The smithy card is then discarded from the hand.
+ 
+Adventurer: 
+	The Adventurer card cycles through the player's deck until 2 treasure cards, those 2 treasure cards are added to your hand and the rest are discarded. 
+	This achieved using a while loop that runs until 2 treasure cards are drawn. 
+	If the deck is empty, shuffle the discard pile and add back to the deck. 
+	You then draw a card, if it’s a treasure card, add 1 to drawntreasure, else it goes back to the beginning of the loop. 
+	Once 2 treasure cards have been drawn and the loop ends, all non-treasure cards that have been drawn are discarded. 
+
+DiscardCard(): 
+	This function discards the card. If the trashedFlag is set to 1, then the card is trashed (removed from play). 
+	If it’s not set to 1, then it is added to the played pile. 
+	The card that the player has just played is then set to -1, showing it’s a discarded card. 
+	If the last card from the player's hand is 
+	played, or the player only has one card left in their hand, the number of cards in their hand is decremented by 1. 
+	Else, the discarded card replaces the last card in the player's hand, the last card is set to -1, and the number of cards in the player's hand is decremented by 1. 
+
+updateCoins(): 
+	This function adds coins to the player depending on what card is played. 
+	The initial count is set to 0, then a for-loop runs counting each treasure card in the player’s hand. 
+	1, 2 or 3 coins are added depending on if a Copper, Silver or Gold card exist. 
+	Any bonus coins that were passed in through the bonus variable, 
+	which would have been received through the action phased through certain action cards, 
+	are then added to the total number of coins the player has access to for that turn.
