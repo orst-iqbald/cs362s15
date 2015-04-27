@@ -42,8 +42,8 @@ int main()
 	int i, j;
 	int seed = 9999;
 	//int numPlayer = 2;
-	kingdomCards[10] = {adventurer, council_room, feast, 
-	gardens, mine, remodel, smithy, minion, seahag, baron};
+	//kingdomCards[10] = {adventurer, council_room, feast, 
+	//gardens, mine, remodel, smithy, minion, seahag, baron};
 	struct gameState G;
 	//intializeGame(numPlayer, kingdomCards, seed, &G);
 	SelectStream(2);	
