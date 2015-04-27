@@ -419,15 +419,17 @@ int scoreFor (int player, struct gameState *state) {
 	int i;
 	int score = 0;
 	//score from hand
+	int curses = 0, estates = 0, duchys = 0, provinces = 0, great_halls = 0, gardenss = 0;
 	for (i = 0; i < state->handCount[player]; i++)
 	{
-		if (state->hand[player][i] == curse) { score = score - 1; };
-		if (state->hand[player][i] == estate) { score = score + 1; };
-		if (state->hand[player][i] == duchy) { score = score + 3; };
-		if (state->hand[player][i] == province) { score = score + 6; };
-		if (state->hand[player][i] == great_hall) { score = score + 1; };
-		if (state->hand[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); };
+		if (state->hand[player][i] == curse) { score = score - 1; curses++; };
+		if (state->hand[player][i] == estate) { score = score + 1; estates++; };
+		if (state->hand[player][i] == duchy) { score = score + 3; duchys++; };
+		if (state->hand[player][i] == province) { score = score + 6;provinces++;  };
+		if (state->hand[player][i] == great_hall) { score = score + 1;great_halls++; };
+		if (state->hand[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); gardenss++; };
 	}
+	//printf("%d\n%d\n%d\n%d\n%d\n%d\n",curses,estates,duchys,provinces,great_halls,gardenss);	
 
 	//score from discard
 	for (i = 0; i < state->discardCount[player]; i++)
@@ -747,7 +749,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 			return 0;
 
 		case gardens:
-			return -1;
+			return h_gardens();
 
 		case mine:
 			j = state->hand[currentPlayer][choice1];  //store card we will trash
@@ -876,15 +878,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 			return 0;
 
 		case great_hall:
-			//+1 Card
-			drawCard(currentPlayer, state);
-
-			//+1 Actions
-			state->numActions++;
-
-			//discard card from hand
-			discardCard(handPos, currentPlayer, state, 0);
-			return 0;
+			return h_great_hall(handPos,currentPlayer,state);
 
 		case minion:
 			//+1 action
@@ -1354,5 +1348,21 @@ int h_outpost(int handPos, int currentPlayer, struct gameState *state){
 	discardCard(handPos, currentPlayer, state, 0);
 	return 0;
 }
+
+int h_gardens(){
+	return -1;
+}
 //end of dominion.c
 
+int h_great_hall(int handPos, int currentPlayer, struct gameState *state){
+			//+1 Card
+			drawCard(currentPlayer, state);
+
+			//+1 Actions
+			state->numActions++;
+
+			//discard card from hand
+			discardCard(handPos, currentPlayer, state, 0);
+
+			return 0;
+}

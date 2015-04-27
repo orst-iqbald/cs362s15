@@ -142,4 +142,10 @@ int h_sea_hag(int currentPlayer, struct gameState *state);
 
 //"" of outpost
 int h_outpost(int handPos, int currentPlayer, struct gameState *state);
+
+//"" of gardens
+int h_gardens();
+
+//"" of great_hall
+int h_great_hall(int handPos, int currentPlayer, struct gameState *state);
 #endif
