@@ -721,7 +721,6 @@ int play_smithy(int *currentPlayer, struct gameState *state, int *handPos){
     drawCard(*currentPlayer, state);
   }
     
-  //discardCard(*handPos, *currentPlayer, state, 0);
 
   return 0;
 

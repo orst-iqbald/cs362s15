@@ -51,7 +51,7 @@ int main()
 	struct gameState G;
 	int seed = 9999;
 	int numPlayers = 2;
-	int i;
+	int i, j;
 	//kingdomCards[10] = {adventurer, smithy, remodel, seahag, baron, minion,
 	//		mine, gardens, feast, council_room};
 	//intializeGame(numPlayers, kingdomCards, seed, &G);

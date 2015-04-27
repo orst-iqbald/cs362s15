@@ -1,0 +1,51 @@
+Bugs found in Assignment 3. 
+(Note that the assertion statements were turned off for found bugs so all tests will execute).
+
+Unittest1.c – Discard Card Function
+Assertion statements on  line 177 and 341 found: discardCount is not being incremented by 1
+when the trashflag isset to zero. The if / else statements also show that this is failing in
+every case when the function is called.
+
+unittest2.c – Draw Card Function
+No bugs found.
+
+unittest3.c – Gain Card Function
+Assertion statement on line 154 found: According to source code comments, this function
+should add the card to the hand when flag is set to 2; however, when flag is set to two the
+handcount was not incremented.
+
+Assertion Statement on line 196 found: According to source code comments, this function
+should add the card to the deck when flag is set to 1; however, when flag is set to 1 the deck
+count was not incremented.
+
+Assertion Statement on line 243 found: According to source code comments, this function should
+add the card to the discard pile when flag is set to 0; however, when flag is set to 0 the
+discard count was not incremented.
+
+unittest4.c – Buy Card Function
+No bugs found.
+
+cardtest1.c – Smithy Card
+No bugs found.
+
+cardtest2.c – Adventurer Card
+Assertion statement on line 162 found: Handcount is not not being incremented by one which
+should be the case because two treasure cards are added to the hand, and the adventurer card
+that is played should be discarded.
+
+cardtest3.c – Remodel Card
+Assertion statement on line 167 found: Remodel card is not being added to the discard pile
+when supply > 0 and the cost of the card to trash + 2 >= cost of the card to gain. It
+should be added to the discard pile in this case. This conforms to the bug that I introduced
+in the refactored function which reversed the inequality.
+
+Assertion statement on line 218 found: The card that is supposed to be trashed is still in the
+hand after the remodel card. This was checked by counting the number of the type of card to be
+trashed before playing remodel, and checking again after. 
+
+cardtest4.c – Village card
+Assertion statement on line 154 found: the number of cards in the hand does not stay the same
+after playing the village card. What should happen is one card should be drawn from the deck
+and put in the hand while the village card is removed from the hand and put in the discard
+pile. The hand count should stay the same but it doesn’t. 
+

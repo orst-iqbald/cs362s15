@@ -63,9 +63,8 @@ int main()
 	//set up game
 	int i, j;
 	int seed 9999;
-	int [] temphand;
-	kingdomcards[10] = {adventurer, council_room, feast, gardens, 
-	mine, remodel, smithy, minion, baron, seahag};
+	//kingdomcards[10] = {adventurer, council_room, feast, gardens, 
+	//mine, remodel, smithy, minion, baron, seahag};
 	struct game G;
 	SelectStream(2);
 	PutSeed(seed);
@@ -85,7 +84,7 @@ int main()
 		G.coins = 0;
 		//inserting adventurer card into first hand slot
 		G.hand[p][0] = adventurer;
-		int test = checkAdventurer(player, &G, temphand);
+		int test = checkAdventurer(player, &G);
 		if( test != 0)
 		{
 			printf("***** FAILED ***** checkAdventurer()\n");
