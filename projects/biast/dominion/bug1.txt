@@ -1,0 +1,19 @@
+UNIT TEST 1: Discard Card
+
+This function is broken in two ways:
+
+1. It tries to use a temporary array called playedCards to store cards that have been
+discarded but are not supposed to be trashed. This violates the rules of Dominion which
+state that when a card is discarded it should immediately be put into the discard pile,
+so that it is susceptible to being reshuffled back into the deck and may possibly be
+drawn again.
+
+2. Cards that enter the playedCards array never make it into the discard pile. They are
+lost after the player's turn has ended. This is a serious issue. When a turn is ended,
+the player's hand is discarded manually, without making use of this function. It appears
+that only cards discarded by ending a turn ever make it into the discard pile.
+
+This function does handle trashing correctly. Cards that are processed with the trash flag
+set are successfully removed from the player's hand and removed from the game entirely.
+
+
