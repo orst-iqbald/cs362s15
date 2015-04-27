@@ -51,7 +51,58 @@ cardtest3: cardtest3.c dominion.o rngs.o
 	gcc -o cardtest3 -g cardtest3.c dominion.o rngs.o $(CFLAGS)
 
 cardtest4: cardtest4.c dominion.o rngs.o
-	gcc -o cardtest4 -g cardtest4.c dominion.o rngs.o $(CFLAGS)	
+	gcc -o cardtest4 -g cardtest4.c dominion.o rngs.o $(CFLAGS)
+
+unittestresults.out:
+	make all
+	./unittest1
+	echo UNIT TEST 1 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	gcov -fb dominion.c >> unittestresults.out
+	make clean
+	make all
+	./unittest2
+	echo UNIT TEST 2 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	gcov -fb dominion.c >> unittestresults.out
+	make clean
+	make all
+	./unittest3
+	echo UNIT TEST 3 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	gcov -fb dominion.c >> unittestresults.out
+	make clean
+	make all
+	./unittest4
+	echo UNIT TEST 4 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	gcov -fb dominion.c >> unittestresults.out
+	make clean
+	make all
+	./cardtest1
+	echo CARD TEST 1 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	gcov -fb dominion.c >> unittestresults.out
+	make clean
+	make all
+	./cardtest2
+	echo CARD TEST 2 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	gcov -fb dominion.c >> unittestresults.out
+	make clean
+	make all
+	./cardtest3
+	echo CARD TEST 3 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	gcov -fb dominion.c >> unittestresults.out
+	make clean
+	make all
+	./cardtest4
+	echo CARD TEST 4 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	gcov -fb dominion.c >> unittestresults.out
+	rm *.gcov
+
 	
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
@@ -60,8 +111,5 @@ oldAll: playdom player testDrawCard testBuyCard badTestDrawCard unittest1 unitte
 
 all: playdom player unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
 
-oldClean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
-
 clean:
-	rm -f *.o playdom.exe player.exe *.gcov *.gcda *.gcno *.so
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
