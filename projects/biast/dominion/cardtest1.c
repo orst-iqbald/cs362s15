@@ -24,6 +24,7 @@ int main() {
 	
 	
 	printf("\n\nTest 1: Drawing 2 treasures, all combinations\n");
+	errors = 0;
 	
 	for(i = 4; i < 7; i++)
 	{
@@ -46,12 +47,16 @@ int main() {
 			
 			playCard(0, -1, -1, -1, &G);
 			updateCoins(player, &G, 0);
-			assert(G.coins == ((i + j) - 6));
+			if(G.coins != ((i + j) - 6))
+			{
+				printf("ERROR: Coins miscalculated.\n");
+				printf("Correct result: %d\n", (i + j - 6));
+				printf("Calculated result: %d\n", G.coins);
+				errors++;
+			}
 		}		
 	}
-	
-	printf("\nAll asserts passed, treasures successfully added to hand.\n");
-	
+		
 	printf("Test complete.\n");
 	if(errors == 0)
 		printf("No errors.\n\n");
@@ -60,6 +65,7 @@ int main() {
 	
 	
 	printf("\n\nTest 2: Drawing 2 treasures, all combinations, 100 non-treasure cards in front\n");
+	errors = 0;
 	
 	for(i = 4; i < 7; i++)
 	{
@@ -87,11 +93,16 @@ int main() {
 			
 			playCard(0, -1, -1, -1, &G);
 			updateCoins(player, &G, 0);
-			assert(G.coins == ((i + j) - 6));
+			if(G.coins != ((i + j) - 6))
+			{
+				printf("ERROR: Coins miscalculated.\n");
+				printf("Correct result: %d\n", (i + j - 6));
+				printf("Calculated result: %d\n", G.coins);
+				errors++;
+			}
 		}		
 	}
 	
-	printf("\nAll asserts passed, treasures successfully added to hand.\n");
 	
 	printf("Test complete.\n");
 	if(errors == 0)
@@ -101,6 +112,7 @@ int main() {
 	
 
 	printf("\n\nTest 3: Drawing 2 treasures, all combinations, 100 non-treasure cards in between\n");
+	errors = 0;
 	
 	for(i = 4; i < 7; i++)
 	{
@@ -128,11 +140,16 @@ int main() {
 			
 			playCard(0, -1, -1, -1, &G);
 			updateCoins(player, &G, 0);
-			assert(G.coins == ((i + j) - 6));
+			if(G.coins != ((i + j) - 6))
+			{
+				printf("ERROR: Coins miscalculated.\n");
+				printf("Correct result: %d\n", ((i + j) - 6));
+				printf("Calculated result: %d\n", G.coins);
+				errors++;
+			}
 		}		
 	}
 	
-	printf("\nAll asserts passed, treasures successfully added to hand.\n");
 	
 	printf("Test complete.\n");
 	if(errors == 0)
@@ -142,6 +159,7 @@ int main() {
 	
 	
 	printf("\n\nTest 4: Only 1 treasure in deck.\n");
+	errors = 0;
 	
 	for(i = 4; i < 7; i++)
 	{
@@ -166,10 +184,15 @@ int main() {
 		
 		playCard(0, -1, -1, -1, &G);
 		updateCoins(player, &G, 0);
-		assert(G.coins == (i - 3));
+		if(G.coins != (i - 3))
+		{
+			printf("ERROR: Coins miscalculated.\n");
+			printf("Correct result: %d\n", (i - 3));
+			printf("Calculated result: %d\n", G.coins);
+			errors++;
+		}
 	}
 	
-	printf("\nAll asserts passed, treasure successfully added to hand.\n");
 	
 	printf("Test complete.\n");
 	if(errors == 0)
@@ -182,7 +205,7 @@ int main() {
 	
 	
 	printf("\n\nTest 5: No treasures in deck.\n");
-	
+	errors = 0;
 
 	memset(&G, 23, sizeof(struct gameState));   // clear the game state
 	initializeGame(numPlayer, k, seed, &G);
@@ -203,11 +226,13 @@ int main() {
 			
 	playCard(0, -1, -1, -1, &G);
 	updateCoins(player, &G, 0);
-	assert(G.coins ==  0);
+	if(G.coins !=  0)
+	{
+		printf("ERROR: Coins detected, should be 0\n");
+		errors++;
+	}
 
-	
-	printf("\nAll asserts passed, no treasures found.\n");
-	
+		
 	printf("Test complete.\n");
 	if(errors == 0)
 		printf("No errors.\n\n");
