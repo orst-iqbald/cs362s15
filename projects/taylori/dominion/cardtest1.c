@@ -55,7 +55,7 @@ int main(){
     
     // Player should have two more cards in their hand, because they discard the smithy card.
     if(state.handCount[whoseTurn(&state)] == numCards + 2) {
-        printf("smithyCard() test PASSED:\n");
+        printf("smithyCard() test PASSED.\n");
     }
     else {
         printf("smithyCard() test FAILED: incorrect number of cards in player's hand.\n");
@@ -92,7 +92,7 @@ int main(){
     
     // Player should have two more cards in their hand, because they discard the smithy card.
     if(state.handCount[whoseTurn(&state)] == numCards + 2) {
-        printf("smithyCard() test PASSED:\n");
+        printf("smithyCard() test PASSED.\n");
     }
     else {
         printf("smithyCard() test FAILED: incorrect number of cards in player's hand.\n");
