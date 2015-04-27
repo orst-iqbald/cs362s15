@@ -12,21 +12,21 @@ Quiz 2
 
 char inputChar()
 {
-    int randomNum = rand() % 94;
-    char testChar = (char)(randomNum+32);
+    int randomNum = rand() % 94; 
+    char testChar = (char)(randomNum+32); // Values 32-126 from the ASCII table.
     return testChar;
 }
 
 char *inputString()
 {
-    char myArray={'r', 'e', 's', 't'}; 
+    char myArray[]={'r', 'e', 's', 't'};
     int i;
 
-    char *testString = malloc(sizeof(char)*6);
+    char *testString = malloc(sizeof(char)*5);
 
-    for(i = 0; i < 6; i++){
-	int myPick = rand()%4;
-	testString[i] = myArray[myPick];
+    for(i = 0; i < 5; i++){
+	int myPick= rand() % 4;
+	testString[i] = myArray[myPick]; 
     }
 
 testString[5] = '\0';

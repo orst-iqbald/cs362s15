@@ -15,33 +15,44 @@ Each supply card will have its count randomly generated.*/
 #include "dominion_helpers.h"
 #include "rngs.h"
 
-int testIsGameOver(struct gameState *testGame) {
+int testIsGameOver(struct gameState *after)
+{
   int i;
   int j = 0;
-  int outCome = isGameOver(testGame);
+  struct gameState before;
+  memcpy(&before, after, sizeof(struct gameState));
+  int outCome = isGameOver(after);
 
   //check to see if there no provinces left
-  if (testGame->supplyCount[province] == 0)
+  if (before.supplyCount[province] == 0)
   {
-    assert (outCome == 1);
+    if (outCome != 1)
+    {
+      printf("isGameOver() Failed Test\n");
+      printf("isGameOver() Not Calculating Correct # of Provinces\n");
+    }
     return outCome;
   }
   //check to see if there are any empty supply card categories
   for (i = 0; i < 25; i++)
   {
-    if (testGame->supplyCount[i] == 0)
+    if (before.supplyCount[i] == 0)
     {
       j++;
     }
     //check to see if there are 3 or more supply card categories empty
     if (j >= 3)
     {
-      assert(outCome == 1);
+      if (outCome != 1)
+      {
+        printf("isGameOver() Failed Test\n");
+        printf("isGameOver() Not Calculating Correct # of Supply Cards\n");
+      }
       return outCome;
     }
   }
-
-  assert(outCome == 0);
+  
+  assert(memcmp(&before, after, sizeof(struct gameState)) == 0);
   return outCome;
 }
 
@@ -50,6 +61,8 @@ int main()
   int i; 
   int n; 
   int j;
+  int outCome = 0;
+  int gameIterations = 2000; //change for the number of test games
   struct gameState testGame;
 
   //check if supply pile is empty or card not used in game
@@ -62,7 +75,7 @@ int main()
   PutSeed(3);
   
   //testing for 2000 iterations
-  for (n = 0; n < 2000; n++)
+  for (n = 0; n < gameIterations; n++)
   {
     for (i = 0; i < sizeof(struct gameState); i++)
     {
@@ -76,7 +89,16 @@ int main()
     //call to test isGameOver()
     testIsGameOver(&testGame);
   }
-
-  printf ("ALL TESTS OK!\n\n");
+  
+  if (outCome != 0)
+  {
+    printf("isGameOver() Failed Test\n");
+    printf("isGameOver() Not Functioning Properly!\n");
+  } 
+  else
+  {
+    printf ("ALL TESTS OK!\n\n");
+  }
+  
   return 0;
 }

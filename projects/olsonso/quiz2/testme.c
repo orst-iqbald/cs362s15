@@ -64,3 +64,9 @@ void testme()
   }
 }
 
+int main(int argc, char *argv[])
+{
+    srand(time(NULL));
+    testme();
+    return 0;
+}
