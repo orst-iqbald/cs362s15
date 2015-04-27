@@ -19,7 +19,7 @@ int main() {
     int player = 0;
     struct gameState* state = malloc(sizeof(struct gameState));
     state->whoseTurn = player;
-    state->discardCount[player] = 0;
+    state->playedCardCount = 0;
     int handpos = 0;
     int res;      //return value of function
     
@@ -31,7 +31,7 @@ int main() {
     res = cardVillage(state, handpos);
     assert(res == 0);
     assert(state->deckCount[player] == 4);
-    assert(state->discardCount[player] == 1);
+    assert(state->playedCardCount == 1);
     assert(state->handCount[player] == 1);
     assert(state->numActions == 3);
     

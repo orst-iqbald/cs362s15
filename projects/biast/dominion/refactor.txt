@@ -13,6 +13,8 @@ and golds as treasure cards. Any silvers that are drawn will be discarded.
 The Smithy is a simple card that lets the player draw 3 additional cards. Rather than tinker with that
 behavior, I used the updateCoins function to decrease player's total coins by one.
 
+UPDATE: My bug failed to actually negatively impact the program. It turns out that updateCoins is called again after my bugged call to it, which erases the negative effect of my bugged call.
+
 3. Village
 The village is a card that replaces itself by allowing you to draw another card and gives you two actions,
 leaving you with a 5 card hand and one 'bonus' action. I tweaked this card to give you an extra card instead
