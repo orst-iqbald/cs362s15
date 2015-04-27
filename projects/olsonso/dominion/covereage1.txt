@@ -1,0 +1,35 @@
+File 'unittest1.c'
+Lines executed:100.00% of 22
+Branches executed:100.00% of 12
+Taken at least once:58.33% of 12
+No calls
+unittest1.c:creating 'unittest1.c.gcov'
+
+I feel pretty confidenent in this one since 100 percent of the branches were covered. 
+
+File 'unittest2.c'
+Lines executed:75.00% of 24
+Branches executed:100.00% of 6
+Taken at least once:50.00% of 6
+No calls
+unittest2.c:creating 'unittest2.c.gcov'
+
+Again happy with 100 percent of branched covered but not every line was covered. I had to go back and look deeper into my testing to see what was going on. 
+
+File 'unittest3.c'
+Lines executed:82.61% of 23
+Branches executed:100.00% of 8
+Taken at least once:50.00% of 8
+No calls
+unittest3.c:creating 'unittest3.c.gcov'
+
+This one I found needed some help since clearly some of the branches were not getting touched at all. 
+
+File 'unittest4.c'
+Lines executed:78.82% of 22
+Branches executed:60.00% of 7
+Taken at least once:50.00% of 7
+No calls
+unittest4.c:creating 'unittest4.c.gcov'
+
+This was my least confidence testing file so far. This was a clear indicator that i had a lot of work that needed to make sure that every branch was getting hit, especially more than 50 percent.
