@@ -6,8 +6,8 @@ player to draw until 3 treasure cards are found instead of 2.
 
 While loop while(z-1>=0) changed to while(z-1 > 0).
 
-Cutpurse - updateCoins(currentPlayer, state, 2) changed to updateCoins(currentPlayer, state, 3).
-This bug causes the player to gain 3 coins instead of 2 when this card is played.
+Cutpurse - updateCoins(currentPlayer, state, 2) changed to updateCoins(currentPlayer, state, 4).
+This bug causes the player to gain more than 2 bonus coins when this card is played.
 
 Sea Hag - If statement if(i != currentPlayer) changed to (i == currentPlayer). Will give curse
 card to current player instead of all players EXCEPT the current player with this bug.
