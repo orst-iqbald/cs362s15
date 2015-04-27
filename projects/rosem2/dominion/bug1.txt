@@ -1,0 +1,5 @@
+I found that when player 1 plays a Council Room card, player 0 is not getting the card he is suppose to draw. 
+When the player who plays Council Room draws, he draws 1 extra card.
+When player 1 plays Adventure, the cards he gains, not both are treasure cards.
+When Smithy is played, the player is not drawing enough cards.
+When Village is played the actions seem to always be set to 2.
