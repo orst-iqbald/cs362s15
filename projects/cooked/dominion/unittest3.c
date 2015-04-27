@@ -63,6 +63,14 @@ int main() {
 		error = -1;
 	}
 
+	//Check for failure when attempting to shuffle an empty deck
+	state->deckCount[0] = 0;
+	if(shuffle(0, state) != -1)
+	{
+		printf("shuffle(): Fails to check that players deck is at least 1 card\n");
+		error = -1;
+	}
+
 	state->deckCount[0] = 10;
 	if(shuffle(0, state) < 0)
 	{

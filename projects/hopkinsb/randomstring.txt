@@ -1,0 +1,27 @@
+Brittany Hopkins
+Randomstring.txt
+Quiz 2
+
+Before beginning to code for this assignment, I looked at the program. The program contained a main function
+that would call two separate functions (inputchar() and inputstring()) to generate both a random character 
+and a random 5 letter string. If the character was one of 9 possible ASCII characters, the state of the 
+program would increment by one. If the state of the program was 9, meaning all of the required ASCII 
+characters were generated and the random string generated was “reset”, the program would produce an error message. 
+
+I decided that the easiest way to approach the problem was not to cover every single character or every single
+possible 5-letter string, but rather to tailor the tests to the requirements of the program.
+
+inputchar(): Noting that the program required special characters, spaces, and lower case letters to be possible
+values of variable “c”, one could easily use the range of ASCII characters between 32 and 125 to pull random 
+values from. However, this would take more time as the program wouldn’t require over 80 of those characters so
+instead I tailored the test by pulling the required characters from an array that only included the characters
+required to move the program along. 
+
+inputstring(): The program also required a string of 5 letters including only “r”, “e”, “s”, and “t”. Therefore,
+the easiest way to test the program would be to create a string from an array containing only those 4 characters.
+That would be the quickest way to produce the required string, “reset”, to produce the error. 
+
+After implementing my code, I tested its speed by averaging the number of iterations for 20 tests. For 20 tests,
+my program was able to produce the error code in an average of 1010 iterations and with a coverage of 97.44%. 
+
+My program can be compiled as one normally would gcc testme.c –o testme
