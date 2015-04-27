@@ -1,28 +1,40 @@
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
-#include<time.h>
+/******************************************************************************
+* testme.c
+* David Adams
+* CS 362
+* Spring 2015
+* Quiz 2
+******************************************************************************/
+
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <time.h>
 
 char inputChar()
 {
-    char c[] = {'[', '(', '{', ' ', 'a', 'x', '}', ')', ']'};
-    int sizec = sizeof(c);
-    return c[rand() % sizec];
+  //return a random character out of the below set of possible characters
+  char charOptions[] = "[({ ax})]";
+  return charOptions[rand() % 9];
 }
-
-
 
 char *inputString()
 {
-    char c[] = {'r', 'e', 's', 't', '\0'};
-    int sizec = sizeof(c);
-    char *new = malloc(6); 
-    for ( int i = 0; i < sizeof(new); i++) {
-       new[i] = c[rand() % sizec];
-    }
-    return new;
-}
+  //return a random string
+  char charOptions[] = "reset";
+  char *testWord = malloc(sizeof(char) * 6);
+  int i, randRet;
 
+  for (i = 0; i < 5; i++) {
+    randRet = rand() % 5;
+    testWord[i] = charOptions[randRet];
+  }
+
+  testWord[5] = '\0';
+
+  return testWord;
+}
 
 void testme()
 {
@@ -33,7 +45,7 @@ void testme()
   while (1)
   {
     tcCount++;
-    c = inputChar();
+    c = inputChar();  
     s = inputString();
     printf("Iteration %d: c = %c, s = %s, state = %d\n", tcCount, c, s, state);
 
@@ -54,8 +66,11 @@ void testme()
       printf("error ");
       exit(200);
     }
+    
+    free(s);
   }
 }
+
 
 int main(int argc, char *argv[])
 {

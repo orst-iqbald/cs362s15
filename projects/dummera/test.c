@@ -5,24 +5,15 @@
 
 char inputChar()
 {
-    char c[] = {'[', '(', '{', ' ', 'a', 'x', '}', ')', ']'};
-    int sizec = sizeof(c);
-    return c[rand() % sizec];
+    // TODO: rewrite this function
+    return ' ';
 }
-
-
 
 char *inputString()
 {
-    char c[] = {'r', 'e', 's', 't', '\0'};
-    int sizec = sizeof(c);
-    char *new = malloc(6); 
-    for ( int i = 0; i < sizeof(new); i++) {
-       new[i] = c[rand() % sizec];
-    }
-    return new;
+    // TODO: rewrite this function
+    return "";
 }
-
 
 void testme()
 {
@@ -56,6 +47,7 @@ void testme()
     }
   }
 }
+
 
 int main(int argc, char *argv[])
 {
