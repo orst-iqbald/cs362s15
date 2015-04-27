@@ -50,14 +50,13 @@ int testGainCard(int supplyPos, struct gameState *after, int toFlag, int player)
   //decrease number in supply pile
   before.supplyCount[supplyPos]--;
 
-  //assert(outCome == 0);
   if (outCome != 0)
   {
     printf("gainCard() Failed Test\n");
     printf("gainCard() Not Working Properly!\n");
   }
+  
   assert(memcmp(&before, after, sizeof(struct gameState)) == 0);
-
   return 0;
 }
 
@@ -68,6 +67,7 @@ int main()
   int j; 
   int supplyPos; 
   int toFlag;
+  int gameIterations = 2000 //change for number of test games
   struct gameState testGame;
 
   //display testing message for unittest1
@@ -80,7 +80,7 @@ int main()
   PutSeed(3);
 
   //testing for 2000 iterations
-  for (n = 0; n < 2000; n++)
+  for (n = 0; n < gameIterations; n++)
   {
     for (i = 0; i < sizeof(struct gameState); i++)
     {
