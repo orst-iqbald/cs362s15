@@ -1,0 +1,71 @@
+**************
+Filename - coverage1.txt
+Description - Code coverage report for the four unittests and the four cardtests 
+**************
+
+**************
+unittest1: compare()
+File 'dominion.c'
+Lines executed:1.04% of 575
+Branches executed:0.97% of 413
+Taken at least once:0.97% of 413
+Calls executed:0.00% of 93
+**************
+
+**************
+unittest2: newGame()
+Lines executed:1.57% of 575
+Branches executed:0.97% of 413
+Taken at least once:0.97% of 413
+Calls executed:0.00% of 93
+**************
+
+**************
+unittest3: isGameOver()
+Lines executed:3.13% of 575
+Branches executed:2.91% of 413
+Taken at least once:2.66% of 413
+Calls executed:0.00% of 93
+**************
+
+**************
+File 'unittest4.c'
+File 'dominion.c'
+Lines executed:5.04% of 575
+Branches executed:4.84% of 413
+Taken at least once:4.36% of 413
+Calls executed:0.00% of 93
+**************
+
+**************
+cardtest1: newSmithy()
+Lines executed:21.39% of 575
+Branches executed:19.85% of 413
+Taken at least once:16.71% of 413
+Calls executed:9.68% of 93
+**************
+
+**************
+cardtest2: newAdventurer()
+Lines executed:23.30% of 575
+Branches executed:21.79% of 413
+Taken at least once:17.92% of 413
+Calls executed:10.75% of 93
+**************
+
+**************
+cardtest3: newVillage()
+Lines executed:24.17% of 575
+Branches executed:21.79% of 413
+Taken at least once:17.92% of 413
+Calls executed:12.90% of 93
+**************
+
+**************
+cardtest4: newSteward()
+Lines executed:24.17% of 575
+Branches executed:21.79% of 413
+Taken at least once:17.92% of 413
+Calls executed:12.90% of 93
+**************
+

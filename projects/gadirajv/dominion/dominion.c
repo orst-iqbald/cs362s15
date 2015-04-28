@@ -408,7 +408,7 @@ int isGameOver(struct gameState *state) {
   j = 0;
   for (i = 0; i < 25; i++)
     {
-      if (state->supplyCount[i] == 0)
+    if (state->supplyCount[i] == 0)
 	{
 	  j++;
 	}
@@ -1282,7 +1282,8 @@ int newAdventurer(int currentPlayer, struct gameState *state){
 	int temphand[MAX_HAND];
 	int cardDrawn;
 	
-    while(drawntreasure<=2){
+	/** while(drawntreasure<2){ */
+    while(drawntreasure<=2){ 
 		if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
 		  shuffle(currentPlayer, state);
 		}
