@@ -3,6 +3,16 @@ Filename - coverage1.txt
 Description - Code coverage report for the four unittests and the four cardtests 
 **************
 
+I ran the command gcov -abcfu <filename>.c to generage <filename>.c.gcov in order to analyze
+percentage of function blocks executed for all unittests and cardtests
+
+To improve coverage I need to write code that hits more of the code. The functions for which I wrote unittests
+were not major blocks of code and so much of the code in dominion.c is not being covered by the functions
+that I tested. The cardtests have much more coverage than the unittests for this reason.
+
+For a better test suite, I need to test more functions that are much bigger segments of code
+in dominion.c 
+
 **************
 unittest1: compare()
 File 'dominion.c'
@@ -10,22 +20,33 @@ Lines executed:1.04% of 575
 Branches executed:0.97% of 413
 Taken at least once:0.97% of 413
 Calls executed:0.00% of 93
+
+	-- unittest1 called once returned 100% blocks executed 79%
+	
 **************
 
 **************
 unittest2: newGame()
+File 'dominion.c'
 Lines executed:1.57% of 575
 Branches executed:0.97% of 413
 Taken at least once:0.97% of 413
 Calls executed:0.00% of 93
+
+	-- unittest2 called once returned 100% blocks executed 83%
+	
 **************
 
 **************
 unittest3: isGameOver()
+File 'dominion.c'
 Lines executed:3.13% of 575
 Branches executed:2.91% of 413
 Taken at least once:2.66% of 413
 Calls executed:0.00% of 93
+
+	-- unittest3 called once returned 100% blocks executed 86%
+
 **************
 
 **************
@@ -35,37 +56,56 @@ Lines executed:5.04% of 575
 Branches executed:4.84% of 413
 Taken at least once:4.36% of 413
 Calls executed:0.00% of 93
+
+	-- unittest4 called once returned 100% blocks executed 86%
+	
 **************
 
 **************
 cardtest1: newSmithy()
+File 'dominion.c'
 Lines executed:21.39% of 575
 Branches executed:19.85% of 413
 Taken at least once:16.71% of 413
 Calls executed:9.68% of 93
+
+	-- called twice returned 100% blocks executed 75%
+	
 **************
 
 **************
 cardtest2: newAdventurer()
+File 'dominion.c'
 Lines executed:23.30% of 575
 Branches executed:21.79% of 413
 Taken at least once:17.92% of 413
 Calls executed:10.75% of 93
+
+	-- called once returned 100% blocks executed 93%
+	
 **************
 
 **************
 cardtest3: newVillage()
+File 'dominion.c'
 Lines executed:24.17% of 575
 Branches executed:21.79% of 413
 Taken at least once:17.92% of 413
 Calls executed:12.90% of 93
+
+	-- called once returned 100% blocks executed 84%
+	
 **************
 
 **************
 cardtest4: newSteward()
+File 'dominion.c'
 Lines executed:24.17% of 575
 Branches executed:21.79% of 413
 Taken at least once:17.92% of 413
 Calls executed:12.90% of 93
+
+	-- called 0 returned 0% blocks executed 0%
+	This is because there is a bug in newSteward() at the beginning of the newSteward() function. 
 **************
 
