@@ -11,7 +11,6 @@ randomly.*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <assert.h>
 #include <math.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
@@ -20,6 +19,7 @@ randomly.*/
 int testGainCard(int supplyPos, struct gameState *after, int toFlag, int player)
 {
   int outCome;
+  int failTests = 0;
   struct gameState before;
   memcpy(&before, after, sizeof(struct gameState));
 
@@ -52,28 +52,39 @@ int testGainCard(int supplyPos, struct gameState *after, int toFlag, int player)
 
   if (outCome != 0)
   {
-    printf("gainCard() Failed Test\n");
-    printf("gainCard() Not Working Properly!\n");
+    printf("gainCard() FAIL: GAIN CARD\n");
+    printf("gainCard() INFO: Not Working Properly!\n");
+    failTests = 1;
   }
   
-  assert(memcmp(&before, after, sizeof(struct gameState)) == 0);
-  return 0;
+  if (failTests == 0)
+  {
+    //return 0 if no errors
+    return 0;
+  }
+  else
+  {
+    //return 1 if there were errors
+    return failTests;
+  }
 }
 
 int main()
 {
   int i;
   int n;
-  int j; 
+  int j;
+  int outCome;
+  int numTests = 1;
   int supplyPos; 
   int toFlag;
-  int gameIterations = 2000 //change for number of test games
+  int gameIterations = 100; //change for number of test games
   struct gameState testGame;
 
   //display testing message for unittest1
   printf ("----------------------------------------\n");
   printf ("FUNCTION gainCard() BEING TESTED...\n");
-  printf ("RANDOM TESTS...\n");
+  printf ("RANDOM TESTS...unittest3.c\n\n");
 
   //this is initializing stream for random number generation
   SelectStream(2);
@@ -99,9 +110,17 @@ int main()
     supplyPos = floor(Random() * 25);
     toFlag = floor(Random() * 3);
     //call to test gainCard()
-    testGainCard(supplyPos, &testGame, toFlag, j);
+    outCome = testGainCard(supplyPos, &testGame, toFlag, j);
   }
 
-  printf ("ALL TESTS OK!\n\n");
-  exit(0);
+ if (outCome == 0)
+  {
+    printf("TEST PASSED\n\n");
+    printf("gainCard() FAILED %d out of %d TEST\n\n", outCome, numTests);
+  }
+  else
+  {
+    printf("gainCard() FAILED %d out of %d TEST\n\n", outCome, numTests);
+  }
+  return 0;
 }
