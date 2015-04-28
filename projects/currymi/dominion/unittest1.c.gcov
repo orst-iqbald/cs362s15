@@ -1,7 +1,7 @@
         -:    0:Source:tests/unitTests/unittest1.c
         -:    0:Graph:unittest1.gcno
         -:    0:Data:unittest1.gcda
-        -:    0:Runs:1
+        -:    0:Runs:2
         -:    0:Programs:1
         -:    1:#include <string.h>
         -:    2:#include <stdio.h>
@@ -12,32 +12,32 @@
         -:    7:#include "dominion.h"
         -:    8:#include "dominion_helpers.h"
         -:    9:
-        1:   10:int main (int argc, char **argv) {
+        2:   10:int main (int argc, char **argv) {
         -:   11:
-        1:   12:  int NUM_TESTS = 2000;
-        1:   13:  int numDraws = 0;
-        1:   14:  int fails = 0;
+        2:   12:  int NUM_TESTS = 10000;
+        2:   13:  int numDraws = 0;
+        2:   14:  int fails = 0;
         -:   15:  int j, i, n, p, r;
         -:   16:
         -:   17:  struct gameState G;
         -:   18:  struct gameState post;
-        1:   19:  SelectStream(2);
-        1:   20:  PutSeed(3);
+        2:   19:  SelectStream(2);
+        2:   20:  PutSeed(3);
         -:   21:
         -:   22:
-     2001:   23:    for (n = 0; n < NUM_TESTS; n++) {
- 52602000:   24:        for (i = 0; i < sizeof(struct gameState); i++) {
- 52600000:   25:          ((char *) &G)[i] = floor(Random() * 256);
+    20002:   23:    for (n = 0; n < NUM_TESTS; n++) {
+526020000:   24:        for (i = 0; i < sizeof(struct gameState); i++) {
+526000000:   25:          ((char *) &G)[i] = floor(Random() * 256);
         -:   26:        }
         -:   27:        //printf("Drawcard test %d of %d \n", n, NUM_TESTS);
         -:   28:
         -:   29:
-     2000:   30:        numDraws = floor(Random() * 10);
-     2000:   31:        numDraws++;
-     2000:   32:        p = floor(Random() * 2);
-     2000:   33:        G.deckCount[p] = floor(Random() * MAX_DECK);
-     2000:   34:        G.discardCount[p] = floor(Random() * MAX_DECK);
-     2000:   35:        G.handCount[p] = floor(Random() * MAX_HAND);
+    20000:   30:        numDraws = floor(Random() * 10);
+    20000:   31:        numDraws++;
+    20000:   32:        p = floor(Random() * 2);
+    20000:   33:        G.deckCount[p] = floor(Random() * MAX_DECK);
+    20000:   34:        G.discardCount[p] = floor(Random() * MAX_DECK);
+    20000:   35:        G.handCount[p] = floor(Random() * MAX_HAND);
         -:   36:
         -:   37:        /*
         -:   38:        printf("\tPlayer        = %d\n", p);
@@ -47,13 +47,13 @@
         -:   42:        printf("\tNumDraws      = %d\n", numDraws);
         -:   43:        */
         -:   44:
-     2000:   45:        memcpy((void *) &post, (void *) &G, sizeof(struct gameState));
+    20000:   45:        memcpy((void *) &post, (void *) &G, sizeof(struct gameState));
         -:   46:
-     2000:   47:        post.handCount[p] += numDraws;
+    20000:   47:        post.handCount[p] += numDraws;
         -:   48:
-    12963:   49:        for(j = 0; j < numDraws; j++){
+   130448:   49:        for(j = 0; j < numDraws; j++){
         -:   50:            //printf("\t Drawing card %d of %d....\n", j, numDraws);
-    10963:   51:            r = drawCard (p, &G);
+   110448:   51:            r = drawCard (p, &G);
         -:   52:            if(r == -1){
         -:   53:             //   printf("\tPossible failure....\n");
         -:   54:            }
@@ -64,8 +64,8 @@
         -:   59:        printf("\t\t Expected %d - Recived %d......\n", post.handCount[p], G.handCount[p]);
         -:   60:        */
         -:   61:
-     2000:   62:        if(G.handCount[p] != post.handCount[p]){
-    #####:   63:            fails++;
+    20000:   62:        if(G.handCount[p] != post.handCount[p]){
+        4:   63:            fails++;
         -:   64:           // printf("FAILED!\n");
         -:   65:            //printf("\t\t Expected %d - Recived %d......\n", post.handCount[p], G.handCount[p]);
         -:   66:        }else{
@@ -73,10 +73,10 @@
         -:   68:        }
         -:   69:    } 
         -:   70:    
-        1:   71:    printf("Num fails %d of %d tests\n", fails, NUM_TESTS);
+        2:   71:    printf("Num fails %d of %d tests\n", fails, NUM_TESTS);
         -:   72:
         -:   73:
-        1:   74:    return 0;
+        2:   74:    return 0;
         -:   75:
         -:   76:}
         -:   77:

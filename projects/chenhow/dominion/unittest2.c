@@ -12,7 +12,6 @@ Then it will call the getWinners function to test.*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <assert.h>
 #include <math.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
@@ -29,6 +28,7 @@ int testGetWinners(int players[MAX_PLAYERS], struct gameState *after)
   int playerIdx;
   int beforeOut;
   int afterOut;
+  int failTests = 0;
   struct gameState before;
   memcpy(&before, after, sizeof(struct gameState));
 
@@ -127,12 +127,21 @@ int testGetWinners(int players[MAX_PLAYERS], struct gameState *after)
   
   if (beforeOut != afterOut) 
   {
-    printf("getWinners() Failed Test\n");
-    printf("getWinners() Not Calculating Winners Properly!\n");
+    printf("getWinners() FAIL: GET WINNERS\n");
+    printf("getWinners() INFO: Not Calculating Winners Properly!\n");
+    failTests = 1;
   }
   
-  assert(memcmp(&before, after, sizeof(struct gameState)) == 0);
-  return 0;
+  if (failTests == 0)
+  {
+    //return 0 if no errors
+    return 0;
+  }
+  else
+  {
+    //return 1 if there were errors
+    return failTests;
+  }
 }
 
 int main()
@@ -140,14 +149,16 @@ int main()
   int i;
   int n;
   int j;
-  int gameIterations = 2000; //change for the number of test games
+  int outCome;
+  int numTests = 1;
+  int gameIterations = 100; //change for the number of test games
   int players[MAX_PLAYERS];
   struct gameState testGame;
 
   //display testing message for unittest2
   printf ("----------------------------------------\n");
   printf ("FUNCTION getWinners() BEING TESTED...\n");
-  printf ("RANDOM TESTS...\n");
+  printf ("RANDOM TESTS...unittest2.c\n\n");
 
   //this is initializing stream for random number generation
   SelectStream(2);
@@ -198,10 +209,17 @@ int main()
       }
     }
     //function call to test the getWinners()
-    testGetWinners(players, &testGame);
+    outCome = testGetWinners(players, &testGame);
   }
 
-  printf ("ALL TESTS OK!\n\n");
-
-  exit(0);
+  if (outCome == 0)
+  {
+    printf("TEST PASSED\n\n");
+    printf("getWinners() FAILED %d out of %d TEST\n\n", outCome, numTests);
+  }
+  else
+  {
+    printf("getWinners() FAILED %d out of %d TEST\n\n", outCome, numTests);
+  }
+  return 0;
 }

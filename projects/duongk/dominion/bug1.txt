@@ -1,0 +1,19 @@
+Bugs found while executing unit and card tests:
+
+cardtest1: Found that the smithy card grants +4 cards when played rather than the +3 cards that it is suppose to.
+
+cardtest2: Found that the adventurer card get trashed.
+
+cardtest3: The village card grants extra card.
+
+cardtest4: No bugs found in embargo card.
+
+
+
+unittest1: No bugs found.
+
+unittest2: No bugs found.
+
+unittest3: No bugs found.
+
+unittest4: No bugs found.

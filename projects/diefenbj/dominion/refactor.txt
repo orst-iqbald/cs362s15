@@ -1,0 +1,39 @@
+Jaden Diefenbaugh
+CS362
+HW2
+
+Smithy refactoring:
+	I pulled out the smithy code from the original case statement, and wrapped
+	it in a function with all the used external variables, including handPos,
+	currentPlayer, and state.
+	The bug I introduced is that the trashFlag is not set to 0, but to the loop
+	variable 'i' (which will evaluate to 3).
+
+Adventurer refactoring:
+	I designed the code the same way the Smithy function was designed - pulling
+	out the code from the loop, added parameters for all external variables:
+	currentPlayer and state.
+	The bug I introduced is that on line 1306 of dominion.c, where the temphand
+	cards are being discarded. 'discardCount' no longer increments after each
+	discard, resulting in each discarding overwriting the last, ultimately
+	losing cards.
+
+Steward refactoring:
+	Likewise, I pulled out the code from the case statement, and added
+	parameters for the three choices, hand position, current player, and state.
+	I also introduced a bug in steward - discarding the same card (choice3)
+	twice, instead of discarding choice2 and choice3.
+
+Sea Hag refactoring:
+	I pulled out the code and added parameters for the current player (int)
+	and state (a pointer to the gameState of the game).
+	Inside the for loop (line 1340) I decrement the state's discardCount,
+	resulting in a leak of cards disappearing as the last discarded card is
+	overwritten.
+
+Outpost refactoring:
+	I pulled out the code from the case statement, and added the 'handPos'
+	integer, 'currentPlayer' integer, and 'state' gameState pointer.
+	I did not introduce bugs in the Outpost function.
+
+

@@ -9,7 +9,7 @@
 
 int main (int argc, char **argv) {
 
-  int NUM_TESTS = 2000;
+  int NUM_TESTS = 10000;
   int numDraws = 0;
   int fails = 0;
   int j, i, n, p, r;

@@ -1,0 +1,140 @@
+//Author:                 Howard Chen
+//Class/Assignment:       CS362/Assignment 3
+//Term:                   Spring 2015
+//File Name:              coverage1.txt
+
+-------------------------------------------------------------------------------
+RUN ALL TESTS (with coverage): 
+  make runtests
+    - OUTPUT: unittestresults.out
+    
+RUN SINGLE TESTS (with coverage): 
+  make unit1coverage
+    - OUTPUT: unit1cov.out
+  make unit2coverage
+    - OUTPUT: unit2cov.out
+  make unit3coverage
+    - OUTPUT: unit3cov.out
+  make unit4coverage
+    - OUTPUT: unit4cov.out
+  make card1coverage
+    - OUTPUT: card1cov.out
+  make card2coverage
+    - OUTPUT: card2cov.out
+  make card3coverage
+    - OUTPUT: card3cov.out
+  make card4coverage
+    - OUTPUT: card4cov.out
+
+RUN ALL SINGLE COVERAGE:
+  make coverall
+    - OUTPUT: Then same as the single coverage tests
+    
+-------------------------------------------------------------------------------
+unittest1.c: scoreFor()
+Lines executed:5.71% of 578
+Branches executed:13.01% of 415
+Taken at least once:13.01% of 415
+Calls executed:3.26% of 92
+
+The report indicates that for the function scoreFor() called 100, 
+returned 100% blocks executed 100%. This is good good sign of coverage. By all
+means this does not that 100% of the bugs were found, but should catch most 
+errors if they were present.
+
+-------------------------------------------------------------------------------
+unittest2.c: getWinners()
+Lines executed:10.21% of 578
+Branches executed:18.31% of 415
+Taken at least once:18.31% of 415
+Calls executed:5.43% of 92
+
+The report indicates that for the function getWinners() called 100, 
+returned 100% blocks executed 100%. Much like unittest1.c, it is a good sign to
+get this kind of coverage. Again this does not mean all bugs were found, just
+a good indication that bugs are more likely to be caught.
+
+-------------------------------------------------------------------------------
+unittest3.c: gainCard()
+Lines executed:12.80% of 578
+Branches executed:19.76% of 415
+Taken at least once:19.76% of 415
+Calls executed:6.52% of 92
+
+The report indicates that for the function getWinners() called 100, 
+returned 100% blocks executed 100%. Much like previous tests, it is a good sign
+to get this kind of coverage. Again this does not mean all bugs were found, 
+just a good indication that bugs are more likely to be caught.
+
+-------------------------------------------------------------------------------
+unittest4.c: isGameOVer()
+Lines executed:14.53% of 578
+Branches executed:21.69% of 415
+Taken at least once:21.69% of 415
+Calls executed:6.52% of 92
+
+The report indicates that for the function getWinners() called 100, 
+returned 100% blocks executed 100%. Much like previous tests, it is a good sign
+to get this kind of coverage. Again this does not mean all bugs were found, 
+just a good indication that bugs are more likely to be caught.
+
+-------------------------------------------------------------------------------
+cardtest1.c: cardAdventurer()
+Lines executed:27.34% of 578
+Branches executed:30.36% of 415
+Taken at least once:28.67% of 415
+Calls executed:11.96% of 92
+
+The report indicates that for the function getWinners() called 1, returned 100%
+blocks executed 93%. Out of all the lines in the function, only 1 was not 
+executed. It looks like there were 6 branched for each of the variables in the 
+conditional statement: 
+  1004: 1178:		if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+branch  2 taken 100% (fallthrough)
+branch  3 taken 0%
+branch  4 taken 0% (fallthrough)
+branch  5 taken 100%
+  #####: 1179:			drawntreasure++;
+    
+I think that the non-executed line could be taken care of with an addition
+to the card test.
+
+-------------------------------------------------------------------------------
+cardTest2.c: cardSmithy()
+Lines executed:28.03% of 578
+Branches executed:30.84% of 415
+Taken at least once:29.16% of 415
+Calls executed:13.04% of 92
+
+The report indicates that for the function getWinners() called 1, returned 100%
+blocks executed 100%. Much like previous tests, it is a good sign to get this 
+kind of coverage. Again this does not mean all bugs were found, just a good 
+indication that bugs are more likely to be caught.
+
+-------------------------------------------------------------------------------
+cardTest3.c: cardVillage()
+Lines executed:29.07% of 578
+Branches executed:31.33% of 415
+Taken at least once:29.64% of 415
+Calls executed:15.22% of 92
+
+The report indicates that for the function getWinners() called 1, returned 100%
+blocks executed 100%. Much like previous tests, it is a good sign to get this 
+kind of coverage. Again this does not mean all bugs were found, just a good 
+indication that bugs are more likely to be caught.
+
+-------------------------------------------------------------------------------
+cardTest4.c: cardGreatHall()
+Lines executed:29.76% of 578
+Branches executed:31.33% of 415
+Taken at least once:29.64% of 415
+Calls executed:16.30% of 92
+
+The report indicates that for the function getWinners() called 1, returned 100%
+blocks executed 100%. Much like previous tests, it is a good sign to get this 
+kind of coverage. Again this does not mean all bugs were found, just a good 
+indication that bugs are more likely to be caught.
+
+
