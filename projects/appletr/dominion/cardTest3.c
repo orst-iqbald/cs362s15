@@ -3,6 +3,9 @@
 #include <stdio.h>
 #include <assert.h>
 #include "rngs.h"
+#include <string.h>
+#include <math.h>
+#include <stdlib.h> 
 
 int checkCouncilRoom(int p, struct gameState *post)
 {
@@ -16,7 +19,7 @@ int checkCouncilRoom(int p, struct gameState *post)
 	choice2 = 0;
 	choice3 = 0;
 	handPos = 0;
-	int* bonus;
+	int* bonus = (int*) malloc(sizeof(int));
 	*bonus = 0;
 	cardEffect(card, choice1, choice2, choice3, post, handPos, bonus);
 	
@@ -33,17 +36,15 @@ int checkCouncilRoom(int p, struct gameState *post)
 	printf("Everyone else drew one card");
 	
 	//verify that the player has one more buy
-	assert(post->numBuys[p] == (prePtr->numBuys[p] + 1)); //verify we have 4 more cards in the hand
+	assert(post->numBuys == (prePtr->numBuys + 1)); //verify we have 4 more cards in the hand
 	printf("Player has one more buy");
+	free(bonus);
 	return 0;
 }
 
 int main()
 {
-	int i, n, r, p, deckCount, discardCount, handCount;
-
-	int k[10] = {adventurer, council_room, feast, gardens, mine,
-		   remodel, smithy, village, baron, great_hall};
+	int i, n, p;
 
 	struct gameState G;
 
@@ -82,6 +83,6 @@ int main()
 	}
 	printf ("ALL TESTS OK\n");
 
-	exit(0);
+	return 0;
 }
 

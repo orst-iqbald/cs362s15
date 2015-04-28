@@ -3,8 +3,8 @@
 #include <stdio.h>
 #include <assert.h>
 #include "rngs.h"
-
-#DEBUG 0
+#include <string.h>
+#include <math.h>
 
 int checkScoreFor(int p, struct gameState *post)
 {
@@ -51,14 +51,12 @@ int checkScoreFor(int p, struct gameState *post)
 	}
 	
 	assert(r == score);
+	return 0;
 }
 
 int main()
 {
-	int i, n, r, p, deckCount, discardCount, handCount;
-
-	int k[10] = {adventurer, council_room, feast, gardens, mine,
-		   remodel, smithy, village, baron, great_hall};
+	int i, n, p;
 
 	struct gameState G;
 
@@ -92,5 +90,5 @@ int main()
 
 	printf ("ALL TESTS OK\n");
 
-	exit(0);
+	return 0;
 }

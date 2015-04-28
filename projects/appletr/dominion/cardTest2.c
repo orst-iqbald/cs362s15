@@ -3,6 +3,9 @@
 #include <stdio.h>
 #include <assert.h>
 #include "rngs.h"
+#include <string.h>
+#include <math.h>
+#include <stdlib.h> 
 
 int checkAdventurer(int p, struct gameState *post)
 {
@@ -16,40 +19,38 @@ int checkAdventurer(int p, struct gameState *post)
 	choice2 = 0;
 	choice3 = 0;
 	handPos = 0;
-	int* bonus;
+	int* bonus = (int*) malloc(sizeof(int));
 	*bonus = 0;
 	cardEffect(card, choice1, choice2, choice3, post, handPos, bonus);
 	
 	//count treasure cards prior to adventurer
 	int i;
 	int preTreasure = 0;
-	for(i = 0; i < prePtr->handCount; i++)
+	for(i = 0; i < prePtr->handCount[p]; i++)
 	{
-		if (prePtr.hand[p][i] == copper || prePtr.hand[p][i] == silver || prePtr.hand[p][i] == gold)
+		if (prePtr->hand[p][i] == copper || prePtr->hand[p][i] == silver || prePtr->hand[p][i] == gold)
 		{
 			preTreasure++;
 		}
 	}
 	
 	int postTreasure = 0;
-	for(i = 0; i < post->handCount; i++)
+	for(i = 0; i < post->handCount[p]; i++)
 	{
-		if (prePtr.hand[p][i] == copper || prePtr.hand[p][i] == silver || prePtr.hand[p][i] == gold)
+		if (prePtr->hand[p][i] == copper || prePtr->hand[p][i] == silver || prePtr->hand[p][i] == gold)
 		{
 			postTreasure++;
 		}
 	}
 	
 	assert((preTreasure + 2) == postTreasure); //make sure we have two new treasure cards
+	free(bonus);
 	return 0;
 }
 
 int main()
 {
-	int i, n, r, p, deckCount, discardCount, handCount;
-
-	int k[10] = {adventurer, council_room, feast, gardens, mine,
-		   remodel, smithy, village, baron, great_hall};
+	int i, n, p;
 
 	struct gameState G;
 
@@ -88,5 +89,5 @@ int main()
 	}
 	printf ("ALL TESTS OK\n");
 
-	exit(0);
+	return 0;
 }

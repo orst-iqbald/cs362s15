@@ -3,8 +3,8 @@
 #include <stdio.h>
 #include <assert.h>
 #include "rngs.h"
-
-#DEBUG 0
+#include <string.h>
+#include <math.h>
 
 int checkShuffle(int p, struct gameState *post)
 {
@@ -16,15 +16,13 @@ int checkShuffle(int p, struct gameState *post)
 	r = shuffle(p, post); 
 	assert (r == 0);
 	
-	assert(post->deckCount[p] == pre->deckCount[p]); //check that they contain the same number of cards
+	assert(post->deckCount[p] == prePtr->deckCount[p]); //check that they contain the same number of cards
+	return 0;
 }
 
 int main()
 {
-	int i, n, r, p, deckCount, discardCount, handCount;
-
-	int k[10] = {adventurer, council_room, feast, gardens, mine,
-		   remodel, smithy, village, baron, great_hall};
+	int i, n, p;
 
 	struct gameState G;
 
@@ -59,5 +57,5 @@ int main()
 
 	printf ("ALL TESTS OK\n");
 
-	exit(0);
+	return 0;
 }

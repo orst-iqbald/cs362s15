@@ -5,46 +5,46 @@
 #include <stdio.h>
 #include <assert.h>
 #include "rngs.h"
+#include <string.h>
+#include <math.h>
 
 int checkUpdateCoin(int p, struct gameState *post, int bonus)
 {
 	struct gameState pre;
-	memcpy (&pre, post, sizeof(struct gameState));
+	struct gameState* prePtr = &pre;
+	memcpy (prePtr, post, sizeof(struct gameState));
 	int r;
 	int i;
 	r = updateCoins(p, post, bonus);
 	
-	for (i = 0; i < pre->handCount[p]; i++)
+	for (i = 0; i < (prePtr->handCount)[p]; i++)
     {
-		if ([pre->hand[p][i] == copper)
+		if (prePtr->hand[p][i] == copper)
 		{
-			pre->coins += 1;
+			prePtr->coins += 1;
 		}
-		else if (pre->hand[p][i] == silver)
+		else if (prePtr->hand[p][i] == silver)
 		{
-			pre->coins += 2;
+			prePtr->coins += 2;
 		}
-		else if (pre->hand[p][i] == gold)
+		else if (prePtr->hand[p][i] == gold)
 		{
-			pre->coins += 3;
+			prePtr->coins += 3;
 		}	
     }	
 
 	//add bonus
-	pre->coins += bonus;
+	prePtr->coins += bonus;
 
 	assert (r == 0);
-	assert(memcmp(&pre, post, sizeof(struct gameState)) == 0);	
+	assert(memcmp(prePtr, post, sizeof(struct gameState)) == 0);	
 	
 	return 0;
 }
 
 int main()
 {
-	int i, n, r, p, deckCount, discardCount, handCount, bonus;
-
-	int k[10] = {adventurer, council_room, feast, gardens, mine,
-		   remodel, smithy, village, baron, great_hall};
+	int i, n, p, bonus;
 
 	struct gameState G;
 
@@ -77,5 +77,5 @@ int main()
 
 	printf ("ALL TESTS OK\n");
 
-	exit(0);
+	return 0;
 }

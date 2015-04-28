@@ -3,8 +3,8 @@
 #include <stdio.h>
 #include <assert.h>
 #include "rngs.h"
-
-#DEBUG 0
+#include <string.h>
+#include <math.h>
 
 int checkDrawCard(int p, struct gameState *post)
 {
@@ -35,20 +35,10 @@ int checkDrawCard(int p, struct gameState *post)
 		//Shufffle the deck
 		shuffle(p, prePtr);//Shuffle the deck up and make it so that we can draw
 
-		if (DEBUG)
-		{//Debug statements
-			printf("Deck count now: %d\n", prePtr->deckCount[p]);
-		}
-
 		prePtr->discardCount[p] = 0;
 
 		//Step 2 Draw Card
 		count = prePtr->handCount[p];//Get current player's hand count
-
-		if (DEBUG)
-		{//Debug statements
-			printf("Current hand count: %d\n", count);
-		}
 
 		deckCounter = prePtr->deckCount[p];//Create a holder for the deck count
 
@@ -61,11 +51,6 @@ int checkDrawCard(int p, struct gameState *post)
 	{
 		int count = prePtr->handCount[p];//Get current hand count for player
 		int deckCounter;
-		if (DEBUG)
-		{//Debug statements
-			printf("Current hand count: %d\n", count);
-		}
-
 		deckCounter = prePtr->deckCount[p];//Create holder for the deck count
 		prePtr->hand[p][count] = prePtr->deck[p][deckCounter - 1];//Add card to the hand
 		prePtr->deckCount[p]--;
@@ -74,14 +59,12 @@ int checkDrawCard(int p, struct gameState *post)
 	
 	assert (r == 0);
 	assert(memcmp(prePtr, post, sizeof(struct gameState)) == 0);
+	return 0;
 }
 
 int main()
 {
-	int i, n, r, p, deckCount, discardCount, handCount;
-
-	int k[10] = {adventurer, council_room, feast, gardens, mine,
-		   remodel, smithy, village, baron, great_hall};
+	int i, n, p;
 
 	struct gameState G;
 
@@ -117,5 +100,5 @@ int main()
 
 	printf ("ALL TESTS OK\n");
 
-	exit(0);
+	return 0;
 }
