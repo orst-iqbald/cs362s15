@@ -39,7 +39,7 @@ cardtests: dominion.o
 randomtestadventurer.o: dominion.o
 	gcc -o randomtestadventurer randomtestadventurer.c -g dominion.o rngs.o $(CFLAGS)
 	
-randomtestadventurer.out: randomtestsadventurer.o
+randomtestadventurer.out: randomtestadventurer.o
 	./randomtestadventurer &> randomtestadventurer.out
 	gcov -b -c dominion.c >> randomtestadventurer.out
 	cat dominion.c.gcov >> randomtestadventurer.out
