@@ -41,7 +41,7 @@ cardtests: cardtest1 cardtest2 cardtest3 cardtest4
 
 unittests: unittest1 unittest2 unittest3 unittest4
 
-testresults: unittests cardtests
+unittestresults: unittests cardtests
 	echo "/* ---------------------------------------- */" > unittestresults.out
 	-./unittest1 >> unittestresults.out
 	echo "/* --------------------------------------- */" >> unittestresults.out
