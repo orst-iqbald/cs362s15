@@ -41,7 +41,7 @@ cardtests: cardtest1 cardtest2 cardtest3 cardtest4
 
 unittests: unittest1 unittest2 unittest3 unittest4
 
-unittestresults: unittests cardtests
+unittestresults: unittests cardtests coverage
 	echo "/* ---------------------------------------- */" > unittestresults.out
 	-./unittest1 >> unittestresults.out
 	echo "/* --------------------------------------- */" >> unittestresults.out
@@ -59,6 +59,7 @@ unittestresults: unittests cardtests
 	echo "/* --------------------------------------- */" >> unittestresults.out
 	-./cardtest4 >> unittestresults.out
 	echo "/* --------------------------------------- */" >> unittestresults.out
+	cat coverage1.txt >> unittestresults.out
 
 gcovunit1: unittest1
 	./unittest1

@@ -1,3 +1,4 @@
+/* ---------------UnitTest 1--------------------- */
 Function 'useCutpurse'
 Lines executed:0.00% of 13
 No branches
@@ -2369,13 +2370,13 @@ function useAdventurer called 0 returned 0% blocks executed 0%
     #####: 1254:  int drawntreasure = 0;
         -: 1255:  int temphand[MAX_HAND];
     #####: 1256:  int z = 0; //counter for temphand
-    #####: 1257:  while(drawntreasure < 2)
+    #####: 1257:  while(drawntreasure <= 2)
     $$$$$: 1257-block  0
     $$$$$: 1257-block  1
 branch  0 never executed
 branch  1 never executed
         -: 1258:  {
-    #####: 1259:	  if (state->deckCount[currentPlayer] <1) //if the deck is empty we need to shuffle discard and add to deck
+    #####: 1259:	  if (state->deckCount[currentPlayer] < 1) //if the deck is empty we need to shuffle discard and add to deck
     $$$$$: 1259-block  0
 branch  0 never executed
 branch  1 never executed
@@ -4946,13 +4947,13 @@ function useAdventurer called 0 returned 0% blocks executed 0%
     #####: 1254:  int drawntreasure = 0;
         -: 1255:  int temphand[MAX_HAND];
     #####: 1256:  int z = 0; //counter for temphand
-    #####: 1257:  while(drawntreasure < 2)
+    #####: 1257:  while(drawntreasure <= 2)
     $$$$$: 1257-block  0
     $$$$$: 1257-block  1
 branch  0 never executed
 branch  1 never executed
         -: 1258:  {
-    #####: 1259:	  if (state->deckCount[currentPlayer] <1) //if the deck is empty we need to shuffle discard and add to deck
+    #####: 1259:	  if (state->deckCount[currentPlayer] < 1) //if the deck is empty we need to shuffle discard and add to deck
     $$$$$: 1259-block  0
 branch  0 never executed
 branch  1 never executed
@@ -7523,13 +7524,13 @@ function useAdventurer called 0 returned 0% blocks executed 0%
     #####: 1254:  int drawntreasure = 0;
         -: 1255:  int temphand[MAX_HAND];
     #####: 1256:  int z = 0; //counter for temphand
-    #####: 1257:  while(drawntreasure < 2)
+    #####: 1257:  while(drawntreasure <= 2)
     $$$$$: 1257-block  0
     $$$$$: 1257-block  1
 branch  0 never executed
 branch  1 never executed
         -: 1258:  {
-    #####: 1259:	  if (state->deckCount[currentPlayer] <1) //if the deck is empty we need to shuffle discard and add to deck
+    #####: 1259:	  if (state->deckCount[currentPlayer] < 1) //if the deck is empty we need to shuffle discard and add to deck
     $$$$$: 1259-block  0
 branch  0 never executed
 branch  1 never executed
@@ -10100,13 +10101,13 @@ function useAdventurer called 0 returned 0% blocks executed 0%
     #####: 1254:  int drawntreasure = 0;
         -: 1255:  int temphand[MAX_HAND];
     #####: 1256:  int z = 0; //counter for temphand
-    #####: 1257:  while(drawntreasure < 2)
+    #####: 1257:  while(drawntreasure <= 2)
     $$$$$: 1257-block  0
     $$$$$: 1257-block  1
 branch  0 never executed
 branch  1 never executed
         -: 1258:  {
-    #####: 1259:	  if (state->deckCount[currentPlayer] <1) //if the deck is empty we need to shuffle discard and add to deck
+    #####: 1259:	  if (state->deckCount[currentPlayer] < 1) //if the deck is empty we need to shuffle discard and add to deck
     $$$$$: 1259-block  0
 branch  0 never executed
 branch  1 never executed
@@ -12677,13 +12678,13 @@ function useAdventurer called 0 returned 0% blocks executed 0%
     #####: 1254:  int drawntreasure = 0;
         -: 1255:  int temphand[MAX_HAND];
     #####: 1256:  int z = 0; //counter for temphand
-    #####: 1257:  while(drawntreasure < 2)
+    #####: 1257:  while(drawntreasure <= 2)
     $$$$$: 1257-block  0
     $$$$$: 1257-block  1
 branch  0 never executed
 branch  1 never executed
         -: 1258:  {
-    #####: 1259:	  if (state->deckCount[currentPlayer] <1) //if the deck is empty we need to shuffle discard and add to deck
+    #####: 1259:	  if (state->deckCount[currentPlayer] < 1) //if the deck is empty we need to shuffle discard and add to deck
     $$$$$: 1259-block  0
 branch  0 never executed
 branch  1 never executed
@@ -15254,13 +15255,13 @@ function useAdventurer called 0 returned 0% blocks executed 0%
     #####: 1254:  int drawntreasure = 0;
         -: 1255:  int temphand[MAX_HAND];
     #####: 1256:  int z = 0; //counter for temphand
-    #####: 1257:  while(drawntreasure < 2)
+    #####: 1257:  while(drawntreasure <= 2)
     $$$$$: 1257-block  0
     $$$$$: 1257-block  1
 branch  0 never executed
 branch  1 never executed
         -: 1258:  {
-    #####: 1259:	  if (state->deckCount[currentPlayer] <1) //if the deck is empty we need to shuffle discard and add to deck
+    #####: 1259:	  if (state->deckCount[currentPlayer] < 1) //if the deck is empty we need to shuffle discard and add to deck
     $$$$$: 1259-block  0
 branch  0 never executed
 branch  1 never executed
@@ -17831,13 +17832,13 @@ function useAdventurer called 0 returned 0% blocks executed 0%
     #####: 1254:  int drawntreasure = 0;
         -: 1255:  int temphand[MAX_HAND];
     #####: 1256:  int z = 0; //counter for temphand
-    #####: 1257:  while(drawntreasure < 2)
+    #####: 1257:  while(drawntreasure <= 2)
     $$$$$: 1257-block  0
     $$$$$: 1257-block  1
 branch  0 never executed
 branch  1 never executed
         -: 1258:  {
-    #####: 1259:	  if (state->deckCount[currentPlayer] <1) //if the deck is empty we need to shuffle discard and add to deck
+    #####: 1259:	  if (state->deckCount[currentPlayer] < 1) //if the deck is empty we need to shuffle discard and add to deck
     $$$$$: 1259-block  0
 branch  0 never executed
 branch  1 never executed
@@ -20408,13 +20409,13 @@ function useAdventurer called 0 returned 0% blocks executed 0%
     #####: 1254:  int drawntreasure = 0;
         -: 1255:  int temphand[MAX_HAND];
     #####: 1256:  int z = 0; //counter for temphand
-    #####: 1257:  while(drawntreasure < 2)
+    #####: 1257:  while(drawntreasure <= 2)
     $$$$$: 1257-block  0
     $$$$$: 1257-block  1
 branch  0 never executed
 branch  1 never executed
         -: 1258:  {
-    #####: 1259:	  if (state->deckCount[currentPlayer] <1) //if the deck is empty we need to shuffle discard and add to deck
+    #####: 1259:	  if (state->deckCount[currentPlayer] < 1) //if the deck is empty we need to shuffle discard and add to deck
     $$$$$: 1259-block  0
 branch  0 never executed
 branch  1 never executed
