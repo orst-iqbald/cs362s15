@@ -36,11 +36,15 @@ cardtests: dominion.o
 	gcc -o cardtest3 cardtest3.c -g dominion.o rngs.o $(CFLAGS)
 	gcc -o cardtest4 cardtest4.c -g dominion.o rngs.o $(CFLAGS)
 	
+randomtestcard.o: dominion.o
+	gcc -o randomtestcard randomtestcard.c -g dominion.o rngs.o $(CFLAGS)
+	
 randomtestadventurer.o: dominion.o
 	gcc -o randomtestadventurer randomtestadventurer.c -g dominion.o rngs.o $(CFLAGS)
 	
-randomtestadventurer.out: randomtestadventurer.o
+randomtestadventurer.out: randomtestadventurer.o randomtestcard.o
 	./randomtestadventurer &> randomtestadventurer.out
+	./randomtestcard &>> randomtestadventurer.out
 	gcov -b -c dominion.c >> randomtestadventurer.out
 	cat dominion.c.gcov >> randomtestadventurer.out
 	
