@@ -1,0 +1,11 @@
+Yong Lee
+
+I did not find any bug when I ran my first four unit tests which worries me as I expected to find few bugs. Perhaps I needed to introduce much wider scenarios to find bugs for these functions.
+
+Three interesting things note from 4 card tests:
+
+1) Smithy card function did not work properly as my bug let the player draw 4 cards instead of three.
+
+2) Village card function did not work properly as my bug gave 3 action points instead of 2.
+
+3) Even though I introduced a bug for Adventurer card, it did not find any bug which means my test wasn’t sufficient enough as the bug I introduced only affect the outcome in very rare situations. 

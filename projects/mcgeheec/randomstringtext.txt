@@ -1,0 +1,8 @@
+Quiz 2
+
+To get the value for 'c', I generated a random number between 26 and 100. That made
+it advance to stage 9 in a fraction of a second. To generate the input string, I 
+randomly generated 5 lowercase letters and then returned it. There is only a 1 out of
+a 11,881,376 chance that the string will be the correct one, so it took some time to 
+trigger the error. After nearly 22,000,000 iterations, it caught the error. This took 
+almost 26 minutes, but it was accomplished.

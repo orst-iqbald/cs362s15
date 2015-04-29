@@ -657,13 +657,15 @@ int playSmithy(struct gameState *state, int currentPlayer, int handPos)
 int playAdventurer(struct gameState *state, int currentPlayer, int handPos)
 {
 	int drawnTreasure = 0;
+	int cardDrawn, z;
+	int temphand[MAX_HAND];
 	while(drawnTreasure<2){
 		if (state->deckCount[currentPlayer] <1){ 
 			shuffle(currentPlayer, state);
 		}
 		drawCard(currentPlayer, state);
 		cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];
-		if (cardDrawn == copper || cardDrawn == || cardDrawn == gold){
+		if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold){
 			drawnTreasure++;
 		}else {
 			int temphand[MAX_HAND]; //Introduces bug
@@ -682,8 +684,9 @@ int playAdventurer(struct gameState *state, int currentPlayer, int handPos)
 
 int playRemodel(struct gameState *state, int currentPlayer, int handPos, int choice1, int choice2)
 {
+	int i, j;
 	int tmp = state->hand[currentPlayer][choice1];
-	if ((getCost(state->hand[currentPlayer][choice1]) + 2 ) > getCost(choice2) ){
+	if ((getCost(state->hand[currentPlayer][choice1]) + 2 ) < getCost(choice2) ){
 		return -1;
 	}
 	gainCard(choice1, state, 0, currentPlayer); //Introduces bug
@@ -703,7 +706,7 @@ int playRemodel(struct gameState *state, int currentPlayer, int handPos, int cho
 
 int playMinion(struct gameState *state, int currentPlayer, int handPos, int choice1, int choice2)
 {
-
+	
 	state->numActions++;
 
 	discardCard(handPos, currentPlayer, state, 0);
@@ -719,9 +722,9 @@ int playMinion(struct gameState *state, int currentPlayer, int handPos, int choi
 			discardCard(handPos, currentPlayer, state, 0);
 		}
 		int i;
-		for (i = 0; i < 4, i++)
+		for (i = 0; i < 4; i++)
 		{
-			drawCard(currentPLayer, state);
+			drawCard(currentPlayer, state);
 		}
 		for (i = 0; i < state->numPlayers; i++)
 		{
@@ -736,7 +739,7 @@ int playMinion(struct gameState *state, int currentPlayer, int handPos, int choi
 					int j;
 					for (j=0; j<4; j++)
 					{
-						drawCard(currenPlayer, state); // Introduces bug
+						drawCard(currentPlayer, state); // Introduces bug
 					}
 				}
 			}
@@ -749,7 +752,7 @@ int playCutpurse(struct gameState *state, int currentPlayer, int handPos)
 {
 	int i,j,k;
 	updateCoins(currentPlayer, state, 2);
-	for (i=0, i<state->numPlayers; i++)
+	for (i=0; i<state->numPlayers; i++)
 	{
 		if (i != currentPlayer)
 		{
@@ -922,7 +925,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 		return playRemodel(state, currentPlayer, handPos, choice1, choice2);
 		
     case smithy:
-		return playSmithy(state, currentPlayer, handpos);
+		return playSmithy(state, currentPlayer, handPos);
 		
     case village:
       //+1 Card

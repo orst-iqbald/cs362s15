@@ -1,0 +1,15 @@
+Brittany Hopkins
+Bugs1.txt
+Assignment 3
+
+In an effort to make my unit tests and card tests universal, meaning they could be used with anyone’s 
+refactored dominion code, I essentially shot myself in the foot. When the playCard or cardEffect functions
+are called the code does not want to select the right case from cardEffect. Essentially the card is played
+but does nothing. For example, if I set the handCount to 1 and set the card at the first hand position to 
+smithy, when I call the playCard function, which should lead to the card being introduced into cardEffect()
+and its effect then performed, the program performs as if no card were played.  
+
+When I attempted to change the code to focus only on some of my refactored functions from assignment 2
+however, the code was able to pick up my introduced bugs. From what I gathered from the assignment and
+the posts on Piazza however, the code was just supposed to work with dominion.c, not our versions. This
+left me with some code that wasn’t working properly and I see this as a major bug. 

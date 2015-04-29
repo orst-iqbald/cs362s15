@@ -1,0 +1,28 @@
+#Description of quiz2 testme.c random string implementation
+#Author: Kevin Parks
+
+function inputChar:
+    We assume that we're only interested in ASCII values from 32 - 125, as this is the range
+    that includes all the characters needed to satisfy the state section. 
+    Thus, we skew the random range to this by determining:
+        - The size of the range: 125-32 + 1 = 94 
+        - Add the base offset to the range we want: 32
+    Then, any value produced should be within the range 32 - 125.
+    
+function inputString:
+    We assume that we're only interested in ASCII values from 97-122, as this range
+    includes all lowercase letters which is needed to satisfy the
+    string "reset". As this is a string, we always set the last
+    index to '\0'. Thus, we skew the range by:
+        - The size of the range: 122-97 + 1 = 26
+        - Add the base offset to the rang we want: 97
+    Then, any value produced should be within the range 97-122.
+    
+The inputChar function should pass the state tests very quickly as it only
+needs to match 1 char for each pass to the next state. The inputString
+portion has the potential to take significantly longer in order to
+satisfy matching the exact string "reset" from available characters.
+On average, the inputString could take 26^5 iterations to produce the
+exact "reset" combination. This isn't too concerning however, as any
+modern day CPU should be able to produce this many runs of the loop
+in a matter of minutes.

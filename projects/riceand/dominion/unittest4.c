@@ -58,9 +58,6 @@ void testBuyCard(){
       if (EXTRA_INFO == 1)
         printf("buyCard subtracts 1 from numBuys after successful run: PASSED\n");
 
-      if (EXTRA_INFO == 1)
-        printf("buyCard puts ")
-
       //save and test if card to buy is out of stock
       int saved_copper_count = s.supplyCount[copper];
       s.supplyCount[copper] = 0;

@@ -1,0 +1,44 @@
+bug1.txt
+====
+cardtest1.c - testing Adventurer Card
+
+These tests determined that the action cards were not correctly added to the player's hand.  Also, the tests revealed that the Adventurer card was 
+not properly discarded.    
+====
+cardtest2.c - testing Smithy Card
+
+These tests showed that playing the Smithy card resulted in an improper number of 
+cards being added to that's player's hand.  The tests also showed that the Smithy 
+card was discarded properly.  
+
+====
+cardtest3.c - testing Village Card
+
+These tests found that after playing the Village card the player had an incorrect 
+number of cards in their hand, that the number of actions owned by the player 
+was not correctly incremented after playing this card, and that the Village card 
+was not appropriately discarded.  
+====
+cardtest4.c - testing Great Hall Card
+
+The test showed that the player's hand was correct after playing this card, but 
+also revealed an error in the incrementing the number of actions following playing 
+of this card.  The Great Hall card was properly discarded.  
+====
+unittest1 - testing supplyCount function
+
+The tests revealed that the supplyCount function correctly returns the number of cards held by the player.   
+====
+unittest2 - testing getCost function
+
+The tests found that the getCost function did not return the correct cost value of an array of test cards.
+====
+unittest3 - testing shuffle function
+
+The shuffle function passed all of the tests, i.e., it correctly determined 
+whether a player's cards needed to be shuffled, and if so, correctly shuffled those cards.  
+====
+unittest4 - testing kingdomCards function
+
+The kingdomCards function passed all tests, and properly added the correct cards to the deck.  
+====

@@ -109,6 +109,12 @@ int handCard(int handNum, struct gameState *state);
 int supplyCount(int card, struct gameState *state);
 /* How many of given card are left in supply */
 
+int card_deckCount(int player, int card, struct gameState *state);
+
+int card_handCount(int player, int card, struct gameState *state);
+
+int card_discardCount(int player, int card, struct gameState *state);
+
 int fullDeckCount(int player, int card, struct gameState *state);
 /* Here deck = hand + discard + deck */
 
@@ -127,5 +133,13 @@ int scoreFor(int player, struct gameState *state);
 int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 /* Set array position of each player who won (remember ties!) to
    1, others to 0 */
+
+int play_adventurer(int *currentPlayer, struct gameState *state, int *cardDrawn, int drawntreasure, int *z, int temphand[]);
+
+int play_smithy(int *currentPlayer, struct gameState *state, int *handPos);
+
+int play_great_hall(int *currentPlayer, struct gameState *state, int *handPos);
+
+int play_village(int *currentPlayer, struct gameState *state, int *handPos);
 
 #endif

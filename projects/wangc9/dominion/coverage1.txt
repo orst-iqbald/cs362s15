@@ -1,0 +1,76 @@
+CS362 Assignment 3
+Chunyu Wang
+
+unittest1
+For dominion.c overall:
+Lines executed:20.83% of 581
+Branches executed:24.82% of 419
+Taken at least once:15.04% of 419
+Calls executed:12.63% of 95
+However, unittest1 only tests buyCard() function of dominion.c. 
+Within the buyCard() function, statement coverage is 100%, and branch coverage is 100%.
+
+unittest2
+For dominion.c overall:
+Lines executed:21.17% of 581
+Branches executed:24.82% of 419
+Taken at least once:15.51% of 419
+Calls executed:12.63% of 95
+However, unittest2 only tests updateCoins() function of dominion.c. 
+Within the updateCoins() function, statement coverage is 100%, and branch coverage is 100%.
+
+unittest3
+For dominion.c overall:
+Lines executed:21.34% of 581
+Branches executed:24.82% of 419
+Taken at least once:15.75% of 419
+Calls executed:12.63% of 95
+However, unittest3 only tests shuffle() function of dominion.c. 
+Within the shuffle() function, statement coverage is 93%, and branch coverage is 100%.
+
+unittest4
+For dominion.c overall:
+Lines executed:26.85% of 581
+Branches executed:37.23% of 419
+Taken at least once:26.01% of 419
+Calls executed:14.74% of 95
+However, unittest4 only tests scoreFor() function of dominion.c. 
+Within the scoreFor() function, statement coverage is 82%, and branch coverage is 100%.
+
+cardtest1
+For dominion.c overall:
+Lines executed:29.60% of 581
+Branches executed:39.14% of 419
+Taken at least once:27.21% of 419
+Calls executed:16.84% of 95
+However, cardtest1 only tests bug_smithycardplay() function of dominion.c. 
+Within the bug_smithycardplay() function, statement coverage is 100%, and branch coverage is 100%.
+
+cardtest2
+For dominion.c overall:
+Lines executed:31.15% of 581
+Branches executed:41.05% of 419
+Taken at least once:28.40% of 419
+Calls executed:17.89% of 95
+However, cardtest2 only tests bug_adventurercardplay() function of dominion.c. 
+Within the bug_adventurercardplay() function, statement coverage is 64%, and branch coverage is 100%.
+
+cardtest3
+For dominion.c overall:
+Lines executed:33.39% of 581
+Branches executed:42.48% of 419
+Taken at least once:29.83% of 419
+Calls executed:23.16% of 95
+However, cardtest3 only tests bug_remodelCardPlay() function of dominion.c. 
+Within the bug_remodelCardPlay() function, statement coverage is 93%, and branch coverage is 100%.
+
+cardtest4
+For dominion.c overall:
+Lines executed:38.90% of 581
+Branches executed:50.36% of 419
+Taken at least once:31.74% of 419
+Calls executed:32.63% of 95
+However, cardtest4 only tests bug_greathallCardPlay() function of dominion.c. 
+Within the bug_greathallCardPlay() function, statement coverage is 100%, and branch coverage is 100%.
+
+Most of the statement coverages are good, and branches within the tested function have been covered thoroughly.  In future, I can improve the test suite by using random testing, in order to increase the coverage. 
