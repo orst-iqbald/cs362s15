@@ -15,27 +15,41 @@ int checkSmithy(int p, struct gameState *post)
 	
 	int card, choice1, choice2, choice3, handPos;
 	card = smithy;
-	choice1 = 0;
-	choice2 = 0;
-	choice3 = 0;
+	choice1 = 1;
+	choice2 = 2;
+	choice3 = 3;
 	handPos = 0;
 	int* bonus = (int*) malloc(sizeof(int));
 	*bonus = 0;
+
 	cardEffect(card, choice1, choice2, choice3, post, handPos, bonus);
+
+	free(bonus);
 	
 	//check that hand has increased by 3
-	assert(post->handCount[p] == (prePtr->handCount[p] + 3));
-
-	//check that the deck has decreased by 3
-	assert(post->deckCount[p] == (prePtr->deckCount[p] - 3));
-	free(bonus);
-	return 0;
+	if (post->handCount[p] == (prePtr->handCount[p] + 3))
+	{
+		//check that the deck has decreased by 3
+		if(post->deckCount[p] == (prePtr->deckCount[p] - 3))
+		{
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 int main()
 {
-	int i, n, p;
-
+	int i, n, p, r, breakLoop;
+	breakLoop = 0;
+	
 	struct gameState G;
 
 	printf ("Testing updateCoins.\n");
@@ -65,9 +79,21 @@ int main()
 		{
 			G.hand[p][i] = floor(Random() * 26); //fill hand with random cards
 		}
-		checkSmithy(p, &G);
+		
+		r = checkSmithy(p, &G);
+
+		if(r == 0)
+		{
+			printf("Test failed\n");
+			breakLoop = 1;
+			break;
+		}
 	}
-	printf ("ALL TESTS OK\n");
+	
+	if(!breakLoop)
+	{
+		printf ("Smithy TESTS OK\n");
+	}
 
 	return 0;
 }

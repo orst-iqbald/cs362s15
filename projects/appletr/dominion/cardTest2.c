@@ -42,16 +42,23 @@ int checkAdventurer(int p, struct gameState *post)
 			postTreasure++;
 		}
 	}
-	
-	assert((preTreasure + 2) == postTreasure); //make sure we have two new treasure cards
 	free(bonus);
-	return 0;
+
+	if((preTreasure + 2) == postTreasure) //make sure we have two new treasure cards
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 int main()
 {
-	int i, n, p;
-
+	int i, n, p, r, breakLoop;
+	breakLoop = 1;
+	
 	struct gameState G;
 
 	printf ("Testing updateCoins.\n");
@@ -85,9 +92,18 @@ int main()
 		{
 			G.hand[p][i] = floor(Random() * 26); //fill hand with random cards
 		}
-		checkAdventurer(p, &G);
+		r = checkAdventurer(p, &G);
+		if(r == 0)
+		{
+			printf("Test failed\n");
+			breakLoop = 1;
+			break;
+		}
 	}
-	printf ("ALL TESTS OK\n");
+	if(!breakLoop)
+	{
+		printf ("Adventurer TESTS OK\n");
+	}
 
 	return 0;
 }

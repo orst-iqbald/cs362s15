@@ -22,18 +22,24 @@ int checkVillage(int p, struct gameState *post)
 	int* bonus = (int*) malloc(sizeof(int));
 	*bonus = 0;
 	cardEffect(card, choice1, choice2, choice3, post, handPos, bonus);
-	
-	//check that 1 card added
-	assert(post->handCount[p] == (prePtr->handCount[p] + 1));
-	//check that 2 actions were added
-	assert(post->numActions == (prePtr->numActions + 2));
 	free(bonus);
-	return 0;
+
+	//check that 1 card added
+	if(post->handCount[p] != (prePtr->handCount[p] + 1))
+	{
+		return 0;
+	}
+	//check that 2 actions were added
+	if(post->numActions != (prePtr->numActions + 2))
+	{
+		return 0;
+	}
+	return 1;
 }
 
 int main()
 {
-	int i, n, p;
+	int i, n, p, r, breakLoop;
 
 	struct gameState G;
 
@@ -68,9 +74,19 @@ int main()
 		{
 			G.hand[p][i] = floor(Random() * 26); //fill hand with random cards
 		}
-		checkVillage(p, &G);
+		r = checkVillage(p, &G);
+		if (r == 0)
+		{
+			printf("Test failed\n");
+			breakLoop = 1;
+			break;
+		}
 	}
-	printf ("ALL TESTS OK\n");
+	
+	if(!breakLoop)
+	{
+		printf ("Village Tests OK\n");
+	}
 
 	return 0;
 }
