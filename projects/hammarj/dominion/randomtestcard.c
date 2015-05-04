@@ -1,56 +1,96 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
 
-//initialize every gameState variable to some random but valid number
-void genRandState(struct gameState& gs);
+//insert the given card into a random hand position of the current player's hand.
+//this will overwrite the card currently in that position.
+//returns the position of the inserted card.
+int insertCardRand(struct gameState* gs, int card);
 
+//initialize every gameState variable to some random but valid number
+void genRandState(struct gameState* gs);
+
+//tests cardSmithy()
 int main() {
     int i;
+    struct gameState* gs = malloc(sizeof(struct gameState));
+    struct gameState* gs0;
+    int handpos;
+    int player;
+    int res;      //return value of function
+    
+    srand(42);
+    
+    for (i = 0; i < 1000; ++i) {
+        genRandState(gs);
+        //make sure smithy is in current player's hand
+        handpos = insertCardRand(gs, smithy);
+        player = gs->whoseTurn;
+        //make a copy of the gameState
+        memcpy (gs0, gs, sizeof(struct gameState));
+        
+        res = cardSmithy(gs, handpos);
+        assert(res == 0);
+        
+        //deck/discard should go down by 3 cards total
+        assert( (gs->deckCount[player] + gs->discardCount[player]) - 
+                (gs0->deckCount[player] + gs0->discardCount[player]) == -3);
+        assert(gs->playedCardCount[player] - gs0->playedCardCount[player] == 1);
+        assert(gs->handCount[player] - gs0->handCount[player] == 3);
+    }
     
     return 0;
 }
 
-void genRandState(struct gameState& gs) {
+int insertCardRand(struct gameState* gs, int card) {
+    int player = gs->whoseTurn;
+    int pos = rand() % gs->handCount[player];
+    gs->hand[player][pos] = card;
+    
+    return pos;
+}
+
+void genRandState(struct gameState* gs) {
     int i, j;
     
-    gs.numPlayers = rand() % MAX_PLAYERS;
+    gs->numPlayers = rand() % MAX_PLAYERS;
     for (i = 0; i < treasure_map+1; ++i) {
-        gs.supplyCount[i] = rand() % MAX_DECK;
+        gs->supplyCount[i] = rand() % MAX_DECK;
     }
     for (i = 0; i < treasure_map+1; ++i) {
         //15 embargo tokens total
-        gs.embargoTokens[i] = rand() % 16;
+        gs->embargoTokens[i] = rand() % 16;
     }
-    gs.outpostPlayed = rand() % 2;
-    gs.outpostTurn = rand() % 2;
-    gs.whoseTurn = rand() % gs.numPlayers;
-    gs.phase = rand() % 3;
-    gs.numActions = rand();
-    gs.coins = rand();
-    gs.numBuys = rand();
-    for (i = 0; i < gs.numPlayers; ++i) {
-        gs.handCount[i] = rand() % MAX_HAND
-        for (j = 0; j < gs.handCount[i]; ++j) {
-            gs.hand[i][j] = rand() % treasure_map+1;
+    gs->outpostPlayed = rand() % 2;
+    gs->outpostTurn = rand() % 2;
+    gs->whoseTurn = rand() % gs->numPlayers;
+    gs->phase = rand() % 3;
+    gs->numActions = rand();
+    gs->coins = rand();
+    gs->numBuys = rand();
+    for (i = 0; i < gs->numPlayers; ++i) {
+        gs->handCount[i] = rand() % MAX_HAND
+        for (j = 0; j < gs->handCount[i]; ++j) {
+            gs->hand[i][j] = rand() % treasure_map+1;
         }
     }
-    for (i = 0; i < gs.numPlayers; ++i) {
-        gs.deckCount[i] = rand() % MAX_DECK
-        for (j = 0; j < gs.deckCount[i]; ++j) {
-            gs.deck[i][j] = rand() % treasure_map+1;
+    for (i = 0; i < gs->numPlayers; ++i) {
+        gs->deckCount[i] = rand() % MAX_DECK
+        for (j = 0; j < gs->deckCount[i]; ++j) {
+            gs->deck[i][j] = rand() % treasure_map+1;
         }
     }
-    for (i = 0; i < gs.numPlayers; ++i) {
-        gs.discardCount[i] = rand() % MAX_DECK
-        for (j = 0; j < gs.discardCount[i]; ++j) {
-            gs.discard[i][j] = rand() % treasure_map+1;
+    for (i = 0; i < gs->numPlayers; ++i) {
+        gs->discardCount[i] = rand() % MAX_DECK
+        for (j = 0; j < gs->discardCount[i]; ++j) {
+            gs->discard[i][j] = rand() % treasure_map+1;
         }
     }
-    gs.playedCardCount = rand() % MAX_DECK
-    for (i = 0; i < gs.playedCardCount; ++i) {
-        gs.playedCards[i] = rand() % treasure_map+1;
+    gs->playedCardCount = rand() % MAX_DECK
+    for (i = 0; i < gs->playedCardCount; ++i) {
+        gs->playedCards[i] = rand() % treasure_map+1;
     }
 }
