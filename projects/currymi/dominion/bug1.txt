@@ -1,0 +1,20 @@
+### Miles A. Curry (currymi)
+### Github: Micurry
+### CS-362-400 - Spring 2015
+### Assignment 3 bug1.txt 
+
+
+Bugs!
+=====
+I found a number of bugs in the dominion.c program while doing my unitTests. I
+mainly found the tests when doing the card tests. One of the main things was
+that the adventure call to discard card would fail for some reason with a
+segfault. I am not sure why this happens it seemed a few things were out of
+bounds, but I can't remember what. I tried to get it to execute but however I
+was unable. That is why there are no tests for the adventure card.
+
+
+Another bug I found was in the councilRoomEffect. The council room is supposed
+to add on another buy, but however it set the number of buys to zero. I have
+since fixed this.
+

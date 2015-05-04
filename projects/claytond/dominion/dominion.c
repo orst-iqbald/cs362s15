@@ -689,14 +689,14 @@ int myGreat_hallCard(struct gameState *state, int currentPlayer, int handPos){
       drawCard(currentPlayer, state);
 			
       //+1 Actions
-      state->numActions—-;
+      state->numActions++;
 			
       //discard card from hand
       discardCard(handPos, currentPlayer, state, 1);
       return 0;
 }
 
-int myEmbargoCard(struct gameState *state, int currentPlayer, int handPos){
+int myEmbargoCard(struct gameState *state, int currentPlayer, int handPos, int choice1){
 
 	//+2 Coins
       state->coins = state->coins + 1;
@@ -1187,7 +1187,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
 		
     case embargo: 
-      return myEmbargoCard(state, currentPlayer, handPos);
+      return myEmbargoCard(state, currentPlayer, handPos,choice1);
 
 		
     case outpost:

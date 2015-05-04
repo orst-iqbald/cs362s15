@@ -1,0 +1,813 @@
+Results for randomtestadventurer:
+
+Random testing of Adventurer card.
+
+Test #1 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 1 (gold 0 silver 0 copper 0)
+	Hand total 391, handPos 334
+	Player 1
+	Original played card count 2
+FAILS because the deck count is incorrect.
+
+Test #2 setup:
+	Deck total 150 (gold 25 silver 18 copper 28)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 312, handPos 94
+	Player 1
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #3 setup:
+	Deck total 1 (gold 0 silver 0 copper 0)
+	Discard total 453 (gold 82 silver 58 copper 86)
+	Hand total 1, handPos 0
+	Player 1
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #4 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 1, handPos 0
+	Player 0
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #5 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 1 (gold 0 silver 0 copper 0)
+	Hand total 2, handPos 1
+	Player 0
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #6 setup:
+	Deck total 252 (gold 39 silver 43 copper 44)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 357, handPos 155
+	Player 1
+	Original played card count 2
+FAILS because the deck count is incorrect.
+
+Test #7 setup:
+	Deck total 1 (gold 0 silver 0 copper 0)
+	Discard total 1 (gold 0 silver 0 copper 0)
+	Hand total 2, handPos 0
+	Player 0
+	Original played card count 2
+FAILS because the deck count is incorrect.
+
+Test #8 setup:
+	Deck total 484 (gold 78 silver 82 copper 76)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 1, handPos 0
+	Player 1
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #9 setup:
+	Deck total 237 (gold 46 silver 41 copper 31)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 312, handPos 8
+	Player 1
+	Original played card count 1
+FAILS because the played card count is incorrect.
+
+Test #10 setup:
+	Deck total 1 (gold 0 silver 0 copper 1)
+	Discard total 129 (gold 29 silver 20 copper 23)
+	Hand total 45, handPos 29
+	Player 0
+	Original played card count 1
+FAILS because the played card count is incorrect.
+
+Test #11 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 114 (gold 18 silver 18 copper 16)
+	Hand total 227, handPos 38
+	Player 1
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #12 setup:
+	Deck total 1 (gold 0 silver 0 copper 0)
+	Discard total 12 (gold 0 silver 4 copper 2)
+	Hand total 1, handPos 0
+	Player 0
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #13 setup:
+	Deck total 1 (gold 0 silver 0 copper 0)
+	Discard total 51 (gold 8 silver 7 copper 7)
+	Hand total 1, handPos 0
+	Player 0
+	Original played card count 2
+FAILS because the deck count is incorrect.
+
+Test #14 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 1 (gold 1 silver 0 copper 0)
+	Hand total 2, handPos 1
+	Player 1
+	Original played card count 1
+FAILS because the played card count is incorrect.
+
+Test #15 setup:
+	Deck total 1 (gold 1 silver 0 copper 0)
+	Discard total 1 (gold 0 silver 1 copper 0)
+	Hand total 2, handPos 0
+	Player 0
+	Original played card count 2
+FAILS because the played card count is incorrect.
+
+Test #16 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 172 (gold 30 silver 33 copper 24)
+	Hand total 1, handPos 0
+	Player 0
+	Original played card count 0
+FAILS because the deck count is incorrect.
+
+Test #17 setup:
+	Deck total 1 (gold 1 silver 0 copper 0)
+	Discard total 1 (gold 0 silver 0 copper 0)
+	Hand total 1, handPos 0
+	Player 0
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #18 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 46, handPos 9
+	Player 1
+	Original played card count 0
+FAILS because the played card count is incorrect.
+
+Test #19 setup:
+	Deck total 83 (gold 17 silver 14 copper 17)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 29, handPos 15
+	Player 1
+	Original played card count 0
+FAILS because the played card count is incorrect.
+
+Test #20 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 1, handPos 0
+	Player 1
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #21 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 1 (gold 0 silver 0 copper 0)
+	Hand total 2, handPos 1
+	Player 0
+	Original played card count 2
+FAILS because the deck count is incorrect.
+
+Test #22 setup:
+	Deck total 1 (gold 0 silver 0 copper 0)
+	Discard total 1 (gold 0 silver 0 copper 0)
+	Hand total 1, handPos 0
+	Player 0
+	Original played card count 2
+FAILS because the deck count is incorrect.
+
+Test #23 setup:
+	Deck total 379 (gold 60 silver 56 copper 57)
+	Discard total 455 (gold 70 silver 67 copper 78)
+	Hand total 1, handPos 0
+	Player 0
+	Original played card count 0
+FAILS because the deck count is incorrect.
+
+Test #24 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 1, handPos 0
+	Player 1
+	Original played card count 2
+FAILS because the deck count is incorrect.
+
+Test #25 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 1 (gold 1 silver 0 copper 0)
+	Hand total 2, handPos 0
+	Player 0
+	Original played card count 0
+FAILS because the played card count is incorrect.
+
+Test #26 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 1 (gold 1 silver 0 copper 0)
+	Hand total 159, handPos 29
+	Player 0
+	Original played card count 0
+FAILS because the played card count is incorrect.
+
+Test #27 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 1 (gold 1 silver 0 copper 0)
+	Hand total 2, handPos 1
+	Player 0
+	Original played card count 0
+FAILS because the played card count is incorrect.
+
+Test #28 setup:
+	Deck total 299 (gold 56 silver 49 copper 43)
+	Discard total 1 (gold 1 silver 0 copper 0)
+	Hand total 1, handPos 0
+	Player 0
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #29 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 2, handPos 1
+	Player 0
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #30 setup:
+	Deck total 395 (gold 62 silver 62 copper 77)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 102, handPos 15
+	Player 0
+	Original played card count 0
+FAILS because the deck count is incorrect.
+
+Test #31 setup:
+	Deck total 1 (gold 1 silver 0 copper 0)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 1, handPos 0
+	Player 0
+	Original played card count 0
+FAILS because the played card count is incorrect.
+
+Test #32 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 1 (gold 0 silver 0 copper 0)
+	Hand total 2, handPos 0
+	Player 1
+	Original played card count 0
+FAILS because the played card count is incorrect.
+
+Test #33 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 308 (gold 57 silver 46 copper 58)
+	Hand total 2, handPos 0
+	Player 1
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #34 setup:
+	Deck total 1 (gold 0 silver 0 copper 0)
+	Discard total 1 (gold 0 silver 0 copper 0)
+	Hand total 1, handPos 0
+	Player 1
+	Original played card count 0
+FAILS because the deck count is incorrect.
+
+Test #35 setup:
+	Deck total 223 (gold 40 silver 37 copper 33)
+	Discard total 355 (gold 62 silver 52 copper 72)
+	Hand total 271, handPos 14
+	Player 0
+	Original played card count 2
+FAILS because the deck count is incorrect.
+
+Test #36 setup:
+	Deck total 1 (gold 0 silver 0 copper 0)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 2, handPos 0
+	Player 1
+	Original played card count 2
+FAILS because the deck count is incorrect.
+
+Test #37 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 2, handPos 1
+	Player 1
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #38 setup:
+	Deck total 9 (gold 0 silver 1 copper 4)
+	Discard total 1 (gold 0 silver 0 copper 0)
+	Hand total 1, handPos 0
+	Player 0
+	Original played card count 2
+FAILS because the deck count is incorrect.
+
+Test #39 setup:
+	Deck total 1 (gold 0 silver 0 copper 0)
+	Discard total 1 (gold 0 silver 0 copper 1)
+	Hand total 2, handPos 0
+	Player 0
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #40 setup:
+	Deck total 1 (gold 0 silver 0 copper 1)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 2, handPos 0
+	Player 1
+	Original played card count 2
+FAILS because the played card count is incorrect.
+
+Test #41 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 174 (gold 30 silver 28 copper 23)
+	Hand total 1, handPos 0
+	Player 0
+	Original played card count 2
+FAILS because the deck count is incorrect.
+
+Test #42 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 310 (gold 55 silver 48 copper 56)
+	Hand total 2, handPos 0
+	Player 1
+	Original played card count 2
+FAILS because the played card count is incorrect.
+
+Test #43 setup:
+	Deck total 1 (gold 0 silver 0 copper 0)
+	Discard total 1 (gold 0 silver 0 copper 0)
+	Hand total 2, handPos 1
+	Player 1
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #44 setup:
+	Deck total 1 (gold 0 silver 0 copper 0)
+	Discard total 62 (gold 13 silver 11 copper 7)
+	Hand total 155, handPos 154
+	Player 1
+	Original played card count 0
+FAILS because the deck count is incorrect.
+
+Test #45 setup:
+	Deck total 1 (gold 0 silver 0 copper 1)
+	Discard total 1 (gold 1 silver 0 copper 0)
+	Hand total 1, handPos 0
+	Player 1
+	Original played card count 2
+FAILS because the played card count is incorrect.
+
+Test #46 setup:
+	Deck total 317 (gold 47 silver 58 copper 52)
+	Discard total 1 (gold 0 silver 0 copper 0)
+	Hand total 1, handPos 0
+	Player 1
+	Original played card count 0
+FAILS because the played card count is incorrect.
+
+Test #47 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 1, handPos 0
+	Player 0
+	Original played card count 0
+FAILS because the deck count is incorrect.
+
+Test #48 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 256, handPos 50
+	Player 0
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #49 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 1 (gold 1 silver 0 copper 0)
+	Hand total 1, handPos 0
+	Player 1
+	Original played card count 1
+FAILS because the played card count is incorrect.
+
+Test #50 setup:
+	Deck total 1 (gold 0 silver 1 copper 0)
+	Discard total 1 (gold 0 silver 0 copper 0)
+	Hand total 1, handPos 0
+	Player 0
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #51 setup:
+	Deck total 50 (gold 5 silver 13 copper 7)
+	Discard total 1 (gold 0 silver 0 copper 1)
+	Hand total 111, handPos 4
+	Player 1
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #52 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 115, handPos 0
+	Player 0
+	Original played card count 2
+FAILS because the played card count is incorrect.
+
+Test #53 setup:
+	Deck total 3 (gold 1 silver 0 copper 0)
+	Discard total 1 (gold 0 silver 0 copper 0)
+	Hand total 2, handPos 1
+	Player 1
+	Original played card count 2
+FAILS because the deck count is incorrect.
+
+Test #54 setup:
+	Deck total 1 (gold 0 silver 0 copper 0)
+	Discard total 337 (gold 65 silver 55 copper 38)
+	Hand total 398, handPos 191
+	Player 1
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #55 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 1, handPos 0
+	Player 0
+	Original played card count 0
+FAILS because the deck count is incorrect.
+
+Test #56 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 78 (gold 12 silver 11 copper 9)
+	Hand total 1, handPos 0
+	Player 1
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #57 setup:
+	Deck total 335 (gold 55 silver 53 copper 52)
+	Discard total 395 (gold 69 silver 59 copper 60)
+	Hand total 1, handPos 0
+	Player 1
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #58 setup:
+	Deck total 446 (gold 67 silver 57 copper 79)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 1, handPos 0
+	Player 0
+	Original played card count 2
+FAILS because the played card count is incorrect.
+
+Test #59 setup:
+	Deck total 1 (gold 0 silver 1 copper 0)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 2, handPos 0
+	Player 1
+	Original played card count 2
+FAILS because the played card count is incorrect.
+
+Test #60 setup:
+	Deck total 70 (gold 10 silver 10 copper 8)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 319, handPos 224
+	Player 1
+	Original played card count 2
+FAILS because the deck count is incorrect.
+
+Test #61 setup:
+	Deck total 54 (gold 11 silver 13 copper 5)
+	Discard total 76 (gold 12 silver 12 copper 18)
+	Hand total 134, handPos 14
+	Player 1
+	Original played card count 2
+FAILS because the played card count is incorrect.
+
+Test #62 setup:
+	Deck total 1 (gold 0 silver 1 copper 0)
+	Discard total 1 (gold 0 silver 1 copper 0)
+	Hand total 1, handPos 0
+	Player 0
+	Original played card count 1
+FAILS because the played card count is incorrect.
+
+Test #63 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 1 (gold 0 silver 0 copper 0)
+	Hand total 51, handPos 3
+	Player 0
+	Original played card count 0
+FAILS because the deck count is incorrect.
+
+Test #64 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 105, handPos 32
+	Player 1
+	Original played card count 2
+FAILS because the deck count is incorrect.
+
+Test #65 setup:
+	Deck total 1 (gold 0 silver 0 copper 0)
+	Discard total 217 (gold 38 silver 36 copper 35)
+	Hand total 2, handPos 1
+	Player 1
+	Original played card count 0
+FAILS because the played card count is incorrect.
+
+Test #66 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 1 (gold 0 silver 0 copper 0)
+	Hand total 2, handPos 0
+	Player 1
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #67 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 218, handPos 186
+	Player 1
+	Original played card count 0
+FAILS because the played card count is incorrect.
+
+Test #68 setup:
+	Deck total 428 (gold 75 silver 59 copper 76)
+	Discard total 360 (gold 54 silver 58 copper 57)
+	Hand total 257, handPos 19
+	Player 0
+	Original played card count 2
+FAILS because the deck count is incorrect.
+
+Test #69 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 1, handPos 0
+	Player 1
+	Original played card count 2
+FAILS because the deck count is incorrect.
+
+Test #70 setup:
+	Deck total 320 (gold 54 silver 53 copper 50)
+	Discard total 1 (gold 0 silver 0 copper 0)
+	Hand total 2, handPos 0
+	Player 0
+	Original played card count 2
+FAILS because the deck count is incorrect.
+
+Test #71 setup:
+	Deck total 1 (gold 0 silver 0 copper 0)
+	Discard total 59 (gold 14 silver 6 copper 7)
+	Hand total 63, handPos 5
+	Player 0
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #72 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 1 (gold 0 silver 1 copper 0)
+	Hand total 1, handPos 0
+	Player 0
+	Original played card count 2
+FAILS because the played card count is incorrect.
+
+Test #73 setup:
+	Deck total 198 (gold 35 silver 31 copper 34)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 63, handPos 31
+	Player 0
+	Original played card count 2
+FAILS because the deck count is incorrect.
+
+Test #74 setup:
+	Deck total 100 (gold 27 silver 11 copper 10)
+	Discard total 24 (gold 3 silver 1 copper 3)
+	Hand total 413, handPos 184
+	Player 1
+	Original played card count 2
+FAILS because the deck count is incorrect.
+
+Test #75 setup:
+	Deck total 1 (gold 0 silver 1 copper 0)
+	Discard total 1 (gold 0 silver 0 copper 0)
+	Hand total 441, handPos 316
+	Player 0
+	Original played card count 2
+FAILS because the played card count is incorrect.
+
+Test #76 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 1, handPos 0
+	Player 0
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #77 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 2, handPos 0
+	Player 0
+	Original played card count 0
+FAILS because the deck count is incorrect.
+
+Test #78 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 1, handPos 0
+	Player 0
+	Original played card count 0
+FAILS because the deck count is incorrect.
+
+Test #79 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 2, handPos 0
+	Player 1
+	Original played card count 0
+FAILS because the deck count is incorrect.
+
+Test #80 setup:
+	Deck total 1 (gold 0 silver 1 copper 0)
+	Discard total 1 (gold 0 silver 0 copper 0)
+	Hand total 1, handPos 0
+	Player 1
+	Original played card count 0
+FAILS because the deck count is incorrect.
+
+Test #81 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 1 (gold 0 silver 0 copper 0)
+	Hand total 1, handPos 0
+	Player 0
+	Original played card count 2
+FAILS because the deck count is incorrect.
+
+Test #82 setup:
+	Deck total 20 (gold 2 silver 2 copper 2)
+	Discard total 1 (gold 1 silver 0 copper 0)
+	Hand total 318, handPos 41
+	Player 0
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #83 setup:
+	Deck total 1 (gold 0 silver 0 copper 0)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 1, handPos 0
+	Player 0
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #84 setup:
+	Deck total 1 (gold 0 silver 0 copper 1)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 283, handPos 22
+	Player 1
+	Original played card count 2
+FAILS because the played card count is incorrect.
+
+Test #85 setup:
+	Deck total 388 (gold 56 silver 79 copper 67)
+	Discard total 81 (gold 10 silver 11 copper 19)
+	Hand total 491, handPos 386
+	Player 1
+	Original played card count 2
+FAILS because the deck count is incorrect.
+
+Test #86 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 1, handPos 0
+	Player 1
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #87 setup:
+	Deck total 25 (gold 6 silver 6 copper 3)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 2, handPos 0
+	Player 0
+	Original played card count 2
+FAILS because the deck count is incorrect.
+
+Test #88 setup:
+	Deck total 240 (gold 43 silver 37 copper 42)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 2, handPos 0
+	Player 1
+	Original played card count 0
+FAILS because the deck count is incorrect.
+
+Test #89 setup:
+	Deck total 1 (gold 0 silver 1 copper 0)
+	Discard total 1 (gold 0 silver 0 copper 0)
+	Hand total 360, handPos 212
+	Player 1
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #90 setup:
+	Deck total 274 (gold 49 silver 54 copper 29)
+	Discard total 1 (gold 0 silver 0 copper 1)
+	Hand total 458, handPos 444
+	Player 0
+	Original played card count 1
+FAILS because the played card count is incorrect.
+
+Test #91 setup:
+	Deck total 143 (gold 25 silver 24 copper 26)
+	Discard total 136 (gold 24 silver 27 copper 19)
+	Hand total 2, handPos 1
+	Player 0
+	Original played card count 0
+FAILS because the played card count is incorrect.
+
+Test #92 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 1, handPos 0
+	Player 1
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #93 setup:
+	Deck total 1 (gold 0 silver 0 copper 0)
+	Discard total 1 (gold 0 silver 0 copper 0)
+	Hand total 1, handPos 0
+	Player 0
+	Original played card count 0
+FAILS because the deck count is incorrect.
+
+Test #94 setup:
+	Deck total 63 (gold 7 silver 11 copper 13)
+	Discard total 83 (gold 12 silver 27 copper 8)
+	Hand total 477, handPos 218
+	Player 0
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #95 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 451, handPos 384
+	Player 1
+	Original played card count 2
+FAILS because the deck count is incorrect.
+
+Test #96 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 1 (gold 0 silver 0 copper 1)
+	Hand total 15, handPos 4
+	Player 1
+	Original played card count 1
+FAILS because the played card count is incorrect.
+
+Test #97 setup:
+	Deck total 1 (gold 0 silver 0 copper 0)
+	Discard total 99 (gold 13 silver 19 copper 14)
+	Hand total 1, handPos 0
+	Player 0
+	Original played card count 1
+FAILS because the deck count is incorrect.
+
+Test #98 setup:
+	Deck total 0 (gold 0 silver 0 copper 0)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 1, handPos 0
+	Player 1
+	Original played card count 0
+FAILS because the deck count is incorrect.
+
+Test #99 setup:
+	Deck total 1 (gold 0 silver 1 copper 0)
+	Discard total 0 (gold 0 silver 0 copper 0)
+	Hand total 2, handPos 0
+	Player 0
+	Original played card count 1
+FAILS because the played card count is incorrect.
+
+Test #100 setup:
+	Deck total 215 (gold 35 silver 41 copper 33)
+	Discard total 80 (gold 12 silver 12 copper 14)
+	Hand total 2, handPos 0
+	Player 1
+	Original played card count 1
+FAILS because the played card count is incorrect.
+
+Coverage for tests:
+
+File 'dominion.c'
+Lines executed:21.66% of 577
+Branches executed:19.66% of 417
+Taken at least once:17.51% of 417
+Calls executed:10.53% of 95
+dominion.c:creating 'dominion.c.gcov'
+

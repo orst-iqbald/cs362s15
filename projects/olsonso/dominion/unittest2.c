@@ -10,15 +10,14 @@
 #include <assert.h>
 #include "rngs.h"
 
-
+// this will go through and check all th suply counts to make sure it was working correctly as we would expect. 
 int main(){
 	int seed = 1000;
     int numPlayer = 2;
 	struct gameState *G = malloc(sizeof(struct gameState));
     int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
-    
     initializeGame(numPlayer, k, seed, G);
-printf ("Now testing the isgameover function.\n");   
+    printf ("Now testing the isgameover function.\n");   
  
 //this should fail if the code is functioning correctly since it was just initiated
     if (isGameOver(G) != 0)

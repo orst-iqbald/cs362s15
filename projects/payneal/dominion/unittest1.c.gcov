@@ -36,6 +36,7 @@
         -:   31:};
         -:   32:
         -:   33:
+function main called 1 returned 100% blocks executed 88%
         -:   34:int main() {
         -:   35:    
         -:   36:    // check to see if amount is correct if not this is invaild test and is no longer valid
@@ -50,6 +51,8 @@
         -:   45:    
         -:   46:    int i;
        56:   47:    for (i = 0; i < amount; i++)
+branch  0 taken 96%
+branch  1 taken 4%
         -:   48:    {
        27:   49:        check.cardName[i] = name[i];
        27:   50:        check.functionValue[i] = functionCost[i];
@@ -64,8 +67,12 @@
         1:   59:    int numbPassed=0;
         -:   60:    
        56:   61:    for (i = 0; i < amount; i++)
+branch  0 taken 96%
+branch  1 taken 4%
         -:   62:    {
        27:   63:        if ( check.realValue[i] == getCost(check.functionValue[i]) )
+branch  0 taken 100%
+branch  1 taken 0%
         -:   64:        {
         -:   65:           
        27:   66:                numbPassed++;
@@ -90,6 +97,8 @@
         -:   85:    #endif
         -:   86:    
         1:   87:    if( numbPassed == amount)
+branch  0 taken 100%
+branch  1 taken 0%
         -:   88:    {
         -:   89:            #if (NOISY_TEST == 1)
         1:   90:                printf("All tests passed!\n");

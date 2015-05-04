@@ -4,7 +4,7 @@
 //File Name:              cardTest2.c
 
 /*Description: This is a card test to test the cardSmithy() in dominion.c.
-The test need to determine whether the cardSmithy() draws 3 cards and then
+The test needs to determine whether the cardSmithy() draws 3 cards and then
 discards the Smithy card.*/
 
 #include "dominion.h"
@@ -34,43 +34,43 @@ int testCardSmithy(int currentPlayer, struct gameState *after)
   {
     drawCard(currentPlayer, &before);
   }
-
-  cardSmithy(handPos, currentPlayer, after);
   
   //discard card from hand
   discardCard(handPos, currentPlayer, &before, 0);
   
+  cardSmithy(handPos, currentPlayer, after);
+  
   //check to see if top discard pile is not the same
   if (after->playedCards[after->playedCardCount-1] != before.playedCards[before.playedCardCount-1])
 	{
-    //failed to discard card if not the same error message
-		printf("cardSmithy() Failed Test\n");
-    printf("cardSmithy() Does Not Discard Card\n");
+    //FAILED: discard card if not the same error message
+		printf("cardSmithy() FAIL: DISCARD\n");
+    printf("cardSmithy() INFO: Does NOT DISCARD Card\n");
     discard = 0;
-    failTests = 1;
+    failTests += 1;
 	}
   
-  //if smithy card was properly discarded,
+  //if Smithy card was properly discarded,
   if (discard == 1)
   {
     //then check to see if hand counts don't match
     if (before.handCount[currentPlayer] != after->handCount[currentPlayer])
     {
       //if they don't match, then cardSmithy() does not draw correct amount
-      printf("cardSmithy() Failed Test\n");
-      printf("cardSmithy() Does Not Draw Correct Amount of Cards\n");
-      failTests = 1;
+      printf("cardSmithy() FAIL: +3 DRAW\n");
+      printf("cardSmithy() INFO: Does NOT DRAW CORRECT # of Cards\n");
+      failTests += 1;
     }
   }
   else
   { 
-    //if smithy was not properly discarded, check is handcount has 1 extra
+    //if Smithy card was not properly discarded, check is handcount has 1 extra
     if (before.handCount[currentPlayer] != after->handCount[currentPlayer] + 1)
     {
       //if not, then cardSmithy() does not draw correct amount
-      printf("cardSmithy() Failed Test\n");
-      printf("cardSmithy() Does Not Draw Correct Amount of Cards\n");
-      failTests = 1;
+      printf("cardSmithy() FAIL: +3 DRAW\n");
+      printf("cardSmithy() INFO: Does NOT DRAW CORRECT # of Cards\n");
+      failTests += 1;
     }
   }
 
@@ -82,7 +82,7 @@ int testCardSmithy(int currentPlayer, struct gameState *after)
   else
   {
     //return 1 if there were errors
-    return 1;
+    return failTests;
   }
 }
 
@@ -92,13 +92,14 @@ int main()
   int n; 
   int j;
   int outCome;
+  int numTests = 2;
   int gameIterations = 1; //change for the number of test games
   struct gameState testGame;
   
   //display testing message for cardTest2
   printf ("----------------------------------------\n");
   printf ("FUNCTION cardSmithy() BEING TESTED...\n");
-  printf ("RANDOM TESTS...\n");
+  printf ("RANDOM TESTS...cardtest2.c\n\n");
 
   //this is initializing stream for random number generation
   SelectStream(3);
@@ -124,11 +125,11 @@ int main()
   }
   if (outCome == 0)
   {
-    printf("ALL TESTS OK\n\n");
+    printf("ALL TESTS PASSED\n");
   }
   else
   {
-    printf("cardSmithy() FAILED TESTS!\n\n");
+    printf("cardSmithy() FAILED %d out of %d TESTS\n\n", outCome, numTests);
   }
   return 0;
 }
