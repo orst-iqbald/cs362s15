@@ -1,10 +1,10 @@
 /******************************
-* cardtest1.c 
+* randomtestcard.c
 * Thomas Cox
-* smithy test - the smithy card draws three cards and the player who uses the
-				smithy card should have three more cards in their hand after the card is played
-				if count occurs before the smith card is discarded.
-* 4/23/2015
+* random smithy test - The smithy card draws three cards and the player who uses the
+*				smithy card should have three more cards in their hand after the card is played
+				if count occurs before the smith card is discarded.*
+* 5/4/2015
 ******************************/
 
 #include "dominion_helpers.h"

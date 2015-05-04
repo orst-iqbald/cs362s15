@@ -1,11 +1,11 @@
 /******************************
-* cardtest1.c 
+* randomtestadventurer.c
 * Thomas Cox
-* adventurer test - reveal cards from your deck until you reveal 2 treasure cards.
-                    Put those Treasure cards into your hand and discard the other revealed cards.
-					The player using the adventurer card should have 2 more cards in their hand and
-					two more treasure cards in their hand before the adventurer card is discarded.
-* 4/23/2015
+* random adventurer test - reveal cards from your deck until you reveal 2 treasure cards.
+*                    Put those Treasure cards into your hand and discard the other revealed cards.
+*					The player using the adventurer card should have 2 more cards in their hand and
+*					two more treasure cards in their hand before the adventurer card is discarded.
+* 5/4/2015
 ******************************/
 
 #include "dominion_helpers.h"
