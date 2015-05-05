@@ -24,7 +24,7 @@ int main() {
     
     srand(42);
     
-    printf("randomtestcard.c:\n");
+    printf("Testing randomtestcard.c:\n");
     printf("FAILED TESTS: ");
     
     for (i = 0; i < 1000; ++i) {
