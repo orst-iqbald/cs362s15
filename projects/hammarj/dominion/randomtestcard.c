@@ -24,6 +24,9 @@ int main() {
     
     srand(42);
     
+    printf("randomtestcard.c:\n");
+    printf("FAILED TESTS: ");
+    
     for (i = 0; i < 1000; ++i) {
         genRandState(gs);
         //make sure smithy is in current player's hand
@@ -38,16 +41,28 @@ int main() {
         //deck/discard should go down by 3 cards total
         assert( (gs->deckCount[player] + gs->discardCount[player]) - 
                 (gs0->deckCount[player] + gs0->discardCount[player]) == -3);
-        assert(gs->playedCardCount[player] - gs0->playedCardCount[player] == 1);
+        if (gs->playedCardCount[player] - gs0->playedCardCount[player] != 1) {
+            printf("%i, ", i);
+        }
         assert(gs->handCount[player] - gs0->handCount[player] == 3);
     }
+    
+    printf("\n%i test runs of randomtestcard.c executed\n\n");
     
     return 0;
 }
 
 int insertCardRand(struct gameState* gs, int card) {
     int player = gs->whoseTurn;
-    int pos = rand() % gs->handCount[player];
+    int pos;
+    
+    if (gs->handCount[player] != 0) {
+        pos = rand() % gs->handCount[player];
+    } else {
+        gs->handCount[player] = 1;
+        pos = 0;
+    }
+    
     gs->hand[player][pos] = card;
     
     return pos;
