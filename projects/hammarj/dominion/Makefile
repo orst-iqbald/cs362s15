@@ -54,8 +54,8 @@ cardtest3: cardtest3.c dominion.o rngs.o
 cardtest4: cardtest4.c dominion.o rngs.o 
 	gcc -o cardtest4 -g cardtest4.c dominion.o rngs.o  $(CFLAGS)
     
-randomcardtest: randomcardtest.c dominion.o rngs.o
-	gcc -o randomcardtest -g randomcardtest.c dominion.o rngs.o  $(CFLAGS)
+randomtestcard: randomtestcard.c dominion.o rngs.o
+	gcc -o randomtestcard -g randomtestcard.c dominion.o rngs.o  $(CFLAGS)
 
 alltests: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
 
@@ -103,10 +103,10 @@ unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2
 	gcov -b dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
     
-randomcardtest.out: randomcardtest
-	./randomcardtest &> randomcardtest.out
-	gcov -b dominion.c >> randomcardtest.out
-    cat dominion.c.gcov >> randomcardtest.out
+randomtestcard.out: randomtestcard
+	./randomtestcard > randomtestcard.out
+	gcov -b dominion.c >> randomtestcard.out
+	cat dominion.c.gcov >> randomtestcard.out
 	rm -f *.gcov *.gcda
 
 

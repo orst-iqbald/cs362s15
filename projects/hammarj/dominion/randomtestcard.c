@@ -17,7 +17,7 @@ void genRandState(struct gameState* gs);
 int main() {
     int i;
     struct gameState* gs = malloc(sizeof(struct gameState));
-    struct gameState* gs0;
+    struct gameState* gs0 = malloc(sizeof(struct gameState));
     int handpos;
     int player;
     int res;      //return value of function
@@ -33,21 +33,31 @@ int main() {
         handpos = insertCardRand(gs, smithy);
         player = gs->whoseTurn;
         //make a copy of the gameState
-        memcpy (gs0, gs, sizeof(struct gameState));
+        memcpy(gs0, gs, sizeof(struct gameState));
         
         res = cardSmithy(gs, handpos);
         assert(res == 0);
-        
-        //deck/discard should go down by 3 cards total
-        assert( (gs->deckCount[player] + gs->discardCount[player]) - 
-                (gs0->deckCount[player] + gs0->discardCount[player]) == -3);
-        if (gs->playedCardCount[player] - gs0->playedCardCount[player] != 1) {
+                 
+        if (gs->deckCount[player] != 0 || gs->discardCount[player] != 0) {
+            //deck/discard should go down by 3 cards total
+            assert( (gs->deckCount[player] + gs->discardCount[player]) - 
+                    (gs0->deckCount[player] + gs0->discardCount[player]) == -3);
+            assert(gs->handCount[player] - gs0->handCount[player] == 3);
+        } else {
+            //that is, unless both deck and discard get depleted
+            assert( (gs->deckCount[player] + gs->discardCount[player]) - 
+                    (gs0->deckCount[player] + gs0->discardCount[player]) <= 0);
+            assert( (gs->deckCount[player] + gs->discardCount[player]) - 
+                    (gs0->deckCount[player] + gs0->discardCount[player]) >= -3);
+            assert(gs->handCount[player] - gs0->handCount[player] >= 0);
+            assert(gs->handCount[player] - gs0->handCount[player] <= 3);
+        }
+        if (gs->playedCardCount - gs0->playedCardCount != 1) {
             printf("%i, ", i);
         }
-        assert(gs->handCount[player] - gs0->handCount[player] == 3);
     }
     
-    printf("\n%i test runs of randomtestcard.c executed\n\n");
+    printf("\n%i test runs of randomtestcard.c executed\n\n", i);
     
     return 0;
 }
@@ -87,24 +97,24 @@ void genRandState(struct gameState* gs) {
     gs->coins = rand();
     gs->numBuys = rand();
     for (i = 0; i < gs->numPlayers; ++i) {
-        gs->handCount[i] = rand() % MAX_HAND
+        gs->handCount[i] = rand() % MAX_HAND;
         for (j = 0; j < gs->handCount[i]; ++j) {
             gs->hand[i][j] = rand() % treasure_map+1;
         }
     }
     for (i = 0; i < gs->numPlayers; ++i) {
-        gs->deckCount[i] = rand() % MAX_DECK
+        gs->deckCount[i] = rand() % MAX_DECK;
         for (j = 0; j < gs->deckCount[i]; ++j) {
             gs->deck[i][j] = rand() % treasure_map+1;
         }
     }
     for (i = 0; i < gs->numPlayers; ++i) {
-        gs->discardCount[i] = rand() % MAX_DECK
+        gs->discardCount[i] = rand() % MAX_DECK;
         for (j = 0; j < gs->discardCount[i]; ++j) {
             gs->discard[i][j] = rand() % treasure_map+1;
         }
     }
-    gs->playedCardCount = rand() % MAX_DECK
+    gs->playedCardCount = rand() % MAX_DECK;
     for (i = 0; i < gs->playedCardCount; ++i) {
         gs->playedCards[i] = rand() % treasure_map+1;
     }
