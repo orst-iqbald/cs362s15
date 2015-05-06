@@ -1,0 +1,119 @@
+        -:    0:Source:unitTests/unittest4.c
+        -:    0:Graph:unittest4.gcno
+        -:    0:Data:unittest4.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include <string.h>
+        -:    2:#include <stdio.h>
+        -:    3:#include <assert.h>
+        -:    4:#include <math.h>
+        -:    5:
+        -:    6:#include "rngs.h"
+        -:    7:#include "dominion.h"
+        -:    8:#include "dominion_helpers.h"
+        -:    9:
+        -:   10:/* Discard Card Unit Tests */
+        -:   11:
+        1:   12:int main (int argc, char** argv[]) {
+        -:   13:
+        1:   14:  int NUM_TESTS = 2000;
+        -:   15:  int numDraws;
+        -:   16:  
+        -:   17:  int j, i, n, p, q, r, s, t;
+        -:   18:  int trash, numCards, handPos;
+        1:   19:  int fails = 0;
+        -:   20:  int score;
+        -:   21:
+        1:   22:  SelectStream(2);
+        1:   23:  PutSeed(3);
+        -:   24:
+        -:   25:  struct gameState G;
+        -:   26:  struct gameState post;
+        -:   27:
+     2001:   28:    for (n = 0; n < NUM_TESTS; n++) {
+ 52602000:   29:        for (i = 0; i < sizeof(struct gameState); i++) {
+ 52600000:   30:          ((char*)&G)[i] = floor(Random() * 256);
+        -:   31:        }
+        -:   32:        //printf("Get Score Test %d of %d \n", n, NUM_TESTS);
+     2000:   33:        score = 0;
+        -:   34:        /* Randomize GameState stuff */
+     2000:   35:        p = floor(Random() * 4);
+     2000:   36:        G.deckCount[p] = floor(Random() * MAX_DECK);
+     2000:   37:        G.discardCount[p] = floor(Random() * MAX_DECK);
+     2000:   38:        G.playedCardCount = floor(Random() * MAX_DECK);
+     2000:   39:        G.handCount[p] = floor(Random() * MAX_HAND);
+        -:   40:
+        -:   41:        /* Randomize test stuff */
+        -:   42:        //numCards = floor(Random() * 8) + 1;
+     2000:   43:        numCards = 1;
+        -:   44:
+        -:   45:        /* Randomize Hand */
+   500645:   46:        for(j = 0; j < G.handCount[p]; j++){
+   498645:   47:            G.hand[p][j] = floor(Random() * 26);
+        -:   48:        }
+        -:   49:        /* Randomize Discard */
+   505175:   50:        for(j = 0; j < G.discardCount[p]; j++){
+   503175:   51:            G.hand[p][j] = floor(Random() * 26);
+        -:   52:        }
+        -:   53:
+        -:   54:        /* Randomize Deck */
+   491255:   55:        for(j = 0; j < G.deckCount[p]; j++){
+   489255:   56:            G.hand[p][j] = floor(Random() * 26);
+        -:   57:        }
+        -:   58:
+        -:   59:        //printf("\tPlayer        = %d\n", p);
+        -:   60:        //printf("\tDeckcount     = %d\n", G.deckCount[p]);
+        -:   61:        //printf("\tDiscardCount  = %d\n", G.discardCount[p]);
+        -:   62:        //printf("\tPlayedCardCount = %d\n", G.playedCardCount);
+        -:   63:        //printf("\tHandCount     = %d\n", G.handCount[p]);
+        -:   64:        //printf("\tNumDiscards   = %d\n", numCards);
+        -:   65:
+     2000:   66:        memcpy((void *) &post, (void *) &G, sizeof(struct gameState));
+        -:   67:        
+   500645:   68:      for (i = 0; i < G.handCount[p]; i++)
+        -:   69:        {
+   498645:   70:          if (G.hand[p][i] == curse) { score = score - 1; };
+   498645:   71:          if (G.hand[p][i] == estate) { score = score + 1; };
+   498645:   72:          if (G.hand[p][i] == duchy) { score = score + 3; };
+   498645:   73:          if (G.hand[p][i] == province) { score = score + 6; };
+   498645:   74:          if (G.hand[p][i] == great_hall) { score = score + 1; };
+   498645:   75:          if (G.hand[p][i] == gardens) { score = score + ( fullDeckCount(p, 0, &G) / 10 ); };
+        -:   76:        }
+        -:   77:
+        -:   78:      //score from discard
+   505175:   79:      for (i = 0; i < G.discardCount[p]; i++)
+        -:   80:        {
+   503175:   81:          if (G.discard[p][i] == curse) { score = score - 1; };
+   503175:   82:          if (G.discard[p][i] == estate) { score = score + 1; };
+   503175:   83:          if (G.discard[p][i] == duchy) { score = score + 3; };
+   503175:   84:          if (G.discard[p][i] == province) { score = score + 6; };
+   503175:   85:          if (G.discard[p][i] == great_hall) { score = score + 1; };
+   503175:   86:          if (G.discard[p][i] == gardens) { score = score + ( fullDeckCount(p, 0, &G) / 10 ); };
+        -:   87:        }
+        -:   88:
+        -:   89:      //score from deck
+   505175:   90:      for (i = 0; i < G.discardCount[p]; i++)
+        -:   91:        {
+   503175:   92:          if (G.deck[p][i] == curse) { score = score - 1; };
+   503175:   93:          if (G.deck[p][i] == estate) { score = score + 1; };
+   503175:   94:          if (G.deck[p][i] == duchy) { score = score + 3; };
+   503175:   95:          if (G.deck[p][i] == province) { score = score + 6; };
+   503175:   96:          if (G.deck[p][i] == great_hall) { score = score + 1; };
+   503175:   97:          if (G.deck[p][i] == gardens) { score = score + ( fullDeckCount(p, 0, &G) / 10 ); };
+        -:   98:        }
+        -:   99:
+     2000:  100:        if(score != scoreFor(p, &G)){
+        -:  101:          //  printf("Test FAILED!");
+    #####:  102:            fails++;
+        -:  103:        }else{
+        -:  104:           // printf("Test passed!\n");
+        -:  105:        }
+        -:  106:
+        -:  107:    }       
+        -:  108:
+        1:  109:    printf("\n%d test failed out of %d!", fails, NUM_TESTS);
+        -:  110:
+        1:  111:  return 0;
+        -:  112:}
+        -:  113:
+        -:  114:

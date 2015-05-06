@@ -128,10 +128,10 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 /* Set array position of each player who won (remember ties!) to
    1, others to 0 */
 
-int adventurer(int * drawntreasure, int * currentPlayer, int * cardDrawn, int * temphand, struct gameState * state);
-int smithy(int * currentPlayer, int * handPos, struct gameState * state);
-int village(int * currentPlayer, int * handPos, struct gameState * state);
-int steward(int * currentPlayer, int * handPos, int * choice1, int * choice2, int * choice3, struct gameState * state);
-int mine(int * currentPlayer, int * handPos, int * choice1, int * choice2, int * i, int * j, struct gameState * state);
+int adventurerFunc(int * currentPlayer, int * temphand, int * thCount, struct gameState * state);
+int smithyFunc(int * currentPlayer, int * handPos, struct gameState * state);
+int villageFunc(int * currentPlayer, int * handPos, struct gameState * state);
+int stewardFunc(int * currentPlayer, int * handPos, int * choice1, int * choice2, int * choice3, struct gameState * state);
+int mineFunc(int * currentPlayer, int * handPos, int * choice1, int * choice2, int * i, int * j, struct gameState * state);
 
 #endif

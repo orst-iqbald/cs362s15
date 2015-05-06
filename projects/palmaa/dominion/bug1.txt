@@ -1,0 +1,12 @@
+File: bug1.txt
+Author: Andrew Palma
+
+cardtest1 - goes into an infinite loop (one I put in)
+
+cardtest2 - uncovers a discrepancy between actual and expected treasure cards
+			obtained (problem I put in)
+			
+cardtest1, cardtest2, cardtest3, and cardtest4 - appear to show a possible
+			problem with discardCard().  And/or in my understanding of it.
+			discardCard() doesn't appear to modify struct gameState.discardCount[player].
+			I thought it should.
