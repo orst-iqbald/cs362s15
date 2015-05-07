@@ -65,7 +65,6 @@ unittestresults.out: unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c
 	unittest1 >> unittestresults.out
 	
 	echo -e "\nunittest2.c" >> unittestresults.out
-	gcc -o unittest2 unittest2.c dominion.o rngs.o $(CFLAGS)
 	unittest2 >> unittestresults.out
 	
 	echo "unittest3.c" >> unittestresults.out
@@ -85,11 +84,33 @@ unittestresults.out: unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c
 	
 	echo -e "\ncardtest4.c" >> unittestresults.out
 	cardtest4 >> unittestresults.out
-		
-	echo -e "\nCoverage for all tests:\n" >> unittestresults.out
-	gcov dominion.c -b >> unittestresults.out
 	
-all: playdom player testDrawCard testBuyCard badTestDrawCard unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 unittestresults.out
+	echo -e "\nCoverage for all tests:\n" >> unittestresults.out
+	gcov dominion.c -b >> unittestresults.out	
+
+rta: randomtestadventurer.c dominion.o rngs.o
+	gcc -o rta randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+
+randomtestadventurer.out: randomtestadventurer.c dominion.o rngs.o
+	echo "Results for randomtestadventurer:" >> randomtestadventurer.out
+	gcc -o rta randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+	rta >> randomtestadventurer.out
+	
+	echo -e "\nCoverage for tests:\n" >> randomtestadventurer.out
+	gcov dominion.c -b >> randomtestadventurer.out
+
+rtc: randomtestcard.c dominion.o rngs.o
+	gcc -o rtc randomtestcard.c dominion.o rngs.o $(CFLAGS)
+
+randomtestcard.out: randomtestcard.c dominion.o rngs.o
+	echo "Results for randomtestcard:" >> randomtestcard.out
+	gcc -o rtc randomtestcard.c dominion.o rngs.o $(CFLAGS)
+	rtc >> randomtestcard.out
+	
+	echo -e "\nCoverage for tests:\n" >> randomtestcard.out
+	gcov dominion.c -b >> randomtestcard.out
+
+all: playdom player testDrawCard testBuyCard badTestDrawCard unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 rta rtc unittestresults.out
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
+	rm -f *.out *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so

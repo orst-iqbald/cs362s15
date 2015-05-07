@@ -38,15 +38,15 @@ unitTest: unitTest.o
 	gcc -o cardTest3 cardTest3.o dominion.o rngs.o $(CFLAGS)
 	gcc -o cardTest4 cardTest4.o dominion.o rngs.o $(CFLAGS)
 
-runUnitTests: unitTest
-	./unitTest1 > uTest1.txt
-	./unitTest2 > uTest2.txt
-	./unitTest3 > uTest3.txt
-	./unitTest4 > uTest4.txt
-	./cardTest1 > cTest1.txt
-	./cardTest2 > cTest2.txt
-	./cardTest3 > cTest3.txt
-	./cardTest4 > cTest4.txt
+unittestresults: unitTest
+	./unitTest1 >> unittestresults.out
+	./unitTest2 >> unittestresults.out
+	./unitTest3 >> unittestresults.out
+	./unitTest4 >> unittestresults.out
+	./cardTest1 >> unittestresults.out
+	./cardTest2 >> unittestresults.out
+	./cardTest3 >> unittestresults.out
+	./cardTest4 >> unittestresults.out
 	
 testAll: dominion.o testSuite.c
 	gcc -o testSuite testSuite.c -g  dominion.o rngs.o $(CFLAGS)

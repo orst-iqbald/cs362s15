@@ -22,30 +22,39 @@ int checkCouncilRoom(int p, struct gameState *post)
 	int* bonus = (int*) malloc(sizeof(int));
 	*bonus = 0;
 	cardEffect(card, choice1, choice2, choice3, post, handPos, bonus);
-	
-	assert(post->handCount[p] == (prePtr->handCount[p] + 4)); //verify we have 4 more cards in the hand
-	printf("Player has 4 more cards in hand");
+	free(bonus);
+	if (post->handCount[p] != (prePtr->handCount[p] + 4))
+	{
+		return 0; //verify we have 4 more cards in the hand
+	}
+	//printf("Player has 4 more cards in hand");
 	int i; //verify that everyone else drew a card
 	for(i = 0; i < post->numPlayers; i++)
 	{
 		if(i != p)
 		{
-			assert(post->handCount[i] == (prePtr->handCount[i] + 1));
+			if(post->handCount[i] != (prePtr->handCount[i] + 1))
+			{
+				return 0;
+			}
 		}
 	}
-	printf("Everyone else drew one card");
+	//printf("Everyone else drew one card");
 	
 	//verify that the player has one more buy
-	assert(post->numBuys == (prePtr->numBuys + 1)); //verify we have 4 more cards in the hand
-	printf("Player has one more buy");
-	free(bonus);
-	return 0;
+	if(post->numBuys != (prePtr->numBuys + 1))
+	{
+		return 0; //verify we have 4 more cards in the hand
+	}
+	//printf("Player has one more buy");
+	
+	return 1;
 }
 
 int main()
 {
-	int i, n, p;
-
+	int i, j, n, p, r, breakLoop;
+	breakLoop = 0;
 	struct gameState G;
 
 	printf ("Testing updateCoins.\n");
@@ -61,13 +70,17 @@ int main()
 		{
 			((char*)&G)[i] = floor(Random() * 256);
 		}
-		p = floor(Random() * MAX_PLAYERS);
+		G.numPlayers = floor(Random() * 4);
+		p = floor(Random() * G.numPlayers);
 		G.numActions = 1;
 		G.numBuys = 1;
 		G.deckCount[p] = floor(Random() * MAX_DECK);
-		for(i = 0; i < G.deckCount[p]; i++)
+		for(j = 0; j < G.numPlayers; j++)
 		{
-			G.deck[p][i] = floor(Random() * 26); //fill deck with random cards
+			for(i = 0; i < G.deckCount[j]; i++)
+			{
+				G.deck[j][i] = floor(Random() * 26); //fill deck with random cards
+			}
 		}
 		G.discardCount[p] = floor(Random() * MAX_DECK);
 		for(i = 0; i < G.deckCount[p]; i++)
@@ -75,14 +88,27 @@ int main()
 			G.discard[p][i] = floor(Random() * 26);
 		}
 		G.handCount[p] = floor(Random() * MAX_HAND);
-		for(i = 0; i < G.handCount[p]; i++)
+		for(j = 0; j < G.numPlayers; j++)
 		{
-			G.hand[p][i] = floor(Random() * 26); //fill hand with random cards
+			for(i = 0; i < G.handCount[j]; i++)
+			{
+				G.hand[j][i] = floor(Random() * 26); //fill hand with random cards
+			}
 		}
-		checkCouncilRoom(p, &G);
+		r = checkCouncilRoom(p, &G);
+		if (r == 0)
+		{
+			printf("Test failed\n");
+			breakLoop = 1;
+			break;
+		}
 	}
-	printf ("ALL TESTS OK\n");
-
+	
+	if(!breakLoop)
+	{
+		printf ("CouncilRoom Tests OK\n");
+	}
+	
 	return 0;
 }
 
