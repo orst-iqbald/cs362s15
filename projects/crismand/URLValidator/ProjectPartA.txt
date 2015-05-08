@@ -9,7 +9,7 @@ Q) Give how many total number of urls it is testing.
 
 A) 31920 + 2
 
-If you add up all the combinations of the the result pairs that should be run through the tester, you would get 35910.  However, in practice, the tester doesn’t actually run the last scheme.  It is our impression that this is intentional given that the last URL scheme is empty.  All of these tests would fail.
+If you add up all the combinations of the the result pairs that should be run through the tester, you would get 35910.  However, in practice, the tester doesn't actually run the last scheme.  It is our impression that this is intentional given that the last URL scheme is empty.  All of these tests would fail.
 
 Also, we added the + 2 because of the two hard coded asserts on lines 87 and 88 of UrlValidatorTest.java
 
@@ -21,7 +21,7 @@ A) The UrlValidatorTest.java file has a section at the bottom to create a large 
 
 Q) Give an example of valid url being tested and an invalid url being tested by testIsValid() method.
 
-A) The most basic url being tested can be found in an assert statement on line 87.  The url is “http://www.google.com”  This URL has a scheme and an authority, but no port, path, or query.  Nonetheless, it is a valid URL.  
+A) The most basic url being tested can be found in an assert statement on line 87.  The url is 'http://www.google.com'  This URL has a scheme and an authority, but no port, path, or query.  Nonetheless, it is a valid URL.  
 
 An example of an invalid URL could be: 
 
@@ -32,4 +32,4 @@ This URL would fail the scheme, authority, port, and path aspects of the testing
 
 Q) Do you think that a real world test (URL Validator's testIsValid() test in this case) is very different than the unit tests and card tests that we wrote (in terms of concepts & complexity)? Explain in few lines.
 
-A) The real world tests are not that different than the unit tests and card tests that we wrote. For the unit and cards tests in Dominion, we generated specific conditions to test against the Dominion code. Similarly, for the url validator, we are generating specific conditions to test against the validator code.  One difference is that the URL validator has a much wider variety of expected input scenarios than our card functions.  Additionally these tests check for passing and failing of the validator, but for our tests that wasn’t always possible because the dominion code is not set up to fail gracefully enough for us continue testing.
+A) The real world tests are not that different than the unit tests and card tests that we wrote. For the unit and cards tests in Dominion, we generated specific conditions to test against the Dominion code. Similarly, for the url validator, we are generating specific conditions to test against the validator code.  One difference is that the URL validator has a much wider variety of expected input scenarios than our card functions.  Additionally these tests check for passing and failing of the validator, but for our tests that wasn't always possible because the dominion code is not set up to fail gracefully enough for us continue testing.
