@@ -67,5 +67,41 @@ I chose to test this function since it was the function that I did NOT add a bug
 to in assignment 2. This way, I can test it fully without having to think which
 reported failures might have been introduced via the intentional bugs in the function.
 
+This is a short function, but just to make sure I tested all the gameState variables
+as well. This way, if any bug ever happens there, this will find it. Since the
+gameState is the most important part of the program, I feel this is the best
+course of action.
 
+I will go over the tests run below and the results running it 10,000 times:
+
+#Test1
+This test simply looks at the return from the playOutpost function and makes sure it
+is 0. This passed 100% of the time.
+
+#Test2
+Checked the main condition of the card: increasing outpostPlayed in the gameState
+by 1. This test passed 100% of the time.
+
+#Test3
+Checked that the outpost card was removed from the hand. This test passed 100% of the time.
+
+#Test4
+Tested that discardCount was updated. This test failed 100% of the time. This was
+surprising as the playOutpost function simply calls discardCard, but it looks as if that function does not update discardCount, either. It is called fairly often in the
+code in dominion.c but I could not find any discardCount additions or subtractions.
+In playAdventurer, the discardCount is increased, so I feel it should be done inside
+playOutpost, as well, yet it is not. This would definitely be a bug, I think.
+
+#RemainingTests
+The rest tested the various gameState variables to make sure they matched up. These
+tests passed 100% of the time.
+
+Coverage:
+Function 'playOutpost'
+Lines executed:100.00% of 3
+No branches
+No calls
+
+This coverage result shows all is covered in the function, which is not surprising
+given its length.
 ________________
