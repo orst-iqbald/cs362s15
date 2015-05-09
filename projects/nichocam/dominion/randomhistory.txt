@@ -7,3 +7,5 @@ I removed this from the test since neither this nor the last assignment said to 
 For the randomtestcard I chose Smithy since it's a very simple card with a very simple test. To start with a copied the code from randomtestadventurer and changing adventurer to smithy. I then reinserted the discard check since smithy was known to discard. This ran with no problems.
 
 To be honest I'm not sure how random testing helps with JUST a card. If this were a unit test there are so many other things I could do. I could randomize the cards in the hands, or even in the deck. I could do that anyway but the only error I would encounter is using adventurer when there are no coins in the deck.
+
+Included random cards in the hand to see how the cards interact with other cards.

@@ -1,16 +1,18 @@
-/* *****************************************************************************
+/* ***************************************************************************
 Tina Stahlstedt
 stahlstt@onid.oregonstate.edu
 CS362 - 400 Spring 2015
-Assignment 3
+Assignment 4
+randomtestadventurer.c
 
-Write unit tests for four Dominion cards implemented in dominion.c. These tests 
-should be checked in as cardtest1.c, cardtest2.c,cardtest3.c, and cardtest4.c. 
-(For example, create a test for smithy card.). 
-It is mandatory to test smithy and adventurer card. 
+Write a random testers for two Dominion cards, one of which has to be the 
+adventurer card. Check these random testers in as randomtestcard.c and 
+randomtestadventurer.c.
 
-test of Adventurer (refactored card)
-***************************************************************************** */
+random test for adventurer card
+
+"make randomadventurertest"
+*************************************************************************** */
 
 #include "dominion.h"
 #include "dominion_helpers.h"
@@ -24,17 +26,22 @@ test of Adventurer (refactored card)
 int checkAdventurer(int card, struct gameState *post, int handPos) 
 {
   struct gameState pre;
+  
+	//printf("copying hand state\n");
   memcpy (&pre, post, sizeof(struct gameState));
 
-  int r;
+  //printf(" sending i copy to the main card code\n");
+	int r;
   r = cardEffect(card, 0, 0, 0, post, handPos, 0);
   
+	//printf(" duplicating code effects\n");
   int treasure = 0;
   int newcard;
   int z = 0;
   int temp[MAX_HAND];
   int currPlayer = whoseTurn(&pre);
-  
+	
+	//printf(" draw cards\n");
   // draw cards until 2 treasures cards are drawn; discard the other cards
   while (treasure < 2) {
     if(pre.deckCount[currPlayer]<1){
@@ -56,17 +63,20 @@ int checkAdventurer(int card, struct gameState *post, int handPos)
     z=z-1;
   }
   
-  //Check that pre and post gameStates are equivalent
-  assert (r == 0);
-  assert (pre.numBuys == post->numBuys);
-  assert (pre.discardCount[pre.whoseTurn] == post->discardCount[pre.whoseTurn]);
-  assert (pre.handCount[pre.whoseTurn] == post->handCount[pre.whoseTurn]);
-  assert (pre.deckCount[currPlayer] == post->deckCount[currPlayer]);
-  return 0;
+  assert (r == 0); // indicates the card played true
+	
+	//Check that pre and post gameStates are equivalent
+ 	assert (pre.numBuys == post->numBuys);
+	assert (pre.discardCount[pre.whoseTurn] == post->discardCount[pre.whoseTurn]);
+	assert (pre.handCount[pre.whoseTurn] == post->handCount[pre.whoseTurn]);
+	assert (pre.deckCount[currPlayer] == post->deckCount[currPlayer]);
+ 	assert (memcmp(&pre, post, sizeof(struct gameState)) == 0);
+  
+	return 0;
 }
 
-int main (int argc, char** argv) {
-
+int main () 
+{
   int i, n, pos, player, r;
 
   int k[10] = {adventurer, council_room, feast, gardens, mine,
@@ -74,18 +84,24 @@ int main (int argc, char** argv) {
 
   struct gameState G;
 
-  printf ("Testing Adventurer....\n");
+  printf ("Random Testing Adventurer.\n");
 
-    // Initialize the gameState with random bytes
+  SelectStream(2);
+  PutSeed(3);
+  //printf(" going into init \n");
+  // Initialize the gameState with random bytes
+
+  for (n = 0; n < 2000; n++) {
     for (i = 0; i < sizeof(struct gameState); i++) {
-      ((char*)&G)[i] = floor(Random() * 255);
+      ((char*)&G)[i] = floor(Random() * 256);
     }
-	  r = initializeGame(2, k, 1, &G);
 
+	  r = initializeGame(2, k, 1, &G);
     G.numPlayers = 2 + floor(Random() * (MAX_PLAYERS - 1));
     player = floor(Random() * G.numPlayers);
     G.whoseTurn = player;
 
+	  //printf(" setting deck\n");
     //Set deck/hand/discard values to reasonable numbers
     for (i = 0; i < G.numPlayers; i++) {
       G.deckCount[i] = floor(Random() * (MAX_DECK));
@@ -94,15 +110,17 @@ int main (int argc, char** argv) {
     }
 
     G.playedCardCount = floor(Random() * MAX_DECK);
-    G.numBuys = 1;//floor(Random() * 10);
+    G.numBuys = 1;
     
+    //printf(" setting handpos\n");
     //Set position to within range of handCount[]
     pos = floor(Random() * (G.handCount[player]));
-    
+   
+		//printf(" checking card\n");
     //Test adventurer function
     checkAdventurer(adventurer, &G, pos);
-  
-  printf ("End adventurer test...\n");
-
-  return 0;
+  	printf ("adventurer passes...\n");
+	}
+	return 0;
 }
+
