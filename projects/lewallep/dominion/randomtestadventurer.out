@@ -1,0 +1,191 @@
+Treasure count START is 3
+Treasure count FINISH is 5
+adventurerCard(): PASSED  Two cards were added.
+adventureCard(): PASSED  Two treausre cards were added.
+Fail condition included:
+CurrentPlayer: 0, z: 1, handCount: 7
+Treasure count START is 0
+Treasure count FINISH is 2
+adventurerCard(): PASSED  Two cards were added.
+adventureCard(): PASSED  Two treausre cards were added.
+Fail condition included:
+CurrentPlayer: 2, z: 1, handCount: 2
+Treasure count START is 0
+Treasure count FINISH is 2
+adventurerCard(): PASSED  Two cards were added.
+adventureCard(): PASSED  Two treausre cards were added.
+Fail condition included:
+CurrentPlayer: 3, z: 1, handCount: 2
+Treasure count START is 5
+Treasure count FINISH is 5
+adventurerCard(): PASSED  Two cards were added.
+adventureCard(): FAILED  Two treasure cards were not added.
+Fail condition included:
+CurrentPlayer: 0, z: 1, handCount: 7
+Treasure count START is 0
+Treasure count FINISH is 2
+adventurerCard(): PASSED  Two cards were added.
+adventureCard(): PASSED  Two treausre cards were added.
+Fail condition included:
+CurrentPlayer: 1, z: 1, handCount: 2
+Treasure count START is 2
+Treasure count FINISH is 2
+adventurerCard(): PASSED  Two cards were added.
+adventureCard(): FAILED  Two treasure cards were not added.
+Fail condition included:
+CurrentPlayer: 1, z: 1, handCount: 2
+Treasure count START is 6
+Treasure count FINISH is 6
+adventurerCard(): PASSED  Two cards were added.
+adventureCard(): FAILED  Two treasure cards were not added.
+Fail condition included:
+CurrentPlayer: 0, z: 1, handCount: 7
+Treasure count START is 6
+Treasure count FINISH is 6
+adventurerCard(): PASSED  Two cards were added.
+adventureCard(): FAILED  Two treasure cards were not added.
+Fail condition included:
+CurrentPlayer: 0, z: 1, handCount: 7
+Treasure count START is 2
+Treasure count FINISH is 2
+adventurerCard(): PASSED  Two cards were added.
+adventureCard(): FAILED  Two treasure cards were not added.
+Fail condition included:
+CurrentPlayer: 1, z: 1, handCount: 2
+Treasure count START is 2
+Treasure count FINISH is 2
+adventurerCard(): PASSED  Two cards were added.
+adventureCard(): FAILED  Two treasure cards were not added.
+Fail condition included:
+CurrentPlayer: 2, z: 1, handCount: 2
+File 'randomtestadventurer.c'
+Lines executed:90.91% of 55
+randomtestadventurer.c:creating 'randomtestadventurer.c.gcov'
+
+        -:    0:Source:randomtestadventurer.c
+        -:    0:Graph:randomtestadventurer.gcno
+        -:    0:Data:randomtestadventurer.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*	Student: Philip Lewallen
+        -:    2:	Class: CS362-400 Software Engineering II
+        -:    3:	Assignment: Assignment 4
+        -:    4:*/
+        -:    5:
+        -:    6:#include "dominion_helpers.h"
+        -:    7:#include "dominion.h"
+        -:    8:#include "rngs.h"
+        -:    9:#include <stdlib.h>
+        -:   10:#include <stdio.h>
+        -:   11:#include <math.h>
+        -:   12:#include <time.h>
+        -:   13:#include <assert.h>
+        -:   14:
+       10:   15:void adventurerTest(struct gameState *state, int currentPlayer, int z)
+        -:   16:{
+       10:   17:	int hSize = 100;
+       10:   18:	int i = 0;
+        -:   19:	int temphand[30];
+        -:   20:	int initialHand[100];
+       10:   21:	int handCountStart = 0;
+       10:   22:	int handCountFinish = 0;
+       10:   23:	int treasureStart = 0;
+       10:   24:	int treasureFinish = 0;
+       10:   25:	int nonTreasure = 0;
+        -:   26:
+       10:   27:	handCountStart = state->handCount[currentPlayer];
+        -:   28:
+      110:   29:	for (i = 0; i < 10; i++)
+        -:   30:	{
+      100:   31:		if (state->hand[currentPlayer][i] == 4)
+        -:   32:		{
+       26:   33:			treasureStart++;
+        -:   34:		}
+       74:   35:		else if (state->hand[currentPlayer][i] == 5)
+        -:   36:		{
+    #####:   37:			treasureStart++;
+        -:   38:		}
+       74:   39:		else if (state->hand[currentPlayer][i] == 6)
+        -:   40:		{
+    #####:   41:			treasureStart++;
+        -:   42:		}
+        -:   43:	}
+        -:   44:	
+       10:   45:	adventurerCard(state, currentPlayer, z, temphand);
+        -:   46:
+       10:   47:	handCountFinish = state->handCount[currentPlayer];
+        -:   48:
+       50:   49:	for (i = 0; i < handCountFinish; i++)
+        -:   50:	{
+       40:   51:		if (state->hand[currentPlayer][i] == copper)
+       34:   52:			treasureFinish++;
+        6:   53:		else if (state->hand[currentPlayer][i] == silver)
+    #####:   54:			treasureFinish++;
+        6:   55:		else if (state->hand[currentPlayer][i] == gold)
+    #####:   56:			treasureFinish++;
+        -:   57:	}
+        -:   58:	
+       10:   59:	printf("Treasure count START is %d\n", treasureStart);
+       10:   60:	printf("Treasure count FINISH is %d\n", treasureFinish);
+        -:   61:
+        -:   62:
+       10:   63:	if ((handCountFinish - handCountStart) == 2)
+       10:   64:		printf("adventurerCard(): PASSED  Two cards were added.\n");
+        -:   65:	else
+    #####:   66:		printf("adventurerCard(): FAILED  Two cards were not added to the hand\n");
+        -:   67:
+       10:   68:	if ((treasureFinish - treasureStart) == 2)
+        4:   69:		printf("adventureCard(): PASSED  Two treausre cards were added.\n");
+        -:   70:	else
+        6:   71:		printf("adventureCard(): FAILED  Two treasure cards were not added.\n");
+       10:   72:		printf("Fail condition included:\n");
+       10:   73:		printf("CurrentPlayer: %d, z: %d, handCount: %d\n", currentPlayer, z, state->handCount[currentPlayer]);
+        -:   74:
+       10:   75:	return;
+        -:   76:}
+        -:   77:
+        1:   78:int main(int argc, char **argv)
+        -:   79:{
+        1:   80:	srand(time(NULL));
+        -:   81:
+        1:   82:	struct gameState *game = newGame();
+        1:   83:	int gameStatus = 0;
+        1:   84: 	int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
+        1:   85:	int players = ((rand() % 3) + 2);
+        1:   86:	int seed = rand() % 20;
+        1:   87:	int currentPlayer = (rand() % players);
+        1:   88:	int z = rand()% 4;
+        -:   89:
+        1:   90:	int tCounter = 10;
+        1:   91:	int i = 0;
+        -:   92:
+       11:   93:	for (i =  0; i < tCounter; i++)
+        -:   94:	{
+       10:   95:		players = ((rand() % 3) + 2);
+       10:   96:		seed = rand() % 20;
+       10:   97:		currentPlayer = (rand() % players);
+       10:   98:		gameStatus = initializeGame(players, k, seed, game);
+       10:   99:		gameStatus = shuffle(currentPlayer, game);
+       10:  100:		adventurerTest(game, currentPlayer, z);
+        -:  101:	}
+        -:  102:
+        1:  103:	return 0;
+        -:  104:}
+        -:  105:
+        -:  106:/*
+        -:  107:What I need to do.
+        -:  108:
+        -:  109:First I have to initialize the game state state 
+        -:  110:
+        -:  111:then I need to create some random variables which include and go slightly out of the range
+        -:  112:of the stated acceptable ranges for each variable.
+        -:  113:
+        -:  114:
+        -:  115:Write a function which encapuslates this so it can be called multiple times.
+        -:  116:	Think about why the professor did not encapsulate his tests in another function.
+        -:  117:	Was this done to be illustrate the tests or to rate the code coverage in a different way? 
+        -:  118:	I think it was done for simplicity of understanding of the function as my code coverage results
+        -:  119:	showed the code in the functions was being called as expected.
+        -:  120:
+        -:  121:	Decide what my next card should be.  Smithy?  Not gardens.
+        -:  122:*/
