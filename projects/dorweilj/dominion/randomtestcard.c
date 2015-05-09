@@ -1,9 +1,8 @@
 /*----------------------------------------------
-* testing adventurer_refact
+* testing smithy_refact
 *
-* testcard3: cardtest3.c dominion.o rngs.o
-*  gcc -o cardtest3 -g  cardtest3.c dominion.o rngs.o $(CFLAGS)
-*
+* make randomtestcard
+* ./randomctestcard
 *-----------------------------------------------
 */
 #include "dominion.h"
@@ -22,6 +21,8 @@ int num_treasure(struct gameState *state){
       treasureCount++;
     }
   }
+  printf("\nReturning %d\n", treasureCount);
+
   return treasureCount;
 }
 
@@ -29,10 +30,10 @@ int main () {
 
     int i, r, j, m, fail, setshuffle, treasureCount, treasureCount2;
     int cards[3];
-    int numTests = 100;
+    int numTests = 10;
     int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
     fail = 0;
-    int seed = floor((Random() * 2341) + 1);
+    int seed = floor((Random() * 23401) + 1);
 
     PutSeed((long)seed);
     
@@ -41,10 +42,9 @@ int main () {
       printf( "\nStarting test %d", i);
 
       struct gameState *G = malloc(sizeof(struct gameState));
-      seed = floor((Random() * 2341) + 1);
+      seed = floor((Random() * 23401) + 1);
       // set a random number of players at least two
       int players = floor((Random()*3)+2);
-      int num_treasure_in_deck;
 
       initializeGame(players, k, seed, G);
 
@@ -54,7 +54,7 @@ int main () {
       G->handCount[0] = floor(Random() * (MAX_HAND / 3));
       
       // deck needs to have a few cards or things blow up
-      G->deckCount[0] = floor(Random()*(MAX_DECK / 3)+2);
+      G->deckCount[0] = floor(Random()*(MAX_DECK / 3)+3);
       G->discardCount[0] = floor(Random()*(MAX_DECK / 3));
 
       // set up a random deck
@@ -76,20 +76,31 @@ int main () {
       struct gameState *savedState = malloc(sizeof(struct gameState));
       memcpy(savedState, G, sizeof(struct gameState));
 
-      adventurer_refact(0, G);
+      int handPos = floor(Random()* G->handCount[0]);
 
-      // check treasure count
-      int expected = (num_treasure(savedState) + 2);
-      if(num_treasure(G) != expected){
-        printf("\n fail! treasure count with value: %d expected: %d\n", treasureCount, expected);
+      smithy_refact(0, handPos, G);
+
+      // hand should have two additional cards
+      int expected = (savedState->handCount[0] + 2);
+      if(G->handCount[0] != expected){
+        printf("\n\t fail! hand count with value: %d expected: %d\n", G->handCount[0] , expected);
         fail=1;
       }
 
-      // check hand count
-      if(G->handCount[0] != (savedState->handCount[0] + 2)){
-        printf("\n fail! handCount with value: %d expected: %d\n", G->handCount[0], (savedState->handCount[0] + 2));
+      // discard should be the same
+      expected = (savedState->discardCount[0]);
+      if(G->discardCount[0] != expected){
+        printf("\n\t fail! discardCount with value: %d expected: %d\n", G->discardCount[0] , expected);
         fail=1;
       }
+
+      // played card should be +1
+      expected = (savedState->playedCardCount + 1);
+      if(G->playedCardCount != expected){
+        printf("\n\t fail! discardCount with value: %d expected: %d\n", G->discardCount[0] , expected);
+        fail=1;
+      }
+
 
       printf("....... Passed \n");
       free(G);
