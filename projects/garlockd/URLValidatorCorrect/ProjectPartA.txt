@@ -1,0 +1,23 @@
+Explain testIsValid Function of UrlValidator test code. 
+---------------------------------------------------------
+The point of the testIsValid function is to randomly generate URLS with all 4 parts, scheme, authority, path, and query. Each part is checked to see if it could be valid then it is sent through the validator to check if it is true or false. Finally it prints the url to the console.
+
+
+Give how many total number of urls it is testing. Also, explain how it is building all the urls. 
+----------------------------------------------------------------------------------------
+After adjusting the code to count all the urls as it prints them it appears that there are 31920 URLS being tested. It builds the urls out of a scheme authority path query and a port.
+
+
+Give an example of valid url being tested and an invalid url being tested by testIsValid() method.   
+---------------------------------------------------------------------------------------
+An example from the code of a working url would be
+http://www.google.com:80/test1?action=view
+An example of a non working URL would be
+http:////www.google.com:80/test1?action=view
+
+
+
+Do you think that a real world test (URL Validator's testIsValid() test in this case) is very different than the unit tests and card tests that we wrote (in terms of concepts & complexity)? Explain in few lines. 
+-----------------------------------------------------------------------------------------
+The ideas between the two are alike. You have a test sequence that allows you to see if your code is being executed the way it is supposed to. The complexity of the url validators test case appears to be far superior to the tests that were written for our unit and card tests. Although it could be argued that as long as both tests are testing all possibilities then they would be equally as complex even though one may have less lines than the other.
+
