@@ -24,13 +24,13 @@ testAll: dominion.o testSuite.c
 randomtests:randomtestadventurer.c randomtestcard.c dominion.o rngs.o 
 	gcc -o test -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
 	$(CURDIR)/test &> $(CURDIR)/randomtestadventurer.out
-	gcov dominion.c >> randomtestadventurer.out
+	gcov -b ./dominion.c >> randomtestadventurer.out
 	cat dominion.c.gcov >> randomtestadventurer.out
 	rm -f *.o test *.gcov *.gcda *.gcno *.so
 	make dominion.o rngs.o
 	gcc -o test -g randomtestcard.c dominion.o rngs.o $(CFLAGS)
 	$(CURDIR)/test &> $(CURDIR)/randomtestcard.out
-	gcov dominion.c >> randomtestcard.out
+	gcov -b -c ./dominion.c >> randomtestcard.out
 	cat dominion.c.gcov >> randomtestcard.out
 	rm -f *.o test *.gcov *.gcda *.gcno *.so
 
