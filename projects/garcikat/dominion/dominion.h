@@ -104,7 +104,7 @@ int buyCard(int supplyPos, struct gameState *state);
 /* Buy card with supply index supplyPos */
 
 int numHandCards(struct gameState *state);
-/* How many cards current player has in hand */
+/* How ma:wqny cards current player has in hand */
 
 int handCard(int handNum, struct gameState *state);
 /* enum value of indexed card in player's hand */
@@ -131,15 +131,15 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 /* Set array position of each player who won (remember ties!) to
    1, others to 0 */
 
-int adventurer(int currentPlayer, struct gameState *state, int [] temphand);
+int test_adventurerCard(int currentPlayer, struct gameState *state, int temphand[]);
 
-int smithy(int currentPlayer, struct gameState *state, int handpos);
+int test_smithyCard(int currentPlayer, struct gameState *state, int handpos);
 
-int minion(int currentPlayer, struct gameState *state, int handpos, int choice1, int choice2, int choice3);
+int test_minionCard(int currentPlayer, struct gameState *state, int handpos, int choice1, int choice2, int choice3);
 
-int seahag(int currentPlayer, struct gameState *state);
+int test_seahagCard(int currentPlayer, struct gameState *state);
 
-int remodel(int currentPlayer, struct gameState *state, int handpos, int choice1, int choice2, int choice3);
+int test_remodelCard(int currentPlayer, struct gameState *state, int handpos, int choice1, int choice2, int choice3);
 
-int great_hall(int currentPlayer, struct gameState *state, int handpos);
+int test_geat_hallCard(int currentPlayer, struct gameState *state, int handpos);
 #endif
