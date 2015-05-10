@@ -28,30 +28,30 @@ int testIsGameOver(struct gameState *state)
     
     test = isGameOver(state);
     assert (test == 1); 						// the game should be over now
-	printf ("Yep, game over, no provinces.\n");
+		printf ("Yep, game over, no provinces.\n");
    
     state->supplyCount[province] = 1;		// putting the provinces back
     printf("Putting Province back makes game on again?  "); 
   
   	test = isGameOver(state);
     assert (test == 0);						// the game should not be over yet
-	printf ("Game on again....\n");
+		printf ("Game on again....\n");
 
   	printf("Taking three supply counts to 0 ends the game?  ");
-	state->supplyCount[4] = 0;			// 3 empty piles should end the game
+		state->supplyCount[4] = 0;			// 3 empty piles should end the game
     state->supplyCount[6] = 0;
     state->supplyCount[8] = 0;
     
     test = isGameOver(state);
     assert(test == 1); 							// the game should be over now
-	printf ("Yep, game over!\n");
+		printf ("Yep, game over!\n");
 		
-	printf("Restoring 1 of the piles makes game on again?  ");
-	state->supplyCount[6] = 1;
+		printf("Restoring 1 of the piles makes game on again?  ");
+		state->supplyCount[6] = 1;
 
     test = isGameOver(state);
     assert (test == 0);						// the game should not be over
-	printf ("YES!!!\n");
+		printf ("YES!!!\n");
     return 0;
 }
 

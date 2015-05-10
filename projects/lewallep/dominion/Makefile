@@ -72,6 +72,18 @@ unittestresults.out: unittest1.c dominion.o rngs.o
 	gcov cardtest4.c >> unittestresults.out
 	cat cardtest4.c.gcov >> unittestresults.out		
 
+randomTest: randomtestadventurer.c dominion.o rngs.o
+	gcc -o rt1 randomtestadventurer.c dominion_helpers.h dominion.h dominion.c rngs.h rngs.c $(CFLAGS)
+	./rt1 >> randomtestadventurer.out
+	gcov randomtestadventurer.c >> randomtestadventurer.out
+	cat randomtestadventurer.c.gcov >> randomtestadventurer.out
+
+randomTestCard: randomtestcard.c dominion.o rngs.o
+	gcc -o rt2 randomtestcard.c dominion_helpers.h dominion.h dominion.c rngs.h rngs.c $(CFLAGS)
+	./rt2 >> randomtestcard.out
+	gcov randomtestcard.c >> randomtestcard.out
+	cat randomtestcard.c.gcov >> randomtestcard.out
+
 cleanprog:
 	rm -f ut1 ut2 ut3 ut4 prog1 prog2 prog3 prog4 c1 c2 c3 c4
 
