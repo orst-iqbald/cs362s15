@@ -1,3 +1,73 @@
+
+For methods, I tested getCost(), shuffle(), isGameOver(), endTurn().
+For cards, I tested smithy(required), adventurer(required), 
+council_room, and great_hall.
+
+========================================================================
+Function 'getCost' 
+Lines executed:40.00% of 30 
+Branches executed:100.00% of 28 
+Taken at least once:35.71% of 28
+
+My test explored each branch of the function. I only explored getCost
+for 10 of the 28 cards, which is why I only executed 40% of the lines.
+I'm confident the code is correct for the 10 cards I tested. Further
+testing should examine all the cards.
+
+========================================================================
+Function 'shuffle' 
+Lines executed:94.44% of 18
+Branches executed:100.00% of 8 
+Taken at least once:87.50% of 8
+
+Again, my test got 100% of the branches, and most all of the actual code
+in the function. The one line I clearly missed was the failure return
+statement. Future testing should try harder to see what kinds of
+gameStates might force a shuffle failure.
+
+========================================================================
+Function 'isGameOver' 
+Lines executed:100.00% of 12 
+Branches executed:100.00% of 8 
+Taken at least once:100.00% of 8
+
+I covered everything in this function. I took each branch, got to every
+exit point. I am confident this function works correctly.
+
+========================================================================
+Function 'endTurn' 
+Lines executed:100.00% of 22 
+Branches executed:100.00% of 6 
+Taken at least once:100.00% of 6
+
+I covered everything in this function. I took each branch, got to every
+exit point. I am confident this function works correctly.
+
+========================================================================
+The great_hall card was used once. I can't really tell anything from the 
+coverage. This is the only card I tested that was not refactored for 
+assignment 2, and it played without obvious errors.
+
+        -:  852:    case great_hall:
+        -:  853:      //+1 Card
+        1:  854:      drawCard(currentPlayer, state);
+        -:  855:			
+        -:  856:      //+1 Actions
+        1:  857:      state->numActions++;
+        -:  858:			
+        -:  859:      //discard card from hand
+        1:  860:      discardCard(handPos, currentPlayer, state, 0);
+        1:  861:      return 0;
+        1:  861-block  0
+        -:  862:		
+
+The rest of the cards, as far as I can tell, do not create coverage,
+since they all failed at somepoint in their runs. It is the only reason
+I can see for how their code isn't showing up in coverage at all. 
+
+
+
+/* ---------------UnitTest 1--------------------- */
 Function 'useCutpurse'
 Lines executed:0.00% of 13
 No branches
@@ -2369,13 +2439,13 @@ function useAdventurer called 0 returned 0% blocks executed 0%
     #####: 1254:  int drawntreasure = 0;
         -: 1255:  int temphand[MAX_HAND];
     #####: 1256:  int z = 0; //counter for temphand
-    #####: 1257:  while(drawntreasure < 2)
+    #####: 1257:  while(drawntreasure <= 2)
     $$$$$: 1257-block  0
     $$$$$: 1257-block  1
 branch  0 never executed
 branch  1 never executed
         -: 1258:  {
-    #####: 1259:	  if (state->deckCount[currentPlayer] <1) //if the deck is empty we need to shuffle discard and add to deck
+    #####: 1259:	  if (state->deckCount[currentPlayer] < 1) //if the deck is empty we need to shuffle discard and add to deck
     $$$$$: 1259-block  0
 branch  0 never executed
 branch  1 never executed
@@ -4946,13 +5016,13 @@ function useAdventurer called 0 returned 0% blocks executed 0%
     #####: 1254:  int drawntreasure = 0;
         -: 1255:  int temphand[MAX_HAND];
     #####: 1256:  int z = 0; //counter for temphand
-    #####: 1257:  while(drawntreasure < 2)
+    #####: 1257:  while(drawntreasure <= 2)
     $$$$$: 1257-block  0
     $$$$$: 1257-block  1
 branch  0 never executed
 branch  1 never executed
         -: 1258:  {
-    #####: 1259:	  if (state->deckCount[currentPlayer] <1) //if the deck is empty we need to shuffle discard and add to deck
+    #####: 1259:	  if (state->deckCount[currentPlayer] < 1) //if the deck is empty we need to shuffle discard and add to deck
     $$$$$: 1259-block  0
 branch  0 never executed
 branch  1 never executed
@@ -7523,13 +7593,13 @@ function useAdventurer called 0 returned 0% blocks executed 0%
     #####: 1254:  int drawntreasure = 0;
         -: 1255:  int temphand[MAX_HAND];
     #####: 1256:  int z = 0; //counter for temphand
-    #####: 1257:  while(drawntreasure < 2)
+    #####: 1257:  while(drawntreasure <= 2)
     $$$$$: 1257-block  0
     $$$$$: 1257-block  1
 branch  0 never executed
 branch  1 never executed
         -: 1258:  {
-    #####: 1259:	  if (state->deckCount[currentPlayer] <1) //if the deck is empty we need to shuffle discard and add to deck
+    #####: 1259:	  if (state->deckCount[currentPlayer] < 1) //if the deck is empty we need to shuffle discard and add to deck
     $$$$$: 1259-block  0
 branch  0 never executed
 branch  1 never executed
@@ -10100,13 +10170,13 @@ function useAdventurer called 0 returned 0% blocks executed 0%
     #####: 1254:  int drawntreasure = 0;
         -: 1255:  int temphand[MAX_HAND];
     #####: 1256:  int z = 0; //counter for temphand
-    #####: 1257:  while(drawntreasure < 2)
+    #####: 1257:  while(drawntreasure <= 2)
     $$$$$: 1257-block  0
     $$$$$: 1257-block  1
 branch  0 never executed
 branch  1 never executed
         -: 1258:  {
-    #####: 1259:	  if (state->deckCount[currentPlayer] <1) //if the deck is empty we need to shuffle discard and add to deck
+    #####: 1259:	  if (state->deckCount[currentPlayer] < 1) //if the deck is empty we need to shuffle discard and add to deck
     $$$$$: 1259-block  0
 branch  0 never executed
 branch  1 never executed
@@ -12677,13 +12747,13 @@ function useAdventurer called 0 returned 0% blocks executed 0%
     #####: 1254:  int drawntreasure = 0;
         -: 1255:  int temphand[MAX_HAND];
     #####: 1256:  int z = 0; //counter for temphand
-    #####: 1257:  while(drawntreasure < 2)
+    #####: 1257:  while(drawntreasure <= 2)
     $$$$$: 1257-block  0
     $$$$$: 1257-block  1
 branch  0 never executed
 branch  1 never executed
         -: 1258:  {
-    #####: 1259:	  if (state->deckCount[currentPlayer] <1) //if the deck is empty we need to shuffle discard and add to deck
+    #####: 1259:	  if (state->deckCount[currentPlayer] < 1) //if the deck is empty we need to shuffle discard and add to deck
     $$$$$: 1259-block  0
 branch  0 never executed
 branch  1 never executed
@@ -15254,13 +15324,13 @@ function useAdventurer called 0 returned 0% blocks executed 0%
     #####: 1254:  int drawntreasure = 0;
         -: 1255:  int temphand[MAX_HAND];
     #####: 1256:  int z = 0; //counter for temphand
-    #####: 1257:  while(drawntreasure < 2)
+    #####: 1257:  while(drawntreasure <= 2)
     $$$$$: 1257-block  0
     $$$$$: 1257-block  1
 branch  0 never executed
 branch  1 never executed
         -: 1258:  {
-    #####: 1259:	  if (state->deckCount[currentPlayer] <1) //if the deck is empty we need to shuffle discard and add to deck
+    #####: 1259:	  if (state->deckCount[currentPlayer] < 1) //if the deck is empty we need to shuffle discard and add to deck
     $$$$$: 1259-block  0
 branch  0 never executed
 branch  1 never executed
@@ -17831,13 +17901,13 @@ function useAdventurer called 0 returned 0% blocks executed 0%
     #####: 1254:  int drawntreasure = 0;
         -: 1255:  int temphand[MAX_HAND];
     #####: 1256:  int z = 0; //counter for temphand
-    #####: 1257:  while(drawntreasure < 2)
+    #####: 1257:  while(drawntreasure <= 2)
     $$$$$: 1257-block  0
     $$$$$: 1257-block  1
 branch  0 never executed
 branch  1 never executed
         -: 1258:  {
-    #####: 1259:	  if (state->deckCount[currentPlayer] <1) //if the deck is empty we need to shuffle discard and add to deck
+    #####: 1259:	  if (state->deckCount[currentPlayer] < 1) //if the deck is empty we need to shuffle discard and add to deck
     $$$$$: 1259-block  0
 branch  0 never executed
 branch  1 never executed
@@ -20408,13 +20478,13 @@ function useAdventurer called 0 returned 0% blocks executed 0%
     #####: 1254:  int drawntreasure = 0;
         -: 1255:  int temphand[MAX_HAND];
     #####: 1256:  int z = 0; //counter for temphand
-    #####: 1257:  while(drawntreasure < 2)
+    #####: 1257:  while(drawntreasure <= 2)
     $$$$$: 1257-block  0
     $$$$$: 1257-block  1
 branch  0 never executed
 branch  1 never executed
         -: 1258:  {
-    #####: 1259:	  if (state->deckCount[currentPlayer] <1) //if the deck is empty we need to shuffle discard and add to deck
+    #####: 1259:	  if (state->deckCount[currentPlayer] < 1) //if the deck is empty we need to shuffle discard and add to deck
     $$$$$: 1259-block  0
 branch  0 never executed
 branch  1 never executed

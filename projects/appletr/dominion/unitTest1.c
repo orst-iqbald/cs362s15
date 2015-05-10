@@ -36,16 +36,24 @@ int checkUpdateCoin(int p, struct gameState *post, int bonus)
 	//add bonus
 	prePtr->coins += bonus;
 
-	assert (r == 0);
-	assert(memcmp(prePtr, post, sizeof(struct gameState)) == 0);	
-	
-	return 0;
+	if (r != 0)
+	{
+		return -1;
+	}
+	else if (memcmp(prePtr, post, sizeof(struct gameState)) == 0)
+	{
+		return 1;
+	}		
+	else
+	{
+		return 0;
+	}
 }
 
 int main()
 {
-	int i, n, p, bonus;
-
+	int i, r, n, p, bonus, breakLoop;
+	breakLoop = 0;
 	struct gameState G;
 
 	printf ("Testing updateCoins.\n");
@@ -72,10 +80,23 @@ int main()
 		
 		bonus = floor(Random() * 10);
 		
-		checkUpdateCoin(p, &G, bonus);
+		r = checkUpdateCoin(p, &G, bonus);
+		if(r == -1)
+		{
+			printf("updateCoin failed with function error\n");
+			breakLoop = 1;
+			break;
+		}
+		else if(r == 0)
+		{
+			printf("updateCoin failed with mismatched structures\n");
+			breakLoop = 1;
+			break;
+		}
 	}
-
-	printf ("ALL TESTS OK\n");
-
+	if(!breakLoop)
+	{
+		printf ("UpdateCoin TESTS OK\n");
+	}
 	return 0;
 }

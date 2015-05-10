@@ -1299,7 +1299,7 @@ int pFeast(struct gameState *state, int choice1, int handPos){
 
 int pAdventurer(struct gameState *state, int handPos){
 	
-	int z = 0, drawntreasure;
+	int z = 0, drawntreasure = 0;
 	int cardDrawn;
 	int currentPlayer = whoseTurn(state);
 	int temphand[MAX_HAND];
@@ -1340,7 +1340,8 @@ int pSmithy(struct gameState *state, int handPos){
 			
       //discard card from hand
     discardCard(handPos, currentPlayer, state, 0);
-    return 0;
+   
+ return 0;
 	
 }
 

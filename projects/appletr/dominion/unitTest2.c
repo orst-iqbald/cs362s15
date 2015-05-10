@@ -57,15 +57,24 @@ int checkDrawCard(int p, struct gameState *post)
 		prePtr->handCount[p]++;//Increment hand count
 	}
 	
-	assert (r == 0);
-	assert(memcmp(prePtr, post, sizeof(struct gameState)) == 0);
-	return 0;
+	if (r != 0)
+	{
+		return -1;
+	}
+	else if (memcmp(prePtr, post, sizeof(struct gameState)) == 0)
+	{
+		return 1;
+	}		
+	else
+	{
+		return 0;
+	}
 }
 
 int main()
 {
-	int i, n, p;
-
+	int i, n, p, r, breakOuter;
+	breakOuter = 0;
 	struct gameState G;
 
 	printf ("Testing updateCoins.\n");
@@ -94,11 +103,31 @@ int main()
 		// draw a random number of cards
 		for(i = 0; i < G.handCount[p]; i++)
 		{
-			checkDrawCard(p, &G);
+			r = checkDrawCard(p, &G);
+			if(r == -1)
+			{
+				printf("drawCard failed with function error\n");
+				breakOuter = 1;
+				break;
+			}
+			else if(r == 0)
+			{
+				printf("updateCoin failed with number of cards in hand\n");
+				breakOuter = 1;
+				break;
+			}
+		}
+		if(breakOuter)
+		{
+			printf("Test failed\n");
+			break;
 		}
 	}
-
-	printf ("ALL TESTS OK\n");
+	
+	if(!breakOuter)
+	{
+		printf ("DrawCard TESTS OK\n");
+	}
 
 	return 0;
 }

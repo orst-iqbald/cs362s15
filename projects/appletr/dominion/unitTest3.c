@@ -14,15 +14,23 @@ int checkShuffle(int p, struct gameState *post)
 	memcpy (prePtr, post, sizeof(struct gameState));
 	
 	r = shuffle(p, post); 
-	assert (r == 0);
-	
-	assert(post->deckCount[p] == prePtr->deckCount[p]); //check that they contain the same number of cards
-	return 0;
+	if (r != 0)
+	{
+		return -1;
+	}
+	else if(post->deckCount[p] == prePtr->deckCount[p])
+	{
+		return 1; //check that they contain the same number of cards
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 int main()
 {
-	int i, n, p;
+	int i, n, p, r, breakLoop;
 
 	struct gameState G;
 
@@ -52,10 +60,24 @@ int main()
 		}
 		G.handCount[p] = floor(Random() * MAX_HAND);
 		
-		checkShuffle(p, &G);
+		r = checkShuffle(p, &G);
+		if(r == -1)
+		{
+			printf("drawCard failed with function error\n");
+			breakLoop = 1;
+			break;
+		}
+		else if(r == 0)
+		{
+			printf("updateCoin failed with number of cards in hand\n");
+			breakLoop = 1;
+			break;
+		}
 	}
 
-	printf ("ALL TESTS OK\n");
-
+	if(!breakLoop)
+	{
+		printf ("Shuffle TESTS OK\n");
+	}
 	return 0;
 }

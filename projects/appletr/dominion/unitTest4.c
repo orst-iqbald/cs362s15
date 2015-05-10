@@ -50,14 +50,20 @@ int checkScoreFor(int p, struct gameState *post)
 		if (prePtr->deck[p][i] == gardens) { score = score + ( fullDeckCount(p, 0, prePtr) / 10 ); };
 	}
 	
-	assert(r == score);
-	return 0;
+	if(r == score)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 int main()
 {
-	int i, n, p;
-
+	int i, n, p, r, breakLoop;
+	breakLoop = 0;
 	struct gameState G;
 
 	printf ("Testing updateCoins.\n");
@@ -85,10 +91,20 @@ int main()
 		{
 			G.hand[p][i] = floor(Random() * 26); //fill hand with random cards
 		}
-		checkScoreFor(p, &G);
+		r = checkScoreFor(p, &G);
+		
+		if(r == 0)
+		{
+			printf("Test failed\n");
+			breakLoop = 1;
+			break;
+		}
 	}
 
-	printf ("ALL TESTS OK\n");
+	if(!breakLoop)
+	{
+		printf ("checkScore TESTS OK\n");
+	}
 
 	return 0;
 }

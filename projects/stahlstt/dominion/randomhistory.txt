@@ -1,0 +1,116 @@
+******************** ADVENTURER TESTS ***************************************
+to run: make randomadventurertest
+
+In order to generate coverage for the adventurer test, I had to turn off 
+assertions - they caused the program to terminate prematurely. With assertions
+off, I can see that I got 94.12% coverage of my refactored adventurer code. It
+returned 100% blocks executed 93%, according to gcov. Some of the code that 
+didn't get covered seem to be variable declerations - presumably they are 
+unneccessary for the method to run. The only troubling thing is that my 2000
+random tests never triggered an empty deck, so we never used the deck shuffle
+method - this may need looking into. This mirrors the coverage I get with last 
+single test (again, commenting out the assertions that cause coverage to fail).
+
+Overall, my tests of dominion code as a whole increased in the random run:
+
+	Single																Random
+	Lines executed:20.81% of 567					Lines executed:23.46% of 567
+	Branches executed:24.22% of 417				Branches executed:25.66% of 417
+	Taken at least once:15.59% of 417			Taken at least once:16.55% of 417
+	Calls executed:10.53% of 95						Calls executed:12.63% of 95
+
+******************** GREAT HALL TESTS ***************************************
+to run: make randomcardtest
+
+The great_hall card was easier to test, as it hasn't been refactored. I got 
+100% coverage on this one again. But this time, the coverage was exactly the 
+same for both tests: 
+
+	Single																Random
+	Lines executed:20.28% of 567					Lines executed:20.28% of 567
+	Branches executed:22.78% of 417				Branches executed:22.78% of 417
+	Taken at least once:14.15% of 417			Taken at least once:14.15% of 417
+	Calls executed:10.53% of 95						Calls executed:10.53% of 95
+
+=============================================================================
+
+Testing Great Hall:
+-:  852:    case great_hall:
+        -:  853:      //+1 Card
+     2000:  854:      drawCard(currentPlayer, state);
+     2000:  854-block  0
+call    0 returned 2000
+        -:  855:			
+        -:  856:      //+1 Actions
+     2000:  857:      state->numActions++;
+        -:  858:			
+        -:  859:      //discard card from hand
+     2000:  860:      discardCard(handPos, currentPlayer, state, 0);
+call    0 returned 2000
+     2000:  861:      return 0;
+
+=============================================================================
+
+Testing Adventurer
+Function 'useAdventurer'
+Lines executed:94.12% of 17
+No branches
+No calls
+
+function useAdventurer called 2000 returned 100% blocks executed 93%
+     2000: 1251:int useAdventurer(struct gameState *state, int currentPlayer)
+     2000: 1251-block  0
+        -: 1252:{
+        -: 1253:  int cardDrawn;
+     2000: 1254:  int drawntreasure = 0;
+        -: 1255:  int temphand[MAX_HAND];
+     2000: 1256:  int z = 0; //counter for temphand
+   284000: 1257:  while(drawntreasure <= 2)
+     2000: 1257-block  0
+   284000: 1257-block  1
+branch  0 taken 282000
+branch  1 taken 2000 (fallthrough)
+        -: 1258:  {
+   282000: 1259:	  if (state->deckCount[currentPlayer] < 1) //if the deck is empty we need to shuffle discard and add to deck
+   282000: 1259-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 282000
+    #####: 1260:	    shuffle(currentPlayer, state);
+    $$$$$: 1260-block  0
+call    0 never executed
+        -: 1261:
+   282000: 1262:    drawCard(currentPlayer, state);
+   282000: 1262-block  0
+call    0 returned 282000
+   282000: 1263:	  cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1]; //top card of hand is most recently drawn card.
+   282000: 1264:	  if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+branch  0 taken 276000 (fallthrough)
+branch  1 taken 6000
+   276000: 1264-block  0
+branch  2 taken 276000 (fallthrough)
+branch  3 taken 0
+   276000: 1264-block  1
+branch  4 taken 0 (fallthrough)
+branch  5 taken 276000
+     6000: 1265:	    drawntreasure++;
+     6000: 1265-block  0
+        -: 1266:
+        -: 1267:    else {
+   276000: 1268:	    temphand[z]=cardDrawn;
+   276000: 1269:	    state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+   276000: 1270:	    z++;
+   276000: 1270-block  0
+        -: 1271:	  }
+        -: 1272:  }
+   278000: 1273:  while(z-1>=0){
+     2000: 1273-block  0
+   278000: 1273-block  1
+branch  0 taken 276000
+branch  1 taken 2000 (fallthrough)
+   276000: 1274:	  state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
+   276000: 1275:	  z=z-1;
+   276000: 1275-block  0
+        -: 1276:  }
+     2000: 1277:  return 0;
+     2000: 1277-block  0
+        -: 1278:}

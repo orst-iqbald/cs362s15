@@ -79,14 +79,14 @@ int main() {
     }
 
     G.playedCardCount = floor(Random() * MAX_DECK);
-    G.numBuys = 1;//floor(Random() * 10);
+    G.numBuys = 1;
     
     //Set position to within range of handCount[]
     pos = floor(Random() * (G.handCount[player]));
  
      //Test council_room function
-	testCouncil_Room(pos, player, &G);
+		testCouncil_Room(pos, player, &G);
 
-	printf("Ending council_room test...\n");
-	return 0;
+		printf("Ending council_room test...\n");
+		return 0;
 }
