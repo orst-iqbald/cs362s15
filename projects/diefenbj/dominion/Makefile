@@ -21,13 +21,23 @@ testBuyCard: testDrawCard.c dominion.o rngs.o
 testAll: dominion.o testSuite.c
 	gcc -o testSuite testSuite.c -g  dominion.o rngs.o $(CFLAGS)
 
+randomtests:randomtestadventurer.c randomtestcard.c dominion.o rngs.o 
+	gcc -o test -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+	$(CURDIR)/test &> $(CURDIR)/randomtestadventurer.out
+	gcov dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+	rm -f *.o test *.gcov *.gcda *.gcno *.so
+	make dominion.o rngs.o
+	gcc -o test -g randomtestcard.c dominion.o rngs.o $(CFLAGS)
+	$(CURDIR)/test &> $(CURDIR)/randomtestcard.out
+	gcov dominion.c >> randomtestcard.out
+	cat dominion.c.gcov >> randomtestcard.out
+	rm -f *.o test *.gcov *.gcda *.gcno *.so
+
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
 
-runtests: testDrawCard 
-	./testDrawCard &> unittestresult.out
-	gcov dominion.c >> unittestresult.out
-	cat dominion.c.gcov >> unittestresult.out
+runtests: randomtests
 	
 unittest1: unittest1.c dominion.o rngs.o
 	gcc -o unittest1 -g unittest1.c dominion.o rngs.o $(CFLAGS)
