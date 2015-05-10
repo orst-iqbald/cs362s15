@@ -12,24 +12,24 @@ testIsValid() then continues the above process of building URLs and testing thei
 
 {0 0 0 0 0} 
 {0 0 0 0 1} 
-	.
-	.
-	.
+.
+.
+.
 {0 0 0 0 N}
 {0 0 0 1 0}
 {0 0 0 1 1}
-	.
-	.
-	.
+.
+.
+.
 {0 0 0 1 N}
 {0 0 1 1 0}
-	.
-	.
-	.
+.
+.
+.
 {1 1 1 1 1}
-	.
-	.
-	.
+.
+.
+.
 {N N N N N}
 
 Therefore, incrementTestPartsIndex() provides testIsValid() with every possible permutation of the schemes, authorities, ports, paths, and queries in testUrlScheme, testUrlAuthority, testUrlPort, testPath, and testUrlQuery. testIsValid() tests each of the URLs created by these permutations in the loop described above.
