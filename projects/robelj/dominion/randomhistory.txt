@@ -1,0 +1,8 @@
+Adventurer Card:
+
+I implemented a random tester that runs 1000 different random game state cases against the adventurer card. This was accomplished via randomly seeded values and the use of 2 for loops to populate the game and player states. I saved the pre and post states of each game state tested, comparing the outcomes against what should have happened when the adventurer card was played and asserting the states are equivalent following execution. I tried to introduce bugs and was able to emulate some seg faults, so my thinking is that this test can be vastly improved by adding some robust measures to guard against such an occurrence, perhaps the use of print statements over asserts is preferred. I was able to obtain 100% branch and statement coverage. I could also improve this test by using some counters wihtin the loops to output some helpful debugging data.
+
+
+Embargo Card:
+
+Similar to my adventurer random test, I structured this test around 1000 test cases, randomly populating game states and player states. Similarly, I tested pre and post game states against eachother, testing the functionality of the embargo card via a local implementation of its function as well as the dominion.c version, comaring the states after for confirmation of a proper test. By randomizing all aspects of this particular card, I was able to get robust branch and statement coverage and feel good about the efficacy of said test. That being said, there are aspects I am sure I could improve upon, but for the purposes of this assignment, this seemed to suffice.
