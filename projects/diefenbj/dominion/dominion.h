@@ -85,7 +85,7 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
 		   struct gameState *state);
 /* Responsible for initializing all supplies, and shuffling deck and
    drawing starting hands for all players.  Check that 10 cards selected
-   are in fact (different) kingdom cards, and that numPlayers is valid.
+   are in fact (different) kingdom cards, and that numPlayers is valid. 
 
 Cards not in game should initialize supply position to -1 */
 
@@ -128,24 +128,4 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 /* Set array position of each player who won (remember ties!) to
    1, others to 0 */
 
-//handling of smithy card
-int h_smithy(int handPos, int currentPlayer, struct gameState *state);
-
-//handling of adventurer card
-int h_adventurer(int currentPlayer, struct gameState *state);
-
-//"" of steward
-int h_steward(int choice1, int choice2, int choice3, int handPos, int currentPlayer, struct gameState *state);
-
-//"" of sea_hag
-int h_sea_hag(int currentPlayer, struct gameState *state);
-
-//"" of outpost
-int h_outpost(int handPos, int currentPlayer, struct gameState *state);
-
-//"" of gardens
-int h_gardens();
-
-//"" of great_hall
-int h_great_hall(int handPos, int currentPlayer, struct gameState *state);
 #endif
