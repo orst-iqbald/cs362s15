@@ -1,0 +1,45 @@
+CS 362 - Software Engineering II
+Group Project Part A - ProjectPartA.txt
+Group Members:
+-Aryan Aziz
+-Robert Hines
+-Brittany Hopkins
+
+testIsValid explanation: 
+
+-Give how many total number of urls it is testing. 
+
+31,920. We got this value by modifying the code and printing out an incrementing 
+number at the end of the do-while loop. 
+
+-Also, explain how it is building all the urls. 
+
+It has a few defined arrays, testUrlScheme, testUrlAuthority, testUrlPort, 
+testPath, and testUrlQuery; each array with a certain number of values in them. 
+The url itself is built by taking a piece of all of the defined arrays and 
+putting them together (based on the order defined above). The code goes through 
+all possible combinations of these arrays and builds the urls. 
+
+-Give an example of valid url being tested and an invalid url being tested by 
+testIsValid() method.
+
+An example of a url that would be accepted by testIsValid() would be 
+http://go.com:80/test1 . This is because the URL scheme, authority, port, path, 
+and query are all valid and are cases considered “true” by the method. 
+An example of a url that would fail would be 3ht://256.256.256.256:-1/.. This 
+fails for obvious reasons, but also contains a scheme, authority, port, and path 
+that are marked as “false” by the method. 
+
+-Do you think that a real world test (URL Validator's testIsValid() test in this 
+case) is very different than the unit tests and card tests that we wrote (in 
+terms of concepts & complexity)? Explain in few lines.
+
+Surprisingly, it’s not very different considering the fact that the URL validator 
+is used in production software. Some notable differences lie in the object-
+oriented complexity of the project as a whole, where inheritance leads to some 
+sections of code that are hard to decipher without tracking down the parents and 
+grandparents. Our Dominion tests have typically been shorter and less complex due 
+to the smaller possible input ranges when compared to the vast number of URLs 
+that the URL validator must account for. Because of this, many of our unit tests 
+have been able to achieve fairly high branch and/or statement coverage. 
+
