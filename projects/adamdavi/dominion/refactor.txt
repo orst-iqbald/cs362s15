@@ -14,6 +14,10 @@ to play an adventurer card. This function has the following function prototype:
 		to zero. It used to be int drawntreasure = 0.
 	2. In the second while loop, I changed it so that the loop condition went
 		from (z - 1 >= 0) to (z >= 0).
+***NOTE: Starting with Assignment 4, I have fixed the bug where drawntreasure is
+	no longer initialized to zero. I changed it back to int drawntreasure = 0.
+	This is due to the fact that with this bug introduced, the while loop never
+	runs and for the random testing, this makes for very uninteresting results.
 
 
 Refactoring changes made for the Smithy card:
