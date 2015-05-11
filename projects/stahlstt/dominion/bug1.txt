@@ -16,7 +16,7 @@ expected, as the player is drawing an extra card.
 
 the ultimate failure was less expected, since I was sure the dominion.c code 
 worked last week. Returning the refactored code to the correct state does not
-make the error go away. There is another error in the funtion.
+make the error go away. There is another error in the function.
 
 check smithy
 Assertion failed: (pre.handCount[pre.whoseTurn] == post->handCount[pre.whoseTurn]), 
