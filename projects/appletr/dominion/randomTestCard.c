@@ -21,7 +21,6 @@ int checkSmithy(int p, struct gameState *post)
 	handPos = 0;
 	int* bonus = (int*) malloc(sizeof(int));
 	*bonus = 0;
-
 	cardEffect(card, choice1, choice2, choice3, post, handPos, bonus);
 
 	free(bonus);
@@ -48,13 +47,14 @@ int checkSmithy(int p, struct gameState *post)
 int main()
 {
 	int i, n, p, r, breakLoop;
+	int* k;
 	breakLoop = 0;
 	
 	struct gameState G;
 
-	printf ("Testing updateCoins.\n");
+	printf("Testing checkSmithy.\n");
 
-	printf ("RANDOM TESTS.\n");
+	printf("RANDOM TESTS.\n");
 
 	SelectStream(2);
 	PutSeed(3);
@@ -74,12 +74,16 @@ int main()
 			G.deck[p][i] = floor(Random() * 26); //fill deck with random cards
 		}
 		G.discardCount[p] = floor(Random() * MAX_DECK);
+		for(i = 0; i < G.deckCount[p]; i++)
+		{
+			G.discard[p][i] = floor(Random() * 26); //fill discard with random cards
+		}
 		G.handCount[p] = floor(Random() * MAX_HAND);
 		for(i = 0; i < G.handCount[p]; i++)
 		{
+			//drawCard(p, &G);
 			G.hand[p][i] = floor(Random() * 26); //fill hand with random cards
 		}
-		
 		r = checkSmithy(p, &G);
 
 		if(r == 0)
