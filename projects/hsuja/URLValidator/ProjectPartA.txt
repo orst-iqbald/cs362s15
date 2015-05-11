@@ -1,0 +1,49 @@
+Trevor Apple, Matt Carver, and Jason Hsu
+CS362-400
+5/10/15
+Final Project - Part A
+
+
+The URLs are created by combining a scheme, authority, port, path, and query. The test cases are created with different permutations of these parts. Each instance of a scheme, authority, port, path, and query is stored as a ResultPair, which includes a string for the part of the URL and its validity, either true or false. These instances are stored in arrays of ResultPairs of schemes, ResultPairs of authorities, etc.
+
+testIsValid() first creates a new UrlValidator and asserts that two URLs, http://www.google.com and http://www.google.com/, are valid. It then builds a URL by appending the part of the URL (either scheme, authority, port, path, or query) that is indexed at the current values stored in the array testPartsIndex. If at least one part of the constructed URL is invalid, then the entire URL is expected to be invalid. Otherwise, the URL is expected to be valid. testIsValid() then asserts that the expected validity of the URL is equivalent to the validity of the URL determined by isValid(). 
+
+testIsValid() then continues the above process of building URLs and testing their validity in a loop, with each iteration incrementing the values stored in the array testPartsIndex using the function incrementTestPartsIndex() and creating another URL permutation. incrementTestPartsIndex() increments testPartsIndex as follows, with N = part.length - 1:
+
+{0 0 0 0 0} 
+{0 0 0 0 1} 
+.
+.
+.
+{0 0 0 0 N}
+{0 0 0 1 0}
+{0 0 0 1 1}
+.
+.
+.
+{0 0 0 1 N}
+{0 0 1 1 0}
+.
+.
+.
+{1 1 1 1 1}
+.
+.
+.
+{N N N N N}
+
+Therefore, incrementTestPartsIndex() provides testIsValid() with every possible permutation of the schemes, authorities, ports, paths, and queries in testUrlScheme, testUrlAuthority, testUrlPort, testPath, and testUrlQuery. testIsValid() tests each of the URLs created by these permutations in the loop described above.
+
+Schemes: 9
+Authorities: 19
+Ports: 7
+Paths: 10
+Queries: 3
+
+There are 35,910 total URLs being tested by testIsValid().
+
+A valid URL being tested would be: http://go.com:80/test1/file?action=view
+
+An invalid URL being tested would be: http://go.com:-1/test1/file?action=view
+
+This particular real world test is not too different from the unit tests we have been implementing in terms of complexity and concept. Conceptually, this test creates a multitude of test cases by assembling all the permutations of parts of a URL. Our random testing did create test cases on this scale, but they were not necessarily with predefined portions of test cases. While our our random testing included constraints under which random test values were created, each value was not specifically predetermined as it was in this real world test. On the other hand, our unit tests did use predetermined test values for testing, but they did not produce test cases on the scale of this real world test. Essentially, this real world test is like a hybrid of our random and non-random unit/card tests, combining the scale of the random testing and the predetermined test values of the non-random unit/card testing.

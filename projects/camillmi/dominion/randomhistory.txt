@@ -1,0 +1,27 @@
+randomhistory.txt
+Michael Camilleri
+
+- To run all random tests, run `make runrandomtests`
+
+# randomtestadventurer.c
+
+I implemented random tests for the Adventurer action card. In each iteration, the initializeGame function is used to build the initial gameState structure. That function is passed a random number of players (2-4). The resulting structure is then modified so that whoseTurn is a random value less than the number of players. The current player’s hand is drawn up to a random target hand size and the adventurer card is added to that hand at a random location. The entire structure is copied and stored for later reference. 
+
+The Adventurer function is called and then several checks are performed. The oracle for these checks are calculations performed on the copy of the game state structure made earlier. Hand size is checked to make sure that it is one greater than it was originally (+ 2 for the adventurer cards and - 1 for the usual discard). The number of treasures in the hand is checked to make sure that it is two greater than it was originally. Because no record of the number of cards drawn is kept by Adventurer, I decided to check that the number of cards gone from the deck is equal to the increase in had size + the increase in discard pile size. 
+
+Both hand count and treasure count consistently fail. The treasure count failing is due to a bug added in Assignment 2: the number of treasures drawn is incremented by two for each one actually drawn causing only one treasure to be drawn. The hand count, I think, is caused by improperly reducing the hand count by one before discarding. Overall the way this function operates is necessarily complex and confusing. I think the best way to approach fixing this problem is to rewrite the function. For example, there is no reason to maintain a temporary hand instead of just discarding each card as non-treasure cards are drawn. 
+
+## coverage
+
+The coverage metrics provided by gcov aren’t useful here because I am discussing only one function. Looking at only the actionAdventurer function, coverage is 100%. This was expected because cases are tried randomly and cover all corner and edge cases. 
+
+# randomtestcard.c
+
+I decided to test the isGameOver function, a function that I had previously written unit tests for. This function check the game state and if certain parameters are present, it returns “1” for game over. The game ends if their are no province cards left, or if any three supply piles are at zero. Creating a random tester for this function was as easy as setting each supply pile to a random number, running the function, and comparing the results of the function to values calculated separately (oracle). 
+
+A bug was found in the function. The function only tests the first 25 supply piles, but should test all 27. The became apparent because if the total number of zeros was < 3 not including piles 26 and 27 the game did not properly end. 
+
+## coverage
+
+Coverage is also 100% for this function given the reasons stated for Adventurer.
+

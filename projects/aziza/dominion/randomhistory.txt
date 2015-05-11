@@ -1,0 +1,42 @@
+Aryan Aziz
+
+randomhistory.txt
+
+Quick summary of all tests.
+
+
+----------
+
+randomtestadventurer.c | adventurer
+
+File 'dominion.c'
+Lines executed:25.91% of 714
+Branches executed:22.06% of 417
+Taken at least once:18.71% of 417
+No calls
+
+function adventurerEffect called 9001 returned 100% blocks executed 80%
+
+A much more thorough test than the unit test I did before, executing 80% rather than 66%. However, the function was called many more times than anticipated and I'm not entirely sure why at its current state. But it returned 100% of the time, which is nice. 
+
+----------
+
+randomtestcard.c | smith
+
+File 'dominion.c'
+Lines executed:25.91% of 714
+Branches executed:22.06% of 417
+Taken at least once:18.71% of 417
+No calls
+
+function smithyEffect called 6010 returned 100% blocks executed 100%
+
+A very thorough test that executed 100% of the lines (woohoo). Also ran more times than expected, but returned everytime and executed 100% of the lines. 
+
+----------
+
+Conclusion
+
+Overall, I think random testing is a great part of the testing cycle and should be used in conjunction with unit testing. In unit testing, you can test the core functionality on a control group where you set the environment and variables to your liking. Then, once that passes, you can run random testing to ensure that everything is running in 100, 1000, 1000000, etc test cases of random scnearios to see if it works in those random scenarios. Together, it can help you remove a huge number of bugs in your code and get fringe scenarios together. In my testing, both of the test files produce fail for everything due to the bugs I introduced in my refactor code. 
+
+Of course, my testing could be even more effective by outputting all of the game state information (ie, hand count, deck count, card position, player turn, etc etc) for each test that it does; so that when it actually does fail you can easily see what the scenario was that caused it to fail. Using those logs, you should be able to then go back to your unit testing with this exact scenario and debug the issue. 

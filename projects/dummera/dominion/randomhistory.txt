@@ -1,0 +1,15 @@
+Using randomtestcard.c, for file dominion.c:
+lines executed were: 7.60% of 579
+Branches executed: 4.32% of 417
+Taken at least once: 3.60% of 417
+Calls executed: 3.16% of 95
+No bugs were found using randomtestcard.c 
+
+Using ranomtestadventurere.c, for file domionion.c:
+lines executed were: 7.60% of 579
+Branches executed: 4.32% of 417
+Taken at least once: 3.60% of 417
+Calls executed: 3.16% of 95
+No bugs were found using randomtestadventurere.c
+
+The lines executed were no more than for unittestresult.c, so coverage was not improved.

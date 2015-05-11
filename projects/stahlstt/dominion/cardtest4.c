@@ -48,9 +48,10 @@ int testGreat_Hall(int handPos, int player, struct gameState *post) {
 
 int main() {
 	struct gameState G;
-	int player;
-	int i;
-	int pos;
+  int i, pos, player, r;
+
+  int k[10] = {adventurer, council_room, feast, gardens, mine,
+	       remodel, smithy, village, baron, great_hall};
 
 	printf("Testing great_hall....\n");
 
@@ -59,6 +60,7 @@ int main() {
       ((char*)&G)[i] = floor(Random() * 255);
     }
 
+	  r = initializeGame(2, k, 1, &G);
     G.numPlayers = 2 + floor(Random() * (MAX_PLAYERS - 1));
     player = floor(Random() * G.numPlayers);
     G.whoseTurn = player;
@@ -71,13 +73,13 @@ int main() {
     }
 
     G.playedCardCount = floor(Random() * MAX_DECK);
-    G.numBuys = 1;//floor(Random() * 10);
+    G.numBuys = 1;
     
     //Set position to within range of handCount[]
     pos = floor(Random() * (G.handCount[player]));
  
- 	// testing great_hall
-	testGreat_Hall(pos, player, &G);
+ 		// testing great_hall
+		testGreat_Hall(pos, player, &G);
     printf("great_hall Passes...\n");
     return 0;
 }

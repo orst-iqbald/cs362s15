@@ -1,0 +1,6 @@
+I found the random testing to be difficult at first.
+I starting my random tester from the cardtests we did for assignment 3
+Instead of using chosen variables i randomized the initial settings for the game
+My last test also only ran one time so i increased it to run 100 times
+After finishing my random adventure card tester i realized that it only checked to see if there were the correct amount of treasures in the hand. I knew from making errors in the first assignment that i should check to see if any other errors occured.
+I decided to also check to verify the correct amount of buys, actions, and cards in hand also occured.
