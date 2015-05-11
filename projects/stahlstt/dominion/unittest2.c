@@ -1,16 +1,17 @@
-/* *****************************************************************************
+/* ***************************************************************************
 Tina Stahlstedt
 stahlstt@onid.oregonstate.edu
 CS362 - 400 Spring 2015
 Assignment 3
 
-Write unit tests for four functions (not card implementations or cardEffect) in dominion.c. 
+Write unit tests for four functions (not card implementations or cardEffect) 
+in dominion.c. 
 Check these tests in as unittest1.c,unittest2.c, unittest3.c, and unittest4.c. 
 
  Unit test for shuffle(). Because initializing the game sets player 0's hand,
-    player 0 starts with a 5 card deck. Also, I am expceting that initialize game 
-    is working correctly.
-***************************************************************************** */   
+    player 0 starts with a 5 card deck. Also, I am expecting that initialize
+		game is working correctly.
+*************************************************************************** */   
 
 
 #include "dominion.h"

@@ -1222,7 +1222,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
 int playAdventurer(struct gameState *state, int currentPlayer)
 {
   int cardDrawn;
-  int drawntreasure;
+  int drawntreasure = 0;
   int z = 0; //counter for temp hand
   int temphand[MAX_HAND];// moved above the if statement
 

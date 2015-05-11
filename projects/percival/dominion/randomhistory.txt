@@ -1,0 +1,98 @@
+Lisa Percival Assignment 4
+randomhistory.text: Development of Random Testers
+
+Testing Adventurer: randomtestadventurer.c
+-------------------------------------------
+	In thinking about how to create a random tester for this card's functionality,
+I remembered the discussions about how to determine the reasonable inputs and 
+states and then randomly choose amongst those. The
+most important aspects of the game state seem to be what cards are in the 
+player's deck, hand, and discard pile. Therefore, I implemented my randomness by
+starting with a random call to initializeGame() and then adding additional randomness
+in terms of how many and which cards are in the current player's hand, deck, and
+discard, in addition to whose turn it is. I also placed the adventurer card in a
+random position in the player's hand. I did this on every one of 100 iterations,
+which should lead to the coverage of a lot of different states. 
+	For each random configuration in each iteration I checked the postconditions
+that I identified previously as being the components of the specification
+for the function. Namely, that the player's hand grows by 2 cards, there are
+at least 2 treasure cards in their hand, and the Adventurer card is added to the played
+pile. I stuck with the specification even though I knew from previous testing
+that there are 2 bugs (see bug1.txt) that would cause most of the tests to fail.
+	In addition to printing whether the tests passed or failed for each iteration,
+as well as overall number of failures, I thought it would be useful to have some
+information on what the randomly-generated game state was for each iteration. 
+Therefore, I also printed the current player, number of cards in their hand, deck,
+and discard, and which position in their hand the adventurer was in. At this point
+this information doesn't do much good since I have rampant failures due to known
+bugs, but it could be helpful in later or more realistic debugging to have additional
+information to try to understand when and why failures occur.
+	When I ran "make randomtestadventurer.out", it gave me the failure results I
+expected based on the known bugs, namely the same 2 failures (adding 2 cards and
+adding adventurer to played pile) for every iteration. As before, I'm using the
+specification based on how the adventurer is supposed to work.
+	My initial attempt provided 100% coverage of the cardEffectAdventurer()
+function, so there was no need to make changes to improve coverage. The coverage
+statistics provided by gcov for dominion.c overall are as follows:
+	File 'dominion.c'
+	Lines executed:21.42% of 579
+	Branches executed:19.76% of 415
+	Taken at least once:17.35% of 415
+	Calls executed:10.53% of 95
+These overall coverage values are larger than I obtained with my previous unit
+test, probably due to having more calls to the initializeGame() function and 
+also calling the shuffle() function.
+I also improved my coverage of the cardEffectAdventurer() function over what I 
+had with my non-randomized unit test in Assignment 3. That only had a line
+coverage of 94% and branch coverage of 88% because I never hit the condition of
+having an empty deck and calling the shuffle() function (which, incidentally, 
+does not do what the code comment says it does, or anything for that matter).
+Looking at the gcov file in detail, every single line of the cardEffectAdventurer()
+function is executed at least 9 times and each condition is reached at least
+some percentage of the time. Some pieces are exercised less than others, such 
+as the shuffle() if-statement, but they are still covered sufficiently.
+
+Testing Great Hall: randomtestcard.c
+-------------------------------------------
+	For my second card I chose to test the Great Hall, since it was the card 
+where I did not find any bugs with my last round of unit testing in Assignment 3
+(and the one where I did not introduce any bugs in a previous assignment) so I thought 
+I would see if random testing could find any bugs that the other couldn't. I
+took the same approach to creating a random tester as I did with the Adventurer
+test, by manipulating the game state in random but reasonable ways.
+	Once again, I had 100 iterations where each one started with a random call
+to initializeGame() and then further randomized the game state by setting who the
+current player is, which and how many cards are in their hand, deck, and discard,
+as well as which position in their hand the Great Hall card is in. In addition,
+I decided to randomly set the initial number of actions, since the Great Hall
+card affects that, on the off-chance it makes a difference. Therefore, the test
+case information that I printed for each iteration is the same as it was for
+Adventurer plus the number of actions, so it covers the random configurations.
+	As before, for each random configuration  I checked the postconditions
+that I identified previously as being the components of the specification
+for the function. Namely, that the player's hand grows by 1 card, the number of 
+actions increases by 1, and the Great Hall card is added to the played pile.
+	When I first ran my initial version of the test, I was surprised to see 1
+failure for 1 iteration. Looking at it, I realized it had ended up with 0 cards
+in the player's hand, so there was never really a Great Hall in it and attempting
+to discard a nonexistent card didn't work. This led me to adjust my test slightly
+so the hand, deck, and discard counts would have 1 as a minimum value, instead of
+0. I also went and tweaked my randomtestadventurer file in the same way.
+	After making that change, the final version of my random tester ended up
+showing that all tests pass, so there still don't appear to be any bugs in the
+cardEffectGreatHall() function, which is not entirely surprising.
+	From the start I had 100% coverage of the cardEffectGreatHall() function,
+so there was no need to change the tester to improve coverage. The coverage
+statistics provided by gcov for dominion.c overall are as follows:
+	File 'dominion.c'
+	Lines executed:18.31% of 579
+	Branches executed:17.35% of 415
+	Taken at least once:13.73% of 415
+	Calls executed:9.47% of 95
+These overall coverage values are exactly the same as what I got with my 
+previous unit test in Assignment 3. (Which implies that the increase I saw with
+the Adventurer tester was probably purely due to calling shuffle().)
+My coverage of the cardEffectGreatHall() function had already been 100% with 
+the previous tester, so there was no improvement there either.
+Looking at the gcov file in detail, every line of the function is executed
+exactly 100 times, once for each iteration.

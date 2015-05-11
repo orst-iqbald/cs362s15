@@ -355,6 +355,9 @@ int main(int argc, char* argv[])
             }
             break;
         }
+		/*****************************************
+        *   Choice[0] specific test cases end
+        *****************************************/
         passedTests++;
         usleep(10000); //allows randomization to occur better, ran too fast before
     }    

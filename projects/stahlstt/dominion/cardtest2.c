@@ -67,7 +67,10 @@ int checkAdventurer(int card, struct gameState *post, int handPos)
 
 int main (int argc, char** argv) {
 
-  int i, pos, player;
+  int i, n, pos, player, r;
+
+  int k[10] = {adventurer, council_room, feast, gardens, mine,
+	       remodel, smithy, village, baron, great_hall};
 
   struct gameState G;
 
@@ -77,6 +80,7 @@ int main (int argc, char** argv) {
     for (i = 0; i < sizeof(struct gameState); i++) {
       ((char*)&G)[i] = floor(Random() * 255);
     }
+	  r = initializeGame(2, k, 1, &G);
 
     G.numPlayers = 2 + floor(Random() * (MAX_PLAYERS - 1));
     player = floor(Random() * G.numPlayers);
