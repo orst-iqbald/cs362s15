@@ -1,0 +1,76 @@
+Khang Duong
+coverage1.txt
+
+I expected unittest4, isGameOver(), to recieve the highest coverage percentages and it did. I believed this 
+because I felt that I had covered every aspect of the function in my unittest. It is interesting 
+to me that the statement coverage and the branch coverage for this test are so similar though. 
+I expected the branch coverage to be much higher than statement due to the way that the function works. 
+
+There were several instances where statement coverage was higher than branch coverage, and branch coverage higher than statement coverage. 
+This makes sense due to the nature of each "card" or function. For example the Embargo card, cardtest4, showed a large amount of statement
+coverage than branch coverage. This is not surprising as the embargo card doesn't have many "branches" to explore in terms of it coverage.
+The user can pick up the card, play it, recieve their bounty, and then discard the card. This makes the statement coverage a suitable
+type. 
+
+There are also instances such as with fullDeckCount(), unittest3, where branch coverage was more prevalent than statement. When using 
+statement coverage on a card like fullDeckCount() I'm confident that you wuold not be able to debug anywhere close to all of the possibilities
+of the card. This is because the card has so many possible return values that it can send back, branch coverage would be needed in order
+to hit all avenues of the final values.
+
+However, there are instances where both types of coverage, statement and branch, are similar. An example of this is in the smithy card, cardtest1, 
+the statement coverage and branch coverage both displayed numbers that are only 0.5% different. I think this is due to the simplicity of the card.
+Since the smithy card only requires that you draw 3 cards there are not many avenues for differing possibilities which makes branch coverage
+not as effective. Oddly enough branch coverage is the lesser of the two percents, even if it is only by 0.5%. 
+
+All of my tests passed (except for the cards with intentional bugs placed in them) and overall my code coverage was decent. My code 
+coverage averaged somewhere in the mid 20's with high's in the low 30's. I would be more pleased had my coverage been higher. 
+
+Cardtest1: Smithy card
+	Lines executed:18.43% of 586
+	Branches executed:17.75% of 417
+	Taken at least once:13.67% of 417
+	Calls executed:9.18% of 98
+
+Cardtest2: Adventurer card
+	Lines executed:20.65% of 586
+	Branches executed:19.66% of 417
+	Taken at least once:15.35% of 417
+	Calls executed:10.20% of 98
+	
+Cardtest3: Great Hall card
+	Lines executed:21.50% of 586
+	Branches executed:19.66% of 417
+	Taken at least once:15.35% of 417
+	Calls executed:12.24% of 98
+
+Cardtest4: Embargo card
+	Lines executed:22.70% of 586
+	Branches executed:20.14% of 417
+	Taken at least once:15.83% of 417
+	Calls executed:14.29% of 98
+
+Unittest1: updateCoins()
+	Lines executed:22.87% of 586
+	Branches executed:20.14% of 417
+	Taken at least once:16.31% of 417
+	Calls executed:13.27% of 98
+
+Unittest2: getCost()
+	Lines executed:28.33% of 586
+	Branches executed:27.34% of 417
+	Taken at least once:23.50% of 417
+	Calls executed:13.27% of 98
+
+
+Unittest3: fullDeckCount()
+	Lines executed:29.69% of 586
+	Branches executed:29.74% of 417
+	Taken at least once:25.42% of 417
+	Calls executed:13.27% of 98
+
+
+Unittest4: isGameOver()
+	Lines executed:31.40% of 586
+	Branches executed:31.65% of 417
+	Taken at least once:27.34% of 417
+	Calls executed:13.27% of 98

@@ -1,0 +1,148 @@
++++ randomtestcard.c: +++
+*** randomtestcard.c Start 
+=== Testing randomtestcard.c ===
+Testing STEWARD Card 
+=== Playing Steward for 2 draws === 
+= Iteration: 0
+= Random Input Values are: Seed: 1383, Player: 2
+Steward 2 Draws passed. Test PASSED
+= Iteration: 1
+= Random Input Values are: Seed: 1915, Player: 3
+Steward 2 Draws passed. Test PASSED
+= Iteration: 2
+= Random Input Values are: Seed: 1386, Player: 2
+Steward 2 Draws passed. Test PASSED
+= Iteration: 3
+= Random Input Values are: Seed: 1421, Player: 3
+Steward 2 Draws passed. Test PASSED
+= Iteration: 4
+= Random Input Values are: Seed: 1690, Player: 4
+Steward 2 Draws passed. Test PASSED
+= Iteration: 5
+= Random Input Values are: Seed: 1926, Player: 2
+Steward 2 Draws passed. Test PASSED
+= Iteration: 6
+= Random Input Values are: Seed: 1172, Player: 4
+Steward 2 Draws passed. Test PASSED
+= Iteration: 7
+= Random Input Values are: Seed: 1368, Player: 2
+Steward 2 Draws passed. Test PASSED
+= Iteration: 8
+= Random Input Values are: Seed: 1782, Player: 4
+Steward 2 Draws passed. Test PASSED
+= Iteration: 9
+= Random Input Values are: Seed: 1123, Player: 3
+Steward 2 Draws passed. Test PASSED
+
+=== Playing Steward for 2 coins === 
+= Iteration: 0
+= Random Input Values are: Seed: 1929, Player: 2
+previous handcount is: 5 
+current handcount is: 6 
+coins has not been properly incremented. Test FAILED
+= Iteration: 1
+= Random Input Values are: Seed: 1058, Player: 2
+previous handcount is: 5 
+current handcount is: 6 
+coins has not been properly incremented. Test FAILED
+= Iteration: 2
+= Random Input Values are: Seed: 1393, Player: 3
+previous handcount is: 5 
+current handcount is: 6 
+coins has not been properly incremented. Test FAILED
+= Iteration: 3
+= Random Input Values are: Seed: 1042, Player: 2
+previous handcount is: 5 
+current handcount is: 6 
+coins has not been properly incremented. Test FAILED
+= Iteration: 4
+= Random Input Values are: Seed: 1421, Player: 4
+previous handcount is: 5 
+current handcount is: 6 
+coins has not been properly incremented. Test FAILED
+= Iteration: 5
+= Random Input Values are: Seed: 1537, Player: 4
+previous handcount is: 5 
+current handcount is: 6 
+coins has not been properly incremented. Test FAILED
+= Iteration: 6
+= Random Input Values are: Seed: 1315, Player: 4
+previous handcount is: 5 
+current handcount is: 6 
+coins has not been properly incremented. Test FAILED
+= Iteration: 7
+= Random Input Values are: Seed: 1526, Player: 4
+previous handcount is: 5 
+current handcount is: 6 
+coins has not been properly incremented. Test FAILED
+= Iteration: 8
+= Random Input Values are: Seed: 1956, Player: 4
+previous handcount is: 5 
+current handcount is: 6 
+coins has not been properly incremented. Test FAILED
+= Iteration: 9
+= Random Input Values are: Seed: 1170, Player: 3
+previous handcount is: 5 
+current handcount is: 6 
+coins has not been properly incremented. Test FAILED
+
+=== Playing Steward for 2 discards === 
+= Iteration: 0
+= Random Input Values are: Seed: 1305, Player: 4
+previous handcount is: 5 
+current handcount is: 6 
+Steward Discards failed. Test FAILED
+= Iteration: 1
+= Random Input Values are: Seed: 1327, Player: 4
+previous handcount is: 5 
+current handcount is: 6 
+Steward Discards failed. Test FAILED
+= Iteration: 2
+= Random Input Values are: Seed: 1846, Player: 3
+previous handcount is: 5 
+current handcount is: 6 
+Steward Discards failed. Test FAILED
+= Iteration: 3
+= Random Input Values are: Seed: 1857, Player: 2
+previous handcount is: 5 
+current handcount is: 6 
+Steward Discards failed. Test FAILED
+= Iteration: 4
+= Random Input Values are: Seed: 1582, Player: 4
+previous handcount is: 5 
+current handcount is: 6 
+Steward Discards failed. Test FAILED
+= Iteration: 5
+= Random Input Values are: Seed: 1367, Player: 4
+previous handcount is: 5 
+current handcount is: 6 
+Steward Discards failed. Test FAILED
+= Iteration: 6
+= Random Input Values are: Seed: 1043, Player: 3
+previous handcount is: 5 
+current handcount is: 6 
+Steward Discards failed. Test FAILED
+= Iteration: 7
+= Random Input Values are: Seed: 1808, Player: 4
+previous handcount is: 5 
+current handcount is: 6 
+Steward Discards failed. Test FAILED
+= Iteration: 8
+= Random Input Values are: Seed: 1788, Player: 2
+previous handcount is: 5 
+current handcount is: 6 
+Steward Discards failed. Test FAILED
+= Iteration: 9
+= Random Input Values are: Seed: 1651, Player: 3
+previous handcount is: 5 
+current handcount is: 6 
+Steward Discards failed. Test FAILED
+*** randomtestcard.c Complete 
++++ randomtestcard.c: gcov coverage +++
+File 'dominion.c'
+Lines executed:26.43% of 575
+Branches executed:22.28% of 413
+Taken at least once:19.13% of 413
+Calls executed:16.13% of 93
+dominion.c:creating 'dominion.c.gcov'
+

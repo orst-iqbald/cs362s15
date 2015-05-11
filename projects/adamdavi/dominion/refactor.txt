@@ -1,0 +1,92 @@
+David Adams
+CS 362
+Spring 2015
+
+Assignment 2
+
+Refactoring changes made for the Adventurer card:
+I created a new function called playAdventure that contains all of the logic
+to play an adventurer card. This function has the following function prototype:
+	int playAdventurer(struct gameState *state, int currentPlayer);
+
+	Bugs introduced to function:
+	1. variable drawntreasure was changed so that it is no longer initialized
+		to zero. It used to be int drawntreasure = 0.
+	2. In the second while loop, I changed it so that the loop condition went
+		from (z - 1 >= 0) to (z >= 0).
+***NOTE: Starting with Assignment 4, I have fixed the bug where drawntreasure is
+	no longer initialized to zero. I changed it back to int drawntreasure = 0.
+	This is due to the fact that with this bug introduced, the while loop never
+	runs and for the random testing, this makes for very uninteresting results.
+
+
+Refactoring changes made for the Smithy card:
+I created a new function called playSmithy that contains all of the logic
+to play a smithy card. This function has the following function prototype:
+	int playSmithy(struct gameState *state, int currentPlayer, int handPos);
+
+	Bugs introduced to function:
+	1.  ***SEE BELOW NOTE***
+		In the for loop, it decrements i (i--) instead of incrementing i, which
+		is what it originally did. This should create an infinite loop.
+	2. The trash flag has been changed in the discardCard function so that it
+		has a value of 1 instead of 0. This will cause this card to be trashed
+		when it shouldn't be.
+***NOTE: During my work on Assignment 3, I realized that introducing a bug that
+		creates an infinite loop probably isn't the best sort of bug for what
+		we are doing. Therefore, I went in and changed bug #1 so that now
+		there is a bug that makes it so that Smithy draws 4 cards instead of 3.***
+
+
+Refactoring changes made for the Cutpurse card:
+I created a new function called playCutpurse that contains all of the logic
+to play a cutpurse card. This function has the following function prototype:
+	int playCutpurse(struct gameState *state, int currentPlayer, int handPos);
+
+	Bugs introduced to function:
+	1. The update coins function takes an argument of 0 as the last argument
+		when it should be a 2 because the card should give the player +2 coins.
+	2. In the if statement directly within the second for loop, there should be
+		a break at the end of the if statement because you only want to discard
+		1 copper for each player that has one. This has been removed so that
+		the method will now discard every copper in each player's hand.
+
+
+Refactoring changes made for the Treasure Map card:
+I created a new function called playTreasureMap that contains all of the logic
+to play a treasure map card. This function has the following function prototype:
+	int playTreasureMap(struct gameState *state, int currentPlayer, int handPos);
+
+	Bugs introduced to function:
+	1. In the first if statement located in the first for loop, the logic
+		for the if statement condition is not correct. Here is what it was:
+		if (state->hand[currentPlayer][i] == treasure_map && i != handPos) {
+		And now it is:
+		if (state->hand[currentPlayer][i] == treasure_map) {
+		What this does is make it so that the treasure map card will always
+		find another treasure map within the hand because it will be looking
+		at itself. That's what the last && clause prevented and since it has
+		been removed it won't detect this.
+		This will also affect the discardCard steps of this function because
+		it will try to discard the same card twice.
+
+
+Refactoring changes made for the Remodel card:
+I created a new function called playRemodel that contains all of the logic
+to play a remodel card. This function has the following function prototype:
+	int playRemodel(struct gameState *state, int currentPlayer, int handPos, int choice1, int choice2);
+
+	Bugs introduced to function:
+	1. The + 2 has been removed on the first if statment that checks to make sure
+		that the card being chosen is less than 2 + value of trashed card. This 
+		will likely introduce an error as the user will likely pick a card that
+		is either +1 or +2 from the trashed card, which will be prohibited now.
+	2. In the if statement within the for loop that discards the trashed card,
+		the logic of the if statement changed from:
+			if (state->hand[currentPlayer][i] == j) {
+		to:
+			if (state->hand[currentPlayer][j] == j) {
+		This will make it so that the method will most likely not discard
+		the trashed card and instead trash the wrong card. It could also
+		result in nothing happening as j could be a value that is not in
+		the hand and then the for loop will access out of bounds memory.

@@ -1,0 +1,28 @@
+This document outlines the changes I've made to 5 action cards that I've refactored.
+
+1. smithy
+
+Added bug where 4 cards are added to the player's hand instead of 3. 
+
+2. adventurer
+
+Added bug where treasure is drawn until drawnTreasure is <= 2, instead of just < 2.
+This should loop an extra time and yield 3 treasure cards for the player instead of
+just 2. Also added bug where the temporary hand is not fully discarded, which should
+result in the player ending up with an extra non-treasure card in their hand in most
+situations.
+
+3. cutpurse
+
+Added bug that causes the player to gain two extra coints. 
+
+
+4. sea hag
+
+Added bug that causes the player playing the card to receive the curse instead of
+all the other characters.
+
+
+5. village
+
+Refactored code into its own function without (intentionally) adding any bugs. 

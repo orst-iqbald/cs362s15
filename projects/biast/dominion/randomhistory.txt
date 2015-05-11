@@ -1,0 +1,24 @@
+Random Card: Smithy
+
+I wrote a random tester that generates different possible scenarios wherein a smithy could be played in order to
+draw three cards. I randomly determine which player will be performing the action and where in his hand the smithy
+is located. I then store the number of cards in the player's hand, call the smithy function, and compare the
+number of cards now shown to be in the players hand to my calculated control value (previous hand size + 2). This test
+has 100% coverage for the Smithy and shows it to work 100% of the time without failure.
+
+
+Adventurer:
+
+My random tester for the adventurer was built on top of the skeletal structure I had produced in my Smithy random tester.
+Because the adventurer also has the player draw cards, the same framework was applicable. I have the Adventurer played
+by different players, but this time I did not vary the position of the card in the player's hand as that information was
+not taken into account by the function call. I first randomly scatter coppers, silvers, and golds throughout the player's
+deck. I put only 2 treasure cards into a deck that has 100 cards totals. All cards that are not treasure cards are set to
+be estates. After preparing the deck with this insertion of two random treasures, I cycle through every card of the deck
+and tally how many coppers, silvers, and golds are encountered. Based on this information, I know what the expected monetary
+value of the two cards being drawn is. I compare the coin value of the hand after the Adventurer is played to the value
+I expected based on a determination of which treasures were present to be drawn.
+
+The adventurer is currently in a bad way. It has a very low success rate due to the bug I introduced in an earlier assignment.
+My coverage currently is decent enough to illustrate the problematic section. I feel that trying to build further tests in the
+mean time would produce only meaningless results.

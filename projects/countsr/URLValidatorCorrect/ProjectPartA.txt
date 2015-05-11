@@ -1,0 +1,39 @@
+﻿Project Part A
+Team: Eric Nelson, Jason Dorweiler, Robin Counts
+
+Explain testIsValid Function of UrlValidator test code:
+
+
+An array of test objects of the testUrlParts array are passed as the major parameter for this method, with a secondary options argument. The first thing the code does is assert that the original isValid method will operate correctly given a known valid url. A do while loop for going through a number of tests in incrementTestPartsIndex begins with a for loop runs that creates an array of urls and places them into testBuffer. The testBuffer is converted to a string (line 104) and an assertion is then made to check that the isValid function finds this to be a valid url. What follows after this are some optional print statements that will show whether the result was the same as expected.
+
+
+Total number of urls it is testing:
+It tests combinations of the 5 structures given in testUrlParts.  The individual parts are:
+testUrlScheme: 9
+testUrlAuthority: 19
+testUrlPort: 7
+testPath: 10
+testUrlQuery: 3
+
+
+All possible permutations of those combinations gives a total of 35910 urls. 
+
+
+Also, explain how it is building all the urls.                                   
+The urls are built from combinations of each of the structures defined in testUrlParts on this line:
+Object[] testUrlParts = {testUrlScheme, testUrlAuthority, testUrlPort, testPath, testUrlQuery};
+The testPartsIndex array increments each part of the URL’s so that they can be looped over.
+The for loop inside of testIsValid concatenates combinations of each structure to form a url.
+
+
+Give an example of valid url being tested and an invalid url being tested by testIsValid() method.
+
+
+Valid: http://go.com/test1
+Invalid: http://go.com:80/..   fails since “/..” is set to false
+
+
+Do you think that a real world test (URL Validator's testIsValid() test in this case) is very different than the unit tests and card tests that we wrote (in terms of concepts & complexity)? Explain in few lines.
+
+
+Our tests were generally not as comprehensive as these real world tests however the overall methods of testing were very similar. We created a number of conditions for input and then looped through all of them and made assertions on each iteration.

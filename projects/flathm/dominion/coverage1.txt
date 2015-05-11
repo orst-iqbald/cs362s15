@@ -1,0 +1,94 @@
+/***************************************
+Michael Flath
+CS362
+Assignment2
+coverage1.txt
+
+***************************************/
+
+unittest1.c 
+	lines executed: 100 of 57
+	branches executed: 100% of 28
+	
+	updateCoins() is executed 99 times: After setting the initial hand with copper silver and gold cards.
+	Both the assert branch for check number of coins, and handCount were one sided. For the most part, the if statement 
+	shows for both that branch 1 and 3 are executed 100% of the time whereas branch 2 was not executed. Although, this matter is 
+	trivial because we are really concerned with whether the function has failed or not.
+	bonus was not checked or asserted
+	
+	The number of times to test the function updateCoins() could be increased to check for the robustness of the function. This would
+	test whether the system breaks with large amount of data. This is one way to improve this test.
+
+unittest2.c 
+	lines executed: 91.67% of 24
+	branches executed: 100% of 12
+	
+	getCost() was run 1027 times. 27 times covered each card's cost. 1001 times covered calls to random cards.
+	getCost() was run 99 times with false card numbers. Each time 
+		The fail branch from the if statement never executed  because there was no bugs found. 
+	
+
+unittest3.c 
+	lines executed: 98.43% of 127
+	branches executed: 100.00% of 42
+	the fullDeckCount function is executed around 29 times
+		2 for upper and lower boundaries
+		27 for random card input
+	
+	The overall statement coverage is comprehensive. 
+	Each for-loop is executed the proper amount of times and verifies the correct output.
+	
+	The branch coverage is very detailed in the switch statement indicates
+	cards have been added to the deck, hand, and discard piles. This reveals how the switch statement was working and that
+	there is not a similar count in the fullDeckCount function.
+	Branch 27 was taken 0%: this means one of the boundary branches were not covered.
+	
+unittest4.c
+	lines executed: 96.30% of 27
+	branches executed: 100% of 20
+	
+	isGameOver() is run 1100 times. The first 100 times the branches determine whether the game has ended based on the number of province cards.
+	Once province cards == 0, the game ends, and it ends indeed.
+		-When the function is called within a for loop that iterates 100 times, the output is consistent. On the other hand,
+		when the for-loop runs 1000 times, isGameOver() fails the test, and the oracle prints the fail statement. This reveals that
+		of isGameOver() is not a robust function, and breaks. Or this reveals a possible bug in the function. 
+
+cardtest1.c 
+	lines executed: 92.50% of 40
+	branches executed: 100% of 12
+	-Smithy() is called 4 times, once for each player. 
+	-The if-statement that checks for each players handCount reveals 100%
+	coverage for one branch, branch 1. This means that the handCounts matched for both pre and post
+	conditions. In other words the tests didn't fail. 
+	-On the other hand, the if statement checking for pre and post conditions for discardCount had 100% (fallthrough)
+	on branch 0. This means the test failed and the conditions for discardCount didn't match.
+	
+cardtest2.c 
+	lines executed: 90.91% of 77
+	branches executed: 100% of 30
+	taken at least once: 63.33% of 30 
+	-Running the test more than once would improve the tests that are executed on adventurer. Most of the the statements
+	are executed only once or twice. 
+	-Adventurer was executed 3 times. 
+	-Since these test were ran once for each case/circumstance, most of the branches are only covered partially. 
+	-The coverage on the function in the dominion file is substantial. Although the function adventurer is executed 3 times, 
+	the while loop runs 2002 times. Both the first branch and the last branch could be tested more, for robustness. Those branches report to have 
+	fallen through 1% of the time. These branches were the boundary conditions: when deckCount = 0, or when there are no treasure cards in the deck.
+	
+	
+cardtest3.c 
+	lines executed: 97.83% of 46
+	branches executed: 100% of 14
+	-great_hall() executed 4 times, once for each player. It would be an improvement to run the function many times to test for the robustness of the function.
+	-All the test condtions(if-statements) failed. This displays uneven branch testing. Most statements were executed 4 times because of the for-loop iteration.
+	-Calling another function (scoreFor()) to check if one of the values of great_hall changed, caused some ambiguity. This reveals possible bugs in multiple locations.
+	The locations could be the great_hall card itself which should be a VP, or the great_hallCard function, or the scoreFor function. 
+
+cardtest4.c 
+	lines executed: 97.37% of 38
+	branches executed: 100% of 12
+	-village() was executed 4 times, once for each player. Within dominion.c.gcov the function village was called 8 times. 
+	This reveals a bug in how the game is being executed in dominion.c. Each function within village is reported to have run 8 times(drawCard(), and discardCard()).
+	Since there were only 4 players and the loop iterates over each player, the function should have been called for each player. 
+	This could be a possible reason concerning why the handCount test failed, and the numActions count failed. 
+		

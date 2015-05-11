@@ -1,0 +1,18 @@
+The smithy card can be played during the action phase of a player. The player then draws 3 cards from their deck. 
+If their deck no longer has three cards, they can draw as many cards as possible before shuffling their discard pile and
+drawing their remaining cards from the new deck. The smithy card can be bought during the player's buy phase, during which it 
+costs 4.
+
+The adventurer card can be played during the action phase of a player. The player then draws cards from their deck until they find two 
+treasure cards. If their deck no longer has two treasure cards in it, they can draw as many cards as possible before shuffling their
+discard pile and drawing from the new deck. The adventurer card can be bought during the player's buy phase, during which it costs 6. 
+
+The updateCoins function in dominion.c updates the number of coins that a player can use during their buy phase. First, it checks
+every card in the player's hand, adding 1 when it finds a copper, two when it finds a silver, and three when it finds a gold. It also
+can add a bonus to the number of coins available for purchasing. The bonus can be tracked through the action phase of the player, 
+adding coins as a result of action cards. 
+
+The discardCard function discards a particular card in the player's hand. It also has an option to trash the card, which means it will
+not enter the discard or played card array. It also sets the value of the hand position to -1, which means it is no longer available to be played.
+It also handles the logic for moving up the card in the hand by replacing the discarded card with the "last" card, that is the card in the highest
+position.

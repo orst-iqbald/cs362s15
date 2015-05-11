@@ -1,0 +1,15 @@
+Smithy Card
+
+	Using the Smithy card enables the player to draw 3 more cards from their deck, after which the Smithy card is discarded form the player's hand.
+
+Adventurer Card
+	
+	Using the Adventuer card enables the player to draw cards, one at a time, from their deck until 2 treasure crads are revealed. They then keep the treasure cards to use in the current turn and discard the other revealed cards. If at any point the deck becomes empty, it is shuffled.
+	
+discardCard()
+
+	This function first checks that the card is not flagged for the trash pile. If it is not, it adds the card to the played pile. Then, it begins the process of removing the card form the player's hand, reducing the number of cards in the player's hand and replacing the played card with the next card in hand where applicable.
+
+updateCoins()
+	
+	This function updates the current player's total coin count based on the Treasure cards currently in hand. First it resets the coin state to 0, then loops through the card array, checking if the card is a Treasure card and if so, adding its value to the coin count. It adds any applicable bonus coins and then returns the total coin count available.

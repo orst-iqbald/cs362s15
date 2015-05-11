@@ -1,0 +1,12 @@
+Documentation
+
+Adventurer Card
+Player draws cards from the deck until two new treasure cards are drawn. 
+When done, the treasure cards are placed in the player's hand (i.e.
+
+Cards drawn that were  not copper, silver, or gold treasure cards are
+placed in the discard pile.
+
+
+
+

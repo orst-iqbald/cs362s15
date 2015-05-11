@@ -1,0 +1,34 @@
+newSmithy:
+	void newSmithy(int currentPlayer, int handPos, struct gameState* state)
+	
+	BUG:
+		Changed the for loop to check if i is equal to or less than 3. :line 649
+
+
+newAdventurer:
+	void newAdventurer(int drawntreasure, int currentPlayer, int cardDrawn,
+					   int temphand[MAX_HAND], int z, struct gameState* state)
+					   
+	BUG:
+		Changed the drawntreasure < 2 to be < 3. :line 661
+
+
+newBaron:
+	void newBaron(int choice1, int currentPlayer, struct gameState* state)
+	
+	BUG:
+		numBuys no longer increments :line 683
+
+
+newTribute:
+	void newTribute(int nextPlayer, int tributeRevealedCards[2], int currentPlayer, struct gameState* state)
+	
+	BUG:
+		altered coins to be *= 2 instead of += 2, Yay! :line 783
+
+
+newCutpurse:
+	void newCutpurse(int currentPlayer, int handPos, struct gameState* state)
+	
+	BUGS:
+		changed updateCoins statement to only 1 instead of 2. :line 803

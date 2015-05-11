@@ -1,0 +1,122 @@
+Running Tests in dominion.c:
++++ unittest1.c: +++
+*** unittest1.c Start 
+=== Testing unittest1.c ===
+The function Compare Passed for a > b.  Test PASSED. 
+The function Compare passed  for a < b.  Test PASSED. 
+The function Compare passed for a == a.  Test PASSED. 
+*** unittest1.c Complete 
++++ unittest1.c: gcov coverage +++
+File 'dominion.c'
+Lines executed:1.04% of 575
+Branches executed:0.97% of 413
+Taken at least once:0.97% of 413
+Calls executed:0.00% of 93
+dominion.c:creating 'dominion.c.gcov'
+
++++ unittest2.c: +++
+*** unittest2.c Start 
+=== Testing unittest2.c ===
+The function newGame successfully created gameState object. 
+*** unittest2.c Complete 
++++ unittest2.c: gcov coverage +++
+File 'dominion.c'
+Lines executed:1.57% of 575
+Branches executed:0.97% of 413
+Taken at least once:0.97% of 413
+Calls executed:0.00% of 93
+dominion.c:creating 'dominion.c.gcov'
+
++++ unittest3.c: +++
+*** unittest3.c Start 
+=== Testing unittest3.c ===
+The function isGameOver successfully Completed 0 province cards. 
+The function isGameOver successfully Completed for at least three supply piles are at 0. 
+*** unittest3.c Complete 
++++ unittest3.c: gcov coverage +++
+File 'dominion.c'
+Lines executed:3.13% of 575
+Branches executed:2.91% of 413
+Taken at least once:2.66% of 413
+Calls executed:0.00% of 93
+dominion.c:creating 'dominion.c.gcov'
+
++++ unittest4.c: +++
+*** unittest4.c Start 
+=== Testing unittest4.c ===
+The function updateCoins successfully Completed. 
+*** unittest4.c Complete 
++++ unittest4.c: gcov coverage +++
+File 'dominion.c'
+Lines executed:5.04% of 575
+Branches executed:4.84% of 413
+Taken at least once:4.36% of 413
+Calls executed:0.00% of 93
+dominion.c:creating 'dominion.c.gcov'
+
++++ cardtest1.c: +++
+*** cardtest1.c Start 
+=== Testing cardtest1.c ===
+Testing SMITHY Card 
+previous count is: 5 
+current handcount is: 5 
+Player does not have correct amount of cards in hand after playing smithy card. FAILED. 
+Test FAILED because Smithy card not discarded. 
+*** cardtest1.c Complete 
++++ cardtest1.c: gcov coverage +++
+File 'dominion.c'
+Lines executed:21.39% of 575
+Branches executed:19.85% of 413
+Taken at least once:16.71% of 413
+Calls executed:9.68% of 93
+dominion.c:creating 'dominion.c.gcov'
+
++++ cardtest2.c: +++
+*** cardtest2.c Start 
+=== Testing cardtest2.c ===
+Testing ADVENTURER Card 
+previous Treasure Cards: 3 
+post-action Treasure Cards: 6 
+Player does not have correct amount of cards in hand after playing ADVENTURER card. Test FAILED. 
+*** cardtest2.c Complete 
++++ cardtest2.c: gcov coverage +++
+File 'dominion.c'
+Lines executed:23.30% of 575
+Branches executed:21.79% of 413
+Taken at least once:17.92% of 413
+Calls executed:10.75% of 93
+dominion.c:creating 'dominion.c.gcov'
+
++++ cardtest3.c: +++
+*** cardtest3.c Start 
+=== Testing cardtest3.c ===
+Testing VILLAGE Card 
+previous handcount is: 5 
+current handcount is: 5 
+All Tests Passed. Test PASSED
+*** cardtest3.c Complete 
++++ cardtest3.c: gcov coverage +++
+File 'dominion.c'
+Lines executed:24.17% of 575
+Branches executed:21.79% of 413
+Taken at least once:17.92% of 413
+Calls executed:12.90% of 93
+dominion.c:creating 'dominion.c.gcov'
+
++++ cardtest4.c: +++
+*** cardtest1.c Start 
+=== Testing cardtest1.c ===
+Testing SMITHY Card 
+previous count is: 5 
+current handcount is: 5 
+Player does not have correct amount of cards in hand after playing smithy card. FAILED. 
+Test FAILED because Smithy card not discarded. 
+*** cardtest1.c Complete 
++++ cardtest4.c: gcov coverage +++
+File 'dominion.c'
+Lines executed:24.17% of 575
+Branches executed:21.79% of 413
+Taken at least once:17.92% of 413
+Calls executed:12.90% of 93
+dominion.c:creating 'dominion.c.gcov'
+

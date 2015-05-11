@@ -1,0 +1,59 @@
+Project Part A
+Project Members: Rory Bresnahan, Michael Flath, Tina Stahlstedt
+
+
+Explain testIsValid Function of UrlValidator test code.
+
+	Per the comments in main: 
+		* The data given below approximates the 4 parts of a URL 
+		* <scheme>://<authority><path>?<query> except that the port number 
+		* is broken out of authority to increase the number of permutations. 
+		* A complete URL is composed of a scheme+authority+port+path+query, 
+		* all of which must be individually valid for the entire URL to be 
+		* considered valid.
+
+	The testIsValid code randomly generates URLS with the 4 parts (scheme,
+	authority, path, and query) from arrays of strings of each part. Each of the
+	parts is tagged true or false, depending on if they individually could be
+	part of a valid URL. This is then compared with sending the same URL string
+	through the actual Validator, and seeing if the correct value (true or
+	false) is returned for each URL. It then prints the valid URLs to console.
+
+
+Give how many total number of urls it is testing. Also, explain how it is
+building all the urls.
+
+	It tests 31920 URLs (determined by modifying the code to print out all the
+	URLs, not just the valid ones, and counting the lines). It builds the URLs
+	by taking a piece from each of 5 arrays that hold valid and invalid sections
+	of URL parts.
+
+	In this line: 
+	
+	Object[] testUrlParts = 
+		{testUrlScheme, testUrlAuthority, testUrlPort, testPath, testUrlQuery};
+
+	An Object is created that will look something like 
+	
+	http://www.google.com:80/test1?action=view
+	
+	in which http:// is the scheme, www.google.com:80 is the authority (the port
+	is separately added), /test1 is the path, and ?action=view is the query.
+
+Give an example of valid url being tested and an invalid url being tested by
+testIsValid() method
+
+	This is a valid URL: http://www.google.com:80/test1?action=view
+	This is an invalid URL: http://:80/test1?action=view
+		it fails because it does not have an authority
+
+Do you think that a real world test (URL Validator's testIsValid() test in this
+case) is very different than the unit tests and card tests that we wrote (in
+terms of concepts & complexity)? Explain in few lines.
+
+	The concepts are similar - in the dominion tests we generated scenarios that
+	we controlled, and tested them against the dominion code to see if we got
+	the same results. In this case, we are generating scenarios that we control,
+	and are testing them against the Validator code, to see if the results are
+	the same. The complexity of this test is greater than the complexity of the
+	tests we've run on dominion so far. 
