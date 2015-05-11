@@ -102,6 +102,10 @@ unittestresults.out:
 	gcov -b dominion.c >> unittestresults.out
 	gcov -fb dominion.c >> unittestresults.out
 	rm *.gcov
+	
+	
+randomtestcard.out: randomtestcard.c dominion.o rngs.o
+	gcc -o randomtestcard -g randomtestcard.c dominion.o rngs.o $(CFLAGS)
 
 	
 player: player.c interface.o
@@ -109,7 +113,7 @@ player: player.c interface.o
 
 oldAll: playdom player testDrawCard testBuyCard badTestDrawCard unittest1 unittest2 unittest3 unittest4
 
-all: playdom player unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
+all: playdom player unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 randomtestcard.out
 
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
