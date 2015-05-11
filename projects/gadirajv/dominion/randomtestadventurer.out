@@ -1,0 +1,63 @@
++++ randomtestadventurer.c: +++
+*** randomtestadventurer.c Start 
+=== Testing randomtestadventurer.c ===
+Random Testing ADVENTURER Card 
+= Iteration: 0
+= Random Input Values are: seed: 1535, player: 3
+previous Treasure Cards: 3 
+post-action Treasure Cards: 6 
+Player does not have correct amount of cards in hand after playing ADVENTURER card. Test FAILED. 
+= Iteration: 1
+= Random Input Values are: seed: 1835, player: 2
+previous Treasure Cards: 4 
+post-action Treasure Cards: 6 
+All Tests PASSED 
+= Iteration: 2
+= Random Input Values are: seed: 1898, player: 3
+previous Treasure Cards: 3 
+post-action Treasure Cards: 6 
+Player does not have correct amount of cards in hand after playing ADVENTURER card. Test FAILED. 
+= Iteration: 3
+= Random Input Values are: seed: 1764, player: 2
+previous Treasure Cards: 2 
+post-action Treasure Cards: 5 
+Player does not have correct amount of cards in hand after playing ADVENTURER card. Test FAILED. 
+= Iteration: 4
+= Random Input Values are: seed: 1160, player: 4
+previous Treasure Cards: 3 
+post-action Treasure Cards: 6 
+Player does not have correct amount of cards in hand after playing ADVENTURER card. Test FAILED. 
+= Iteration: 5
+= Random Input Values are: seed: 1230, player: 2
+previous Treasure Cards: 2 
+post-action Treasure Cards: 5 
+Player does not have correct amount of cards in hand after playing ADVENTURER card. Test FAILED. 
+= Iteration: 6
+= Random Input Values are: seed: 1954, player: 2
+previous Treasure Cards: 4 
+post-action Treasure Cards: 6 
+All Tests PASSED 
+= Iteration: 7
+= Random Input Values are: seed: 1994, player: 3
+previous Treasure Cards: 4 
+post-action Treasure Cards: 6 
+All Tests PASSED 
+= Iteration: 8
+= Random Input Values are: seed: 1652, player: 3
+previous Treasure Cards: 3 
+post-action Treasure Cards: 6 
+Player does not have correct amount of cards in hand after playing ADVENTURER card. Test FAILED. 
+= Iteration: 9
+= Random Input Values are: seed: 1216, player: 3
+previous Treasure Cards: 4 
+post-action Treasure Cards: 6 
+All Tests PASSED 
+*** randomtestadventurer.c Complete 
++++ randomtestadventurer.c: gcov coverage +++
+File 'dominion.c'
+Lines executed:29.57% of 575
+Branches executed:24.21% of 413
+Taken at least once:21.31% of 413
+Calls executed:18.28% of 93
+dominion.c:creating 'dominion.c.gcov'
+

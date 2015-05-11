@@ -1,0 +1,60 @@
+Group members:
+Michael Sigel
+Kevin Parks
+Khang Duong
+
+****************************************************************************************************************************
+
+Explain testIsValid Function of UrlValidator test code.
+
+The function takes arrays of urlscheme, urlauthority, urlport, path, query and creates test cases out of their permutations, 
+running urlVal.isValid on each.
+
+****************************************************************************************************************************
+
+Give how many total number of urls it is testing. 
+
+There is a total of 31,922 urls that are being tested. 2 of these come from being hard coded at the top
+and the other 31,920 come from being in the do-while loop (which is from incrementing and printing out a number
+per every run of the loop).
+
+****************************************************************************************************************************
+
+Also, explain how it is building all the urls. 
+
+It builds all of the urls by looping through all of the potential combinations of the parts of the url.
+The url is defined by the test as follows: scheme+authority+port+path+query. It is created by using the 
+incrementTestPartsIndex function, which iterates through each permutation of available url variations provided by 
+testUrlParts objects. For example, there are several hard coded options for each part throughout the url, then some parts 
+are going to be valid and some are not. If an invalid part is included then the url should end up being invalid. 
+
+****************************************************************************************************************************
+
+Give an example of valid url being tested and an invalid url being tested by testIsValid() method.  
+
+valid: http://www.google.com:80/test1
+	The scheme is: http:// (is valid)
+	The authority is: www.google.com (is valid)
+	The port is :80 (is valid)
+	The path is: /test1 (is valid)
+	The query is blank (is valid)
+	
+invalid: h3t://go.cc:65a/$23?action=edit&mode=up
+	The scheme is: h3t:// (is valid)
+	The authority is: go.cc (is valid)
+	The port is :65a (is NOT valid, so this makes the url invalid)
+	The path is: /$23 (is valid)
+	The query is: ?action=edit&mode=up (is valid)
+
+****************************************************************************************************************************
+	
+Do you think that a real world test (URL Validator's testIsValid() test in this case) is very different 
+than the unit tests and card tests that we wrote (in terms of concepts & complexity)? Explain in few lines. 
+
+Overall it is not all that different than what we have created, just bigger in scope. The concept is similar in
+what we are trying to accomplish but our scope was much smaller. The testIsValid() function looks more complex than what we 
+wrote, but that could be due to the fact that it tests a lot more cases. The options for this tester and its range
+is much greater than ones that we built. This function, testIsValid() is similar to the ones we have created in that they both
+loop through a series of options stored in arrays.
+
+****************************************************************************************************************************
