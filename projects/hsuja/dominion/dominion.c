@@ -770,6 +770,8 @@ int play_village(int *currentPlayer, struct gameState *state, int *handPos){
       //discard played card from hand
       discardCard(*handPos, *currentPlayer, state, 0);
 
+      
+
   return 0;
 }
 

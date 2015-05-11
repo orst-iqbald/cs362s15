@@ -61,31 +61,31 @@ Branches executed:19.76% of 415
 Taken at least once:19.76% of 415
 Calls executed:6.52% of 92
 
-The report indicates that for the function getWinners() called 100, 
+The report indicates that for the function gainCard() called 100, 
 returned 100% blocks executed 100%. Much like previous tests, it is a good sign
 to get this kind of coverage. Again this does not mean all bugs were found, 
 just a good indication that bugs are more likely to be caught.
 
 -------------------------------------------------------------------------------
-unittest4.c: isGameOVer()
+unittest4.c: isGameOver()
 Lines executed:14.53% of 578
 Branches executed:21.69% of 415
 Taken at least once:21.69% of 415
 Calls executed:6.52% of 92
 
-The report indicates that for the function getWinners() called 100, 
+The report indicates that for the function isGameOver() called 100, 
 returned 100% blocks executed 100%. Much like previous tests, it is a good sign
 to get this kind of coverage. Again this does not mean all bugs were found, 
 just a good indication that bugs are more likely to be caught.
 
 -------------------------------------------------------------------------------
 cardtest1.c: cardAdventurer()
-Lines executed:27.34% of 578
-Branches executed:30.36% of 415
-Taken at least once:28.67% of 415
-Calls executed:11.96% of 92
+Lines executed:12.80% of 578
+Branches executed:8.67% of 415
+Taken at least once:6.99% of 415
+Calls executed:5.43% of 92
 
-The report indicates that for the function getWinners() called 1, returned 100%
+The report indicates that for the function cardAdventurer() called 1, returned 100%
 blocks executed 93%. Out of all the lines in the function, only 1 was not 
 executed. It looks like there were 6 branched for each of the variables in the 
 conditional statement: 
@@ -103,36 +103,36 @@ to the card test.
 
 -------------------------------------------------------------------------------
 cardTest2.c: cardSmithy()
-Lines executed:28.03% of 578
-Branches executed:30.84% of 415
-Taken at least once:29.16% of 415
-Calls executed:13.04% of 92
+Lines executed:14.53% of 578
+Branches executed:9.64% of 415
+Taken at least once:7.95% of 415
+Calls executed:8.70% of 92
 
-The report indicates that for the function getWinners() called 1, returned 100%
+The report indicates that for the function cardSmithy() called 1, returned 100%
 blocks executed 100%. Much like previous tests, it is a good sign to get this 
 kind of coverage. Again this does not mean all bugs were found, just a good 
 indication that bugs are more likely to be caught.
 
 -------------------------------------------------------------------------------
 cardTest3.c: cardVillage()
-Lines executed:29.07% of 578
-Branches executed:31.33% of 415
-Taken at least once:29.64% of 415
-Calls executed:15.22% of 92
+Lines executed:13.84% of 578
+Branches executed:9.16% of 415
+Taken at least once:7.47% of 415
+Calls executed:7.61% of 92
 
-The report indicates that for the function getWinners() called 1, returned 100%
+The report indicates that for the function cardVillage() called 1, returned 100%
 blocks executed 100%. Much like previous tests, it is a good sign to get this 
 kind of coverage. Again this does not mean all bugs were found, just a good 
 indication that bugs are more likely to be caught.
 
 -------------------------------------------------------------------------------
 cardTest4.c: cardGreatHall()
-Lines executed:29.76% of 578
-Branches executed:31.33% of 415
-Taken at least once:29.64% of 415
-Calls executed:16.30% of 92
+Lines executed:15.22% of 578
+Branches executed:9.64% of 415
+Taken at least once:7.95% of 415
+Calls executed:9.78% of 92
 
-The report indicates that for the function getWinners() called 1, returned 100%
+The report indicates that for the function cardGreatHall() called 1, returned 100%
 blocks executed 100%. Much like previous tests, it is a good sign to get this 
 kind of coverage. Again this does not mean all bugs were found, just a good 
 indication that bugs are more likely to be caught.

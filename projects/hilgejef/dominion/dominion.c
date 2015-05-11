@@ -668,7 +668,6 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
     {
     case adventurer:
         playAdventurer(currentPlayer, state, handPos);
-			
     case council_room:
         playCouncilRoom(currentPlayer, state, handPos);
 			
@@ -1137,8 +1136,9 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       //no second treasure_map found in hand
       return -1;
     }
-	
+
   return -1;
+
 }
 
 int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
@@ -1276,7 +1276,7 @@ int playAdventurer(int currentPlayer, struct gameState *state, int handPos) {
         drawCard(currentPlayer, state);
 
         //top card of hand is most recently drawn card.
-        cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer-1]];
+        cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer] - 1];
         if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
             drawntreasure++;
         else{
@@ -1289,10 +1289,10 @@ int playAdventurer(int currentPlayer, struct gameState *state, int handPos) {
     while(z-1>=0)
     {
         // discard all cards in play that have been drawn
-         state->discard[currentPlayer][state->discardCount[currentPlayer++]]=temp_hand[z-1]; 
+        state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temp_hand[z-1]; 
         z=z-1;
     }
-
+        
     return 0;
 }
 
@@ -1303,7 +1303,7 @@ int playGreatHall(int currentPlayer, struct gameState *state, int handPos) {
     state->numActions++;
             
     //discard card from hand
-    discardCard(currentPlayer, handPos, state, 0);
+    discardCard(handPos, currentPlayer, state, 0);
 
     return 0;
 }

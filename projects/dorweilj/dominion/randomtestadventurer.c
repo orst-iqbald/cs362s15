@@ -1,8 +1,8 @@
 /*----------------------------------------------
-* testing adventurer_refact
+* random testing adventurer_refact
 *
-* testcard3: cardtest3.c dominion.o rngs.o
-*  gcc -o cardtest3 -g  cardtest3.c dominion.o rngs.o $(CFLAGS)
+* make randomtestadventurer
+* ./randomctestadventurer
 *
 *-----------------------------------------------
 */

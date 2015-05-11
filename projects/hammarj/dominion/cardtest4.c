@@ -12,7 +12,7 @@ int main() {
     int handpos = 0;
     int res;      //return value of function
 		
-		printf("\ncardtest4\n");
+    printf("\ncardtest4\n");
     
     //play an Adventurer card with a deck consisting of just two treasure cards
     state->playedCardCount = 0;
@@ -24,10 +24,10 @@ int main() {
     res = cardAdventurer(state, handpos);
     assert(res == 0);
     if (state->playedCardCount != 1)
-				printf("26: playedCardCount = %i, expected 1\n", state->playedCardCount);
+        printf("26: playedCardCount = %i, expected 1\n", state->playedCardCount);
     assert(state->deckCount[player] == 0);
     if (state->handCount[player] != 2)
-				printf("29: handCount = %i, expected 2\n", state->handCount[player]);
+        printf("29: handCount = %i, expected 2\n", state->handCount[player]);
     
     //same as above but deck has one non-treasure card as well
     state->discardCount[player] = 0;
@@ -39,12 +39,12 @@ int main() {
     state->handCount[player] = 1;
     res = cardAdventurer(state, handpos);
     assert(res == 0);
-		if (state->playedCardCount != 1)
-				printf("42: playedCardCount = %i, expected 1\n", state->playedCardCount);
+    if (state->playedCardCount != 1)
+        printf("42: playedCardCount = %i, expected 1\n", state->playedCardCount);
     assert(state->discardCount[player] == 1);
     assert(state->deckCount[player] == 0);
     if (state->handCount[player] != 2)
-				printf("46: handCount = %i, expected 2\n", state->handCount[player]);
+        printf("46: handCount = %i, expected 2\n", state->handCount[player]);
     
     //same as above but deck now has two non-treasure cards
     state->discardCount[player] = 0;
@@ -57,15 +57,15 @@ int main() {
     state->handCount[player] = 1;
     res = cardAdventurer(state, handpos);
     assert(res == 0);
-		if (state->playedCardCount != 1)
-				printf("60: playedCardCount = %i, expected 1\n", state->playedCardCount);
+    if (state->playedCardCount != 1)
+        printf("60: playedCardCount = %i, expected 1\n", state->playedCardCount);
     if (state->discardCount[player] != 1)
-				printf("62: discardCount = %i, expected 1\n", 
-								state->discardCount[player]);
+        printf("62: discardCount = %i, expected 1\n", 
+                state->discardCount[player]);
     if (state->deckCount[player] != 1)
-				printf("65: deckCount = %i, expected 1\n", state->deckCount[player]);
+        printf("65: deckCount = %i, expected 1\n", state->deckCount[player]);
     if (state->handCount[player] != 2)
-				printf("67: handCount = %i, expected 2\n", state->handCount[player]);
+        printf("67: handCount = %i, expected 2\n", state->handCount[player]);
     
     //play Adventurer card with only one treasure card in deck/discard pile
     state->discardCount[player] = 0;
@@ -77,12 +77,12 @@ int main() {
     state->handCount[player] = 1;
     res = cardAdventurer(state, handpos);
     assert(res == 0);
-		if (state->playedCardCount != 1)
-				printf("80: playedCardCount = %i, expected 1\n", state->playedCardCount);
+    if (state->playedCardCount != 1)
+        printf("80: playedCardCount = %i, expected 1\n", state->playedCardCount);
     assert(state->discardCount[player] == 2);
     assert(state->deckCount[player] == 0);
     if (state->handCount[player] != 1)
-				printf("84: handCount = %i, expected 1\n", state->handCount[player]);
+        printf("84: handCount = %i, expected 1\n", state->handCount[player]);
     
     return 0;
 }
