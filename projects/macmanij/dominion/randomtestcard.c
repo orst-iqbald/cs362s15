@@ -32,12 +32,14 @@ int main(int argc, char** argv) {
 	int numPlayers = 0;
 	int currPlayer = 0;
 	int seed = 0;
+	int Terror = 0;
+	int Herror = 0;
 
 	srand(time(NULL));
 
 	int actioncards[10] = { adventurer, smithy, cutpurse, outpost, gardens, village, sea_hag, mine, minion, embargo };
 	
-	for(k = 0; k < 100; k++) {
+	for(k = 0; k < 1000; k++) {
 		//for each iteration of the test, the number of treasure
 		//cards and cards in hand will be reset to 0, and the 
 		//gamestate initialized.
@@ -91,17 +93,26 @@ int main(int argc, char** argv) {
 	printf("Treasures POST: %d\n", postTreasure);
 	printf("Cards POST: %d\n", postHand);
 
+	//check if the player has correctly ended up with 2 more treasure cards
 	if(preTreasure > postTreasure) {
 		printf("ERROR: preTreasures > postTreasures!\n");
+		Terror++;
 	}
 
-	if((preHand + 3) != postHand) {
+	//check if the player has correctly ended up with 2 more cards
+	// originally checked for +3, but had forgotten about the discard 
+	if((preHand + 2) != postHand) {
 		printf("ERROR: preHand+3 != postHand!\n");
+		Herror++;
 	}
 
 	printf("______________________________________________\n\n");
 	}
 	
+	printf("***END OF SMITHY TEST***\n");
+	printf("Errors in Treasure Allocation: %d\n", Terror);
+	printf("Errors in Card Allocation: %d\n", Herror);
+	printf("*************************************\n\n");
 	return 0;
 
 }
