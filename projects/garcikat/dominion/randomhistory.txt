@@ -1,0 +1,68 @@
+*** randomtestadventurer ***
+I was lucky in that for the last assignment (Assignment 3) 
+that I had wrote random tests for the adventurer card. After 
+I had re-watched the random test videos I made some significant 
+changes. One of the main changes that I did was instead of 
+randomizing each byte in the gameStruct, I just used the 
+initializeGame function and randomize all the deck, discard 
+and hand cards. Another change that I did was to halve all the 
+random numbers for the main gameStruct states (deckCount, 
+discardCount, handCount) so that I could get some somewhat 
+realistic values for each. I also saved the pre-test states to 
+use in expected results calculations after the tests. I also 
+changed the test results to print from the test function and 
+not main. Another significant change that I did was inside 
+the test function itself. Instead of comparing a pre and 
+post gameStruct, I just compared the post gameStruct to 
+expected values to determine if the tests passed or failed.
+For each test iteration I printed the pre, post and 
+expected game states.
+
+I did make one more change, and I am not sure if that was 
+what is expected out of this assignment. I couldn't compile 
+my code because of the bugs that I introduced at the beginning 
+of this course. I realize now I should have done less syntax 
+error and more game errors (like drawing too many cards).
+I fixed the bugs that I wrote so that I could run my tests. 
+After fixing some more spelling and syntax errors
+with my test code, I got all the tests to pass. 
+
+Here are my results when I run gcov randomtestadventurer.c -b:
+File 'dominion.c'
+Lines executed: 89% of 584
+Branches executed: 19.66% of 417
+Taken at least once: 17.03% of 417
+Calls executed: 8.51% of 94
+dominion.c:creating 'dominion.c.gcov'
+
+File 'randomtestadventurer.c'
+Lines executed: 86.21% of 58
+Branches executed: 100.0% of 24
+Taken at least once: 83.33% of 24
+Calls executed: 82.61% of 23
+randomtestadventurer.c:creating 'randomtestadventurer.c.gcov'
+
+For the most part I am kind of content with my test. 
+Looking at the gcov file, my coverage is somewhat decent. 
+The problem is that every test passed and my fail test 
+lines are never executed. I wish I would have introduced 
+some bugs and maybe played with the deck, discard, and 
+hand count a little more (change some values to zero perhaps).
+
+
+*** randomtestcard *** (the Smithy Card)
+I made a lot of the same changes to testing the smithy card 
+that I did with randomtestadventurer. I changed the test function,
+made pre and post test calculations for expected results, 
+and cut out comparing a pre gameStruct to the post gameStruct in 
+the test function. 
+
+Again I couldn't run my code until I fixed the bugs I made 
+earlier, so I went ahead an fixed them. I wish I would have
+introduced different bugs so that my tests would produce better results.
+
+I reached a problem when running gcov. It says my gcno 
+file is corrupted. I am not sure what happened. The tests run fine
+but for some reason running gcov is giving me an error.
+
+
