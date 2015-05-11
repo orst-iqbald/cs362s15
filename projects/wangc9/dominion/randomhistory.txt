@@ -1,4 +1,5 @@
 CS362 Assignment 4
+
 Chunyu Wang
 
 I did random test for adventurer and smithy. The loop runs 100 times for 4 players. For each draw, a random card is draw randomly from the card pool and given to a player. Player's deck is emptied and filled with 20 random cards. The players game state before and after drawing cards are recorded, including actions, hand count, coins, and cards in hand. The random tests for adventurer and smithy were able to find unexpected results, indicating bugs have been introduced into the code.
