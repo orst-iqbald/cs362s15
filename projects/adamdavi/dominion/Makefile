@@ -75,7 +75,19 @@ unittestresults.out: dominion.o rngs.o unittest1.c unittest2.c unittest3.c unitt
 	cardtest4 >> unittestresults.out
 	gcov dominion.c -b >> unittestresults.out
 
-all: playdom player testDrawCard testBuyCard badTestDrawCard unittestresults.out
+randomtestcard.out: dominion.o rngs.o randomtestcard.c
+	gcc -o randomtestcard -g randomtestcard.c dominion.o rngs.o $(CFLAGS)
+	echo "Assignment 4: Results for random test from randomtestcard.c file:" > randomtestcard.out
+	randomtestcard >> randomtestcard.out
+	gcov dominion.c -b >> randomtestcard.out
+
+randomtestadventurer.out: dominion.o rngs.o randomtestadventurer.c
+	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+	echo "Assignment 4: Results for random test for adventurer card from randomtestadventurer.c file:" > randomtestadventurer.out
+	randomtestadventurer >> randomtestadventurer.out
+	gcov dominion.c -b >> randomtestadventurer.out
+
+all: playdom player testDrawCard testBuyCard badTestDrawCard unittestresults.out randomtestcard.out randomtestadventurer.out
 
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
@@ -83,3 +95,5 @@ clean:
 	rm -f unittest1 unittest1.exe unittest2 unittest2.exe unittest3 unittest3.exe unittest4 unittest4.exe
 	rm -f cardtest1 cardtest1.exe cardtest2 cardtest2.exe cardtest3 cardtest3.exe cardtest4 cardtest4.exe
 	rm -f unittestresults.out
+	rm -f randomtestcard randomtestcard.exe randomtestadventurer randomtestadventurer.exe
+	rm -f randomtestcard.out randomtestadventurer.out

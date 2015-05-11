@@ -1,0 +1,21 @@
+Jason Hsu
+hsuja@onid.oregonstate.edu
+5/10/15
+CS362-400
+Documentation of Random Testing for Adventurer and Village Cards
+
+
+Testing play_adventurer():
+
+	The function play_adventurer() plays the adventurer card. My first approach to testing was modeled after the random testing example presented in the lectures, where I would have the test program mimic the logic in play_adventurer and then compare the resulting gamestates for equivalency. However, play_adventurer() calls drawCard(), which randomly shuffles the deck when the deck is initially empty and then refilled by cards in the discard pile. It would prove difficult to recreate the gamestate that would result from calling play_adventurer. However, I also did not want to merely copy the code that was in play_adventurer() and then compare the resulting gamestates. Instead, I elected to fill the player's deck, hand, and discard pile with random number of random cards and determine which 2 treasure cards would end up in the player's hand and which cards would end up being added to the discard pile. I would then see if these treasure cards were in the player's hand in the gamestate and if the proper cards were in the player's discard pile in the gamestate. 
+
+	I ran into issues with generating random values of cards and number of cards because the proper constraints were not implemented. For instance, there were cases where no treasure cards were inserted into the deck, so I had to ensure that there were at least 2 cards in the deck and that there were at least 2 treasure cards. I wanted to avoid the case where the deck was empty and cards had to be transferred from the discard pile to the deck and then shuffled. This shuffling is random and I wanted to eliminate this aspect from the random testing. Therefore, I ensured that there were always at least 2 treasure cards in the deck at the beginning of the iteration. I think this case involving the transfer of cards from discard to the deck should be tested as fix cases instead. 
+
+	Statement coverage for play_adventurer() was 81.25%.
+	Looking at dominion.c.gcov, the statements never executed are for the case when the deck is empty, which never occurs in the random testing. I would plan on testing this case in fixed testing instead because it involves an element of randomness. Therefore, for the random testing of this function, this coverage is acceptable.
+
+Testing play_village():
+
+	The function play_village() plays the village card. My plan to implement random testing for play_village() would be modeled after the random testing for play_adventurer(). I filled the gamestate with random bytes and then filled a single player's hand, deck, and discard pile with a random number of random cards. I did run into issues with cases where the hand was empty before calling play_village() because play_village() calls discardCard(). Therefore, I had to ensure that the hand had at least one card and that the hand contained the village card. at a random hand position. I initially did not require that the deck be non-empty. However, later on in implementing the random tester, I found that I would need to make sure the proper card was transferred from the deck to the hand. I could not merely verify this by asserting that the handCount incremented/decremented accordingly because the handCount before and after calling play_village() should be the same, given that the one card is drawn into the hand and the village card is discarded from the hand. Therefore, ensuring the deck is non-empty would allow me to know which card would be drawn from the deck. Otherwise, drawCard() would pull cards from the discard pile and then randomly shuffle the deck. I would test this case not in the random tests but as a fixed case test instead.
+
+	Statement coverage for the function play_village was 100%. There are no branches. This function is relatively straightforward, so achieving statement/branch coverage was not difficult. However, as stated above, the case for an empty deck would not be covered by the random tester, as I would reserve that test case for fixed testing instead.

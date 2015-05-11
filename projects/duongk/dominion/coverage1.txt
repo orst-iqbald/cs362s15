@@ -26,49 +26,51 @@ All of my tests passed (except for the cards with intentional bugs placed in the
 coverage averaged somewhere in the mid 20's with high's in the low 30's. I would be more pleased had my coverage been higher. 
 
 Cardtest1: Smithy card
-	Lines executed:18.15% of 595
+	Lines executed:18.43% of 586
 	Branches executed:17.75% of 417
 	Taken at least once:13.67% of 417
-	Calls executed:9.00% of 100
+	Calls executed:9.18% of 98
 
 Cardtest2: Adventurer card
-	Lines executed:20.34% of 595
+	Lines executed:20.65% of 586
 	Branches executed:19.66% of 417
 	Taken at least once:15.35% of 417
-	Calls executed:10.00% of 100
+	Calls executed:10.20% of 98
 	
-Cardtest4: Village card
-	Lines executed:22.35% of 595
-	Branches executed:20.14% of 417
-	Taken at least once:15.83% of 417
-	Calls executed:13.00% of 100
+Cardtest3: Great Hall card
+	Lines executed:21.50% of 586
+	Branches executed:19.66% of 417
+	Taken at least once:15.35% of 417
+	Calls executed:12.24% of 98
 
-Cardtest3: Embargo card
-	Lines executed:21.34% of 595
+Cardtest4: Embargo card
+	Lines executed:22.70% of 586
 	Branches executed:20.14% of 417
 	Taken at least once:15.83% of 417
-	Calls executed:11.00% of 100
+	Calls executed:14.29% of 98
 
 Unittest1: updateCoins()
-	Lines executed:28.07% of 595
-	Branches executed:27.34% of 417
-	Taken at least once:23.50% of 417
-	Calls executed:13.00% of 100
+	Lines executed:22.87% of 586
+	Branches executed:20.14% of 417
+	Taken at least once:16.31% of 417
+	Calls executed:13.27% of 98
 
 Unittest2: getCost()
-	Lines executed:27.73% of 595
+	Lines executed:28.33% of 586
 	Branches executed:27.34% of 417
-	Taken at least once:23.02% of 417
-	Calls executed:13.00% of 100
+	Taken at least once:23.50% of 417
+	Calls executed:13.27% of 98
+
 
 Unittest3: fullDeckCount()
-	Lines executed:29.41% of 595
+	Lines executed:29.69% of 586
 	Branches executed:29.74% of 417
 	Taken at least once:25.42% of 417
-	Calls executed:13.00% of 100
+	Calls executed:13.27% of 98
+
 
 Unittest4: isGameOver()
-	Lines executed:31.09% of 595
+	Lines executed:31.40% of 586
 	Branches executed:31.65% of 417
 	Taken at least once:27.34% of 417
-	Calls executed:13.00% of 100
+	Calls executed:13.27% of 98

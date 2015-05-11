@@ -1,0 +1,48 @@
+Matthew Ahle
+CS 362 Assignment 4
+5/10/2015
+randomhistory.txt
+
+To run these  programs just 'make randomtestadventurer' and 'make randomtestcard.'
+After compiling and running these two files, you can make the .out files by 'make randomtestadventurer.out' and
+'make randomtestcard.out.'
+
+These two tests can be very powerful if used correctly.  They allow you to check different variations and states 
+of the code.
+
+For the purpose of this assignment, the tests logged the randomly generated gamestate and output an
+indication of a failure's occurrence.  Viewing the failed results and the seed allow us to continue with further debugging. 
+The end result allows us to replicate and find bugs more easily.
+
+We ran 100 randomly generated games, which is enough to provide meaningful results.
+Covered functions included the handCount, deckCount, discardCount, Cardpos, Player, 
+playedCardCount, numBuys and whether or not it failed.
+
+###################################################################################################################
+
+randomtestadventurer.c: effectAdventurer() function
+
+File 'dominion.c'
+Lines executed:37.46% of 566
+Branches executed:33.84% of 396
+Taken at least once:26.77% of 396
+Calls executed:28.72% of 94
+dominion.c:creating 'dominion.c.gcov'
+
+Within the effectAdventurer() function we have 100% branch and statement coverage.
+This demonstrates that our random values are being selected in a useful way and is an indication
+that the code is being tested successfully.
+
+###################################################################################################################
+
+randomtestcard.c: effectCouncilRoom() function
+
+File 'dominion.c'
+Lines executed:37.28% of 566
+Branches executed:33.84% of 396
+Taken at least once:26.01% of 396
+Calls executed:28.72% of 94
+dominion.c:creating 'dominion.c.gcov'
+
+These results are very similar to the test coverage from the randomtestadventurer function. 100% branch and
+statement coverage have been achieved. Any variations are small, which means our code is being tested successfully.
