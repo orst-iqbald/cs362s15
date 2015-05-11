@@ -1,3 +1,8 @@
+Jason Robel
+Ali Payne
+Andrew Rice
+
+
 1. Go through instructor video of explaining URL Validation testing. Explain testIsValid Function of UrlValidator test code. It is available under christia/UrlValidator folder. 
 Takes in an object of testURLParts and some options. The testURLParts object contains arrays of various parts of URLs: scheme, authority, port, path, path options and query parameters. Each array contains several valid/invalid forms paired with their respective truth values. The testIsValidURL build random URLs by combining one index from each array, asserting the validity of each built URL along the way.
 

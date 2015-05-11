@@ -1,0 +1,48 @@
+James Coan, Miles Curry, Michael Rose
+URLValidator: PART A:  Review of existing test case
+
+1.	Explain testIsValid Function of UrlValidator test code.
+
+		testIsValid randomly generates URLS based upon the five parts in the testPartsIndex,
+		which are described in detail below, and validates that the urlValidator returned a
+		proper value. testIsValid also has 2 hard coded URLs at the start that should always
+		assert true.
+
+2.	Give how many total number of urls it is testing.
+
+		It iterates twice, but 31920 after one iteration.
+		Add in the two hard coded urls, and you get 31920 + 2 or 31922 urls tested, twice.
+
+3.	Explain how it is building all the urls.
+
+		<scheme>://<authority><port><path>?<query> - So 5 parts
+
+		testUrlScheme, testUrlAuthority, testUrlPort, testPath, testUrlPathOptions, and
+		testUrlQuery are all used in the construction of the URLS. Each has a list of portions
+		of a url can be randomly add to the array url being tested. Which is then tested.
+
+4.	Give an example of valid url being tested and an invalid url being tested by testIsValid() method.
+
+		Within the testIsValid method, there is an assertTrue portion at the top using “http://www.google.com”.
+		So this is clearly ensuring the urlvalidator can see that address is actually valid.
+		assertTrue(urlVal.isValid("http://www.google.com"));
+
+		An invalid url would be something like: 
+			validator.isValid("http://localhost/test/index.html"));
+		unless we use the option:
+			validator = new UrlValidator(UrlValidator.ALLOW_LOCAL_URLS);
+
+		Or
+
+			validator.isValid("http://www.google.com:-1"));
+		The assertion should return an error due to an incorrect port number
+
+5.	Do you think that a real world test (URL Validator's testIsValid() test in this case) is very
+	different than the unit tests and card tests that we wrote (in terms of concepts & complexity)?
+
+		This is exactly the type of example of a real world test case and is very similar to what we did for our
+		unit tests and card tests. Ours was more of a stumbling block in learning how to write a proper test for
+		each of the cards and the units, it was in essence the same idea though not quite as detailed or thorough.
+		Since our tests were specific to a card or a function, we set specific conditions for our testing. These
+		URL validator tests are for testing randomly generated addresses, so they are different in that there are
+		random aspects to the testing overall and are therefore much larger in scope.

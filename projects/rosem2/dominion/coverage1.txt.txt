@@ -1,3 +1,0 @@
-Overall the coverage I got for the methods that I tested was pretty high.
-There are a few branches that I missed, for example, testing newAdventurer's deckCount < 1.
-There were some functions that I used that I did not get 100% coverage in, and only having around 33% total coverage means that I still have a lot more tests to write. 

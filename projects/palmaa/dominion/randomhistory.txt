@@ -1,0 +1,51 @@
+File:  randomhistory.txt
+Author:  Andrew Palma
+
+The amount of coverage from the unit tests and the card tests from
+Assignment 3 was as follows:
+	File 'dominion.c'
+	Lines executed:22.19% of 649
+	Branches executed:23.26% of 417
+	Taken at least once:17.75% of 417
+	No calls
+	
+	
+The amount of coverage given by the test, randomtestcard (alone), was:
+	File 'dominion.c'
+	Lines executed:20.03% of 649
+	Branches executed:23.26% of 417
+	Taken at least once:14.39% of 417
+	No calls
+
+While the amount of coverage afforded by randomtestadventurer (alone) was:
+	File 'dominion.c'
+	Lines executed:20.34% of 649
+	Branches executed:24.70% of 417
+	Taken at least once:15.83% of 417
+	No calls
+	
+On a superficial level it doesn't look like much change.  Especially since
+they are essentially testing the same target code.  Or at least the unit or
+method to be run.
+
+When we look at the amount of coverage given after running all these tests, it
+looks to be a bit better:
+	File 'dominion.c'
+	Lines executed:34.21% of 649
+	Branches executed:36.21% of 417
+	Taken at least once:28.78% of 417
+	No calls
+
+
+I would think that there were more edge cases being covered with the increased
+amount and type of input.
+
+For randomizing the input, I only just initialized the game a number of times
+(small number, about 5000).  I let the shuffle and randomization mechanics of the
+game take care of the random bits?  I just fed in a random seed with each run.  A
+better method probably would've been to some vary the input more (maybe making my
+own shuffle routine).
+
+I'm seeing some weird behavior.  Maybe I noticed it before?  Something seems off with
+the discard card functionality.  And/or maybe I just don't understand what it's supposed
+to be doing.

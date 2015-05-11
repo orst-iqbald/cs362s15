@@ -51,7 +51,6 @@ int main () {
   printf ("Testing drawCard.\n");
 
   printf ("RANDOM TESTS.\n");
-
   SelectStream(2);
   PutSeed(3);
 
