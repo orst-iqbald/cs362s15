@@ -1,0 +1,8 @@
+Jason MacManiman
+CS362 Assignment 4
+05/10/15
+
+randomtestcard.c was successfully implemented. Remaining issues: I can't see to get the .out
+files to be created even though I have checked the makefile multiple times. 
+
+randomtestadventurer.c has yet to be implemented. 
