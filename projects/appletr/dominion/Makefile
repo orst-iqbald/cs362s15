@@ -17,6 +17,18 @@ badTestDrawCard: badTestDrawCard.c dominion.o rngs.o
 
 testBuyCard: testDrawCard.c dominion.o rngs.o
 	gcc -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
+
+randomTests.o: 
+	gcc -c randomTestAdventurer.c -g  $(CFLAGS)
+	gcc -c randomTestCard.c -g  $(CFLAGS)
+	
+randomTests: randomTests.o
+	gcc -o randomTestAdventurer randomTestAdventurer.o dominion.o rngs.o $(CFLAGS)
+	gcc -o randomTestCard randomTestCard.o dominion.o rngs.o $(CFLAGS)
+	
+runRandom:
+	./randomTestAdventurer >> randomtestadventurer.out
+	./randomTestCard >> randomtestcard.out
 	
 unitTest.o: dominion.o rngs.o
 	gcc -c unitTest1.c $(CFLAGS)
