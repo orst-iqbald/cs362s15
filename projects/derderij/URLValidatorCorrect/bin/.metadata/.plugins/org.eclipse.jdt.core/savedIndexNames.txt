@@ -1,0 +1,1 @@
+INDEX VERSION 1.127+C:\Users\Greenbolt\Desktop\Computer Science\CS 362\Git\cs362s15\projects\derderij\URLValidatorCorrect\src\.metadata\.plugins\org.eclipse.jdt.core

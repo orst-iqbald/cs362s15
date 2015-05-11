@@ -526,7 +526,8 @@ int drawCard(int player, struct gameState *state)
 {	int count;
   int deckCounter;
   if (state->deckCount[player] <= 0){//Deck is empty
-    
+    	 
+
     //Step 1 Shuffle the discard pile back into a deck
     int i;
     //Move discard to deck
@@ -576,7 +577,6 @@ int drawCard(int player, struct gameState *state)
     state->deckCount[player]--;
     state->handCount[player]++;//Increment hand count
   }
-
   return 0;
 }
 
@@ -780,7 +780,7 @@ int smithyEffect(int currentPlayer, struct gameState *state, int handPos)
 	//+3 Cards
 	int i;
     for (i = 0; i <= 3; i++)
-	{
+	{	
 		drawCard(currentPlayer, state);
 	}
 			

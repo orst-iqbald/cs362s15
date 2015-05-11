@@ -1,0 +1,39 @@
+Group: Michael Marven, Tony Luo, Andrew Dummer
+Date: 5/8/2015
+file: ProjectPartA.txt
+=========================================================
+
+
+Url Test Data 
+==========
+testUrlParts = {scheme, authority, port, path, query}
+testPartsIndex = {0, 0, 0, 0, 0}
+
+
+Write-up
+==========
+The total number of urls that UrlValidator is testing is:
+9 * 19 * * 7 * 10 * 3 = 35,910
+
+Where:
+scheme = 9
+authority = 19
+port = 7
+path = 10
+query = 3
+
+testIsValid() builds the urls by combining the compoments in the testUrlParts array into a complete url.
+
+It access the data stored in the testUrlParts array by using the testPartsIndex, which testIsValid() increments for each iteration of the loop.
+
+For example:
+1. {0, 0, 0, 0, 0}
+2. {0, 0, 0, 0, 1}
+3. {0, 0, 0, 0, 2}
+...
+
+until all combinations have been tested.
+
+An example of a valid url being tested is 'http://www.google.com' and an example of an invalid url being tested is 'h3t://go.com/test1/'.
+
+We don't think that a real world test is not much different in terms of concepts and complexity than what we are doing. The only difference between our tests and that of the real world is the test volume. Both our dominion tests and the UrlValidator tests use asserts that compares an input to an expected value.

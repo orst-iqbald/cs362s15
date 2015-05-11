@@ -1,0 +1,20 @@
+CS 362
+Robin Counts
+Asssignment 4
+randomhistory.txt
+
+randomtestadventurer
+From the gcov file, the branch coverage in the previous assignment and this assignment was similar. There were 3 branches that remain uncovered. Two branches were similar cases as another branch – the hand contains gold or silver wasn't tested, however containing copper was. Also the  branch where the deck is empty and the discard deck is shuffled and put into play wasn't tested. The function was called 2000 times with pseudo random data each time. All lines were executed at least 1958 times.
+
+This test failed 1484 times out of 2000 as a result of the bug introduced in the earlier assignment. Some inputs to the setup of the game were guided more than others. For this test the deck was required to contain valid treasure cards because in a real game treasure cards would always be available. In my first tests the function was passing but when I removed the introduced bug I noticed I was getting a seg fault. I realized this occurred because the adventurer card allows a player to continue drawing cards until 2 treasure cards are drawn but the bug counted every card as a treasure card and the function finishes after any 2 cards are drawn. However with the bug removed, the temporary array that holds non-treasure cards was filling up because the deck contained random data and treasure cards were never drawn. In a real game situation this could never occur because treasure cards would always be available and the array which holds the non-treasure card draws is the same size as the deck so it would be impossible to fill the array before 2 treasure cards are drawn. To correct the seg fault the setup of the game had to contain a valid deck. 
+
+The test was performed by making a copy of the gameState struct called ”pre” and comparing it to the “post” gameState. If the hand contained two more treasure cards than the “pre” state then the tests passed.
+
+
+
+
+
+randomtestcard (remodel)
+The gcov file states that 100% of blocks executed 100% which is better than the previous test of 81%. The function was also executed 2000 times instead of only twice. The randomness of the data also ensured that more input was tested. In the previous test 2 branches were not taken. In this random test all branches were taken at least once with most being taken over 1000 times. All lines were executed at least 940 times. 
+
+This random test passed all 2000 function calls and required making sure the input for the deck, hand and supply were within the rules of the game otherwise completely random data would cause the tests to fail every time. A pre and post game State were saved and an assertion was run on memcmp(). If the contents of memory were the same then the function didn't execute properly or if -1 was returned the chosen card is an invalid value so the function exits and the contents in memory should remain the same. 

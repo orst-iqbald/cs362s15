@@ -1,2 +1,108 @@
 Assignment 4 - Random test development
 
+randomtestadventure.c
+
+	This random tester is a significant improvement on my previous card test.
+	I decided to make use of the dominion code in order to report specific states
+	in the game. Due to the specific card, I decided knowing the players deck, hand,
+	and what the players hand looks like after playing the adventure card as well
+	as testing the effect of the card on the number of treasure cards in hand making
+	sure the count was proper.
+	I ran 50 iterations of this test, nearly all of which returned an error when the
+	treasure count in hand was 1 more than expected. Only a few cases where the deck
+	was empty and a limited number of treasure cards to select from were available did
+	I have no errors returned.
+	
+	The coverage was significantly better than my original test on this card. All blocks
+	and all branches were covered far more than the previous test. Overall a much better
+	test.
+	
+	function newAdventurer called 50 returned 100% blocks executed 100%
+	
+	Typical Iteration:
+	
+		Iteration #0	Seed #19109885
+
+		Player 0's deck: 
+		#  Card
+		0  Copper       
+		1  Estate       
+		2  Estate       
+		3  Copper       
+		4  Estate       
+		5  Silver       
+
+		Player 0's hand:
+		#  Card
+		0  Copper       
+		1  Copper       
+		2  Copper       
+		3  Copper       
+		4  Copper       
+		5  Adventurer   
+
+		Playing Adventure Card...
+
+		Player 0's hand:
+		#  Card
+		0  Copper       
+		1  Copper       
+		2  Copper       
+		3  Copper       
+		4  Copper       
+		5  Copper       
+		6  Silver       
+		7  Copper       
+
+		Failed - Number of treasure cards incorrect. Expected = 7, Returned = 8
+       
+randomtestcard.c
+
+	Another improvement on my previous card test.
+	Again in this random test I decided to go ahead and use the dominion code to display
+	aspects needed within the test. I used printState and printHand in order to show the
+	before and after effects of a particular card. Intermixed with those calls, I pulled
+	out particular information (coin count, buy count, number of estate cards in hand) to
+	compare before and after and display an error for each if they were incorrect. Gcov
+	shows only 68% coverage, but this is due to the hard coded DEBUG and some possible
+	errors out of my control with this card. I ran this iteration 50 times.
+	
+	function newBaron called 1280 returned 100% blocks executed 68%
+	
+	Typical Iteration:
+	
+		Iteration #0	Seed #49154984
+
+		Player 0:
+		Action phase
+		1 actions
+		4 coins
+		1 buys
+
+		Player 0's hand:
+		#  Card
+		0  Copper       
+		1  Estate       
+		2  Copper       
+		3  Copper       
+		4  Copper       
+		5  Baron        
+
+		Playing baron Card...
+		Discard an estate card.
+
+		Player 0:
+		Action phase
+		0 actions
+		4 coins
+		1 buys
+
+		Player 0's hand:
+		#  Card
+		0  Copper       
+		1  Copper       
+		2  Copper       
+		3  Copper       
+
+		Failed - Coins not incremented properly after estate discard. Expected = 8, Returned = 4
+		Failed - Buy count not incremented properly. Expected = 2, Returned = 1

@@ -654,8 +654,14 @@ void bug_smithycardplay(int i, int currentPlayer, int handPos, struct gameState*
       discardCard(handPos, currentPlayer, state, 0);
 }
 
-void bug_adventurercardplay(int drawntreasure, int currentPlayer, int cardDrawn,	int temphand[MAX_HAND], int z, struct gameState* state) 
+void bug_adventurercardplay(int drawntreasure, int currentPlayer, int cardDrawn,	int temphand[MAX_HAND], int handPos, struct gameState* state)
 {
+	currentPlayer = whoseTurn(state);
+	int z=0;
+	int nextPlayer = currentPlayer + 1;
+	if (nextPlayer > (state->numPlayers - 1)){
+		nextPlayer = 0;
+	}
 	while(drawntreasure<2){
 	if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
 	  shuffle(currentPlayer, state);
@@ -672,7 +678,7 @@ void bug_adventurercardplay(int drawntreasure, int currentPlayer, int cardDrawn,
       }
       while(z-1>=0){
 	state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
-	z-=z-1;
+	z=-1;
       }
 }
 

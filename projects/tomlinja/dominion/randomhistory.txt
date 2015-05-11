@@ -1,0 +1,37 @@
+The random testers were developed as follows:
+
+1. A fixed set of kingdom cards and treasure cards was chosen.
+2. For each test (total 20), the following was randomized:
+    a. number of cards in a hand
+    b. number of players in a game
+    c. which player was being considered
+    d. how big the deck was
+    e. which cards from the sets were in the deck (every 3rd was treasure)
+    f. how many actions the player has
+3. The game state was cleared and initialized
+4. The hand size, deck size, and number of actions were set
+5. The play card function was called
+
+Adventurer tested that it correctly added two cards to the player's hand
+Village tested that it correctly added one card to the hand and incrased action by 2
+
+The random testers test the same thing as assignment 3 tests, only the game
+state was randomized within a range of values that made sense for a game (i.e.
+all cards were valid and within the maximum number allowed). The specification
+is known to be correct because the unit tests these tests are based on pass for
+some (but not all) cases.
+
+Coverage is expected to have increased because the random tester tests more
+values and at a wider range. However, because the tests either fail
+assertions or cause a segmentation fault due to bugs in the code, the dominion
+code crashes and coverage data cannot be obtained.
+
+Although the coverage should have increased, the increase should not be
+significant because we are still only testing a couple of functions that don't
+touch the majority of the code. The increase in coverage is expected to be
+about 1-5% compared to previous non-random tests.
+
+Unfortunately, because we are not allowed to fix bugs in the code, it is not
+possible to obtain accurate coverage information without artificially creating
+tests that pass despite the bugs, which would give meaningless coverage
+statistics anyway.

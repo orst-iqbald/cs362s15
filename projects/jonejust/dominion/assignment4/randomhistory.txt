@@ -1,0 +1,107 @@
+Justin Jones
+cs 362
+jonejust
+Assignment 4
+
+
+///////////////////////////////////////////////////////////////////////////////
+randomtestadventurer.c - adventurerEffect() test coverage
+
+First draft of unit test yielded the following coverage on dominion.c
+File 'dominion.c'
+Lines executed:21.07% of 579
+Branches executed:19.76% of 415
+Taken at least once:16.39% of 415
+Calls executed:9.57% of 94
+dominion.c:creating 'dominion.c.gcov'
+
+The basic strategy for this unit test was to randomly initialize a game
+before each call to adventurer card and randomly chose a handcount, the
+type of card at each position, a random deck count and a random discard
+count.
+
+On the first draft of the random unit test I wrote for the adventurer card,
+100% statement and branch coverage of this function was achieved; however,
+the drawCard() and shuffle() functions are called here and a boundary
+case was not triggered in each of these functions. 
+
+drawCard() - 93% - missed the case where the deckcount is zero AND discard
+count is zero returning -1.
+
+shuffle() - 93% - missed the case where function returns -1. 
+
+After obtaining these results, the test was reworked so that 25% of the
+tests were chosen to have a deck count of zero or 1 and 25% were randomly
+chosen to have a discard count of 0 or 1. In this way, the boundary tests
+were more thoroughly tested and the coverage that was obtained after
+reworking the test was as follows:
+
+File 'dominion.c'
+Lines executed:21.42% of 579
+Branches executed:19.76% of 415
+Taken at least once:17.11% of 415
+Calls executed:9.57% of 94
+dominion.c:creating 'dominion.c.gcov'
+
+While the branches taken are only a slight improvement it should be 
+noted that both important boundary cases which were missed in the 
+first draft of the test are now covered in the final version of the
+test, one of which revealed an important bug.
+
+It is also interesting to note that while the discardCard function is not
+called by the adventureEffect function, it should have been called. This
+bug was found in the first draft of this test but if it hadn't have been, this test still 
+could have achieved 100% branch and statement coverage without finding that
+bug since it's a statement that should have been there but was not. As can
+be seen from the results of the final test several potential bugs were found: 
+
+1. Anytime the sum of the deck and discard count was less than 2, the discard
+count would end up being a negative number. 
+
+2. The adventurer card also failed to keep the sum of cards in the deck, 
+discard and hand the same often ending up one short. 
+
+3. The adventurer card did not increment the number of treasure cards in the 
+hand by two when there were not a total of two cards in the deck and discard
+counts and this was expected, but this is when the discard count would 
+end up with a negative number of cards. Clearly, there needs to be a better
+way to handle these cases in general and a clear decision needs to be made as
+to if the user should be provided a message that it couldn't be done and exit
+or what should happen. Right now, it seems this case wasn't accounted for. 
+
+///////////////////////////////////////////////////////////////////////////////
+RANDOMTESTCARD.C
+(TEST OF THE REMODEL CARD)
+
+Learning from the first test of adventurer card I developed this test more
+with boundary cases in mind right from the start. As in the adventurer test
+the randomness of deck and discard counts is guided to the boundary
+cases 25% of the time. In addition, the supply counts of each card is guided
+to zero 25% of the time so what happens when the supply of a card is zero 
+could be thoroughly tested.
+
+
+File 'dominion.c'
+Lines executed:24.53% of 579
+Branches executed:27.47% of 415
+Taken at least once:20.00% of 415
+Calls executed:13.83% of 94
+dominion.c:creating 'dominion.c.gcov'
+
+The important thing to note is that not only did it achieve 100% coverage
+of the remodelEffect function, but it also succeeded it hitting all the
+branches of the discardCard function except that it doesn't handle all cases
+when the trashflag is and isn't set. It only calls discard one way so 
+we wouldn't expect it to be able to hit those branches. 
+
+Bugs found include: 
+
+1. When a card is more expensive than 2 plus the cost of the card chosen
+to be trashed, the card shouldn't be gained, but it is. Conversely, when
+a card is not too expensive it is not gained. 
+
+2. The card that was supposed to be trashed often remains in the hand.
+
+3. When supply count is zero remodel card still returns success instead
+of returning - 1 for failure. It does at least not gain the card however. 
+ 

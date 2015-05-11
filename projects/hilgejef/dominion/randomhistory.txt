@@ -1,0 +1,30 @@
+Randomly testing of Adventurer
+to run: make randomadventurertest.out
+
+Development of Adventurer random testing required me to take out the bugs 
+introduced in refactor.txt.  The bugs caused segfaults that stopped all testing,
+and made development of the random tester impossible.  I will reintroduce
+the bugs at the appropriate time.  Coverage from the random tester seems solid.
+Rather than use assertions, I have opted for print statements with specific
+information to make debugging easier.
+
+Overall coverage from randomly testing Adventurer:
+Lines executed:27.50% of 560
+Branches executed:35.73% of 417
+Taken at least once:18.94% of 417
+Calls executed:18.95% of 95
+
+
+
+Random testing of Great Hall:
+to run: make randomcardtest.out
+
+Development of Great Hall was easier after the development of Adventurer,
+as I largely followed the same blueprint.  Again, I have opted for print
+statements rather than assertions to make debugging information more specific.
+
+Overall coverage from randomly testing Great Hall:
+Lines executed:29.46% of 560
+Branches executed:36.69% of 417
+Taken at least once:19.90% of 417
+Calls executed:23.16% of 95
