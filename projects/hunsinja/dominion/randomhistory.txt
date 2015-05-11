@@ -1,33 +1,21 @@
 Jack Hunsinger
 CS 362 Assignment 4
 
-First of all, I decided to run both tests 200 times in order to get more tests done and get a larger pool to look at.
+First of all, I decided to run both tests 200 times in order to get more tests done and get a larger pool of tests to look at.
+
+For my adventurer card test, I basically rewrote my old test from scratch. I thinkI overcomplicated it before, so I decided
+that it would be better if I just started over to try and simplify everything. 
+
+For my other test, I chose to test the smithy card. I made this test almost identical to the adventurer card test, and I was
+happy with its overall simplicity.
+
+Each test had 100% coverage according to gcov, which is very good. My intial testing found a small bug in my custom smithy
+function where it didn't add the correct number of cards. Seeing as it was a small error, I decided to fix it instead of letting
+it go. I know part of the point of this asignment was to find these errors, but as it was simply changing one number, I couldn't
+resist.
 
 
-
-
-In my revised test in randomtestadventurer.c I ran the random simulation 300 times.  I was able to executed
-100% of the 17 lines.  I executed 100% of the 12 branches.  I was able to execute 10/12 branch paths of for 83.33% coverage.
-I was able to execute both function calls in my function.
-
-I was able to greatly improve upon my adventurer function test from assignment to the next.  One area I am having difficulty getting 
-testing coverage is where I have a conditional for testing copper, silver or gold cards.  I think I am having a problem testing for 
-gold cards even though I am randomly replacing some copper cards in the player hand with gold cards.   
-
-Also, I am finding an error in the adventurer card when the deck count is zero and I am calling a reshuffle, when the deck count is
-zero in the adventurer card is not adding any treasure cards to the user hand.
-
-
-In my test from assignment 3 I ran test on the smithy card in cardtest1.c.  I document the results in 
-Cardtest1.txt.  I stated how I had total coverage of the smithyCard function.  I stated that, I executed all
- 5 lines 2/2 branches at least once 100% of the time and executed 2 out of 2 calls.  
- 
-In the updated random test, randomtestcard.c I also tested the smithy card.  The smithyCard function once again total and absolute coverage.
-I executed all 5 lines 2/2 branches at least once 100% of the time and executed 2 out of 2 calls. There is a bug in the smithy card function, and it is 
-of my creation.  The smithy card will only add 2 cards to the player hand not 3.  This error is detected on every random test.
-
-
-Instruction to run the files
+To run everything:
 
 make all
 
