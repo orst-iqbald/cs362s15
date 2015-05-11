@@ -37,7 +37,7 @@ int main () {
 
     PutSeed((long)seed);
     
-    printf ("Random testing adventurer_refact():\n");
+    printf ("Random testing smithy_refact():\n");
     for(i = 0; i< numTests; i++){
       printf( "\nStarting test %d", i);
 
