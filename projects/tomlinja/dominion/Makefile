@@ -43,7 +43,7 @@ testPlayAdventurer: cardtest4.c dominion.o rngs.o
 	gcc -o testPlayAdventurer -g cardtest4.c dominion.o rngs.o $(CFLAGS)
 
 unittestresults.out: unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c cardtest2.c cardtest3.c cardtest4.c dominion.o rngs.o
-	echo "Result for running BST tests:" > unittestresults.out
+	echo "Result for running unit tests:" > unittestresults.out
 	
 	echo "unittest1.c:" >> unittestresults.out
 	gcc -o unittest1 dominion.o rngs.o unittest1.c $(CFLAGS)
@@ -84,6 +84,26 @@ unittestresults.out: unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c
 	gcc -o cardtest1 dominion.o rngs.o cardtest1.c $(CFLAGS)
 	cardtest1 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
+
+testPlayAdventurerRandom: randomtestadventurer.c dominion.o rngs.o
+	gcc -o testPlayAdventurerRandom -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+
+randomtestadventurer.out: randomtestadventurer.c dominion.o rngs.o
+	echo "Result for running random adventurer tests:" > randomtestadventurer.out
+	
+	gcc -o randomtestadventurer dominion.o rngs.o randomtestadventurer.c $(CFLAGS)
+	randomtestadventurer >> randomtestadventurer.out 2>&1
+	gcov dominion.c >> randomtestadventurer.out 2>&1
+
+testPlayVillageRandom: randomtestcard.c dominion.o rngs.o
+	gcc -o testPlayVillageRandom -g randomtestcard.c dominion.o rngs.o $(CFLAGS)
+
+randomtestcard.out: randomtestcard.c dominion.o rngs.o
+	echo "Result for running random village tests:" > randomtestcard.out
+	
+	gcc -o randomtestcard dominion.o rngs.o randomtestcard.c $(CFLAGS)
+	randomtestcard >> randomtestcard.out 2>&1
+	gcov dominion.c >> randomtestcard.out 2>&1
 
 testAll: dominion.o testSuite.c
 	gcc -o testSuite testSuite.c -g  dominion.o rngs.o $(CFLAGS)
