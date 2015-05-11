@@ -129,7 +129,7 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
    1, others to 0 */
 
    /*Card functions listed below see comments in dominion.c for descriptions of each function */
-int playAdventurer(int currentPlayer, struct gameState *state);
+int playAdventurer(int drawntreasure, int currentPlayer, struct gameState *state, int handPos);
 
 int playSmithy(int handPos, int currentPlayer, struct gameState *state);
 

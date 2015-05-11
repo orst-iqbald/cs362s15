@@ -1,0 +1,57 @@
+/**************************************************
+Michael Flath
+CS362
+Assignment 4
+
+**************************************************/
+
+randomtestadventurer.c
+	The first trial of random test coverage:
+		lines executed: 90.91% of 77
+		branches executed: 100% of 30
+		taken at least once: 63.33% of 30 
+	
+	
+	The second trial of random test coverage:
+		lines executed: 93.18% of 88
+		branches executed: 100% of 40
+		taken at least once: 65% of 40 
+		calls executed 74.07 of 27
+		
+		-In order to improve the testing I added actual tests for player 2 (revising my test oracle). Since the game state is similar for both
+		 players, in the previous step only player 1 was actually tested for, but now both player outcomes are tested. 
+		-Since both players 1 and 2 have similar resulting bugs, this strengthens the argument that there in fact is a bug 
+		with the number of treasure cards added to the players hand. 
+		
+	The third trial of random test coverage:
+		lines executed: 93.48% of 92
+		branches executed: 100% of 42
+		taken at least once: 66.67% of 42 
+		calls executed 75% of 28
+		
+		-In order to test for robustness and to increase the number of tests, a while loop was included.
+		 The while loop enabled the tests to be run 5000 times. This was very helpful in viewing the gcov file to observe
+		 the sections of code that were being tested and executed. Branches were also more adequately tested. As an example,
+		 the count and count2 variables were branched by a conditional statement. Each statement was covered 50 percent of the time,
+		 revealing that each players handCount was adequately covered and tested. 
+
+randomtestcard.c
+	The first trial of random test coverage:
+		lines executed: 92.50% of 40
+		branches executed: 100% of 12
+		-Smithy() is called 4 times, once for each player.
+		
+	The second trial of random test coverage:
+		lines executed: 93.88% of 49
+		branches executed: 100% of 22
+		taken at least once: 81.82% of 22
+		calls executed: 71.43% of 14
+		
+		-By adding a loop that inputs cards into the players hand and deck pseudo randomly, and by increasing 
+		 the robustness of the random tests for smithy, the code coverage increased nearly 1%. 
+		 The first test executed 4 times. This test was able to increase the parts of the code that were barely covered by increasing the 
+		 test by 100.
+	The third trial of random test coverage:
+		This coverage is the exact same as the second trial. During this trial the I ran 5000 executions of checkSmithy in order
+		to produce a greater quality of testing. This was working off the principle given in the lecture notes: 
+		"a lot of 'stupid testing' is better than a very small amount of 'smart' testing."

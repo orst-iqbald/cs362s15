@@ -29,10 +29,10 @@ int main(int argc, char** argv)
 
 	int cards[10] = { mine, adventurer, village, minion, embargo, sea_hag, cutpurse, gardens, smithy, tribute };
 
-	for (i = 0; i < 30; i++)
+	for (i = 0; i < 200; i++)
 	{
 		//initialize game
-		seed = (rand() % 65535);
+		seed = (rand() % 65534);
 		numberOfPlayers = ((rand() % 3) + 2);
 		initializeGame(numberOfPlayers, cards, seed, &state);
 

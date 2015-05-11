@@ -1,0 +1,23 @@
+Assignment 4
+Random test development
+
+
+randomtestadventurer.c
+	This random tester improved over my last card test and caught indirectly caught the bug that
+	I had implemented. It was showing that the hands never had the correct amount of cards, they
+	were always short 1 card. Sometimes I was getting negative values for my discard piles. On 
+	certain runs the deck was also smaller than expected. Whenever the code caught my bug,
+	the discard pile would show that the cards in the pile were not the same. The deck never varied
+	in order even when it varied in size, but the hand would aos vary.When the hand varied, it was 
+	always the 2nd and sometimes last card that were different. I got 100% code coverage.
+	In 500 runs, it covered every line of newAdventurer at least 500 times except for the shuffle
+	line, which it only covered 88 times.
+
+randomtestcard.c
+	This random tester was also an improvement over the previous test. The deck was always 2 cards
+	larger than expected and the hand was always 3 cards smaller. I had not noticed 2 bugs that this
+	test pointed out to me in newSmithy. The second card in the players hand is always overwritten
+	and the counter(i) is always incremented twice. On certain occausions, the deck and discard were
+	also off, I am not sure why.
+	Once again, the code coverage was good 100%. each line was covered either 502 or 1004 times on 500
+	runs.

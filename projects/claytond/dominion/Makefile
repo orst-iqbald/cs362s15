@@ -100,6 +100,18 @@ unittestresults.out: dominion.o rngs.o unittest1.c unittest2.c unittest3.c unitt
 	cardtest4 >> unittestresults.out
 	gcov dominion.c -b >> unittestresults.out
 
+randomtestcard.out: randomtestcard.c dominion.o rngs.o
+	echo "randomtestcard.c:" >> randomtestcard.out
+	gcc -o randomtestcard -g randomtestcard.c dominion.o rngs.o $(CFLAGS)
+	randomtestcard >> randomtestcard.out
+	gcov dominion.c -b >> randomtestcard.out
+
+randomtestadventurer.out: randomtestadventurer.c dominion.o rngs.o
+	echo "randomtestadventurer.c:" >> randomtestadventurer.out
+	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+	randomtestadventurer >> randomtestadventurer.out
+	gcov dominion.c -b >> randomtestadventurer.out
+
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean: rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
