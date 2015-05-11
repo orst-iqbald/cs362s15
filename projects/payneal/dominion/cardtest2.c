@@ -1,4 +1,4 @@
-/* -----------------------------------------------------------------------
+/*
  * a card test for adventure() in dominion.c
  * Include the following lines in your makefile:
  *

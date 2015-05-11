@@ -1,7 +1,7 @@
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include "rngs.h"
-#include "card_functions.h"
+//#include "card_functions.h"
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
@@ -243,7 +243,7 @@ int playCard(int handPos, int choice1, int choice2, int choice3, struct gameStat
   //check if player has enough actions
   if ( state->numActions < 1 )
     {
-      return -1;
+      return -2;
     }
 	
   //get card played
@@ -252,13 +252,13 @@ int playCard(int handPos, int choice1, int choice2, int choice3, struct gameStat
   //check if selected card is an action
   if ( card < adventurer || card > treasure_map )
     {
-      return -1;
+      return -3;
     }
 	
   //play card
   if ( cardEffect(card, choice1, choice2, choice3, state, handPos, &coin_bonus) < 0 )
     {
-      return -1;
+      return -4;
     }
 	
   //reduce number of actions
@@ -287,11 +287,11 @@ int buyCard(int supplyPos, struct gameState *state) {
   } else if (supplyCount(supplyPos, state) <1){
     if (DEBUG)
       printf("There are not any of that type of card left\n");
-    return -1;
+    return -2;
   } else if (state->coins < getCost(supplyPos)){
     if (DEBUG) 
       printf("You do not have enough money to buy that. You have %d coins.\n", state->coins);
-    return -1;
+    return -3;
   } else {
     state->phase=1;
     //state->supplyCount[supplyPos]--;
@@ -409,7 +409,7 @@ int isGameOver(struct gameState *state) {
     }
   if ( j >= 3)
     {
-      return 1;
+      return 2;
     }
 
   return 0;
@@ -668,7 +668,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-      adventurer(&drawntreasure, &currentPlayer, &cardDrawn, temphand, &z, state);
+      adventurerFunc(&currentPlayer, temphand, &z, state);
       /*
       while(drawntreasure<2){
 	if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
@@ -772,7 +772,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return -1;
 			
     case mine:
-      mine(&currentPlayer, &handPos, &choice1, &choice2, &i, &j, state);
+      mineFunc(&currentPlayer, &handPos, &choice1, &choice2, &i, &j, state);
       /*
       j = state->hand[currentPlayer][choice1];  //store card we will trash
 
@@ -835,7 +835,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case smithy:
-      smithy(&currentPlayer, &handPos, state);
+      smithyFunc(&currentPlayer, &handPos, state);
       /*
       //+3 Cards
       for (i = 0; i < 3; i++)
@@ -849,7 +849,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case village:
-      village(&currentPlayer, &handPos, state);
+      villageFunc(&currentPlayer, &handPos, state);
       /*
       //+1 Card
       drawCard(currentPlayer, state);
@@ -976,7 +976,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case steward:
-      steward(&currentPlayer, &handPos, &choice1, &choice2, &choice3, state);
+      stewardFunc(&currentPlayer, &handPos, &choice1, &choice2, &choice3, state);
       /*
       if (choice1 == 1)
 	{
@@ -1343,33 +1343,35 @@ int updateCoins(int player, struct gameState *state, int bonus)
   return 0;
 }
 
-int adventurer(int * drawntreasure, int * currentPlayer, int * cardDrawn, int * temphand, struct gameState * state){//Used variables are: drawntreasure, state, currentPlayer, cardDrawn, temphand, z 
-  int z = 0;
+int adventurerFunc(int * currentPlayer, int * temphand, int * thCount, struct gameState * state){//Used variables are: drawntreasure, state, currentPlayer, cardDrawn, temphand, z 
+  int drawntreasure=0;
+  int cardDrawn;
+  int cp = *currentPlayer;
 
-  while((*drawntreasure)<2){
-    if (state->deckCount[(*currentPlayer)] <1){//if the deck is empty we need to shuffle discard and add to deck
-        shuffle(*currentPlayer, state);
+  while(drawntreasure<2){
+    if (state->deckCount[cp] <1){//if the deck is empty we need to shuffle discard and add to deck
+        shuffle(cp, state);
     }
-    drawCard(*currentPlayer, state);
-    *cardDrawn = state->hand[(*currentPlayer)][state->handCount[(*currentPlayer)]-1];//top card of hand is most recently drawn card.
-    if (*cardDrawn == copper || *cardDrawn == silver || *cardDrawn == gold)
-        (*drawntreasure)++;
+    drawCard(cp, state);
+    cardDrawn = state->hand[cp][state->handCount[cp]-1];//top card of hand is most recently drawn card.
+    if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+        drawntreasure++;
     else{
-        temphand[z]=(*cardDrawn);
-        state->handCount[(*currentPlayer)]--; //this should just remove the top card (the most recently drawn one).
-        z++;
+        temphand[(*thCount)]=cardDrawn;
+        state->handCount[cp]--; //this should just remove the top card (the most recently drawn one).
+        (*thCount)++;
     }
     }
     
-    while(z-1>=0){
-    state->discard[(*currentPlayer)][state->discardCount[(*currentPlayer)]++]=temphand[z-1]; // discard all cards in play that have been drawn
-    z=z-1;
+    while((*thCount)-1 >= 0){
+    state->discard[cp][state->discardCount[cp]++]=temphand[(*thCount) - 1]; // discard all cards in play that have been drawn
+    (*thCount)--;
     }
     
     return 0;
 }
 
-int smithy(int * currentPlayer, int * handPos, struct gameState * state){//Used variables are: currentPlayer, state, handPos, i
+int smithyFunc(int * currentPlayer, int * handPos, struct gameState * state){//Used variables are: currentPlayer, state, handPos, i
   int i;
   //+3 Cards
     for (i = 0; i < 3; i++){
@@ -1381,7 +1383,7 @@ int smithy(int * currentPlayer, int * handPos, struct gameState * state){//Used 
     return 0;
 }
 
-int village(int * currentPlayer, int * handPos, struct gameState * state){//Used variables are: currentPlayer, state, handPos
+int villageFunc(int * currentPlayer, int * handPos, struct gameState * state){//Used variables are: currentPlayer, state, handPos
   //+1 Card
     drawCard(*currentPlayer, state);
       
@@ -1393,7 +1395,7 @@ int village(int * currentPlayer, int * handPos, struct gameState * state){//Used
     return 0;
 }
 
-int steward(int * currentPlayer, int * handPos, int * choice1, int * choice2, int * choice3, struct gameState * state){//Used variables are: choice1, currentPlayer, state, choice2, choice3, handPos
+int stewardFunc(int * currentPlayer, int * handPos, int * choice1, int * choice2, int * choice3, struct gameState * state){//Used variables are: choice1, currentPlayer, state, choice2, choice3, handPos
   if (*choice1 == 1)
   {
       //+2 cards
@@ -1418,10 +1420,9 @@ int steward(int * currentPlayer, int * handPos, int * choice1, int * choice2, in
     return 0;
 }
 
-int mine(int * currentPlayer, int * handPos, int * choice1, int * choice2, struct gameState * state){//Used variables are: j, state, currentPlayer, choice1, choice2, handPos, i
-  int i, j;
+int mineFunc(int * currentPlayer, int * handPos, int * choice1, int * choice2, int * i, int * j, struct gameState * state){//Used variables are: j, state, currentPlayer, choice1, choice2, handPos, i
 
-  j = state->hand[(*currentPlayer)][(*choice1)];  //store card we will trash
+  *j = state->hand[(*currentPlayer)][(*choice1)];  //store card we will trash
 
     if (state->hand[(*currentPlayer)][(*choice1)] < copper || state->hand[(*currentPlayer)][(*choice1)] > gold){
       return -1;
@@ -1441,9 +1442,9 @@ int mine(int * currentPlayer, int * handPos, int * choice1, int * choice2, struc
     discardCard(*handPos, *currentPlayer, state, 0);
 
     //discard trashed card
-    for (i = 0; i < state->handCount[(*currentPlayer)]; i++){
-      if (state->hand[(*currentPlayer)][i] == j){
-          discardCard(i, *currentPlayer, state, 0);     
+    for (*i = 0; *i < state->handCount[(*currentPlayer)]; *i++){
+      if (state->hand[(*currentPlayer)][*i] == *j){
+          discardCard(*i, *currentPlayer, state, 0);     
           break;
       }
   }

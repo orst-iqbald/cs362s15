@@ -1,0 +1,4 @@
+make clean
+make randomtestadventurer
+make randomtestcard
+

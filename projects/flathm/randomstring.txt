@@ -1,0 +1,24 @@
+/***************************************
+Michael Flath
+CS362
+Quiz2
+randomstring.txt
+
+***************************************/
+
+Observations:
+	After looking at the code, I found that both the functions inputChar() and inputString() are used to generate the 
+	string that will produce the error. 
+	
+	inputChar() generates returns a random char (char c[] = {'[', '(', '{', ' ', 'a', 'x', '}', ')', ']'};) that will
+	bech checked by a group of if statements to determine a particular state.
+	
+	inputString() generates a guided random string (char s[] = {'r', 'e', 's', 't', '\0'};). Using if statements
+	I used a random range to limit the number of random strings, so that the output that matches the "error if-statement"
+	might be found quicker. As an example, str[0], the first element, is a random choice between s[0] or s[1] ('r', or 'e')...
+	and so on and so forth until the whole string is generated.
+	
+	A while loop runs to check the randomly generated character and string until the error message is produced by the matching string and char.
+	In this case it would be: if (s[0] == 'r' && s[1] == 'e' && s[2] == 's' && s[3] == 'e' && s[4] == 't' && s[5] == '\0' && state == 9)
+    
+

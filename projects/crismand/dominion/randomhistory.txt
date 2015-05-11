@@ -1,0 +1,86 @@
+David Crisman
+CS 362 Assignment 4
+5/4/2015
+
+This file is a summary of the random tests I wrote for dominion.c, specifically two card effect functions.
+
+********************************************
+Card Effect - Adventurer [  pAdventurer()  ]
+
+********************************************
+
+Random Test History:
+
+For my random tests I initialize a game state and then randomize several elements of the game state.  I then call the Adventurer card effect function pAdventurer and check the game state that results from the call for expected conditions.  Just before calling the adventurer card, I use memcopy to record the game state just before.  I can then use that with projected changes to evaluate whether or not the adventurer card acted as it should've.  My random tester runs 1000 times.  Let's take a closer look:
+
+I initially randomized the phase, the number of actions, the coins, the number of buys, the handCount and every card in the hand.  I also randomized the deckCount and every card in the deck and the discardCount and every card in the discard.  After running my tests I realized that this caused some signficant unforseen results.  
+
+First and foremost, when the hand is randomized there may be no treasure cards inside it.  This results in an infinite loop in the pAdventurer function as it searches for a treasure card.  This in and of itself is a bug as the code should have a counter that fills toward the deck Count so it will stop when it has searched the deck and found no treasure cards.  This is a potential real game scenario that isn't covered, and I'll call this [Bug 1]  It's worse than that however, because somehow cards were being lost as they were searched resulting in a deck count of ridiculously low numbers.  Obviously, there is a bug somewhere that is causing that, but I didn't identify where it is.  My hunch is that cards are being trashed when they should be being discarded.  This bug which hasn't been officially identified yet is [Bug 2]
+
+These first two bugs were the result of my development of random testing, but I couldn't even run my random tester until I coded it to avoid those situations.  Realizing the problem I had, I randomized the handCount and deckCount beyond the cards that were intitially present and randomized all these extra cards.  This allowed my randomizer to run as expected.  
+
+The game conditions I checked for following these tests were checking to be sure that 2 cards were added to the hand, and the adventurer card was discarded.  Meaning the hand should have 1 more card than the game state prior to the card effect.  This test failed 100% of the time on 1000 tests. [Bug 3]
+
+The second and third tests check to see if the top two cards of the hand are treasure cards.  This should be the case if the card effect was accurately executed.
+
+The card one down from the top card was a treasure card 816 times out of 1000.  Something isn't working right there, but it isn't consistently bad.  This is likely a hard to catch bug as some tests will result in false positives.  [Bug 4]
+
+The top card was a treasure card only 550 times out of 1000.  Again, something isn't working right there, but it isn't consistently bad.  This is also likely to be a hard to catch bug as some tests will result in false positives.  [Bug 5]
+
+Next I check to see if the discard pile has more cards than it did before.  Since we don't know how long the card effect has to cycle through the draw pile before finding treasure cards, we can't predict how many cards should have been added to the discard pile, only that it must be more than it was before.  Specifically, if the first two cards on the draw pile were treasures, the discard pile will be 1 more because of the adventurer card being discarded.  This test passed 1000 times out of 1000.  However, this doesn't really tell us much since there are so many variables outside our control.  Probably could do better on this aspect with white box testing instead of black box.
+
+The next three tests check the number of actions, the number of coins, and the number of buys.  Since no treasure cards have been played, only added to the hand, only the number of actions should be changed.  It should be reduced by 1.  
+
+The number of actions test failed 100% of the time, and the coins and buys test passed 100% of the time.  There must be a bug in decreasing the number of actions.  This is a significant bug to game play.  [Bug 6]
+
+The last test checks to make sure the deck did not change.  No cards should have been purchaesd or trashed, so the overall deck count should be the same.  Unfortunately, it failed 100% of the time.  In inspecting the test cases, it seems that every time the deck count is at 0.  There is a serious bug here.  [Bug 7]
+
+--------------
+
+Coverage:
+
+The pAdventurer function was called 1000 times (as expected) and returned 100% of those times.  100% of the blocks were executed all 1000 times.
+
+This was as good of coverage as I could've hoped.  However, my random testing (like the unit testing) was black box, so I didn't expect the much less.  In looking at the code, there isn't a way for it to return without reaching the end of the function.  This means not much can be learned from this coverage except that it was as good as could've been hoped.  Certainly if it was less than 100%, it would be a problem.
+
+
+
+***********************************************
+Card Effect - Council Room [  pCouncilRoom()  ]
+
+***********************************************
+
+Random Test History:
+
+I chose to test the Council Room card for my second test.  This card increases the current player's hand by 4 cards and 1 buy, and increases each other player's hand by 1.  
+
+My testing premise was much the same as the adventurer card.  Initialize a game state, randomize certain aspects of the game state, make a copy of the game state, run the pCouncilRoom() function, then check the results against expected results.  Repeat 1000 times.  There were 8 tests.
+
+The first test checked the hand count to make sure a net of + 3 were added to the hand of the current player (+4 cards - 1 for the Council Room card that should've been discarded).  This test passed 100% of the 1000 tests.  
+
+The second and third tests checked the discard pile expecting to find one additional card and for that card to be the council room card.  Both of these tests failed 100% of the time.  This may be only one bug [Bug 1]
+
+The fourth test checks the other player's hand to be sure there is one more card.  It passed 100% of the time.
+
+The next three tests check the number of actions, the number of coins, and the number of buys.  Only the number of actions should be changed.  It should be reduced by 1.  
+
+The number of actions test failed 100% of the time.  There must be a bug in decreasing the number of actions.  This is a significant bug to game play.  [Bug 2]
+
+The number of coins was accurate to expected amount.  No bug there.
+
+The number of buys was not increased by 1.  There is a bug here.  [Bug 3]
+
+Lastly I check the deck count to be sure it is unchanged.  It failed 100% of the time.  The reason is unknown.  [Bug 4]
+
+This card effect was less buggy than the adventurer card perhaps because the function is simpler.  More testing, perhaps white box testing or code review could root out the cause of the above bugs.
+
+
+
+Coverage:
+
+The pCouncilRoom function was called 1000 times (as expected) and returned 100% of those times.  100% of the blocks were executed all 1000 times.
+
+This was as good of coverage as I could've hoped.  However, my random testing (like the unit testing) was black box, so I didn't expect the much less.  In looking at the code, there isn't a way for it to return without reaching the end of the function.  This means not much can be learned from this coverage except that it was as good as could've been hoped.  Certainly if it was less than 100%, it would be a problem.
+
+
+
