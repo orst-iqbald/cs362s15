@@ -2,7 +2,15 @@ Jason MacManiman
 CS362 Assignment 4
 05/10/15
 
-randomtestcard.c was successfully implemented. Remaining issues: I can't see to get the .out
+randomtestcard.c was successfully implemented. A game state is instantiated and
+the number of cards and treasture cards are counted for a random player in the game.
+The smithy card function is called, and then the cards/treasure are checked again.
+If the counts are incorrect afterward (if the treasure is less or if the player doesn't
+end up with 2 more cards following the discard) the errors are tallied up at the end.
+Right now the test iterates 1000 times but that can easily be changed to higher values
+to find more errors.
+
+Remaining issues: I can't see to get the .out
 files to be created even though I have checked the makefile multiple times. 
 
-randomtestadventurer.c has yet to be implemented. 
+randomtestadventurer.c also has yet to be implemented. 
