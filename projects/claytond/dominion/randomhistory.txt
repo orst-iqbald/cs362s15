@@ -1,0 +1,29 @@
+Darnel Clayon
+CS362 Software Engineering II
+randomhistory.txt
+
+randomtestadventurer.c
+RANDOM adventurerCard()
+
+File 'dominion.c'
+Lines executed:21.53% of 576
+Branches executed:19.76% of 417
+Taken at least once:16.79% of 417
+Calls executed:10.31% of 97
+dominion.c:creating 'dominion.c.gcov'
+
+Greater coverage (~2%) was achieved with a small number of iterations. With every iteration there is an initialization of the gamestate. I confidently conclude that with a greater amount of coverage with more iterations and initializations of the gamestate.
+
+
+randomtestcard.c
+RANDOM smithyCard()
+
+Lines executed:34.14% of 577
+Branches executed:34.05% of 417
+Taken at least once:23.26% of 417
+Calls executed:20.00% of 95
+dominion.c:creating 'dominion.c.gcov'
+
+Much like the implementation of the adventurerCard() testing, there is an 
+initialization of the gamestate with every iteration. However, coverage is not improved. This shows that the initial test is efficient in it methods and does not leave much to improve on.
+

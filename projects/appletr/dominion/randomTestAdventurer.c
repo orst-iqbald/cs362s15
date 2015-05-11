@@ -61,7 +61,7 @@ int main()
 	
 	struct gameState G;
 
-	printf ("Testing updateCoins.\n");
+	printf ("Testing checkAdventurer.\n");
 
 	printf ("RANDOM TESTS.\n");
 
@@ -85,12 +85,16 @@ int main()
 		G.discardCount[p] = floor(Random() * MAX_DECK);
 		for(i = 0; i < G.deckCount[p]; i++)
 		{
+			G.discard[p][i] = floor(Random() * 26); //fill discard with random cards
+		}
+		for(i = 0; i < G.deckCount[p]; i++)
+		{
 			G.discard[p][i] = floor(Random() * 26);
 		}
 		G.handCount[p] = floor(Random() * MAX_HAND);
 		for(i = 0; i < G.handCount[p]; i++)
 		{
-			G.hand[p][i] = floor(Random() * 26); //fill hand with random cards
+			drawCard(p, &G); //fill hand with random cards
 		}
 		r = checkAdventurer(p, &G);
 		if(r == 0)

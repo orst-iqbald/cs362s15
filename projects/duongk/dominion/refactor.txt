@@ -5,7 +5,7 @@ The five cards I will be refactoring is the smithy, adventurer, remodel, village
 Smithy:
 	Movee smithy  to an void function outside the switch, called smithy_card then introduced a bug that would allow the person to draw 4 cards changing i=0; i<3 to i=0;i<4. 
 Adventurer:
-	Moved adventeruer to an void function outside the switch, called adventurer_card, introduced a change to the while loop, from z-1>=0 to z-1>=1 so the card will be trashed.
+	Moved adventeruer to an void function outside the switch, called adventurer_card, introduced a change that discards all cards that have been drawn except for 1.
 Village:
 	Moved village to an void function outside the switch, called village_card, made it so the card will allow an extra draw
 Remodel:

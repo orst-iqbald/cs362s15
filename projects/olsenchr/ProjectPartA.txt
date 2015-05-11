@@ -1,0 +1,18 @@
+1) The URL validator determines whether a URL is valid or invalid by comparing against a Java regular expression. The optional constructor lets users pass in custom parameters for testing.
+
+2) The testing function runs 38 tests. There are:
+        2 "google.com" URLs
+        1 "logoworks" URL
+        1 tech.yahoo URL
+        1 "somewhere" URL
+        8 testValidator248 URLs
+        9 testValidator288 URLs
+        14 testValidator276 "file" local URLs
+        1 testBug1 URL
+        1 testBug2 URL
+
+3) URLs are built using their constituent parts - there is a Java collection of string parts appended to each other in a do...while loop under the testIsValid function.
+
+4) An example of a valid URL is "http://www.google.com". An invalid URL is "file:///C:\\some.file".
+
+5) In general, unit tests seem to be better for finding bugs or errors related to certain inputs - but real-world tests might be better at ensuring that program output is correct and logical. A program might complete without experiencing any bugs, but it could return unexpected or illogical results.
