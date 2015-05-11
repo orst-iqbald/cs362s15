@@ -1,4 +1,7 @@
-﻿Explain testIsValid Function of UrlValidator test code:
+﻿Project Part A
+Team: Eric Nelson, Jason Dorweiler, Robin Counts
+
+Explain testIsValid Function of UrlValidator test code:
 
 
 An array of test objects of the testUrlParts array are passed as the major parameter for this method, with a secondary options argument. The first thing the code does is assert that the original isValid method will operate correctly given a known valid url. A do while loop for going through a number of tests in incrementTestPartsIndex begins with a for loop runs that creates an array of urls and places them into testBuffer. The testBuffer is converted to a string (line 104) and an assertion is then made to check that the isValid function finds this to be a valid url. What follows after this are some optional print statements that will show whether the result was the same as expected.
