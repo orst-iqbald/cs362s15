@@ -29,7 +29,7 @@ int weightedRand(int ranges[], int rangesLen, int weights[], int weightsLen);
 //debug purposes
 void printGameState(struct gameState* gs);
 
-//tests cardSmithy()
+//tests cardAdventurer()
 int main() {
     int i;
     struct gameState* gs = malloc(sizeof(struct gameState));
@@ -40,13 +40,13 @@ int main() {
     
     srand(42);
     
-    printf("Testing randomtestcard.c:\n");
+    printf("Testing randomtestadventurer.c:\n");
     printf("FAILED TESTS: ");
     
     for (i = 0; i < 1000; ++i) {
         genRandState(gs);
         //make sure smithy is in current player's hand
-        handpos = insertCardRand(gs, smithy);
+        handpos = insertCardRand(gs, adventurer);
         player = gs->whoseTurn;
         //make a copy of the gameState
         memcpy(gs0, gs, sizeof(struct gameState));
@@ -54,11 +54,19 @@ int main() {
         //printGameState(gs0);
         //printGameState(gs);
         
-        res = cardSmithy(gs, handpos);
+        res = cardAdventurer(gs, handpos);
         assert(res == 0);
         
         //printGameState(gs0);
         //printGameState(gs);
+        
+        int deltaDeck = gs->deckCount[player] - gs0->deckCount[player];
+        int deltaDiscard = gs->discardCount[player] - gs0->discardCount[player];
+        int deltaHand = gs->handCount[player] - gs0->handCount[player];
+        int deltaPlayed = gs->playedCardCount - gs0->playedCardCount;
+        
+        if (deltaDeck + deltaDiscard + deltaHand + deltaPlayed != 0)
+            printf("");
                  
         if (gs->deckCount[player] != 0 || gs->discardCount[player] != 0) {
             //deck/discard should go down by 3 cards total
@@ -78,10 +86,18 @@ int main() {
         if (gs->playedCardCount - gs0->playedCardCount != 1) {
             printf("%i*, ", i);
         }
+        
+        if (state->discardCount[player] != 1)
+            printf("62: discardCount = %i, expected 1\n", 
+                    state->discardCount[player]);
+        if (state->deckCount[player] != 1)
+            printf("65: deckCount = %i, expected 1\n", state->deckCount[player]);
+        if (state->handCount[player] != 2)
+            printf("67: handCount = %i, expected 2\n", state->handCount[player]);
     }
     
     printf("\n*Failed due to playedCardCount\n");
-    printf("%i test runs of randomtestcard.c executed\n\n", i);
+    printf("%i test runs of randomtestadventurer.c executed\n\n", i);
     
     return 0;
 }
