@@ -1262,7 +1262,8 @@ int updateCoins(int player, struct gameState *state, int bonus)
 
 int smithyCard(struct gameState *state, int currentPlayer, int handPos){
     //+3 Cards
-    for (int i = 0; i < 3; i++)
+    int i;
+    for (i = 0; i < 3; i++)
     {
         drawCard(handPos, state);
     }
