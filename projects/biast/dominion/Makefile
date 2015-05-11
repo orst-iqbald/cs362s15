@@ -104,8 +104,27 @@ unittestresults.out:
 	rm *.gcov
 	
 	
-randomtestcard.out: randomtestcard.c dominion.o rngs.o
+randomtestcard: randomtestcard.c dominion.o rngs.o
 	gcc -o randomtestcard -g randomtestcard.c dominion.o rngs.o $(CFLAGS)
+
+randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+	
+randomtestcard.out: randomtestcard.c dominion.o rngs.o
+	make all
+	./randomtestcard
+	echo SMITHY TEST >> randomtestcard.out
+	gcov -b dominion.c >> randomtestcard.out
+	gcov -fb dominion.c >> randomtestcard.out
+	rm *.gcov
+	
+randomtestadventurer.out: randomtestadventurer.c dominion.o rngs.o
+	make all
+	./randomtestadventurer
+	echo ADVENTURER TEST >> randomtestadventurer.out
+	echo -b dominion.c >> randomtestadventurer.out
+	echo -fb dominion.c >> randomtestadventurer.out
+	rm *.gcov
 
 	
 player: player.c interface.o
@@ -113,7 +132,7 @@ player: player.c interface.o
 
 oldAll: playdom player testDrawCard testBuyCard badTestDrawCard unittest1 unittest2 unittest3 unittest4
 
-all: playdom player unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 randomtestcard.out
+all: playdom player unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 randomtestcard randomtestadventurer
 
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
