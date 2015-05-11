@@ -1,0 +1,31 @@
+Project Part A
+CS 362
+Group Members: Darnel Clayton, Jon Derderian, Varun Gadiraj
+
+1. Give how many total number of urls it is testing. Also, explain how it is building all the urls.
+
+	There are 31920 urls, plus 2 hard coded urls. We found this by making a count variable in the while
+	loop and printing out the number. Then there are the 2 hard coded asserts on lines 87 and 88. 
+	For building the urls, it stores 5 parts in the array, Object[] testUrlParts, which is made up of a
+	scheme, authority, port, path and query. It loops through list of parts and adds it to the array, 
+	and runs it through the tester, and the urls can be valid or invalid. 
+
+2. Give an example of valid url being tested and an invalid url being tested by testIsValid() method
+
+	An example of a valid url being tested is: http://www.google.com:80/test1?action=view, where
+	the scheme is "http://", the authority is "www.google.com", the port is ":80", the path is 
+	"test1" and the query is "?action=view". Here each part of the array is valid and creates a valid url.
+	
+	An example of an invalid url being tested is: http:/256.256.256.256:-1/../?action=view, where 
+	the scheme is "http:/", the authority is "256.256.256.256", the port is ":-1", the path is
+	"/../" and the query is "?action=view". Here, the scheme, authority, port and path are all invalid,
+	so the url is invalid.
+
+3. Do you think that a real world test (URL Validator's testIsValid() test in this case) 
+is very different than the unit tests and card tests that we wrote (in terms of concepts 
+& complexity)? Explain in few lines.
+
+	The concepts of each are similar as both this real world test and our unit tests and card tests
+	loop through a series of options stored in arrays. The URL Validator is more complex however, and 
+	tests a lot more cases than the tests that we have created. The dominion tests are also closed in 
+	a controlled environment, so there isn't as much variability in it compared to URL Validator.

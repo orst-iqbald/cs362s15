@@ -1,0 +1,23 @@
+1. Go through instructor video of explaining URL Validation testing. Explain testIsValid Function of UrlValidator test code. It is available under christia/UrlValidator folder. 
+Takes in an object of testURLParts and some options. The testURLParts object contains arrays of various parts of URLs: scheme, authority, port, path, path options and query parameters. Each array contains several valid/invalid forms paired with their respective truth values. The testIsValidURL build random URLs by combining one index from each array, asserting the validity of each built URL along the way.
+
+2. Give how many total number of urls it is testing. Also, explain how it is building all the urls.
+It is testing 31,921 URL combinations. This was discovered by running the test with a counter variable within the do-while loop and outputting the total count at completion.
+
+3. Give an example of valid url being tested and an invalid url being tested by testIsValid() method.  UrlValidator code is a direct copy paste of apache commons url validator code. The test file/code is also direct copy paste of apache commons test code. 
+valid: http://www.google.com:65535/t123
+	scheme: http://
+	authority: www.google.com
+	port: 65535
+	path: /t123
+	query: blank
+	
+invalid: 3ht://go.a1a:80/$23?action=edit&mode=up
+	scheme: 3ht://
+	authority: go.a1a ---------------> (false/INVALID)
+	port:80
+	path: /$23
+	query: ?action=edit&mode=up
+
+4. Do you think that a real world test (URL Validator's testIsValid() test in this case) is very different than the unit tests and card tests that we wrote (in terms of concepts & complexity)? Explain in few lines. 
+	In terms of concepts, the testIsValid() function is very similar to the types of tests we are writing for Dominion. There are elements of random testing and a clear objective to isolate smaller functions of the larger codes base for robust unit testing. As for complexity, while the tests we have written thus far are well-meaning, our take is that the testIsValid() function is far more robust than anything we have done up to this point. 
