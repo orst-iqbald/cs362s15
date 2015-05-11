@@ -41,8 +41,8 @@ This file tests adventurer()
 	only 1 treasure card was added to the deck. Both the handCount test failed, and by manually checking the deck for treasure cards, only 1 was found.
 	-There is another bug, when maximizing the deck with estate cards. Since there are no treasure cards in the deck, the function should not return
 	cards to the players hand. The function doesn't seem to cover this option. It must be assumed that treasure cards are always in the deck.
-	-When there are no cards in the deck, the function should shuffle the deck, discard, and add a card. There is a bug when dealing with this situation, because
-	the handCount after the function call is made is a negative number. 
+	-When there are no cards in the deck, the function should shuffle the deck, discard, and add a card. There is a bug when dealing with this aspect of the function,
+	because	the handCount after the function call is made is a negative number. 
 	
 
 cardtest3.c 

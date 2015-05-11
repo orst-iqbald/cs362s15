@@ -72,7 +72,7 @@ int main()
 	//player 1
 	int p1 = 1; 
 	G.whoseTurn = p1;
-	//Run tests for players 3 with no treasure cards	
+	//set player 1 and 2 handCount to equal the 2 additional coin cards that should be added by adventurer()
 	pre.handCount[0] += 2;
 	pre.handCount[1] += 2;
 	
@@ -99,7 +99,7 @@ int main()
 		printf("Fail: pre.handCount = %d post.handCount = %d\n", pre.handCount[p1], G.handCount[p1]);
 	}
 	
-	//Check if 2 actual treasure cards were added to the hand.
+	//Test if 2 actual treasure cards were added to the hand.
 	if(count != 2) {
 		printf("Tesing player 1\n");
 		printf("Fail: count = %d\n", count);
