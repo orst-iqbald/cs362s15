@@ -10,3 +10,6 @@ However, I did realize that my random generation of gameStates needs work. For i
 
 To remedy this, I created a new function called weightedRand(). It allows you to apply weights to ranges of numbers, so that you can have it return a random number between 0 and 9 95% of the time and a random number between 10 and 100 5% of the time. I then used this inside of my genRandState() function.
 
+My oracle for randomtestadventurer.c checks four things.  1) The cumulative change in the number of cards in the deck/discard/hand. 2) The change in the number of cards in the hand. 3) The change in the number of cards in the played card pile. 4) the change in the number of treasure cards in the hand.  If a test set fails, I print the test set number followed by symbols designate the particular tests that failed in that set.
+
+And for coverage, it manages to hit every statement and every branch. I noticed something interesting in the coverage stats. The statement "drawntreasure++;" was executed 3000 times. Since the card is only supposed to draw a maximum of 2 treasures when played, you'd expect this statement to only be executed no more than 2000 times. That tells me that the condition that controls the loops is not right (and this is in fact the case). So coverage stats can even lead you straight to a bug if you know what to look for.

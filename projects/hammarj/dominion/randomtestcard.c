@@ -51,14 +51,8 @@ int main() {
         //make a copy of the gameState
         memcpy(gs0, gs, sizeof(struct gameState));
         
-        //printGameState(gs0);
-        //printGameState(gs);
-        
         res = cardSmithy(gs, handpos);
         assert(res == 0);
-        
-        //printGameState(gs0);
-        //printGameState(gs);
                  
         if (gs->deckCount[player] != 0 || gs->discardCount[player] != 0) {
             //deck/discard should go down by 3 cards total

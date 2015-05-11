@@ -29,6 +29,10 @@ int weightedRand(int ranges[], int rangesLen, int weights[], int weightsLen);
 //debug purposes
 void printGameState(struct gameState* gs);
 
+//counts the number of treasure cards in the hand of the current player of the
+//gameState
+int handTreasureCount(struct gameState* gs);
+
 //tests cardAdventurer()
 int main() {
     int i;
@@ -37,6 +41,15 @@ int main() {
     int handpos;
     int player;
     int res;      //return value of function
+    int deltaDeck;
+    int deltaDiscard;
+    int deltaHand;
+    int deltaPlayed;
+    int deltaHandTreasure;
+    int isGoodCardCount;
+    int isGoodHandCount;
+    int isGoodPlayedCardCount;
+    int isGoodHandTreasureCount;
     
     srand(42);
     
@@ -44,6 +57,11 @@ int main() {
     printf("FAILED TESTS: ");
     
     for (i = 0; i < 1000; ++i) {
+        isGoodCardCount = 1;
+        isGoodHandCount = 1;
+        isGoodPlayedCardCount = 1;
+        isGoodHandTreasureCount = 1;
+        
         genRandState(gs);
         //make sure smithy is in current player's hand
         handpos = insertCardRand(gs, adventurer);
@@ -60,43 +78,43 @@ int main() {
         //printGameState(gs0);
         //printGameState(gs);
         
-        int deltaDeck = gs->deckCount[player] - gs0->deckCount[player];
-        int deltaDiscard = gs->discardCount[player] - gs0->discardCount[player];
-        int deltaHand = gs->handCount[player] - gs0->handCount[player];
-        int deltaPlayed = gs->playedCardCount - gs0->playedCardCount;
+        deltaDeck = gs->deckCount[player] - gs0->deckCount[player];
+        deltaDiscard = gs->discardCount[player] - gs0->discardCount[player];
+        deltaHand = gs->handCount[player] - gs0->handCount[player];
+        deltaPlayed = gs->playedCardCount - gs0->playedCardCount;
         
-        if (deltaDeck + deltaDiscard + deltaHand + deltaPlayed != 0)
-            printf("");
-                 
-        if (gs->deckCount[player] != 0 || gs->discardCount[player] != 0) {
-            //deck/discard should go down by 3 cards total
-            assert( (gs->deckCount[player] + gs->discardCount[player]) - 
-                    (gs0->deckCount[player] + gs0->discardCount[player]) == -3);
-            //+3 cards but a card also gets played
-            assert(gs->handCount[player] - gs0->handCount[player] == 2);
-        } else {
-            //that is, unless both deck and discard get depleted
-            assert( (gs->deckCount[player] + gs->discardCount[player]) - 
-                    (gs0->deckCount[player] + gs0->discardCount[player]) <= 0);
-            assert( (gs->deckCount[player] + gs->discardCount[player]) - 
-                    (gs0->deckCount[player] + gs0->discardCount[player]) >= -3);
-            assert(gs->handCount[player] - gs0->handCount[player] >= -1);
-            assert(gs->handCount[player] - gs0->handCount[player] <= 2);
-        }
-        if (gs->playedCardCount - gs0->playedCardCount != 1) {
-            printf("%i*, ", i);
-        }
+        if (deltaDeck + deltaDiscard + deltaHand != -1)
+            isGoodCardCount = 0;
+        //the played adventurer card leaves the hand
+        if (deltaHand < -1 || deltaHand > 1)
+            isGoodHandCount = 0;
+        if (deltaPlayed != 1)
+            isGoodPlayedCardCount = 0;
         
-        if (state->discardCount[player] != 1)
-            printf("62: discardCount = %i, expected 1\n", 
-                    state->discardCount[player]);
-        if (state->deckCount[player] != 1)
-            printf("65: deckCount = %i, expected 1\n", state->deckCount[player]);
-        if (state->handCount[player] != 2)
-            printf("67: handCount = %i, expected 2\n", state->handCount[player]);
+        deltaHandTreasure = handTreasureCount(gs) - handTreasureCount(gs0);
+        
+        if (deltaHandTreasure < 0 || deltaHandTreasure > 2)
+            isGoodHandTreasureCount = 0;
+        
+        if (!isGoodCardCount || !isGoodHandCount || 
+            !isGoodPlayedCardCount || !isGoodHandTreasureCount) {
+            printf("%i", i);
+            if (!isGoodCardCount)
+                printf("^");
+            if (!isGoodHandCount)
+                printf("+");
+            if (!isGoodPlayedCardCount)
+                printf("*");
+            if (!isGoodHandTreasureCount)
+                printf("$");
+            printf(" ");
+        }
     }
     
-    printf("\n*Failed due to playedCardCount\n");
+    printf("\n^Failed due to cumulative deck/discard/hand count\n");
+    printf("+Failed due to hand count\n");
+    printf("*Failed due to played card count\n");
+    printf("$Failed due to the change in the number of treasures\n");
     printf("%i test runs of randomtestadventurer.c executed\n\n", i);
     
     return 0;
@@ -212,4 +230,20 @@ void printGameState(struct gameState* gs) {
     printf("deckCount[p]: %i\n", gs->deckCount[p]);
     printf("discardCount[p]: %i\n", gs->discardCount[p]);
     printf("playedCardCount: %i\n", gs->playedCardCount);
+}
+
+int handTreasureCount(struct gameState* gs) {
+    int i;
+    int player = gs->whoseTurn;
+    int card;
+    int treasureCt;
+    
+    for (i = 0; i < gs->handCount[player]; ++i) {
+        card = gs->hand[player][i];
+        if (card == copper || card == silver || card == gold) {
+            ++treasureCt;
+        }
+    }
+    
+    return treasureCt;
 }
