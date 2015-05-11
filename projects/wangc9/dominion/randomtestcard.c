@@ -1,4 +1,4 @@
-#include "dominion.h" 
+#include "dominion.h"
 #include "dominion_helpers.h"
 #include <string.h>
 #include <stdio.h>
@@ -14,7 +14,7 @@ int main() {
 	int i, j, p, r;
 	int card_num, smithypos;
 	int temp_coins;
-	int temp_handcount;
+	int temp_handcount, temp_deckcount;
 	struct gameState gs;
 	int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, treasure_map, tribute, smithy};
 	srand(time(NULL));
@@ -39,8 +39,11 @@ int main() {
 			printf("\n--------------Before Smithy--------------\n");
 			printf("Player # %d\n", (p + 1));
 			printf("Actions: %d\n", gs.numActions);
+			printf("Deck Count: %d\n", gs.deckCount[p]);
+			temp_deckcount=gs.deckCount[p];
 			printf("Hand Count: %d\n", gs.handCount[p]);
 			temp_handcount=gs.handCount[p];
+			
 			//Printing the hand
 			for(i = 0; i < gs.handCount[p]; i++){
 				card_num = gs.hand[p][i];
@@ -58,8 +61,13 @@ int main() {
 			printf("--------------After Smithy--------------\n");
 			printf("Player # %d\n", (p + 1));
 			printf("Actions: %d\n", gs.numActions);
+			printf("Deck Count: %d, ", gs.deckCount[p]);
+			if (temp_deckcount+3==gs.deckCount[p])
+				printf("which is expected\n");
+			else 
+				printf("which is NOT expected\n");
 			printf("Hand Count: %d, ", gs.handCount[p]);
-			if (temp_handcount+2==gs.handCount[p])
+			if (temp_handcount+3==gs.handCount[p])
 				printf("which is expected\n");
 			else 
 				printf("which is NOT expected\n");
