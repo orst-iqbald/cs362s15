@@ -1,0 +1,17 @@
+Ian Taylor
+05/10/2014
+CS 362 Software Engr 2
+
+-- RANDOM TESTS
+
+-- SMITHY CARD --
+I developed the random test to randomize the number of player and the handPos -- I noticed that this latter variable sometimes caused errors only for certain values with certain players. The tests cyclced through a series of hands in order to progressively move from player to player. Of course my tests check the number of cards in the player's hand, but I added a check to test the number of avaialble actions as well. Even though I know I did not introduce an error here -- and of course my tests did not report any errors in the actions number -- I did feel it important to consider as many aspects of the player's state that could be accidentally modified by the smithyCard() function. 
+
+Gcov results: function smithyCard called 400 returned 100% blocks executed 100%
+These results indicate good coverage of this function, meaning my tester looked at it thoroughly. 
+
+-- ADVENTURER CARD --
+I developed my random adventurer tester similar to the smithy card tester. However, I also chose to randomize the amount of drawnTreasure that would then be used to call the adventurerCard() function. This allowed me to test a variety of cases in the adventurerCard() function, such as when drawnTreasure >= 2, in which case no treasure is drawn, drawnTreasure == 1, in which only 1 treasure is drawn, and drawnTreasure == 0, in which 2 treasures are drawn. 
+
+function adventurerCard called 400 returned 100% blocks executed 93%
+This is still high coverage, though it is possible there are some cases I may have missed. I only modified handPos and drawntreasure, which are used to call this function, so perhaps randomizing some of the other variables would increase the coverage here too. 
