@@ -1,8 +1,0 @@
-Matthew Ahle
-CS 362 Assignment 3
-4/24/2015
-
-bug1.txt
-
-A bug in the "smithy" card causes too few cards to be drawn. Also, the "drawntreasure" card does not
-work because the temp hand is too small.

@@ -1,5 +1,0 @@
-Khang Duong
-Quiz 2
-4/26/15
-
-In testme.c, it creates a random test that causes an error message to be printed. Characters chosen at random were '[', '(', '{', ' ', 'a', 'x', '}', ')', ']'. inputString is looking for r, e, s, e, t, \0 so I placed them in an array and had the order chosen at random and then return it. In the testMe() function the while loop causes the the test to run until the error message gets printed which happens to be at state 9 and with the string 'reset'.

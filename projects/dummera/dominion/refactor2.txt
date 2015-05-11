@@ -1,5 +1,0 @@
-Error 1: smithyCard(): for (i=0; changed to for (i=1;
-Error 2: adventurerCard(): while(drawntreasure<2) changed to while(drawntreasure<=2)
-Error 3: villageCard(): drawCard(currentPlayer, state); duplicated line
-Error 4: great_hallCard(): //drawCard(currentPlayer, state); error in commenting out
-council_roomCard() implemented without error

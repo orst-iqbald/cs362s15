@@ -1,2 +1,0 @@
-Result for running random village tests:
-randomtestcard: randomtestcard.c:58: main: Assertion `c == handCount + 1' failed.

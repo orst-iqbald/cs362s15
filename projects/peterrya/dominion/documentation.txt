@@ -1,9 +1,0 @@
-Smithy - The player who plays this card draws three cards by calling drawcard three times.
-
-Adventurer - The player who plays this card draws cards from the top of their deck with the drawCard function until two treasure cards have been drawn. If a non-treasure card is drawn it is stored in a temporary hand that is discarded after two treasures have been drawn
-
-
-discardCard() - This function is send a handPos (int), the currentPlayer (int), the gameState (state), and a trashFlag (int). The trashFlag is used to determine whether to trash the card or not. The hand position, player, and state are used to find the card being discarded and discard it. If the trashFlag is less than one the card is added to playedCards. If the card being discarded is the last card in the array or there is only one card left in the hand the handCount will be lowered by one. Otherwise the next card will take the discarded cards place, it's former place will become "-1" and the handCount will be reduced by 1
-
-
-updateCoins() - This function takes a player (int), gameState(state) and a bonus (int). sets the coins to zero and then loops throught the players hand adding one to coind for every copper found, two for every silver and three for every gold. At the end the bonus is added to the coins

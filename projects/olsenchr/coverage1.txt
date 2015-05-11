@@ -1,3 +1,0 @@
-Upon running gcov, I saw that my tests largely covered most of the code paths in the source code. The boundary case results showed that the tests could be expanded upon to provide better results. However, statement and branch results were satisfactory.
-
-Many of the tests showed 100% coverage; however, any gaps were likey due to inadequate test cases, not necessarily incomplete paths. Analyzing the gcov files themselves shows how many times each statement was run, line by line.

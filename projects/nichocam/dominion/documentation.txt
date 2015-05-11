@@ -1,7 +1,0 @@
-Smithy - The smithy code first uses a loop to call drawCard to the current player 3 times. It then calls discardCard to discard the Smithy card that was just played.
-
-Adventurer - This card draws cards and then sorts them into either the player's hand if it is a treasure, or a temporary hand if it isn't. Once two treasure cards are obtained the temporary hand is discarded. The temporary hand is there to prevent the cards from being shuffled in with the rest of the discard. If the deck runs out of cards before 2 treasures are found the shuffle function is invoked.
-
-discardCard() - First checks if the card has been flagged to be trashed. If it hasn't then it copies the played card from the player's hand into the playedCards and increments the count of played cards. It changes the card in the hand to -1. It then decrements the card count in the players hand, while making sure the played card was the last one in the hand.
-
-updateCoins() - This function starts by setting the coin count to 0. It then goes through the player's hand and for every copper it adds one coin to the coin count. Two for silver and three for gold. It then adds any bonus which is an argument passed in.

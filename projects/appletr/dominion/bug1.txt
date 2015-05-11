@@ -1,4 +1,0 @@
-Bugs found:
-Using cardTest1:
-	seg fault in drawCard
-	

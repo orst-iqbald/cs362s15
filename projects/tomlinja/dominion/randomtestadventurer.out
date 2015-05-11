@@ -1,2 +1,0 @@
-Result for running random adventurer tests:
-randomtestadventurer: randomtestadventurer.c:55: main: Assertion `c == handCount + 2' failed.

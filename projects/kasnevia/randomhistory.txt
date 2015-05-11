@@ -1,0 +1,41 @@
+randomhistory.txt
+
+Per the assignment instructions, I have written random tests for the Adventurer card and another card (the Village card).  
+
+====
+randomtestadventurer.c - testing Adventurer Card
+
+As part of the previous assignments, I inserted errors into the Adventurer card function.  The first error results in the Adventurer card drawing three treasure cards instead of the two treasure cards required by the rules of the game.  A second error inserted was that the other cards drawn by the Adventurer card function while searching for the two treasure cards were not properly discarded.  
+
+My random testing program checks the following aspects of the Adventurer card:
+1) The Adventurer card properly adds two treasure cards to the player's hand
+2) The Adventurer card properly increments the player's hand count
+
+The first error is caught by the random testing program, by checking the total number of treasure cards held by the tested player before and after the Adventurer card is played.  And the second error is caught in a similar manner, but checking the total number of cards in the tested player’s hand before and after the Adventurer card is played.  
+
+The testing is made random using a random system time-based seed and the 
+rand() function in the following ways:
+1) Random game initialization seed
+2) Random number of players
+3) Randomly selected test player
+
+As shown by the data written to the output file, my random testing program causes 17.59% of the lines, and 17.75% of the branches, of the overall dominion.c file to be executed.  This coverage is better when considered within the limited scope of the Adventurer card function, and addresses both important steps of this card’s activity.  
+
+====
+randomtestcard.c - testing Village Card
+
+In the previous assignment, I inserted an error into the Village card function so that it only generates one action for the player playing this card instead of the two actions that are required under the rules of the game.  Also, this function will not properly remove the played Village card from the player’s hand, resulting in that player holding an improper number of cards.  
+
+My random testing program checks the following aspects of the Village card:
+1) The Village card properly adds 2 actions
+2) The Village card does not change the total number of the player's cards
+
+Both of these tests catch errors and fail.  By comparing the selected player’s number of actions before and after the Village card function is called, my program determines that the function does correctly add two actions.  Similarly, by comparing the initial and final hand counts after the Village card function runs, the program determines that the Village card was not properly discarded.   
+
+The testing is made random using a random system time-based seed and the 
+rand() function in the following ways:
+1) Random game initialization seed
+2) Random number of players
+3) Randomly selected test player
+
+As shown by the data written to the output file, my random testing program causes 19.31% of the lines, and 18.23% of the branches, of the overall dominion.c file to be executed.  This coverage is better when considered within the limited scope of the Village card function, and the testing addresses the important steps of this card’s activity.  

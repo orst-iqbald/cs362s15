@@ -1,7 +1,0 @@
-drawCard (unittest1): No bugs found.
-
-scoreFor (unittest 2): score from deck section loops against discardCount instead of deckCount.
-
-fullDeckCount (unittest3): No bugs found.
-
-buyCard (unittest4): No bugs found.

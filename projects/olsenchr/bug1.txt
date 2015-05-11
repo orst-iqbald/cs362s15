@@ -1,5 +1,0 @@
-- Smithy card does not subtract from the current player's actions
-- Remodel card can be played while the player has an empty hand
-- Remodel can be played on an empty pile
-- cutpurse does not increase player's coins
-- cutpurse does not cause other players to lose cards

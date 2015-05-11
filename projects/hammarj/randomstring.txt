@@ -1,5 +1,0 @@
-In inputChar(), I just have it randomly return one of the nine characters that are capable of changing the state.  So the state variable will quickly work it's way up to 9.
-
-In inputString(), I get a little more sophisticated.  I create a string with room for five characters and a null character.  Then, in a loop, I assign characters to that string.  In each loop iteration, if I roll a 5 through 9, then the correct character is assigned to that spot.  If I roll a 0 through 4, then I assign a character from "reset" corresponding to the number I rolled (so a 0 yields 'r', a 1 yields 'e', etc.).  Finally after the loop I append a null character to the end.  So, it won't take long for a string with the value of "reset" to be returned.
-
-Once the state is set to 9 and the string returned is "reset", the error message will be produced.

@@ -1,2 +1,0 @@
-Bugs Found:
-discardCard: Does not discard properly if flag is 0.

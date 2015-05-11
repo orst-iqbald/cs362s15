@@ -1,7 +1,0 @@
-Smithy: The Smithy card allows to player to draw exactly 3 cards. The player receives no additional actions and no additional buys. This is achieved by calling the drawCard() function 3 times within a for loop.
-
-Adventurer: The player draws cards from his/her deck, shuffling whenever the deck becomes empty, until two treasure cards are revealed. Any drawn non-treasure cards are stored in a temporary hand, and once two treasure cards have been drawn, the temporary hand is discarded.
-
-discardCard(): First, a check is made to see if the discarded card gets trashed (i.e. does not return to the player’s deck), or if it goes on the pile of played cards. Next, it is assigned a hand position of -1, meaning it is no longer in the player’s hand. If the card played is the last or second-to-last card in the player’s hand, then the handCount variable is decremented. If there are more than one cards left in the player’s hand, then the hand struct is updated with the position of the next card.
-
-updateCoins(): This function updates the current coin count for each treasure card the player has in his/her hand, as well as adding any bonus gold. Because the same coins variable is used for each player, it is zeroed out at the beginning of this function.

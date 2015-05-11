@@ -1,9 +1,0 @@
-cardtest1.c:
-
-Currently produces a segfault.  This is likely due to refactor changes
-that introduced a bug in the Smithy card.
-
-cardtest2.c:
-
-Currently produces a segfault.  This is likely due to refactor changes
-that introduced a bug in the Adventurer card.

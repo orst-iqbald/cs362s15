@@ -1,6 +1,0 @@
-Quiz 2: Random Testing
-Michael Camilleri
-
-Originally, I wrote the functions inputChar() and inputString() to build a 5 character string from scratch during each iteration by pulling characters from an array consisting of 35 characters . Although the code compiled and executed just fine, the string “reset” would be produced only once in every 35^5 times. 
-
-Because of the obvious problem posed by having the loop run so many times, I redesigned the inputString() function to use guided randomness instead of true randomness. Instead of building the 5 character string from scratch, the inputString() function now begins with the string “reset” and for each character replaces it with a random character 1/3 of the time. One average, the string “reset” will be returned by inputString() and the error message printed approximately git pullonce in every 243 iterations.
