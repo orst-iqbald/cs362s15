@@ -24,7 +24,8 @@ parts to be tested are concatenated to a `StringBuffer` and is then tested
 for validity with `UrlValidator.isValid()`.
 
 ## Total URLs Tested
-`31920`
+In addition to two hard-coded URLs at the top, all the URLs in the do-while loop are tested.  There are 
+`31,920` in the do-while loop, so in total `31,922` URLs are tested.
 
 ## URL Building Explanation
 The URL building is simple - it merely appends the currently selected entry
@@ -33,6 +34,12 @@ The URL building is simple - it merely appends the currently selected entry
 
 ## Example URLs
 __VALID__: `http://google.com/`
+- The scheme is: http:// (valid)
+- The authority is: www.google.com (valid)
+- The port is blank (valid)
+- The path is blank (valid)
+- The query is blank (valid)
+
 
 __INVALID__: ` ` (the empty string)
 
