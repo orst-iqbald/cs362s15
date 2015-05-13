@@ -105,5 +105,23 @@ oldAll: playdom player testDrawCard testBuyCard badTestDrawCard unittest1 unitte
 all: 
 	playdom player unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
 
+randomcoverage: covrandadventure covrandcard
+
+covrandadventure: randomtestadventure
+	./randomtestadventure > randomtestadventure.out
+	gcov -b dominion.c >> randomtestadventure.out
+	cat dominion.c.gcov >> randomtestadventure.out 
+
+covrandcard: randomtestcard
+	./randomtestcard > randomtestcard.out
+	gcov -b dominion.c >> randomtestcard.out
+	cat dominion.c.gcov >> randomtestcard.out
+
+randomtestadventure: randomtestadventure.c dominion.o rngs.o
+	gcc -o randomtestadventure randomtestadventure.c -g dominion.o rngs.o $(CFLAGS)
+
+randomtestcard: randomtestcard.c dominion.o rngs.o
+	gcc -o randomtestcard  randomtestcard.c -g dominion.o rngs.o $(CFLAGS)
+
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
