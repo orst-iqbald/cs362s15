@@ -1,0 +1,155 @@
+David Crisman
+CS 362 Assignment 3
+4/21/2015
+
+This file is a summary of the bugs found from the unit tests I wrote for dominion.c
+
+*********************
+Unit Tests
+*********************
+
+unittest1.c - shuffle()
+
+This test initialized a game state and some game parameters.  It then tests the method shuffle() for a few things. 
+
+First it checks to see what the size of the deck is after initialization.  The shuffle method is called during the initialize game function, so one call to the function has already been made.  Because of this, we ensure that the discard pile is 0.  
+
+Next we call shuffle for two different game stats for Player 1.  We check to make sure the results are different.  We then empty the deck and call it again.  We then ensure that shuffle was able to see that the deck was empty and exited with an error value.  
+
+Shuffle() passed all the tests.  It should be noted that for some reason the deck counts were different between the two players.  It is not clear why this happened, but outside the scope of this unit test.
+
+---------------------------
+
+unittest2.c - endTurn()
+
+This test initialized a game state and some game parameters.  It then tests the method endTurn() for a few things. 
+
+It grabs the current values of the game states (whose turn it is).
+Then it sets the coins and the buys to different amount than would be initialized.
+
+The first test checks to see if the turn is being passed to another player.
+The second test checked to see make sure the coins were reset to 0 for the start of the next players turn.
+The third test checked to make sure the buys were reset to 1 for the start of the next players turn.
+The foruth test made sure the hand was added to the discard pile.
+The fifth test checked to make sure the game could handle if the player number went out of range.  I set it to 5, and checked to see if it would be reset into range.
+
+All the tests passed except 1.  For some reason the number of coins was reset to 4 to start the next player's turn.  This was odd, but no investigation was made.
+
+---------------------------
+
+unittest3.c - isGameOver()
+
+This test initialized a game state and some game parameters.  It then tests the method isGameOver() for a few things:
+
+First, since the game was just initialized, it makes sure it doesn't think it should be over.
+Second, it tests to be sure the situation where there are 0 provinces triggers the game over status.
+Next it checks to see if when there are somehow -1 provinces, the game over status is triggered.
+Next it depletes three piles (duchy, estate, curse) and checks to be sure that triggers the game over status. 
+Next it depletes one alternate pile that is a kingdom card instead of a curse (duchy, estate, gardens) to be sure it triggers the game over status.
+Last it adds cards back to gardens, but depletes a card that is not in play for this game along with the original two (duchy, estate, feast).  This should not trigger the game over status.
+
+isGameOver() passed most tests.  It failed when the number of provinces was -1 since that should've triggered a game over (although it may not be possible to get the game into this state).  
+
+It also failed by ending the game when a card that is not in play was set to 0.  This also may not be possible to do in any game state). 
+
+---------------------------
+
+unittest4.c - buyCard()
+
+This test initialized a game state and some game parameters.  It then tests the method buyCard() for a few things:
+
+First, I give game state 1 50 coins and 11 buys.  Then I try and buy 11 smithy cards.  It only allows me to buy 10.  Test Passed.
+Then I test to see if the number of buys and number of coins for game 1 is reduced appropriately.  They were. Test Passed
+Next I use game state 2 to try and buy a province I can't afford, an adventurer card I can't afford, then a mine card I can afford.  All tests pass. 
+Then I try to buy a mine when I can't afford it, and a curse when I have no buys.  Both tests pass.
+Last I try and buy a feast, which isn't in the set of kingdom cards.  It doesn't let me do that.
+
+All my tests pass for this function.
+
+----------------------------
+
+
+*********************
+Card Tests
+*********************
+
+cardtest1.c - pSmithy()
+
+This test initializes a game sate and some game parameters.  It then tests the effect card for smithy pSmithy().
+
+First it grabs a bunch of game state variables before smithy is played so they can be used to check the state after playing the card.  
+
+Then it plays smithy.  
+
+The first test checks to see if three cards were added to the hand (actually 2 since the smithy should be discarded).  This test FAILED.
+The second test checks to see if 1 card was added to the discard.  This test FAILED.
+The third and final test checks to see if the deck is the same size as it was before (since no cards should be added or removed from the deck).  This test also FAILED.  
+
+Overall I found three bugs in smithy.
+
+----------------------------
+
+cardtest2.c - pAdventurer()
+
+This test initializes a game sate and some game parameters.  It then tests the effect card for adventurer pAdventurer().
+
+First it grabs a bunch of game state variables before adventurer is played so they can be used to check the state after playing the card.  
+
+Then it plays the adventurer card.  
+
+The first test checks to see if 2 cards were added to the hand.  This test FAILED.
+The second and third tests check to see if the top two cards in the hand are treasure cards. Both these tests PASSED each time.
+The third test checks to see if at least one card was added to the discard (difficult to predict how many should be added, but at least 1.  This test PASSED.
+The fourth and fifth tests check to make sure the coins and number of buys were not altered.  These tests PASSED.
+The sixth and final test checks to see if the deck is the same size as it was before (since no cards should be added or removed from the deck).  This test FAILED.
+
+******Important Note ******
+The above tests would not even run initially because there is a seg fault bug that occurs when you first try to run the code.  It did not say in the instructions for this assignment that we should fix any bugs so I left it.  Actually I fixed it temporarily to get the above tests to run, then I put it back.  The problem is that the variable z is not initialized, so it immediately goes out of bounds.  
+
+*****Edit****
+
+I had to fix this bug for the make file to automatically run the tests.
+
+Overall my tests found 3 bugs, but since the current deck is limited in size and initializes in a predictable way, I may have encountered some false positives...
+
+-----------------------------
+
+cardtest3.c - pFeast()
+
+First it grabs a bunch of game state variables before feast is played so they can be used to check the state after playing the card.  
+
+Then it plays the feast card.  
+
+The first test checks to see if it allows me to buy a card with feast that I should not be able to afford. The card is a gold.  
+The second test is very similar, but it tries to buy a card that is even more expensive, the province card.
+The third test depletes the smithy pile, then tries to buy one.
+The fourth test tries to buy a village card, which should be allowed.  After buying it, the test checks to make sure it is in the discard pile.
+The fifth test checks to make sure the hand was decremented by one.
+The sixth test checks the discard pile to make sure it has exactly the one card.
+The seventh and eigth tests check to make sure the coins and buys were not altered.
+The eighth test makes sure the deck has the same number of cards (+1 Village, -1 Feast)
+
+The first test caused an infinite loop inside the pFeast() function which did not allow any further tests to execute.  Evidently, if the card is too expensive, it just keeps trying even though it hasn't gotten any more money.  This was an unfortunate result, and a nasty bug.
+
+*****Edit****
+After seeing that this bug would cause big problems for automatically creating my test results file, I decided to fix it. 
+
+As a result, now two tests fail.  The number of coins were changed after playing feast, and the number of buys were changed.  All others passed.
+
+----------------------------
+
+cardtest4.c - pCouncilRoom()
+
+First it grabs a bunch of game state variables before council room is played so they can be used to check the state after playing the card.  
+
+Then it plays the council room card.  
+
+The first test checks to see if 4 cards were added to the hand.  It expects that the council room card was discarded.  
+The second test checks to see if the council room card was added to the discard.  If there is a card there, it verifies that it was the council room card.
+The third test checks to see if the other player has an additional card.
+The fourth test checks to see if the number of coins was altered (shouldn't have been).
+The fifth test checks to make sure the number of buys was incremented.
+The sixth test checks to make sure the total deck has the same number of cards. (none should have been added, or trashed).
+
+Of the above tests, several failed.  The discard pile did not have the expected 1 card, the number of buys was not incremented by 1, and the deck number was not what it should've been.
+
