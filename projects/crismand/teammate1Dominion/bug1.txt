@@ -1,0 +1,97 @@
+//Author:                 Howard Chen
+//Class/Assignment:       CS362/Assignment 3
+//Term:                   Spring 2015
+//File Name:              bug1.txt
+
+-------------------------------------------------------------------------------
+unittest1.c: scoreFor()
+I tested the scoreFor() function. I created a random decks, hands, discards,
+and number of players. To test the scoreFor() function, we had to calculate
+each players total score according to their randomized deck, hand, and discard.
+Two structs were created. A before struct (that is implemented in the unit
+test, and an after struct that is calculated within dominion.c. If the before
+and after were not equal, then there would be bug reported. There were no bugs
+in the scoreFor() function.
+
+-------------------------------------------------------------------------------
+unittest2.c: getWinners()
+The second unit test was used to test the getWinners() function. Random decks,
+hands, discards, and number of players were created. To test getWinners()
+function, we would calculate the highscore out of all the players. Again, 2
+structs were used. The before struct was implemented in the unit test and the
+after struct is calculated within dominion.c. If the before did not equal the
+after, then a bug is reported. There were no bugs in the getWinners() function.
+
+-------------------------------------------------------------------------------
+unittest3.c: gainCard()
+The third unit test was used to test the gainCard() function. Random decks,
+hands, discards, and number of players were created. To test the gainCard()
+function, we have set a variable 'outCome' to the called function gainCard().
+Like the previous two unit tests, we use 2 different structs. One is
+implemented within the function and the other implemented within dominion.c.
+If the two values did not equate, then a bug is reported. There were no bugs
+in gainCard().
+
+-------------------------------------------------------------------------------
+unittest4.c: isGameOver()
+This unit test was used to test the isGameOver() function. This time we
+randomly generate the supply cards count for each specific type of card.
+In the actual test, we need to see if the provinces have 0 or 3 of
+a specific supply card had 0. We used the before struct to compare to the
+called after struct. If the 2 structs did not equate in the 'provinces' then
+a bug is reported for 'provinces.' If the 2 structs did not equate for at least
+3 specific supply cards equaling 0, then a bug is reported for the supply
+cards. There was no bug in the isGameOver() function.
+
+-------------------------------------------------------------------------------
+NOTE: For the unittest[i].c, where i = 1 and i <= 4, the number of iterations
+  can be adjusted. Each of these unit tests ran 100 iterations. 
+
+-------------------------------------------------------------------------------
+cardtest1.c: cardAdventurer()
+The first card test, tested the cardAdventurer() function. Again, decks, hands,
+discards, and number of players were randomly generated. For the Adventurer
+card, we had to test to see if the action drew 2 treasure cards and then 
+discarded the Adventurer card. We used 2 structs to test for bugs. The before
+struct was implemented within the test, while the after struct was referenced
+from dominion.c. Bugs were found in cardAdventurer(). This was no surprise 
+since I introduced these bugs in Assignment 2. There was one bug that was
+caught that had not been introduced previously. The original dominion.c 
+implementation did not discard the Adventurer card after it was played. The
+program caught this mistake and reported it.
+
+-------------------------------------------------------------------------------
+cardtest2.c: cardSmithy()
+The second card test was testing the cardSmithy() function. Again, decks, 
+hands, discards, and number of players were randomly generated. For the Smithy
+card, we had to test whether it add 3 drawn cards and discards the Smithy card.
+I had changed the implementation in the dominion.c file for both attributes, so
+it was no surprise that the card test caught both of errors.
+
+-------------------------------------------------------------------------------
+cardtest3.c: cardVillage()
+This card test was used to test the cardVillage() function. Once again, decks, 
+hands, discards, and number of players were randomly generated. To test the 
+Village card, we needed to see if the actions added 1 drawn card, 1 action, and
+then discarded. I had changed the implementation for the Village card to draw 3
+cards instead of 1 and it added 4 actions instead of 2. The unit test caught
+bugs and did not display the discard error message because the Village card
+discarded just fine.
+
+-------------------------------------------------------------------------------
+cardtest4.c: cardGreatHall()
+The final card test, tested the cardGreatHall() function. The game itself was
+created randomly. To test the Great Hall card, we needed to see if the actions
+added 1 drawn card, 1 action, and then discarded. I had changed the 
+implementation to add 0 cards and 3 actions. The card test caught both these
+errors however, I found another bug that was present in the original dominion.c
+The original implementation added 0 actions, even though it should have added
+1. Because my unit test will report whether there were too many or too little
+actions added, the error was reporting that there were too little actions
+added (it was suppose to be too many).
+
+-------------------------------------------------------------------------------
+NOTE: For cardtest[i].c where i = 1 and i <= 4, these tests were run on a
+single iteration.    
+
+

@@ -1,0 +1,59 @@
+cardEffect(...) refactor 4-9-2015
+
+Add the following function prototypes to dominion_helpers.h which correspond to action cards:
+int effectSmithy(struct gameState *state, int handPos);
+int effectAdventurer(struct gameState *state, int handPos);
+int effectCouncilRoom(struct gameState *state, int handPos);
+int effectGreatHall(struct gameState *state, int handPos);
+int effectCutpurse(struct gameState *state, int handPos);
+
+Implement each function inside dominion.c
+Each function receives the state and the hand position. Using the state each function calls whoseTurn() to get the currentPlayer when necessary.
+
+
+Bug introduction:
+
+Smithy
+------
+An off by one error on the loop here would be the obvious choice. However we can also change the results of the simulation by failing to discard the smithy.
+Our current simulations do not have +action cards, but when they do this bug will become even more prevelant as smithy will be useable multiple times.
+Without a discard the order the cards fill the discard pile is augmented, causing the change in the simulation.
+
+discardCard(handPos, currentPlayer, state, 0); at the end of the function would fix this bug.
+
+Adventurer
+----------
+The adventurer card selects the next 2 treasure cards from your deck and discards the remaining cards. When it draws cards it looks at the top of the current players hand.
+I have introduced a bug where it decrements the current players handCount when it is looking at the top of the deck. This bug might be difficult to notice at first, but has
+an enormous impact on the simulation. Each time the Adventurer card looks for a treasure card in the deck it is reducing the size of the current players hand.
+
+cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer] - 1]; would fix this bug by not modifying state->handCount[currentPlayer]
+This bug is particularly difficult to catch as it requires an understanding of the state struct.
+
+CouncilRoom
+-----------
+The CouncilRoom card draws 4 cards and provides one more buy. It also allows each other player to draw one card. The secondary draw function is not supposed to give an additional
+card to the player of the card. I have removed the currentPlayer check from the loop so that the player actually receives 5 cards from playing Council Room.
+
+To fix this you would need to rewrite the for loop as follows:
+for(i = 0; i < state->numPlayers; ++i)
+{
+	if(i != currentPlayer)
+	{
+		drawCard(i, state);
+	}
+}
+
+Cutpurse
+--------
+The Cutpurse card gives you two bonus coins and requires that each other player discard a copper. If they do not have a copper to discard they must show their hand to everyone.
+This function is particularly interesting to insert a bug into as it has many nested control structures. However there is already a bug present in the code (which I wont yet fix)
+that was in the dominion base code. In particular calling updateCoins(currentPlayer, state, 2) will update the players coins by recounting the coins in his hand, plus the two extra
+from the action card. However if you play two cutpurses in one turn you only get 2 bonus coins instead of the 4 you are intended to have. There is also another bug in the dominion
+base code inside the for(j = 0; j < state->handCount[i]; ++j) loop. In particular thre is never a situation where j will be equal to state->handCount[i], so no player will ever show
+their hand.
+
+The bug I inserted was swapping the i and the j when checking for a copper, this will likely cause a segmentation fault or undefined behavior at runtime but will compile without issue.
+
+To fix this bug you must pay close attention to the looping variables, in particular you need to change the if statement inside the second for loop as follows:
+if(state->hand[i][j] == copper) { ... }

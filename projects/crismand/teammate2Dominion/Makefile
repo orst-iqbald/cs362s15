@@ -37,14 +37,13 @@ runrandomtests: randomtestadventurer randomtestcard
 	cat dominion.c.gcov >> randomtestadventurer.out
 	cat dominion.c.gcov >> randomtestcard.out
 	
-rununittests: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
+rununittests: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest4
 	./unittest1 > unittestresults.out
 	./unittest2 >> unittestresults.out
 	./unittest3 >> unittestresults.out
 	./unittest4 >> unittestresults.out
 	./cardtest1 >> unittestresults.out
 	./cardtest2 >> unittestresults.out
-	./cardtest3 >> unittestresults.out
 	./cardtest4 >> unittestresults.out
 	gcov -b dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
