@@ -1,0 +1,72 @@
+#Bug Reports of teammates dominion projects
+#Author: Kevin Parks
+
+Teammate: sigelm
+Bug #00001: 
+    Summary: 
+        Seg fault occurs due to decrementing of player's hand count
+    Priority:
+        High
+    Severity:
+        High
+    How to Reproduce:
+        Call effectAdventurer in succession many times with a valid deck to draw from. The deck
+		shall not contain treasure cards or only contain treasure cards near the "end" so that
+		drawnTreasure is called many times.
+    Expected Outcome:
+        The handCount shall be no more than 1 card larger in size and no less than 1 card less in size.
+		The handCount cannot be less than 0.
+		When 2 treasure cards are added and the adventurer card discarded = 1 card larger
+		When 0 treasure cards are drawn and the adventurer card discarded = 1 card less
+    Actual Outcome:
+        The handCount is decremented with every attempt to draw a treasure card. Line 1234 is doing
+		this as it uses the decrement unary operator when dereferencing the card in the "top" of the
+		hand. This is decrementing the state->handCount[currentPlayer] count.
+		
+Bug #00002: 
+    Summary: 
+        Steward cardEffect doesn't handle trashcard case when hand count <= 2 before playing card
+    Priority:
+        High
+    Severity:
+        Medium
+    How to Reproduce:
+        Call cardEffect using steward card when handCount <= 2.
+    Expected Outcome:
+		The handCount cannot be less than 0.
+		Available cards other than the steward card are trashed. The steward card will be discarded.
+		If no more cards are available to trash, the trash discard step is skipped.
+    Actual Outcome:
+        cardEffect -> steward discards whatever is provided in choice2 and choice3, which results
+		in handCount being decremented beyond the logical bound of 0.
+
+Bug #00003: 
+    Summary: 
+        Treasure count in effectAdventurer cannot be calculated
+    Priority:
+        High
+    Severity:
+        Medium
+	Related To: 
+		#00001
+    How to Reproduce:
+        Call cardEffect with adventurer and check treasure count in hand afterwards.
+    Expected Outcome:
+		The hand to contain up to 2 additional treasure cards
+    Actual Outcome:
+        The treasure count always returns 0. Likely due to calculation depending on handCount that
+		is being set to erroneous values by #00001.
+		
+Bug #00004: 
+    Summary: 
+        effectSmithy fails to discard after running
+    Priority:
+        High
+    Severity:
+        Low
+    How to Reproduce:
+        Call cardEffect with smithy card. Monitor handCount and discard count
+    Expected Outcome:
+		3 cards are gained, 1 card is discarded: net +2 cards in hand
+    Actual Outcome:
+        3 cards are gained, 0 cards are discarded: net +3 cards in hand
