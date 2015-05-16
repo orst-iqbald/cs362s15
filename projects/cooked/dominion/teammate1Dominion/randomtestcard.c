@@ -84,7 +84,7 @@ int main()
     memcpy(prev, state, sizeof(struct gameState));
 
     //Call the adventurer card
-    effectCouncilRoom(state, pos);
+    pCouncilRoom(state, pos);
 
     //Check that each player has had their handCount incremented by 1
     for(j = 0; j < state->numPlayers; ++j)

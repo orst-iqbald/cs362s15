@@ -1,126 +1,94 @@
-//Author:                 Howard Chen
-//Class/Assignment:       CS362/Assignment 3
-//Term:                   Spring 2015
-//File Name:              unittest3.c
-
-/*Description: This is a unit test to test the gainCard() in dominion.c.
-Each player will randomly be assign decks, discards, and hands. Also the
-amount of players, supplyCards, and toFlag will also be determined 
-randomly.*/
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
+/* ---------------------------------------------------------------------------------
+ * Unit test for testing the shuffle() function
+ * unittest3: unittest3.c dominion.o rngs.o
+ * 		gcc -o unittest3 -g unittest3.c dominion.o rngs.o $(CFLAGS)
+ *
+ * ---------------------------------------------------------------------------------
+*/
 #include "dominion.h"
 #include "dominion_helpers.h"
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
 #include "rngs.h"
 
-int testGainCard(int supplyPos, struct gameState *after, int toFlag, int player)
-{
-  int outCome;
-  int failTests = 0;
-  struct gameState before;
-  memcpy(&before, after, sizeof(struct gameState));
-
-  outCome = gainCard(supplyPos, after, toFlag, player);
-
-  //check if supply pile is empty or card not used in game
-  if (supplyCount(supplyPos, &before) < 1)
-  {
+int testCompare(const void* a, const void* b) {
+  if (*(int*)a > *(int*)b)
+    return 1;
+  if (*(int*)a < *(int*)b)
     return -1;
-  }
-
-  if (toFlag == 1)
-  {
-    before.deck[player][before.deckCount[player]] = supplyPos;
-    before.deckCount[player]++;
-  }
-  else if (toFlag == 2)
-  {
-    before.hand[player][before.handCount[player]] = supplyPos;
-    before.handCount[player]++;
-  }
-  else
-  {
-    before.discard[player][before.discardCount[player]] = supplyPos;
-    before.discardCount[player]++;
-  }
-
-  //decrease number in supply pile
-  before.supplyCount[supplyPos]--;
-
-  if (outCome != 0)
-  {
-    printf("gainCard() FAIL: GAIN CARD\n");
-    printf("gainCard() INFO: Not Working Properly!\n");
-    failTests = 1;
-  }
-  
-  if (failTests == 0)
-  {
-    //return 0 if no errors
-    return 0;
-  }
-  else
-  {
-    //return 1 if there were errors
-    return failTests;
-  }
+  return 0;
 }
 
-int main()
-{
-  int i;
-  int n;
-  int j;
-  int outCome;
-  int numTests = 1;
-  int supplyPos; 
-  int toFlag;
-  int gameIterations = 100; //change for number of test games
-  struct gameState testGame;
+int main() {
+	int error = 0;
+	//Initialize game variables
+	int numPlayer = 2;
+	int cards[10] = {adventurer, council_room, feast, gardens, mine,
+	 remodel, smithy, village, baron, great_hall};
+	int seed = 12345;
 
-  //display testing message for unittest1
-  printf ("----------------------------------------\n");
-  printf ("FUNCTION gainCard() BEING TESTED...\n");
-  printf ("RANDOM TESTS...unittest3.c\n\n");
+	//Build a gamestate to test with
+	struct gameState *state = malloc(sizeof(struct gameState));
 
-  //this is initializing stream for random number generation
-  SelectStream(2);
-  PutSeed(3);
+	//Deck variables
+	int newDeck[10];
+	int i;
 
-  //testing for 2000 iterations
-  for (n = 0; n < gameIterations; n++)
-  {
-    for (i = 0; i < sizeof(struct gameState); i++)
-    {
-      ((char*)&testGame)[i] = floor(Random() * 256);
-    }
+	//Initialize the gamestate
+	if(initializeGame(numPlayer, cards, seed, state) != 0) 
+	{
+		printf("shuffle(): Game initialization failed.\n");
+		error = -1;
+	}
 
-    //initializing random amount of players
-    j = floor(Random() * MAX_PLAYERS);
-    //initializing random decks
-    testGame.deckCount[j] = floor(Random() * MAX_DECK);
-    //initializing random discards
-    testGame.discardCount[j] = floor(Random() * MAX_DECK);
-    //initializing random hands
-    testGame.handCount[j] = floor(Random() * MAX_HAND);
-    //initializing random supply cards
-    supplyPos = floor(Random() * 25);
-    toFlag = floor(Random() * 3);
-    //call to test gainCard()
-    outCome = testGainCard(supplyPos, &testGame, toFlag, j);
-  }
+	//Reset the prng
+	SelectStream(1);
+	PutSeed((long)seed);
 
- if (outCome == 0)
-  {
-    printf("TEST PASSED\n\n");
-    printf("gainCard() FAILED %d out of %d TEST\n\n", outCome, numTests);
-  }
-  else
-  {
-    printf("gainCard() FAILED %d out of %d TEST\n\n", outCome, numTests);
-  }
-  return 0;
+	//Copy over player 1's shuffled deck
+	for(i = 0; i < 10; ++i)
+	{
+		newDeck[i] = state->deck[0][i];
+	}
+
+	//Sort player 1's deck
+	qsort ((void*)(state->deck[0]), 10, sizeof(int), testCompare);
+
+	//Compare the sorted deck to the shuffled deck, should fail comparison
+	if(memcmp(newDeck, state->deck[0], sizeof(newDeck)) == 0)
+	{
+		printf("shuffle(): Sort failed, player 1's deck is not in sorted order\n");
+		error = -1;
+	}
+
+	//Check for failure when attempting to shuffle an empty deck
+	state->deckCount[0] = 0;
+	if(shuffle(0, state) != -1)
+	{
+		printf("shuffle(): Fails to check that players deck is at least 1 card\n");
+		error = -1;
+	}
+
+	state->deckCount[0] = 10;
+	if(shuffle(0, state) < 0)
+	{
+		printf("shuffle(): An error occured while shuffling player 1's deck\n");
+		error = -1;
+	}
+
+	if(memcmp(newDeck, state->deck[0], sizeof(newDeck)) != 0)
+	{
+		printf("shuffle(): Shuffled deck was not deterministic, shuffle() has failed\n");
+		error = -1;
+	}
+
+	if(error != -1)
+	{
+		printf("shuffle(): All tests passed.\n");
+	}
+
+	free(state);
+	return 0;
 }

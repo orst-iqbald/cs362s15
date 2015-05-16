@@ -47,6 +47,39 @@ Council Room testing:
  	   which is inadvertently increasing the current players number of buys
  	   to a much higher value than intended
 
+buyCard function testing:
+ 100% statement and branch coverage of buyCard() using unittest1.c
+ buycard(): All tests passed.
+
+initializeGame function testing:
+ 100% statement coverage and 98% branch coverage of initializeGame() using
+ unittest2.c
+ initializeGame(): All tests passed.
+
+shuffle function testing:
+ 100% statement and branch coverage of shuffle() using unittest3.c
+ shuffle(): All tests passed.
+
+endTurn function testing:
+ 100% statement and branch coverage of endTurn() using unittest4.c
+ endTurn(): All tests passed.
+
+randomtestadventurer function testing:
+ 100% statement and branch coverage of pAdventurer using randomtestadventurer.c
+ FAILURE: The total number of cards in the deck and discard are incorrect.
+ Prev: 165, Post: 162, Seed: 3305
+ FAILURE: The total number of played cards was not properly incremented.
+ Prev: 2, Post: 2, Seed: 3305
+ FAILURE: The number of treasure cards in the players hand is incorrect.
+ Prev: 7, Post: 4, Seed: 3305
+ FAILURE: The handCount was not properly incremented.
+ Prev: 16, Post: 16, Seed: 3305
+
+randomtestcard function testing:
+ 100% statement and branch coverage of pCouncilRoom using randomtestcard.c
+ FAILURE: The number of buys was not properly incremented.
+ Prev: 4, Post: 7, Seed: 3305
+
 /*-------------------------------------------------------------------------
  * Howard Chen -- Code testing
  *-----------------------------------------------------------------------*/ 	   
@@ -74,4 +107,30 @@ Adventurer card testing:
  bug1: Treasure card count is incorrect
  bug2: Adventurer ard was not discarded (We dont even know the hand positon!)
 
+buyCard function testing:
+ 100% statement and branch coverage of buyCard() using unittest1.c
+ buycard(): All tests passed.
 
+initializeGame function testing:
+ 100% statement coverage and 98% branch coverage of initializeGame() using
+ unittest2.c
+ initializeGame(): All tests passed.
+
+shuffle function testing:
+ 100% statement and branch coverage of shuffle() using unittest3.c
+ shuffle(): All tests passed.
+
+endTurn function testing:
+ 100% statement and branch coverage of endTurn() using unittest4.c
+ endTurn(): All tests passed.
+
+randomtestadventurer function testing:
+ 100% statement and branch coverage of cardAdventurer() using randomtestadventurer.c
+ FAILURE: The total number of cards in the deck and discard are incorrect.
+ Prev: 165, Post: 161, Seed: 3305
+ FAILURE: The total number of played cards was not properly incremented.
+ Prev: 2, Post: 2, Seed: 3305
+ FAILURE: The number of treasure cards in the players hand is incorrect.
+ Prev: 7, Post: 9, Seed: 3305
+ FAILURE: The handCount was not properly incremented.
+ Prev: 16, Post: 20, Seed: 3305

@@ -82,7 +82,7 @@ int main()
     memcpy(prev, state, sizeof(struct gameState));
 
     //Call the adventurer card
-    effectAdventurer(state, pos);
+    pAdventurer(state, pos);
 
     //Count up the treasure cards in the players hand before playing the adventurer
     for(j = 0; j < prev->handCount[prev->whoseTurn]; ++j)

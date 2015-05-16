@@ -1,114 +1,113 @@
-//Author:                 Howard Chen
-//Class/Assignment:       CS362/Assignment 3
-//Term:                   Spring 2015
-//File Name:              unittest4.c
-
-/*Description: This is a unit test to test the isGameOver() in dominion.c.
-Each supply card will have its count randomly generated. Check to see 
-whether provinces are 0 or three supply card categories are 0.*/
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <assert.h>
-#include <math.h>
+/* ---------------------------------------------------------------------------------
+ * Unit test for testing the endTurn() function
+ * unittest4: unittest4.c dominion.o rngs.o
+ * 		gcc -o unittest4 -g unittest4.c dominion.o rngs.o $(CFLAGS)
+ *
+ * ---------------------------------------------------------------------------------
+*/
 #include "dominion.h"
 #include "dominion_helpers.h"
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <math.h>
 #include "rngs.h"
 
-int testIsGameOver(struct gameState *after)
-{
-  int i;
-  int j = 0;
-  int failTests = 0;
-  struct gameState before;
-  memcpy(&before, after, sizeof(struct gameState));
-  int outCome = isGameOver(after);
+int main() {
+	int error = 0;
+	//Initialize game variables
+	int numPlayer = 2;
+	int cards[10] = {adventurer, council_room, feast, gardens, mine,
+	 remodel, smithy, village, baron, great_hall};
+	int seed = 12345;
+	int handCount, discardCount, i, coins = 0;
 
-  //check to see if there no provinces left
-  if (before.supplyCount[province] == 0)
-  {
-    if (outCome != 1)
-    {
-      printf("isGameOver() FAIL: PROVINCE # Test\n");
-      printf("isGameOver() INFO: Not Calculating Correct # of Provinces\n");
-      failTests += 1;
-    }
-  }
-  //check to see if there are any empty supply card categories
-  for (i = 0; i < 25; i++)
-  {
-    if (before.supplyCount[i] == 0)
-    {
-      j++;
-    }
-    //check to see if there are 3 or more supply card categories empty
-    if (j >= 3)
-    {
-      if (outCome != 1)
-      {
-        printf("isGameOver() FAIL: GAME OVER Test\n");
-        printf("isGameOver() INFO: Not Calculating Correct # of Supply Cards\n");
-        failTests += 1;
-      }
-    }
-  }
-  
-  if (failTests == 0)
-  {
-    //return 0 if no errors
-    return 0;
-  }
-  else
-  {
-    //return 1 if there were errors
-    return failTests;
-  }
-}
+	//Build a gamestate to test with
+	struct gameState *state = malloc(sizeof(struct gameState));
 
-int main()
-{
-  int i; 
-  int n; 
-  int j;
-  int outCome;
-  int numTests = 2;
-  int gameIterations = 100; //change for the number of test games
-  struct gameState testGame;
+	//Initialize the gamestate
+	if(initializeGame(numPlayer, cards, seed, state) != 0) 
+	{
+		printf("endTurn(): Game initialization failed.\n");
+		error = -1;
+	}
 
-  //check if supply pile is empty or card not used in game
-  printf ("----------------------------------------\n");
-  printf ("FUNCTION isGameOver() BEING TESTED...\n");
-  printf ("RANDOM TESTS...unittest4.c\n\n");
+	handCount = state->handCount[whoseTurn(state)];
+	discardCount = state->discardCount[whoseTurn(state)];
 
-  //this is initializing stream for random number generation
-  SelectStream(2);
-  PutSeed(3);
-  
-  //testing for 2000 iterations
-  for (n = 0; n < gameIterations; n++)
-  {
-    for (i = 0; i < sizeof(struct gameState); i++)
-    {
-      ((char*)&testGame)[i] = floor(Random() * 256);
-    }
-    //randomly generate each supplyCards count
-    for (j = 0; j < 25; j++)
-    {
-      testGame.supplyCount[j] = floor(Random() * (25 + 1));
-    }
-    //call to test isGameOver()
-    outCome = testIsGameOver(&testGame);
-  }
-  
-  if (outCome == 0)
-  {
-    printf("ALL TESTS PASSED\n\n");
-    printf("isGameOVer() FAILED %d out of %d TEST\n\n", outCome, numTests);
-  }
-  else
-  {
-    printf("isGameOVer() FAILED %d out of %d TEST\n\n", outCome, numTests);
-  }
-  return 0;
+	endTurn(state);
+
+	//Check that the previous players handCount was set to 0
+	if(state->handCount[whoseTurn(state) - 1] != 0)
+	{
+		printf("endTurn(): Failed to set previous players handcount to 0.\n");
+		error = -1;
+	}
+
+	//Check that the previous players discard pile was incremented by handCount
+	if(state->discardCount[whoseTurn(state) - 1] != (handCount + discardCount))
+	{
+		printf("endTurn(): Failed to increment the previous players discardCount appropriately\n");
+		error = -1;
+	}
+
+	//Check that all previous hand cards have been set to -1
+	for(i = 0; i < handCount; ++i)
+	{
+		if(state->hand[whoseTurn(state) - 1][i] != -1)
+		{
+			printf("Failed to set the previous players hand to -1\n");
+			error = -1;
+		}
+	}
+
+	//Check that the state variables have been reset to their defaults, except coins and handCount
+	//Which will be incremented my drawCard(..) and updateCoins(..) at the end of the function
+	if(state->outpostPlayed != 0 ||
+		state->phase != 0 ||
+		state->numActions != 1 ||
+		state->numBuys != 1 ||
+		state->playedCardCount != 0)
+	{
+		printf("endTurn(): Failed to reset the state local variables\n");
+		error = -1;
+	}
+
+	//Check that the current player has an appropriate handCount and coins has been incremented if necessary
+	for(i = 0; i < 5; ++i)
+	{
+		if(state->hand[whoseTurn(state)][i] == copper) { coins++; }
+		if(state->hand[whoseTurn(state)][i] == silver) { coins += 2; }
+		if(state->hand[whoseTurn(state)][i] == gold) { coins += 3; }
+	}
+
+	if(state->handCount[whoseTurn(state)] != 5)
+	{
+		printf("endTurn(): Failed to increment handCount for new player\n");
+		error = -1;
+	}
+
+	if(state->coins != coins)
+	{
+		printf("endTurn(): Incorrectly incremented the coins local variable in state\n");
+		error = -1;
+	}
+
+	endTurn(state);
+
+	//Check that the whoseTurn variable properly looped back upon getting to the last player
+	if(whoseTurn(state) != 0)
+	{
+		printf("endTurn(): Failed to loop back to first player after last players turn\n");
+		error = -1;
+	}
+
+	if(error != -1)
+	{
+		printf("endTurn(): All tests passed.\n");
+	}
+
+	free(state);
+	return 0;
 }

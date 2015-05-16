@@ -1,11 +1,10 @@
-//Author:                 Howard Chen
-//Class/Assignment:       CS362/Assignment 4
-//Term:                   Spring 2015
-//File Name:              randomtestadventurer.c
-
-/*Description: This is a card test to test the cardAdventurer() in dominion.c.
-The test needs to determine whether the cardAdventurer() places the correct
-number of treasure cards and then discards.*/
+/* ---------------------------------------------------------------------------------
+ * Random test for testing the effectAdventurer() function
+ * randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+ *    gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+ *
+ * ---------------------------------------------------------------------------------
+*/
 
 #include "dominion.h"
 #include "dominion_helpers.h"
@@ -13,153 +12,147 @@ number of treasure cards and then discards.*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-#include "rngs.h"
 #include <math.h>
-
-int testCardAdventurer(int currentPlayer, struct gameState *after)
-{
-	int discard = 1;
-	int failTests = 0;
-	int temphand[MAX_HAND];
-	int drawnTreasure = 0;
-	int cardDrawn = 0;
-	int z = 0;
-	struct gameState before;
-	memcpy(&before, after, sizeof(struct gameState));
-
-	while (drawnTreasure < 2)
-	{
-		if (before.deckCount[currentPlayer] < 1)
-		{
-			//if the deck is empty we need to shuffle discard and add to deck
-			shuffle(currentPlayer, &before);
-		}
-
-		drawCard(currentPlayer, &before);
-		//top card of hand is most recently drawn card.
-		cardDrawn = before.hand[currentPlayer][before.handCount[currentPlayer] - 1];
-
-		if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
-		{
-			drawnTreasure++;
-		}
-		else
-		{
-			temphand[z] = cardDrawn;
-			//this should just remove the top card (the most recently drawn one).
-			before.handCount[currentPlayer]--;
-			z++;
-		}
-	}
-
-	while (z > 0)
-	{
-		//discard all cards in play that have been drawn
-		before.discard[currentPlayer][before.discardCount[currentPlayer]++] = temphand[z - 1];
-		z--;
-	}
-
-	discardCard((before.handCount[currentPlayer] - 3), currentPlayer, &before, 0);
-
-	cardAdventurer(currentPlayer, after);
-
-	//check to see if top discard pile is not the same
-	if (after->playedCards[after->playedCardCount - 1] != before.playedCards[before.playedCardCount - 1])
-	{
-		//FAILED: discard card
-		printf("cardAdventurer() FAIL: DISCARD\n");
-		printf("cardAdventurer() INFO: Does NOT DISCARD Card\n");
-		discard = 0;
-		failTests = 1;
-	}
-	else
-	{
-		discard = 1;
-	}
-
-	if (drawnTreasure != 2)
-	{
-		printf("cardAdventurer() FAIL: +2 DRAW TREASURE\n");
-		printf("cardAdventurer() INFO: ERROR in drawntreasure VAR\n");
-		failTests += 1;
-	}
-
-	if (after->hand[currentPlayer][after->handCount[currentPlayer] - 1] != copper ||
-		after->hand[currentPlayer][after->handCount[currentPlayer] - 1] != silver || 
-		after->hand[currentPlayer][after->handCount[currentPlayer] - 1] != gold)
-	{
-		printf("cardAdventurer() FAIL: DRAW TREASURE CARD\n");
-		printf("cardAdventurer() INFO: ERROR not TREASURE DRAWN\n");
-		failTests += 1;
-	}
-
-	//if Adventurer card was properly discarded,
-	if (discard == 1)
-	{
-		//then check to see if hand counts don't match
-		if (before.handCount[currentPlayer] != after->handCount[currentPlayer])
-		{
-			//FAILED: +2 draw
-			printf("cardAdventurer() FAIL: +2 DRAW TREASURE\n");
-			printf("cardAdventurer() INFO: Does NOT ADD CORRECT # of Treasure Cards\n");
-			failTests += 1;
-		}
-	}
-	else
-	{
-		//if Adventure card was not properly discarded, check is handcount has 1 extra
-		if (before.handCount[currentPlayer] != after->handCount[currentPlayer] + 1)
-		{
-			//FAILED: +2 Draw
-			printf("cardAdventurer() FAIL: +2 DRAW TREASURE\n");
-			printf("cardAdventurer() INFO: Does NOT ADD CORRECT # of Treasure Cards\n");
-			failTests += 1;
-		}
-	}
-
-	printf("Fail NUM: %d\n", failTests);
-
-	return failTests;
-}
+#include "rngs.h"
 
 int main()
 {
-	int n;
-	int j;
-	int numTests = 4;
-	int gameIterations = 10; //change for the number of test games
-	struct gameState testGame;
+  int i;
+  int cards[10] = {adventurer, council_room, feast, gardens, mine,
+   remodel, smithy, village, baron, great_hall};
 
-	//display testing message for cardTest2
-	printf("----------------------------------------\n");
-	printf("FUNCTION cardAdventurer() BEING TESTED...\n");
-	printf("RANDOM TESTS...randomtestadventurer.c\n\n");
+  int testCount = 100;
+  printf("*-------\nBegin Adventurer Card Random Testing\n-------*\n");
 
-	//this is initializing stream for random number generation
-	SelectStream(3);
-	PutSeed(3);
+  //Set up the random number generator
+  int seed = 12125;
+  SelectStream(1);
+  PutSeed((long)seed);
 
-	for (n = 1; n <= gameIterations; n++)
-	{
-		int outCome = 0;
+  for(i = 0; i < testCount; ++i)
+  {
+    int j, pos, preTreasure = 0, postTreasure = 0, err = 0;
+    //Build a gamestate to test with
+    struct gameState *state = malloc(sizeof(struct gameState));
+    struct gameState *prev = malloc(sizeof(struct gameState));
+    seed = floor((Random() * 12125) + 1);
 
-		j = floor(Random() * MAX_PLAYERS);
-		testGame.whoseTurn = j;
-		testGame.deckCount[j] = floor(Random() * MAX_DECK / 3);
-		testGame.discardCount[j] = floor(Random() * MAX_DECK / 3);
-		testGame.handCount[j] = floor(Random() * MAX_HAND / 3);
-		testGame.playedCardCount = floor(Random() * 5);
+    int numPlayer = floor((Random() * 3) + 2);
+    initializeGame(numPlayer, cards, seed, state);
 
-		outCome = testCardAdventurer(j, &testGame);
+    state->whoseTurn = floor(Random() * numPlayer);
+    state->handCount[state->whoseTurn] = floor(Random() * (MAX_HAND / 3));
+    state->deckCount[state->whoseTurn] = floor(Random() * (MAX_DECK / 3));
+    state->discardCount[state->whoseTurn] = floor(Random() * (MAX_DECK / 3));
+    state->playedCardCount = floor(Random() * 5);
 
-		if (outCome == 0)
-		{
-			printf("ALL TESTS PASSED\n");
-		}
-		else
-		{
-			printf("TEST #%d: cardAdventurer() FAILED %d out of %d TESTS\n\n", n, outCome, numTests);
-		}
-	}
-	return 0;
+    //Fill the hand with random cards 0 - 17
+    for(j = 0; j < state->handCount[state->whoseTurn]; ++j)
+    {
+      state->hand[state->whoseTurn][j] = floor(Random() * 17);
+    }
+
+    //Fill the deck with random cards 0 - 17
+    for(j = 0; j < state->deckCount[state->whoseTurn]; ++j)
+    {
+      state->deck[state->whoseTurn][j] = floor(Random() * 17);
+    }
+
+    //Fill the discard pile with random cards 0 - 17
+    for(j = 0; j < state->discardCount[state->whoseTurn]; ++j)
+    {
+      state->discard[state->whoseTurn][j] = floor(Random() * 17);
+    }
+
+    //Randomly select a position, set that card to adventurer for our use
+    pos = floor(Random() * state->handCount[state->whoseTurn]);
+    state->hand[state->whoseTurn][pos] = adventurer;
+
+    printf("\nPre-State:\nhandCount: %i\ndeckCount: %i\ndiscardCount: %i\n",
+      state->handCount[state->whoseTurn],
+      state->deckCount[state->whoseTurn],
+      state->discardCount[state->whoseTurn]);
+
+    printf("Cardpos: %i\nPlayer: %i\nplayedCardCount: %i\n",
+      pos,
+      state->whoseTurn,
+      state->playedCardCount);
+
+    //Copy the gamestate
+    memcpy(prev, state, sizeof(struct gameState));
+
+    //Call the adventurer card
+    cardAdventurer(state->whoseTurn, state);
+
+    //Count up the treasure cards in the players hand before playing the adventurer
+    for(j = 0; j < prev->handCount[prev->whoseTurn]; ++j)
+    {
+      if(prev->hand[prev->whoseTurn][j] == copper ||
+         prev->hand[prev->whoseTurn][j] == silver ||
+         prev->hand[prev->whoseTurn][j] == gold)
+      {
+        ++preTreasure;
+      }
+    }
+
+    //Count up the treasure cards in the players hand after playing the adventurer
+    for(j = 0; j < state->handCount[state->whoseTurn]; ++j)
+    {
+      if(state->hand[state->whoseTurn][j] == copper ||
+         state->hand[state->whoseTurn][j] == silver ||
+         state->hand[state->whoseTurn][j] == gold)
+      {
+        ++postTreasure;
+      }
+    }
+
+    if((prev->deckCount[prev->whoseTurn] + prev->discardCount[prev->whoseTurn] - 2) !=
+     (state->deckCount[state->whoseTurn] + state->discardCount[state->whoseTurn]))
+    {
+      printf("FAILURE: The total number of cards in the deck and discard are incorrect.\n");
+      printf("Prev: %i, Post: %i, Seed: %i\n",
+        prev->deckCount[prev->whoseTurn] + prev->discardCount[prev->whoseTurn],
+        state->deckCount[state->whoseTurn] + state->discardCount[state->whoseTurn],
+        seed);
+      err = 1;
+    }
+
+    if((prev->playedCardCount + 1) != state->playedCardCount)
+    {
+      printf("FAILURE: The total number of played cards was not properly incremented.\n");
+      printf("Prev: %i, Post: %i, Seed: %i\n",
+        prev->playedCardCount,
+        state->playedCardCount,
+        seed);
+      err = 2;
+    }
+
+    if((preTreasure + 2) != postTreasure)
+    {
+      printf("FAILURE: The number of treasure cards in the players hand is incorrect.\n");
+      printf("Prev: %i, Post: %i, Seed: %i\n",
+        preTreasure + 2,
+        postTreasure,
+        seed);
+      err = 3;
+    }
+
+    if(prev->handCount[prev->whoseTurn] + 2 != state->handCount[state->whoseTurn])
+    {
+      printf("FAILURE: The handCount was not properly incremented.\n");
+      printf("Prev: %i, Post: %i, Seed: %i\n",
+        prev->handCount[prev->whoseTurn],
+        state->handCount[state->whoseTurn],
+        seed);
+      err = 4;
+    }
+
+    if(err == 0)
+    {
+      printf("PASSED.\n");
+    }
+  }
+
+  printf("*-------\nEnd Adventurer Card Random Testing\n-------*\n");
+  return 0;
 }

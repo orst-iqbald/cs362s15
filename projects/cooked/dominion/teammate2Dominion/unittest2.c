@@ -1,225 +1,242 @@
-//Author:                 Howard Chen
-//Class/Assignment:       CS362/Assignment 3
-//Term:                   Spring 2015
-//File Name:              unittest2.c
-
-/*Description: This is a unit test to test the getWinners() in dominion.c.
-Each player will randomly be assign decks, discards, and hands. Also the
-amount of players will also be determined randomly. This test will get the
-score for each play, find the highscore, and find winner for each game. 
-Then it will call the getWinners function to test.*/
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
+/* ---------------------------------------------------------------------------------
+ * Unit test for testing the initializeGame() function
+ * unittest2: unittest2.c dominion.o rngs.o
+ * 		gcc -o unittest2 -g unittest2.c dominion.o rngs.o $(CFLAGS)
+ *
+ * ---------------------------------------------------------------------------------
+*/
 #include "dominion.h"
 #include "dominion_helpers.h"
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
 #include "rngs.h"
 
-#define TESTING 0
+int main() {
+	int error = 0;
+	//Initialize game variables
+	int numPlayer = 2;
+	int cards[10] = {adventurer, council_room, feast, gardens, mine,
+	 remodel, smithy, village, baron, great_hall};
+	int seed = 12345;
 
-int testGetWinners(int players[MAX_PLAYERS], struct gameState *after)
-{
-  int i;
-  int j;
-  int highScore;
-  int currentPlayer;
-  int playerIdx;
-  int beforeOut;
-  int afterOut;
-  int failTests = 0;
-  struct gameState before;
-  memcpy(&before, after, sizeof(struct gameState));
+	//Build a gamestate to test with
+	struct gameState *state = malloc(sizeof(struct gameState));
 
-  //this is getting score for each player
-  for (i = 0; i < MAX_PLAYERS; i++)
-  {
-    if (i >= before.numPlayers)
-    {
-      players[i] = -9999;
-    }
-    else
-    {
-      players[i] = scoreFor(i, &before);
-    }
-  }
+	//Declare looping variables
+	int i, j;
 
-  //this is to find highScore
-  j = 0;
-  for (i = 0; i < MAX_PLAYERS; i++)
-  {
-    if (players[i] > players[j])
-    {
-      j = i;
-    }
-  }
-  highScore = players[j];
+	//Housekeeping variables for checking hands
+	int copperCount, estateCount;
 
-  //this is adding 1 to players who had less turns
-  currentPlayer = whoseTurn(&before);
-  for (i = 0; i < MAX_PLAYERS; i++)
-  {
-    if ( players[i] == highScore && i > currentPlayer )
-    {
-      players[i]++;
-    }
-  }
+	//Attempt to initialize gamestate with too many players
+	numPlayer = 5;
+	if(initializeGame(numPlayer, cards, seed, state) != -1)
+	{
+		printf("initializeGame(): Failed to check for too many players.\n");
+		error = -1;
+	}
+	numPlayer = 2;
 
-  //this is to find new highScore
-  j = 0;
-  for (i = 0; i < MAX_PLAYERS; i++)
-  {
-    if ( players[i] > players[j] )
-    {
-      j = i;
-    }
-  }
-  highScore = players[j];
+	//Attempt to put in multiple of the same kingdom card
+	cards[1] = adventurer;
+	if(initializeGame(numPlayer, cards, seed, state) != -1)
+	{
+		printf("initializeGame(): Failed to check for duplicate kingdom cards.\n");
+		error = -1;
+	}
+	cards[1] = council_room;
 
-  //this is to insert winners in array to 1 and losers to 0
-  for (i = 0; i < MAX_PLAYERS; i++)
-  {
-    //player that has highScore
-    if ( players[i] == highScore )
-    {
-      //then player gets a 1 for win
-      players[i] = 1;
-    }
-    else
-    {
-      //else they get a 0 for lose
-      players[i] = 0;
-    }
-  }
+	//4 player initialization and curse check
+	numPlayer = 4;
+	if(initializeGame(numPlayer, cards, seed, state) != 0)
+	{
+		printf("initializeGame(): Game initialization failed.\n");
+		error = -1;
+	}
 
-  //loop through all players and find winner
-  for(playerIdx = 0; playerIdx < before.numPlayers; playerIdx++)
-  {
-    if (players[playerIdx] == 1)
-    {
-      if(TESTING) printf("Player %d\n", playerIdx);
-      {
-        beforeOut = playerIdx;
-      }
-    }
-  }
+	//Check that the number of curse cards was set properly
+	if(state->supplyCount[curse] != 30) 
+	{
+		printf("initializeGame(): Number of curse cards is incorrect.\n");
+		error = -1;
+	}
 
-  //loop through all players and reset
-  for(playerIdx = 0; playerIdx < before.numPlayers; playerIdx++)
-  {
-    players[playerIdx] = 0;
-  }
+	//3 player initialization and tests
+	numPlayer = 3;
+	if(initializeGame(numPlayer, cards, seed, state) != 0)
+	{
+		printf("initializeGame(): Game initialization failed.\n");
+		error = -1;
+	}
 
-  //this is the call to getWinners function to find winners in the after struct
-  getWinners(players, after);
+	//Check that the number of curse cards was set properly
+	if(state->supplyCount[curse] != 20) 
+	{
+		printf("initializeGame(): Number of curse cards is incorrect.\n");
+		error = -1;
+	}
 
-  for(playerIdx = 0; playerIdx < before.numPlayers; playerIdx++)
-  {
-    if (players[playerIdx] == 1)
-    {
-      if(TESTING) printf("Player %d\n", playerIdx);
-      {
-        afterOut = playerIdx;
-      }
-    }
-  }
-  
-  if (beforeOut != afterOut) 
-  {
-    printf("getWinners() FAIL: GET WINNERS\n");
-    printf("getWinners() INFO: Not Calculating Winners Properly!\n");
-    failTests = 1;
-  }
-  
-  if (failTests == 0)
-  {
-    //return 0 if no errors
-    return 0;
-  }
-  else
-  {
-    //return 1 if there were errors
-    return failTests;
-  }
-}
+	//Check that the number of estate cards was set properly
+	if(state->supplyCount[estate] != 12) 
+	{
+		printf("initializeGame(): Number of estate cards is incorrect.\n");
+		error = -1;
+	}
 
-int main()
-{
-  int i;
-  int n;
-  int j;
-  int outCome;
-  int numTests = 1;
-  int gameIterations = 100; //change for the number of test games
-  int players[MAX_PLAYERS];
-  struct gameState testGame;
+	//Check that the number of duchy cards was set properly
+	if(state->supplyCount[duchy] != 12) 
+	{
+		printf("initializeGame(): Number of duchy cards is incorrect.\n");
+		error = -1;
+	}
 
-  //display testing message for unittest2
-  printf ("----------------------------------------\n");
-  printf ("FUNCTION getWinners() BEING TESTED...\n");
-  printf ("RANDOM TESTS...unittest2.c\n\n");
+	//Check that the number of province cards was set properly
+	if(state->supplyCount[province] != 12) 
+	{
+		printf("initializeGame(): Number of province cards is incorrect.\n");
+		error = -1;
+	}
 
-  //this is initializing stream for random number generation
-  SelectStream(2);
-  PutSeed(3);
+	//2 player initialization and tests
+	numPlayer = 2;
+	//Initialize the gamestate
+	if(initializeGame(numPlayer, cards, seed, state) != 0) 
+	{
+		printf("initializeGame(): Game initialization failed.\n");
+		error = -1;
+	}
 
-  //testing for 2000 iterations
-  for(n = 0; n < gameIterations; n++)
-  {
-    for(i = 0; i < sizeof(struct gameState); i++)
-    {
-      ((char*)&testGame)[i] = floor(Random() * 256);
-    }
+	//Check that the number of curse cards was set properly
+	if(state->supplyCount[curse] != 10) 
+	{
+		printf("initializeGame(): Number of curse cards is incorrect.\n");
+		error = -1;
+	}
 
-    int numPlayers = 0;
+	//Check that the number of estate cards was set properly
+	if(state->supplyCount[estate] != 8) 
+	{
+		printf("initializeGame(): Number of estate cards is incorrect.\n");
+		error = -1;
+	}
 
-    //making sure to find a random number of players of at least 2
-    while (numPlayers < 2)
-    {
-      numPlayers = floor(Random() * (MAX_PLAYERS+1));
-    }
+	//Check that the number of duchy cards was set properly
+	if(state->supplyCount[duchy] != 8) 
+	{
+		printf("initializeGame(): Number of duchy cards is incorrect.\n");
+		error = -1;
+	}
 
-    //initialize testGame numPlayers to random amount of players
-    testGame.numPlayers = numPlayers;
+	//Check that the number of province cards was set properly
+	if(state->supplyCount[province] != 8) 
+	{
+		printf("initializeGame(): Number of province cards is incorrect.\n");
+		error = -1;
+	}
 
-    //loop to initialize random decks, discards, and hands
-    for (j = 0; j < numPlayers; j++)
-    {
-      testGame.deckCount[j] = floor(Random() * MAX_DECK);
-      testGame.discardCount[j] = floor(Random() * MAX_DECK);
-      testGame.handCount[j] = floor(Random() * MAX_HAND);
+	//Check that the number of copper cards was set properly
+	if(state->supplyCount[copper] != (60 - (7 * numPlayer))) 
+	{
+		printf("initializeGame(): Number of copper cards is incorrect.\n");
+		error = -1;
+	}
 
-      //initializing random hands for each player
-      for (i = 0; i < testGame.handCount[j]; i++)
-      {
-        testGame.hand[j][i] = floor(Random() * MAX_DECK);
-      }
+	//Check that the number of silver cards was set properly
+	if(state->supplyCount[silver] != 40) 
+	{
+		printf("initializeGame(): Number of silver cards is incorrect.\n");
+		error = -1;
+	}
 
-      //initializing random discards for each player
-      for (i = 0; i < testGame.discardCount[j]; i++)
-      {
-        testGame.discard[j][i] = floor(Random() * MAX_DECK);
-      }
+	//Check that the number of gold cards was set properly
+	if(state->supplyCount[gold] != 30) 
+	{
+		printf("initializeGame(): Number of gold cards is incorrect.\n");
+		error = -1;
+	}
 
-      //initializing random deck for each player
-      for (i = 0; i < testGame.discardCount[j]; i++)
-      {
-        testGame.deck[j][i] = floor(Random() * MAX_DECK);
-      }
-    }
-    //function call to test the getWinners()
-    outCome = testGetWinners(players, &testGame);
-  }
+	for(i = adventurer; i <= treasure_map; ++i)		//loop all cards
+	{
+		for(j = 0; j < 10; ++j)		//loop chosen cards
+		{
+			if(cards[j] == i)		//Found a match
+			{
+				//Check if card is a 'Victory' Kingdom card
+				if(cards[j] == great_hall || cards[j] == gardens)
+				{
+					if(state->supplyCount[i] != 8)
+					{
+						printf("initializeGame(): Supply count of a 'Victory' kingdom cards is incorrect\n");
+						error = -1;
+					}
+				}
+				else
+				{
+					if(state->supplyCount[i] != 10)
+					{
+						printf("initializeGame(): Supply count of kingdom cards is incorrect\n");
+						error = -1;
+					}
+				}
+			}
+		}
+	}
 
-  if (outCome == 0)
-  {
-    printf("TEST PASSED\n\n");
-    printf("getWinners() FAILED %d out of %d TEST\n\n", outCome, numTests);
-  }
-  else
-  {
-    printf("getWinners() FAILED %d out of %d TEST\n\n", outCome, numTests);
-  }
-  return 0;
+	//Make sure each player has 7 copper cards and 3 estate cards
+	for(i = 0; i < numPlayer; ++i)
+	{
+		copperCount = 0;
+		estateCount = 0;
+		for(j = 0; j < 10; ++j) 
+		{
+			if(state->deck[i][j] == copper)
+			{
+				++copperCount;
+			}
+
+			if(state->deck[i][j] == estate)
+			{
+				++estateCount;;
+			}
+		}
+
+		if(copperCount != 7 && estateCount != 3)
+		{
+			printf("initializeGame(): Player %i has an inappropriate number of copper or estate cards\n", numPlayer + 1);
+			error = -1;
+		}
+	}
+
+	//Check that each supply card has its embargo tokens initialized to 0
+	for(i = 0; i <= treasure_map; ++i)
+	{
+		if(state->embargoTokens[i] != 0)
+		{
+			printf("initializeGame(): Embargo tokens were not properly initialized\n");
+			error = -1;
+		}
+	}
+
+	//Check miscellaneous state variables, fail if any are incorrect
+	if(state->outpostPlayed != 0 ||
+		state->phase != 0 ||
+		state->numActions != 1 ||
+		state->numBuys != 1 ||
+		state->playedCardCount != 0 ||
+		state->whoseTurn != 0 ||
+		state->handCount[state->whoseTurn] != 5)
+	{
+		printf("initializeGame(): Error in the miscellaneous state variables\n");
+		error = -1;
+	}
+
+	if(error != -1)
+	{
+		printf("initializeGame(): All tests passed.\n");
+	}
+
+	free(state);
+	return 0;
 }

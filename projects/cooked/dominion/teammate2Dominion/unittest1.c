@@ -1,207 +1,107 @@
-//Author:                 Howard Chen
-//Class/Assignment:       CS362/Assignment 3
-//Term:                   Spring 2015
-//File Name:              unittest1.c
-
-/*Description: This is a unit test to test the scoreFor() in dominion.c. Each
-player will have 3 attributes to calculate (hand, deck, and discard). The test
-needs to be able to random create hands, decks, discards, and number of
-players. It will the test to see if the function calculates those scores
-correctly.*/
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
+/* ---------------------------------------------------------------------------------
+ * Unit test for testing the buyCard() function
+ * unittest1: unittest1.c dominion.o rngs.o
+ * 		gcc -o unittest1 -g unittest1.c dominion.o rngs.o $(CFLAGS)
+ *
+ * ---------------------------------------------------------------------------------
+*/
 #include "dominion.h"
 #include "dominion_helpers.h"
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
 #include "rngs.h"
 
-int testScoreFor(int player, struct gameState *after)
-{
-  int i;
-  int outCome = 0;
-  int score = 0;
-  int failTests = 0;
-  struct gameState before;
-  memcpy(&before, after, sizeof(struct gameState));
-  outCome = scoreFor(player, after);
+int main() {
+	int error = 0;
+	//Initialize game variables
+	int numPlayer = 2;
+	int cards[10] = {adventurer, council_room, feast, gardens, mine,
+	 remodel, smithy, village, baron, great_hall};
+	int seed = 12345;
 
-  //this is the score from hand
-  for (i = 0; i < before.handCount[player]; i++)
-  {
-    //curse gets -1 to score
-    if (before.hand[player][i] == curse)
-    { 
-      score = score - 1;
-    }
-    //estate gets +1 to score
-    if (before.hand[player][i] == estate)
-    {
-      score = score + 1;
-    }
-    //duchy gets +3 to score
-    if (before.hand[player][i] == duchy)
-    {
-      score = score + 3; 
-    }
-    //province gets +6 to score
-    if (before.hand[player][i] == province)
-    {
-      score = score + 6;
-    }
-    //great hall gets + 1 to score
-    if (before.hand[player][i] == great_hall)
-    {
-      score = score + 1;
-    }
-    //gardens gets +1 for every 10 cards in deck
-    if (before.hand[player][i] == gardens)
-    {
-      score = score + ( fullDeckCount(player, 0, &before) / 10 );
-    }
-  }
+	//Build a gamestate to test with
+	struct gameState *s = malloc(sizeof(struct gameState));
 
-  //this is the score from discard (same descriptions for cards below)
-  for (i = 0; i < before.discardCount[player]; i++)
-  {
-    if (before.discard[player][i] == curse)
-    {
-      score = score - 1;
-    }
-    if (before.discard[player][i] == estate)
-    {
-      score = score + 1;
-    }
-    if (before.discard[player][i] == duchy)
-    {
-      score = score + 3;
-    }
-    if (before.discard[player][i] == province)
-    {
-      score = score + 6;
-    }
-    if (before.discard[player][i] == great_hall)
-    {
-      score = score + 1;
-    }
-    if (before.discard[player][i] == gardens)
-    {
-      score = score + ( fullDeckCount(player, 0, &before) / 10 );
-    }
-  }
+	int b, c;
 
-  //this is the score from the deck (same descriptions for cards below)
-  for (i = 0; i < before.discardCount[player]; i++)
-  {
-    if (before.deck[player][i] == curse) 
-    { 
-      score = score - 1;
-    }
-    if (before.deck[player][i] == estate)
-    {
-      score = score + 1;
-    }
-    if (before.deck[player][i] == duchy) 
-    {
-      score = score + 3;
-    }
-    if (before.deck[player][i] == province)
-    {
-      score = score + 6;
-    }
-    if (before.deck[player][i] == great_hall)
-    {
-      score = score + 1;
-    }
-    if (before.deck[player][i] == gardens)
-    {
-      score = score + ( fullDeckCount(player, 0, &before) / 10 );
-    }
-  }
-  
-  if (outCome != score)
-  {
-    printf("scoreFor() FAIL: SCORE FOR\n");
-    printf("scoreFor() INFO: NOT CALCULATING CORRECT SCORE\n");
-    failTests = 1;
-  }
-  
-  if (failTests == 0)
-  {
-    //return 0 if no errors
-    return 0;
-  }
-  else
-  {
-    //return 1 if there were errors
-    return failTests;
-  }
-}
+	//Initialize the gamestate
+	if(initializeGame(numPlayer, cards, seed, s) != 0) 
+	{
+		printf("buyCard(): Game initialization failed.\n");
+		error = -1;
+	}
 
-int main()
-{
-  int i; 
-  int n; 
-  int j;
-  int outCome;
-  int numTests = 1;
-  int gameIterations = 100; //change for the number of test games
-  struct gameState testGame;
+	//Set the number of buys to 0
+	s->numBuys = 0;
+	s->coins = 50;
+	if(buyCard(cards[0], s) != -1) 
+	{
+		printf("buyCard(): failing to check for number of buys\n");
+		error = -1;
+	}
+	//Cleanup
+	s->numBuys = 10;
 
-  //display testing message for unittest1
-  printf ("----------------------------------------\n");
-  printf ("FUNCTION scoreFor() BEING TESTED...\n");
-  printf ("RANDOM TESTS...unittest1.c\n\n");
+	//Set the card supply count to 0
+	s->supplyCount[adventurer] = 0;
+	assert(supplyCount(adventurer, s) == 0);
 
-  //this is initializing stream for random number generation
-  SelectStream(2);
-  PutSeed(3);
+	//Test buyCard when the card supply count is 0
+	s->coins = 50;
+	if(buyCard(cards[0], s) != -1) 
+	{
+		printf("buyCard(): failing to check the target cards supply count\n");
+		error = -1;
+	}
+	//Cleanup
+	s->supplyCount[adventurer] = 10;
 
-  //testing for 2000 iterations
-  for(n = 0; n < gameIterations; n++)
-  {
-    for(i = 0; i < sizeof(struct gameState); i++)
-    {
-      ((char*)&testGame)[i] = floor(Random() * 256);
-    }
-    //initializing random number of players up to largest integral value
-    j = floor(Random() * MAX_PLAYERS);
-    //initializing random decks up to the largest integral value
-    testGame.deckCount[j] = floor(Random() * MAX_DECK);
-    //initializing random discards up to the largest integral value
-    testGame.discardCount[j] = floor(Random() * MAX_DECK);
-    //initializing random hands up to the largest integral value
-    testGame.handCount[j] = floor(Random() * MAX_HAND);
+	//Set the current players coin count to 0
+	s->coins = 0;
+	if(buyCard(cards[0], s) != -1) 
+	{
+		printf("buyCard(): failing to check for number of coins available\n");
+		return -1;
+	}
+	//Cleanup
+	updateCoins(whoseTurn(s), s, 0);
 
-    //initializing random hands for each player
-    for (i = 0; i < testGame.handCount[j]; i++)
-    {
-      testGame.hand[j][i] = floor(Random() * MAX_DECK);
-    }
-    //initializing random discards for each player
-    for (i = 0; i < testGame.discardCount[j]; i++)
-    {
-      testGame.discard[j][i] = floor(Random() * MAX_DECK);
-    }
-    //initializing random deck for each player
-    for (i = 0; i < testGame.discardCount[j]; i++)
-    {
-      testGame.deck[j][i] = floor(Random() * MAX_DECK);
-    }
+	//Successfully buy a card and check the discard pile to make sure it was successfully purchased
+	//Use this block to also verify that coins are getting used and that buy is decremented
+	s->coins = 50;
+	b = s->numBuys;
+	c = s->coins;
+	if(buyCard(cards[0], s) == 0) 
+	{
+		if(!(s->discard[whoseTurn(s)][s->discardCount[whoseTurn(s)] == cards[0]])) 
+		{
+			printf("buyCard(): fails to add the card to the discard pile\n");
+		}
 
-    //call to test scoreFor()
-    outCome = testScoreFor(j, &testGame);
-  }
-  
-  if (outCome == 0)
-  {
-    printf("TEST PASSED\n\n");
-    printf("scoreFor() FAILED %d out of %d TEST\n\n", outCome, numTests);
-  }
-  else
-  {
-    printf("scoreFor() FAILED %d out of %d TEST\n\n", outCome, numTests);
-  }
-  return 0;
+		if(s->coins != (c - getCost(cards[0]))) 
+		{
+			printf("buyCard(): coins are not being appropriately decremented\n");
+		}
+
+		if(s->numBuys != (b - 1)) 
+		{
+			printf("buyCard(): buys are not being appropriately decremented\n");
+		}
+	}
+
+	if(s->numBuys < 1 && s->phase != 1) 
+	{
+		printf("buyCard(): The phase is not properly changing once all buys are used\n");
+	}
+
+
+	if(error != -1)
+	{
+		printf("buyCard(): All tests passed.\n");
+	}
+
+	free(s);
+	return 0;
 }
