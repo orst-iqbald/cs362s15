@@ -70,3 +70,36 @@ Bug #00004:
 		3 cards are gained, 1 card is discarded: net +2 cards in hand
     Actual Outcome:
         3 cards are gained, 0 cards are discarded: net +3 cards in hand
+		
+		
+Teammate: duongk
+Bug #00001: 
+    Summary: 
+        Steward cardEffect doesn't handle trashcard case when hand count <= 2 before playing card
+    Priority:
+        High
+    Severity:
+        Medium
+    How to Reproduce:
+        Call cardEffect using steward card when handCount <= 2.
+    Expected Outcome:
+		The handCount cannot be less than 0.
+		Available cards other than the steward card are trashed. The steward card will be discarded.
+		If no more cards are available to trash, the trash discard step is skipped.
+    Actual Outcome:
+        cardEffect -> steward discards whatever is provided in choice2 and choice3, which results
+		in handCount being decremented beyond the logical bound of 0.
+
+Bug #00002: 
+    Summary: 
+        Village card draws 2 cards instead of only 1
+    Priority:
+        High
+    Severity:
+        Low
+    How to Reproduce:
+        Call cardEffect using village card. Monitor handCount before and after call.
+    Expected Outcome:
+		HandCount to increase by 1, Actions to increase by 2
+    Actual Outcome:
+        HandCount increases by 2.
