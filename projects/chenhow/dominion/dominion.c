@@ -1168,23 +1168,22 @@ int cardAdventurer(int currentPlayer, struct gameState *state)
 	int	cardDrawn = 0;
 	int z = 0; //counter for the temp hand
 
-	//refactored to draw 4 treasure cards
 	while (drawntreasure<4){
-		if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
+		if (state->deckCount[currentPlayer] <1){
 			shuffle(currentPlayer, state);
 		}
 		drawCard(currentPlayer, state);
-		cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer] - 1];//top card of hand is most recently drawn card.
+		cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer] - 1];
 		if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
 			drawntreasure++;
 		else{
 			temphand[z] = cardDrawn;
-			state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+			state->handCount[currentPlayer]--;
 			z++;
 		}
 	}
 	while (z - 1 >= 0){
-		state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[z - 1]; // discard all cards in play that have been drawn
+		state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[z - 1]; 
 		z = z - 1;
 	}
 	return 0;
@@ -1194,16 +1193,11 @@ int cardSmithy(int handPos, int currentPlayer, struct gameState *state)
 {
 	int i;
 
-	//+3 Cards
-	//refactored to only draw 2 cards
 	for (i = 0; i < 2; i++)
 	{
 		drawCard(currentPlayer, state);
 	}
 
-	//discard card from hand
-	//refactored to not discard smity card from hand
-	//discardCard(handPos, currentPlayer, state, 0);
 	return 0;
 }
 
@@ -1212,7 +1206,7 @@ int cardMine(int handPos, int choice1, int choice2, int currentPlayer, struct ga
 	int j;
 	int i;
 
-	j = state->hand[currentPlayer][choice1];  //store card we will trash
+	j = state->hand[currentPlayer][choice1];  
 
 	if (state->hand[currentPlayer][choice1] < copper || state->hand[currentPlayer][choice1] > gold)
 	{
@@ -1231,19 +1225,7 @@ int cardMine(int handPos, int choice1, int choice2, int currentPlayer, struct ga
 
 	gainCard(choice2, state, 2, currentPlayer);
 
-	//discard card from hand
 	discardCard(handPos, currentPlayer, state, 0);
-
-	//discard trashed card
-	//refactored to not discard trashed card
-	/*for (i = 0; i < state->handCount[currentPlayer]; i++)
-	{
-		if (state->hand[currentPlayer][i] == j)
-		{
-			discardCard(i, currentPlayer, state, 0);
-			break;
-		}
-	}*/
 
 	return 0;
 }
@@ -1251,33 +1233,22 @@ int cardMine(int handPos, int choice1, int choice2, int currentPlayer, struct ga
 int cardVillage(int handPos, int currentPlayer, struct gameState *state)
 {
 	int i;
-	//+1 Card
-	//refactored to draw 3 cards instead of just 1
+
 	for (i = 0; i < 3; i++)
 	{
 		drawCard(currentPlayer, state);
 	}
 
-	//+2 Actions
-	//refactored to add 4 actions instead of 2
 	state->numActions = state->numActions + 4;
 
-	//discard played card from hand
 	discardCard(handPos, currentPlayer, state, 0);
 	return 0;
 }
 
 int cardGreatHall(int handPos, int currentPlayer, struct gameState *state)
 {
-	//+1 Card
-	//refactored to not draw a card
-	//drawCard(currentPlayer, state);
-
-	//+1 Actions
-	//refactored to add 3 actions instead of 1
 	state->numActions + 3;
 
-	//discard card from hand
 	discardCard(handPos, currentPlayer, state, 0);
 	return 0;
 }
