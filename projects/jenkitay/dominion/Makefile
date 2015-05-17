@@ -36,7 +36,7 @@ player: player.c interface.o
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so unittest1.exe unittest1 unittest2.exe unittest2 unittest3.exe unittest3 unittest4.exe unittest4 cardtest1.exe cardtest1 cardtest2.exe cardtest2 cardtest3.exe cardtest3 cardtest4.exe cardtest4 testDrawCard.exe testDrawCard badTestDrawCard.exe badTestDrawCard unittestresults.out cvrg.txt
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so unittest1.exe unittest1 unittest2.exe unittest2 unittest3.exe unittest3 unittest4.exe unittest4 cardtest1.exe cardtest1 cardtest2.exe cardtest2 cardtest3.exe cardtest3 cardtest4.exe cardtest4 testDrawCard.exe testDrawCard badTestDrawCard.exe badTestDrawCard unittestresults.out cvrg.txt randomtestcard randomtestadventurer randomtestcard.exe randomtestadventurer.exe randomtestcard.txt randomtestadventurer.txt randomhistory.txt randomtestcard.out randomtestadventurer.out
 
 
 unittestresults.out: mytests runmytests cvrg
@@ -66,6 +66,126 @@ ctest3: cardtest3.c dominion.o rngs.o
 
 ctest4: cardtest4.c dominion.o rngs.o
 	gcc -g -std=c99 $(CFLAGS) cardtest4.c dominion.o rngs.o -o cardtest4
+	
+	
+randomtestresults: randomtestcard.out randomtestadventurer.out
+
+.PHONY: randomtestcard.out
+randomtestcard.out: randomtestcard outrandomtestcard cardtxtout
+
+.PHONY: randomtestadventurer.out
+randomtestadventurer.out: randomtestadventurer outrandomtestadventurer adventurertxtout
+
+adventurertxtout:
+	rm -f randomtestadventurer.out
+	cp randomtestadventurer.txt randomtestadventurer.out
+	
+cardtxtout:
+	rm -f randomtestcard.out
+	cp randomtestcard.txt randomtestcard.out
+	
+randomtests: randomtestadventurer randomtestcard
+
+randomtestcard: randomtestcard.c dominion.o rngs.o
+	gcc -g -std=c99 $(CFLAGS) randomtestcard.c dominion.o rngs.o -o randomtestcard
+
+randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+	gcc -g -std=c99 $(CFLAGS) randomtestadventurer.c dominion.o rngs.o -o randomtestadventurer
+
+.IGNORE: outrandomtestcard
+outrandomtestcard: 
+	echo "*********************************************************" > randomtestcard.txt
+	echo "*****                                               *****" >> randomtestcard.txt
+	echo "*****      randomtestcard Results and Coverage      *****" >> randomtestcard.txt
+	echo "*****      See summary at end of each section.      *****" >> randomtestcard.txt
+	echo "*****                                               *****" >> randomtestcard.txt
+	echo "*********************************************************" >> randomtestcard.txt
+	echo "*****                                               *****" >> randomtestcard.txt
+	echo "*****             Begin Results Section             *****" >> randomtestcard.txt
+	echo "*****                                               *****" >> randomtestcard.txt
+	echo "*********************************************************" >> randomtestcard.txt
+	echo " " >> randomtestcard.txt
+	./randomtestcard >> randomtestcard.txt
+	echo " " >> randomtestcard.txt
+	echo "*********************************************************" >> randomtestcard.txt
+	echo "*****                                               *****" >> randomtestcard.txt
+	echo "*****     Begin randomtestcard Coverage Section     *****" >> randomtestcard.txt
+	echo "*****                                               *****" >> randomtestcard.txt
+	echo "*********************************************************" >> randomtestcard.txt
+	echo " " >> randomtestcard.txt
+	gcov -b randomtestcard >> randomtestcard.txt
+	echo " " >> randomtestcard.txt
+	cat randomtestcard.c.gcov >> randomtestcard.txt
+	echo " " >> randomtestcard.txt
+	echo "*********************************************************" >> randomtestcard.txt
+	echo "*****                                               *****" >> randomtestcard.txt
+	echo "*****          Begin rngs Coverage Section          *****" >> randomtestcard.txt
+	echo "*****                                               *****" >> randomtestcard.txt
+	echo "*********************************************************" >> randomtestcard.txt
+	echo " " >> randomtestcard.txt
+	gcov -b rngs >> randomtestcard.txt
+	echo " " >> randomtestcard.txt
+	cat rngs.c.gcov >> randomtestcard.txt
+	echo " " >> randomtestcard.txt
+	echo "*********************************************************" >> randomtestcard.txt
+	echo "*****                                               *****" >> randomtestcard.txt
+	echo "*****        Begin dominion Coverage Section        *****" >> randomtestcard.txt
+	echo "*****                                               *****" >> randomtestcard.txt
+	echo "*********************************************************" >> randomtestcard.txt
+	echo " " >> randomtestcard.txt
+	gcov -b dominion >> randomtestcard.txt
+	echo " " >> randomtestcard.txt
+	cat dominion.c.gcov >> randomtestcard.txt
+	echo " " >> randomtestcard.txt
+	
+
+.IGNORE: outrandomtestadventurer
+outrandomtestadventurer:
+	echo "*********************************************************" > randomtestadventurer.txt
+	echo "*****                                               *****" >> randomtestadventurer.txt
+	echo "*****   randomtestadventurer Results and Coverage   *****" >> randomtestadventurer.txt
+	echo "*****      See summary at end of each section.      *****" >> randomtestadventurer.txt
+	echo "*****                                               *****" >> randomtestadventurer.txt
+	echo "*********************************************************" >> randomtestadventurer.txt
+	echo "*****                                               *****" >> randomtestadventurer.txt
+	echo "*****             Begin Results Section             *****" >> randomtestadventurer.txt
+	echo "*****                                               *****" >> randomtestadventurer.txt
+	echo "*********************************************************" >> randomtestadventurer.txt
+	echo " " >> randomtestadventurer.txt
+	./randomtestadventurer >> randomtestadventurer.txt
+	echo " " >> randomtestadventurer.txt
+	echo "*********************************************************" >> randomtestadventurer.txt
+	echo "*****                                               *****" >> randomtestadventurer.txt
+	echo "*****  Begin randomtestadventurer Coverage Section  *****" >> randomtestadventurer.txt
+	echo "*****                                               *****" >> randomtestadventurer.txt
+	echo "*********************************************************" >> randomtestadventurer.txt
+	echo " " >> randomtestadventurer.txt
+	gcov -b randomtestadventurer >> randomtestadventurer.txt
+	echo " " >> randomtestadventurer.txt
+	cat randomtestadventurer.c.gcov >> randomtestadventurer.txt
+	echo " " >> randomtestadventurer.txt
+	echo "*********************************************************" >> randomtestadventurer.txt
+	echo "*****                                               *****" >> randomtestadventurer.txt
+	echo "*****          Begin rngs Coverage Section          *****" >> randomtestadventurer.txt
+	echo "*****                                               *****" >> randomtestadventurer.txt
+	echo "*********************************************************" >> randomtestadventurer.txt
+	echo " " >> randomtestadventurer.txt
+	gcov -b rngs >> randomtestadventurer.txt
+	echo " " >> randomtestadventurer.txt
+	cat rngs.c.gcov >> randomtestadventurer.txt
+	echo " " >> randomtestadventurer.txt
+	echo "*********************************************************" >> randomtestadventurer.txt
+	echo "*****                                               *****" >> randomtestadventurer.txt
+	echo "*****        Begin dominion Coverage Section        *****" >> randomtestadventurer.txt
+	echo "*****                                               *****" >> randomtestadventurer.txt
+	echo "*********************************************************" >> randomtestadventurer.txt
+	echo " " >> randomtestadventurer.txt
+	gcov -b dominion >> randomtestadventurer.txt
+	echo " " >> randomtestadventurer.txt
+	cat dominion.c.gcov >> randomtestadventurer.txt
+	echo " " >> randomtestadventurer.txt
+	
+
 
 .IGNORE: runmytests
 runmytests: 

@@ -1,0 +1,22 @@
+Megan Conley / conleyme
+Assignment 4
+randomhistory.txt
+
+To make both .out files, type "make assignment4"
+
+Random testing for adventurer:
+
+	Doing this test revealed a flaw in my previous tester for the adventurer card in that I erroneously assumed that if it did not count copper as a treasure card, I would end up with the wrong number of treasure cards in hand. Because the temporary hand is discarded, all coppers are discarded as well. I had to change my conditions for failure to state if 0 coppers were kept in hand. Repeated often enough, at least one draw should end up with coppers in hand if the coppers are treated as treasure cards, which is why my error condition has changed.
+	My first attempt at this test gave me 10.67% coverage of dominion.c. This is because I followed the lecture closely, which instead of calling initializeGame simply filled a gamestate with random information. To increase coverage and best mimic a natural gamestate, I chose to initialize the gamestate and then alter the variables within randomly.
+	The randomized aspects of this test is: hand count, cards in hand, deck count, discard count for 2 players. The current player is randomized, and they are given an adventurer card at a random position in their hand. 
+	The randomized aspects of this test is: hand count, cards in hand, deck count, discard count for 2 players. The current player is randomized, and they are given an adventurer card at a random position in their hand. 
+	Once I added that, the coverage was up to 19.8% of dominion.c, and 92% branch coverage of the adventurer_card function. It was never hitting the case of an empty deck because I was initializing the deck size to anywhere between 0 - MAX_DECK. With enough runs it may hit that condition, but I added an extra case that gives a 25% of an empty deck to ensure that case is covered even if the test is only run a few times.
+	The final coverage of randomtestadventurer.c is 26.07% line coverage, 23.61 branch% coverage with 100% coverage of the adventurer_card function. This is more than the line coverage of my non-random adventurer unit test, which had 21.1% line coverage.
+
+Random testing for other card, cutpurse:
+
+	I also expanded this test to check that the hand count and played card count updated. Originally it also checked for an update to the discardCount until I found that discardCard doesn't actually update this variable at any point, so the lines have been commented out to avoid printing too many times in the .out file.
+	The randomized aspects of this test is: hand count, cards in hand, deck count, discard count for 4 players. The current player is randomized, and they are given a cutpurse card at a random position in their hand. The other players are given a random number of coppers and other cards.
+	The coverage of dominion.c by randomtestcard.c is 19.73% line and 20.24% branch coverage and the coverage of the cutpurse function is 74%. This is a slight improvement over the non-random unit test, which had 19.04% line and 19.28%  branch coverage of dominion.c.
+	This is still due to an unreachable part of the code where the for loop goes between 0 to 1 less than the current player's hand count. It checks for j == hand count, but because it will never reach that, this branch is inaccessible as it was in the non-random testing. However, this is a huge improvement over the original coverage of my first unit test, which was only 47% as I missed a few cases. The random test covers all lines that are not impossible to reach. 
+	

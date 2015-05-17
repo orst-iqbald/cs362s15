@@ -1,0 +1,285 @@
+David Crisman
+CS 362 Assignment 5
+5/14/2015
+
+This report details bugs found in my teammates code, Howard Chen (chenhow).  
+
+Between the card tests I wrote and the refactored card effects Daryl wrote, we overlapped on three functions:  effectSmithy(), effectAdventurer().
+
+Below is a comprehensive report on the bugs.  Discovered bugs are precluded by three exclamation points (!!!).  This can be used to skip through this document to places where bugs are discovered.
+
+I first ran my unit tests on Howard's code.  Below were the initial results:
+
+
+*********************
+
+Testing shuffle() method
+
+*********************
+
+
+
+Warning, all decks do not have the same amount of cards. 
+
+Game 1, Player 1 Deck Count: 5.
+
+Game 1, Player 2 Deck Count: 10.
+
+Game 2, Player 1 Deck Count: 5.
+
+Game 2, Player 2 Deck Count: 10.
+
+Test Passed: Game 1, Player 1 discard pile is 0. 
+
+Test Passed: Game 1, Player 2 discard pile is 0. 
+
+Test Passed: Game 2, Player 1 discard pile is 0. 
+
+Test Passed: Game 2, Player 2 discard pile is 0. 
+
+Shuffle for Game 1, Player 1 successful. 
+
+Shuffle for Game 2, Player 1 successful. 
+
+Test Passed: The two decks were different after calls to shuffle. 
+
+Test Passed: shuffle() observed that the deck was empty. 
+
+
+Analysis - 
+
+The shuffle() functions seemed to operate as expected, but for some reason the deck count between the two players is not consistent.  It is assumed then that the deck count does not include the cards in the hand.  
+Two significant tests passed.  It handled an empty deck appropriately, and shuffling two different times yielded different "random" results.
+
+Coverage - function shuffle called 7 returned 100% blocks executed 100%
+
+
+My tests executed 100% of the blocks from the function shuffle().  This isn't a surprising result from black box testing.  It would only be alarming if it was less than 100%.
+
+*********************
+
+Testing endTurn() method
+
+*********************
+
+
+
+Test Passed, turn passed to another player. 
+
+Test Failed, Coins were not reset. Coins: 4.
+
+Test Passed, Buys were reset to 1.
+
+Test Passed, Hand was discarded.
+
+Test Passed, player reset to 0 after being out of range.
+
+Analysis - 
+
+Only one test failed.  We expected coins to be reset to 0 upon the end of the turn.  For some reason they were at 4.  This could be because the coins are not reset until the beginning of the next hand rather than the end of a hand. 
+
+Coverage - function endTurn called 2 returned 100% blocks executed 100%
+
+My tests executed 100% of the blocks from the function endTurn().  This isn't a surprising result from black box testing.  It would only be alarming if it was less than 100%. 
+
+
+
+
+*********************
+
+Testing isGameOver() method
+
+*********************
+
+
+
+Test Passed, Game 1 was just initialized, it shouldn't be over. 
+
+Test Passed, Game 2 was just initialized, it shouldn't be over. 
+
+Test Passed, Game 1 has no more provinces. 
+
+Test Failed, Game 1 has an invalid number of provinces. 
+
+Test Passed, Game 2 has three piles depleted. 
+
+Test Passed, Game 2 has three piles depleted. 
+
+Test Failed, Game 2 One of the piles that was depleted isn't in play. 
+
+
+Analysis - 
+
+The first test that failed was when we set the number of provinces to -1 and tested to see if it thought the game was over.  It failed in this test.  Of course, there should never be -1 provinces.  The final test depleted three piles.  The duchy pile, the estate pile, and feast pile.  However, the feast pile was not in the game. Unfortunately, the function thought the game should be over in this case.
+
+
+Coverage - function isGameOver called 7 returned 100% blocks executed 100%
+
+
+My tests executed 100% of the blocks from the function isGameOver().  This isn't a surprising result from black box testing.  It would only be alarming if it was less than 100%. 
+
+
+*********************
+
+Testing buyCard() method
+
+*********************
+
+
+
+Buy 1 smithy successful, now have 1. 
+
+Buy 1 smithy successful, now have 2. 
+Buy 1 smithy successful, now have 3. 
+
+Buy 1 smithy successful, now have 4. 
+
+Buy 1 smithy successful, now have 5. 
+
+Buy 1 smithy successful, now have 6. 
+
+Buy 1 smithy successful, now have 7. 
+
+Buy 1 smithy successful, now have 8. 
+
+Buy 1 smithy successful, now have 9. 
+
+Buy 1 smithy successful, now have 10. 
+
+Buy failed. 
+
+Test Passed, buy should be 1 or fewer.
+
+Test Passed, coins should be 10 or fewer. 
+
+Test Passed, didn't have the money for a province.
+
+Test Passed, didn't have the money for an adventurer card.
+
+Test Passed, allowed to buy mine.
+
+Test Passed, didn't allow me to buy mine when I couldn't afford it.
+
+Test Passed, didn't allow me to buy curse when I had no buys.
+
+Test Passed, didn't allow me to buy feast when it wasn't in the set of kingdom cards.
+
+
+
+Analysis - 
+
+All tests passed for this function.
+
+Coverage - function buyCard called 17 returned 100% blocks executed 100%
+ 
+
+My tests executed 100% of the blocks from the function buyCard().  This isn't a surprising result from black box testing.  It would only be alarming if it was less than 100%. 
+
+*************************
+
+Next I ran my card tests and random tests for the below cards.  Displayed are the results and analysis:
+
+
+*********************
+
+Testing Smithy card effect
+
+*********************
+
+
+
+
+Test Passed, hand has 2 additional cards 
+
+Test Failed, something else happened; 1 card was not added to the discard. 
+
+Test Failed, something else happened; Player 1 from both games do not have the same size deck. 
+
+
+
+
+
+
+
+Analysis - 
+
+Two of my tests failed.  Initially it would seem that 3 cards were added to the hand, but the smithy card was trashed.  However, After investigating the code, I saw:  
+
+!!! SMITHY BUG #1 - Smithy Card not discarded:
+
+The smithy card is not discarded at the end of the function.  
+
+!!! SMITHY BUG #2 - Only two cards added to the hand.
+
+The for loop only goes from 0 to 1 adding only two cards.
+
+Coverage - function effectSmithy called 1 returned 100% blocks executed 100%
+
+My tests executed 100% of the blocks from the function effectSmithy().  This isn't a surprising result from black box testing.  It would only be alarming if it was less than 100%. 
+
+*********************
+
+Testing Adventurer card effect
+
+*********************
+
+
+CardTests
+--------------
+
+
+Test Failed, something else happened; 2 cards were not added to the hand. 
+
+Test Passed, first card added was a treasure card. 
+
+Test Passed, second card added was a treasure card. 
+
+Test Passed, At least 1 card was added to the discard. 
+
+Test Passed, Coins were not altered. 
+Test Passed, Buys were not altered. 
+
+Test Failed, something else happened; Player 1 from both games do not have the same size deck. 
+
+Random Tests
+--------------
+
+Test 1 Check to see if 2 cards were added to the hand   -- PASSED 0 out of 1000.  0%.
+
+Test 2 Check to see if the first card was a treasure    -- PASSED 1000 out of 1000.  100%.
+
+Test 3 Check to see if the second card was a treasure   -- PASSED 1000 out of 1000.  100%.
+Test 4 Check to see if the discard contains more cards  -- PASSED 999 out of 1000.  99%.
+
+Test 5 Check if Actions were decreased by 1             -- PASSED 0 out of 1000.  0%.
+
+Test 6 Check if Coins were unaltered                    -- PASSED 1000 out of 1000.  100%.
+
+Test 7 Check if Buys were unaltered                     -- PASSED 1000 out of 1000.  100%.
+
+Test 8 Check if deck total is unaltered                 -- PASSED 0 out of 1000.  0%.
+
+Analysis - 
+
+The tests either all passed or all failed eith the exception of #4 which failed only once in 1000 times.  That is peculiar.   After investigating the code, and the results of my random tests (individual tests not shown): 
+
+!!!  ADVENTURER BUG #1 - Too many cards added to hand:
+
+The drawn treasure variable is set to run until 4 treasure cards are added to the hand instead of 2.  Then when the adventurer card is discarded, the net gain is +4.  This could be seen from my individual random tests.  In each case the hand total was 3 higher than expected (expected = +1).  What caused the additional card?  See next bug.
+
+!!!  ADVENTURER BUG #2 - Adventurer card not discarded:
+
+This bug was in the original code, so it may not have been recognized in the refactor.  Despite the fact that 2 additional treasure cards were added, there were 3 more cards than expected.  That is because we expected the adventurer card to be discarded, and it wasn't.  Therefore, there were 4 more cards than before the adventurer card was called. 
+
+As for the other tests that failed:
+* It turns out that the number of actions is not directly decremented in the card function, so this test should be disregarded.
+
+* It was believed that the deck count was all the cards adding up the draw pile, the discard pile and the hand, but it is actually the draw pile.  This test was also worthless and the it should've been expected that it would be different.
+
+* The one case in test 4 that it failed was likely a case where the first 4 cards drawn were treasure cards.  The odds of this are extremely low, so it makes sense that it happened only once in 1000 tries.
+
+Coverage - function effectAdventurer called 1002 returned 100% blocks executed 94%
+
+My tests executed 100% of the blocks from the function effectAdventurer().  The fact that only 94% of the code was executed was a clue to the discovered bug.
+
+

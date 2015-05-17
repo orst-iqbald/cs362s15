@@ -1,0 +1,136 @@
+/*-------------------------------------------------------------------------
+ * Daryl Cooke - CS362
+ * Teammate testing
+ * 5/15/2015
+ *-----------------------------------------------------------------------*/
+
+/*-------------------------------------------------------------------------
+ * David Crismand -- Code testing
+ *-----------------------------------------------------------------------*/
+
+Smithy card testing:
+ To run my tests on Davids Smithy card I only had to change the function 
+ name in my testing code. No major changes were required.
+
+ 100% statement and 100% branch coverage of pSmithy() using cardtest1.c
+ smithyTest(): HandCount was not properly incremented.
+ bug1: It is only drawing 2 cards instead of 3.
+
+Adventurer card testing:
+ To run my tests on Davids Adventurer card I only had to change the function
+ name in my testing code. No major changes were required.
+
+ 100% statement coverage and 87% branch coverage of pAdventurer() using
+ cardtest2.c
+ adventureTest(): There was a problem putting treasure cards into the players
+ hand
+
+ bug1: It is looping up until it has drawn 3 treasure cards.
+ bug2: There is a discardCard() call in the shuffle control loop for some reason,
+ 	   this is going to cause an unintentional loss of cards.
+ bug3: The cardDrawn is being improperly declared, it is pointing to the second 
+ 	   to last card drawn instead of the last.
+ bug4: estate cards are being counted as treasure cards
+ bug5: discardCard() call at the end is trsahing the card, instead of placing
+ 	   it in the played card stack
+
+Council Room testing:
+ To run my tests on Davids Concil Room card I only had to change the function
+ name in my testing code. No major changes were required.
+
+ 100% statement and 100% branch coverage of pCouncilRoom() using cardtest3.c
+ councilroomTest(): Error incrementing the number of buys
+
+ bug1: Iterating one player too far in the 'draws a card' loop, going out of
+       player count bounds
+ bug2: Incrementing number of buys everytime another player draws a card, 
+ 	   which is inadvertently increasing the current players number of buys
+ 	   to a much higher value than intended
+
+buyCard function testing:
+ 100% statement and branch coverage of buyCard() using unittest1.c
+ buycard(): All tests passed.
+
+initializeGame function testing:
+ 100% statement coverage and 98% branch coverage of initializeGame() using
+ unittest2.c
+ initializeGame(): All tests passed.
+
+shuffle function testing:
+ 100% statement and branch coverage of shuffle() using unittest3.c
+ shuffle(): All tests passed.
+
+endTurn function testing:
+ 100% statement and branch coverage of endTurn() using unittest4.c
+ endTurn(): All tests passed.
+
+randomtestadventurer function testing:
+ 100% statement and branch coverage of pAdventurer using randomtestadventurer.c
+ FAILURE: The total number of cards in the deck and discard are incorrect.
+ Prev: 165, Post: 162, Seed: 3305
+ FAILURE: The total number of played cards was not properly incremented.
+ Prev: 2, Post: 2, Seed: 3305
+ FAILURE: The number of treasure cards in the players hand is incorrect.
+ Prev: 7, Post: 4, Seed: 3305
+ FAILURE: The handCount was not properly incremented.
+ Prev: 16, Post: 16, Seed: 3305
+
+randomtestcard function testing:
+ 100% statement and branch coverage of pCouncilRoom using randomtestcard.c
+ FAILURE: The number of buys was not properly incremented.
+ Prev: 4, Post: 7, Seed: 3305
+
+/*-------------------------------------------------------------------------
+ * Howard Chen -- Code testing
+ *-----------------------------------------------------------------------*/ 	   
+
+Smithy card testing:
+ To run my tests on Howards Smithy card I had to change the function call 
+ by adding the current players turn, and swapping around the call parameters.
+
+ 100% statement and 100% branch coverage of cardSmithy() using cardtest1.c
+ smithyTest(): Smithy was not discarded properly
+
+ bug1: Smithy is not in the played card pile
+ bug2: Since smithy is still in the hand, an inappropriate number of cards
+ 	   were drawn
+
+Adventurer card testing:
+ To run my tests on Howards Adventurer card I had to change the function call
+ by adding the current players turn, and removing the hand position (suspicious).
+
+ 100% statement coverage and 73% branch coverage of cardAdventurer using
+ cardtest2.c
+ adventureTest(): There was a problem putting treasure cards into the players hand
+ adventureTest(): Adventurer card was not discarded from hand
+
+ bug1: Treasure card count is incorrect
+ bug2: Adventurer ard was not discarded (We dont even know the hand positon!)
+
+buyCard function testing:
+ 100% statement and branch coverage of buyCard() using unittest1.c
+ buycard(): All tests passed.
+
+initializeGame function testing:
+ 100% statement coverage and 98% branch coverage of initializeGame() using
+ unittest2.c
+ initializeGame(): All tests passed.
+
+shuffle function testing:
+ 100% statement and branch coverage of shuffle() using unittest3.c
+ shuffle(): All tests passed.
+
+endTurn function testing:
+ 100% statement and branch coverage of endTurn() using unittest4.c
+ endTurn(): All tests passed.
+
+randomtestadventurer function testing:
+ 100% statement and branch coverage of cardAdventurer() using randomtestadventurer.c
+ FAILURE: The total number of cards in the deck and discard are incorrect.
+ Prev: 165, Post: 161, Seed: 3305
+ FAILURE: The total number of played cards was not properly incremented.
+ Prev: 2, Post: 2, Seed: 3305
+ FAILURE: The number of treasure cards in the players hand is incorrect.
+ Prev: 7, Post: 9, Seed: 3305
+ FAILURE: The handCount was not properly incremented.
+ Prev: 16, Post: 20, Seed: 3305

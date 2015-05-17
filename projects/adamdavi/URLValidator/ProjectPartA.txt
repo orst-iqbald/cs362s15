@@ -1,0 +1,36 @@
+Andrew Kasnevich
+Anthony Smreker
+David Adams
+May 10, 2015
+
+CS 362 Final Project - Part A - Review of Existing Test Case(s)
+
+a) Explain testIsValid Function of UrlValidator test code
+
+This function systematically builds URLs in 4 separate parts: scheme; authority; path; and query.  Using predetermined lists, the function assembles these parts according to this formula:  <scheme>://<authority><path>?<query>
+
+Additionally, the authority can be broken down into “<authority>:<port>”, where <port> is a port number included with the authority section, so there are formally 4 parts, but actually 5 parts are used to build the url. 
+
+The UrlValidatorTest class has hard-coded options for each of these 5 parts that are included at the bottom of the class. The function testIsValid takes these hard-coded values and randomly matches them together in a way that follows the above formula so that all of the possible combinations of the values are covered. This tests for all of the possible combinations, and this process is why the function tests a large number of urls.  
+
+The urls are evaluated based on boolean tests, and the function determines that these urls are valid only if each test is passed.  Then the function displays the valid urls and updates the testObjects array to track the testing.  
+
+b) Give how many total number of urls it is testing
+
+After using the debugger in Eclipse to following what all was going on in the code for the URL Validator, the console display was showing that the testIsValid function was testing 1,890 urls, however, only the valid urls are printed to the console.  After adding a url counter to count the number of both the valid and invalid urls, we found that 31,920 urls were tested by the function.  
+
+c) Explain how it is building all the urls
+
+As explained above, the urls are built based on a four-part formula (scheme, authority, path, and query), although the “authority” part may considered as having two subparts (authority and port).  Using predetermined lists, the function assembles these parts according to this formula:  <scheme>://<authority><path>?<query>
+
+d) Give an example of valid url being tested and an invalid url being tested by testIsValid() method
+
+An example of a valid url is:        http://www.google.com/test1/
+
+An example of an invalid url is:    http://www.google.com:-1/test1/
+
+e) Do you think that a real world test (URL Validator's testIsValid() test in this case) is very different than the unit tests and card tests that we wrote (in terms of concepts & complexity)? Explain in few lines.
+
+In terms of concept, the real world test shown in the UrlValidatorTest class is similar to what we have done in testing the cards and functions within the dominion code, and we do not consider it to be significantly more complicated conceptually.  That is, the testIsValid() function is performing the same conceptual operation, because it is testing various different inputs and various combinations of inputs to find ones that could break the test. 
+
+In terms of complexity, we consider the tests shown in the UrlValidatorTest to be more complex than the tests we have created for the dominion code. This likely results from the fact that the object oriented nature of the Java code makes the tests harder to understand and determine the exact operations that are being performed.

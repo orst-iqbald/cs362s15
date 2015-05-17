@@ -1,0 +1,53 @@
+﻿CS362 Spring2015 Project Part A
+Team 9
+Sonja Olson olsonso
+Cameron Nichol nichocam
+Greg Vandelune vandelug
+
+
+Two functions:
+public void testIsValid() 
+        First immediately calls the testIsValid with parameters 
+public void testIsValid(Object[] testObjects, long options)
+        The TestIsValid() method, according to the Apache Commons
+        Source Code, functions to"Create set of tests by taking the 
+        testUrlXXX arrays and running through all possible permutations 
+        of their combinations." It does this by using 5 sections of a URL and combines
+        those sections to make test urls. 
+        The five parts in this code are:
+                URL Scheme - http://
+                URL Authority - www.google.com
+                URL Port - 80
+                URL Path - /test
+                URL Query 
+        Each section of the arrays have possible values which are stored and checked
+        to see if the item is valid.
+
+
+
+
+Total # of Tested URLS: 2 URLS are tested to begin with:
+http://www.google.com
+http://www.google.com/ 
+
+
+The test code builds additional URL’s using permutations of values stored in arrays, testURLScheme = 9, testURLAuthority = 19, testURLPort = 7, testPath =10, testURLQuery = 3. Mathematically, there should be 9 x 19 x 7 x 10 x 3 = 35,910 different permutations of the built-up URLs. 
+        
+How are the URLs built: 
+        The URLs are built segmentally in an assembly line style fashion. Each section of the URL is tested as it’s built to ensure that it valid in and of itself.
+
+
+Example of a valid URL: 
+        http://www.google.com
+* scheme (http://) is valid
+* authority (www.google.com) is valid
+* port, path, and query are blank (“”) and also valid
+
+
+Example of an invalid URL: 
+        http:/www.google.com
+* scheme (http:/) is invalid therefore the URL is invalid
+
+
+Differences between Real World Testing and our Tests:
+Our testing is perfunctory at best and only covers a specific style of URL. Real world testing would cover anything that could be typed into an address bar and be expected to take the user to a website.
