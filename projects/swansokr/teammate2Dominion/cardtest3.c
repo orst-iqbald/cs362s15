@@ -16,7 +16,7 @@ int checkCutpurse(int handPos, int player, int otherP, struct gameState *post) {
   struct gameState pre;
   memcpy(&pre, post, sizeof(struct gameState));
 
-  int r = play_cutpurse(post, player, handPos);
+  int r = cutpurseEffect(cutpurse, 0, 0, 0, post, handPos, 0);
   assert(r == 0);
 
   //Played cards and current player hand
@@ -104,7 +104,7 @@ int main () {
     printf("\nSetup: hand (both players) %d, discard %d, handPos %d, ", handCount[i], discardCount[i], handPos[i]);
 
     G.numPlayers = 2;
-   
+    G.whoseTurn = player;
     G.handCount[player] = handCount[i];
     G.coins = 0;
     G.handCount[otherP] = handCount[i];

@@ -17,7 +17,7 @@ int checkAdventurer(int handPos, int player, struct gameState *post) {
   memcpy(&pre, post, sizeof(struct gameState));
 
   int r, temphand[MAX_DECK];
-  r = play_adventurer(post, player, handPos, temphand);
+  r = adventurerCardEffect(post);
   assert(r == 0);
 
   int i, count = 0, deckPlusDiscard;

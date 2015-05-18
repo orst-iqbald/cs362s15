@@ -18,7 +18,7 @@ int checkSeaHag(int handPos, int player, int otherP, struct gameState *post) {
   memcpy(&pre, post, sizeof(struct gameState));
   
   int deckPlusDiscard = post->deckCount[otherP] + post->discardCount[otherP];
-  int r = cardEffect(sea_hag, 0, 0, 0, post, handPos, 0);
+  int r = sea_hagCardEffect(post);
   assert(r == 0);
 
   //Played cards and current player hand

@@ -18,7 +18,7 @@ int checkCutpurse(int handPos, int player, int otherP, struct gameState *post) {
   struct gameState pre;
   memcpy(&pre, post, sizeof(struct gameState));
 
-  int r = play_cutpurse(post, player, handPos);
+  int r = cardEffect(cutpurse, 0, 0, 0, post, handPos, 0);
   assert(r == 0);
 
   //Played cards and current player hand

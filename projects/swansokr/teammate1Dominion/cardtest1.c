@@ -16,7 +16,7 @@ int checkSmithy(int handPos, int player, struct gameState *post) {
   memcpy(&pre, post, sizeof(struct gameState));
 
   int r;
-  r = play_smithy(post, player, handPos);
+  r = smithyCardEffect(post, handPos);
   assert(r == 0);
 
   if (pre.deckCount[player] + pre.discardCount[player] < 3) {

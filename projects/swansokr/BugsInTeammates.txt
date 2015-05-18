@@ -1,0 +1,27 @@
+Bugs found in teammate1Dominion (jenkitay) code.
+
+In the Smithy card (smithyCardEffect())
+	-The hand count is incorrect in all the test cases
+		-This seems to be because the number of cards drawn is the currentPlayer number, not simply 3.
+		
+In the Adventurer card (adventurerCardEffect())
+	-The deck count is incorrect in all the test cases
+		-This seems to be because the Sea Hag code was copied into the adventurerCardEffect function.
+		
+In the Sea Hag card (sea_hagCardEffect())
+	-There is never a curse placed on the top of the opponent's deck (in all test cases)
+		-This seems to be because the Adventurer code was copied into the sea_hagCardEffect function.
+		
+		
+Bugs found in teammate2Dominion (peterrya) code.
+
+In the Adventurer card (adventurerEffect())
+	-The deck count is incorrect in all the test cases
+		-This seems to at least be because the Adventurer card is not being discarded
+
+In the Cutpurse card (cutpurseEffect())
+	-Fails because the opponent's handCount is wrong, though it fails only in the test cases where the 
+		opponent had at least one copper in their hand
+		-This seems to be because when it is not their turn, a player has no cards in their hand (because 
+			in endTurn() the old hand is discarded and the NEXT player's hand is drawn: it should be that
+			the (old) current player should draw a new hand)
