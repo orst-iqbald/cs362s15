@@ -1,0 +1,21 @@
+Ali Payne
+
+randomtestadventure.c 
+
+Lines executed:38.80% of 652
+Branches executed:38.37% of 417
+Taken at least once:32.13% of 417
+No calls
+
+I seemed to have got the exact same testing back on unit and random testing. I know I spent a great deal of time on the unit test compared to the randdom test so maybe I just did a good job on the unit test. 
+
+I will say that the random test does a better job on showing the errors of my code just because it runs the errors more times than unit test. 
+
+
+randomtestcard.c 
+
+Lines executed:38.80% of 652
+Branches executed:38.37% of 417
+Taken at least once:32.13% of 417
+
+For some strange reason they both got the same test coverage which I feel is due to the fact I went about testing in the same manner and both adventure and mine deal with trashing hands and treasure cards. But still its kind of strange to me that they are the exact same there is a good chance I didn’t make an ideal random tester. 

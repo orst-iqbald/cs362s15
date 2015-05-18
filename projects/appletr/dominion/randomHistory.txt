@@ -1,0 +1,5 @@
+The random tests didn't actually expand the coverage too much, since they were very similar to the 
+previous set of tests. The only advantage was that we got a lot more breadth of coverage by passing
+in various different hands, decks, and discard piles to the same decks. Unfortunately I had trouble
+executing the tests due to a seg fault occurring somewhere in the draw card function, so that was
+the only bug I found. 

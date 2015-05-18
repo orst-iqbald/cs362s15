@@ -6,7 +6,7 @@ IsGameOver(): PASS when Province supply count has 1 cards
 IsGameOver(): PASS when 3 supply counts have 0 cards
 IsGameOver(): PASS when all supply counts have 1 card
 File 'dominion.c'
-Lines executed:2.07% of 724
+Lines executed:2.07% of 723
 dominion.c:creating 'dominion.c.gcov'
 
 unittest2.c:
@@ -22,7 +22,7 @@ PASS Score for second test is correct
 PASS Score for third test is correct
 FAIL Score for fourth test is incorrect
 File 'dominion.c'
-Lines executed:24.86% of 724
+Lines executed:24.90% of 723
 dominion.c:creating 'dominion.c.gcov'
 
 unittest3.c:
@@ -50,7 +50,7 @@ PASS: card successfully removed
 played 387389207
 PASS: card successfully removed
 File 'dominion.c'
-Lines executed:26.80% of 724
+Lines executed:26.83% of 723
 dominion.c:creating 'dominion.c.gcov'
 
 unittest4.c:
@@ -64,7 +64,7 @@ PASS: gained to discard
 PASS: gained to deck
 PASS: gained to hand
 File 'dominion.c'
-Lines executed:29.14% of 724
+Lines executed:29.18% of 723
 dominion.c:creating 'dominion.c.gcov'
 
 cardtest1.c:
@@ -74,7 +74,7 @@ FAIL: 3 cards added
 Test player 1.
 FAIL: 3 cards added
 File 'dominion.c'
-Lines executed:29.83% of 724
+Lines executed:29.88% of 723
 dominion.c:creating 'dominion.c.gcov'
 
 cardtest2.c:
@@ -86,13 +86,13 @@ PASSED: 2 treasure cards added
 PASSED: 2 treasure cards added
 PASSED: 2 treasure cards added
 Test player 1.
-FAIL: 2 treasure cards added
-FAIL: 2 treasure cards added
-FAIL: 2 treasure cards added
-FAIL: 2 treasure cards added
-FAIL: 2 treasure cards added
+PASSED: 2 treasure cards added
+PASSED: 2 treasure cards added
+PASSED: 2 treasure cards added
+PASSED: 2 treasure cards added
+PASSED: 2 treasure cards added
 File 'dominion.c'
-Lines executed:32.73% of 724
+Lines executed:32.64% of 723
 dominion.c:creating 'dominion.c.gcov'
 
 cardtest3.c:
@@ -108,7 +108,7 @@ PASS: +2 cards
 PASS: 2 cards trashed from hand
 PASS: 2 cards trashed from game
 File 'dominion.c'
-Lines executed:34.67% of 724
+Lines executed:34.58% of 723
 dominion.c:creating 'dominion.c.gcov'
 
 cardtest4.c:
@@ -120,7 +120,7 @@ Test player 1.
 PASS: Choice 1 was trashed
 PASS: Choice 2 was added
 File 'dominion.c'
-Lines executed:37.02% of 724
+Lines executed:36.93% of 723
 Branches executed:45.82% of 419
 Taken at least once:31.74% of 419
 No calls

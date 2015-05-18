@@ -6,45 +6,66 @@
 #include "rngs.h"
 #include <stdlib.h>
 
-#define TESTCARD "village"
+#define TESTCARD "great_hall"
 
 int main() {
+    int i, j;
+    int z = 0;
     int newCards = 3;
-    int discardedCard = 1;
+    int discarded = 1;
     int shuffledCards = 0;
     int cardDrawn = 0;
-    int currentPlayer=0;
-    int i = 0;
     int handpos = 0;
     int seed = 1000;
-    int numPlayers = MAX_PLAYERS;
+    int numPlayers = 2;
     int thisPlayer = 0;
-    struct gameState* G;
-    struct gameState* testG;
+    int currentPlayer;
+    int temphand[MAX_HAND];
+    struct gameState G, testG;
     int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
             sea_hag, tribute, smithy, council_room};
-    
-    // set game state and player cards
-    G = newGame();
-    initializeGame(numPlayers, k, seed, G);
-    
-    // copy the game state to a test case
-    testG = newGame();
-    memcpy(testG, G, sizeof(struct gameState));
+
+
+    // initialize a game state and player cards
+    initializeGame(numPlayers, k, seed, &G);
+
+    //copy the game state to a test case
+    memcpy(&testG, &G, sizeof(struct gameState));
 
     printf("Testing Card: %s \n", TESTCARD);
 
-    village_card(thisPlayer, testG, handPos);
+    //Stores previous amount of discarded cards
+    int prevDiscard = testG.discardCount[thisPlayer];
 
-        printf("Testing hand count\n");
-    if(testG->handCount[thisPlayer] == G->handCount[thisPlayer] + 1){
-        printf("HAND COUNT PASSES\n");
-    }else{
-        printf("HAND COUNT FAILS\n");
-    }
+    //Stores previous number of cards in player hand
+    int prevHand = testG.handCount[thisPlayer];
 
-    printf("Current hand count = %d, expected = %d\n", testG->handCount[thisPlayer], G->handCount[thisPlayer] + 1);
+    //Stores number of actions
+    int prevActions = testG.numActions;
 
-    printf("%s card finished with tests.\n", TESTCARD);
+    //calls the great_hall card
+    great_hallcard(thisPlayer, handpos, &testG);
     
+    printf("Previous Card = %d, Expected = %d, Final = %d\n", prevHand, prevHand, testG.handCount[thisPlayer]); //Because one card is discarded
+    printf("Previous Actions = %d, Expected = %d, Final = %d\n", prevActions, prevActions + 1, testG.numActions);
+    //printf("Previous Discard = %d, Expected = %d, Final = %d\n", prevDiscard, prevDiscard + 1, testG.discardCount[thisPlayer]);
+
+    //Asserts that the player drew 1 card.
+    printf("Asserting the correct number of cards in hand.\n");
+    assert(testG.handCount[thisPlayer] == (prevHand));
+
+    //Asserts that the number of actions the player has is at least 2.
+    //assert(testG.numActions == prevActions + 1);
+    printf("Asserting the correct number of actions given.\n");
+    if(testG.numActions == prevActions + 1){
+        printf("Action test PASSED!\n");
+    }else{
+        printf("Action test FAILED!\n");
+    }
+    //Asserts that the great_hall card was discarded.
+    //assert(testG.discardCount[thisPlayer] == (prevDiscard + 1));
+
+    printf("%s card passed all tests.\n", TESTCARD);
+
     return 0;
+}

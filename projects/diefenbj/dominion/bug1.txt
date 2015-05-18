@@ -1,2 +1,0 @@
-I found a bug in dominion.c in the scoreFor() function - it checks
-discardCount for both the deck and the discard point tallying.

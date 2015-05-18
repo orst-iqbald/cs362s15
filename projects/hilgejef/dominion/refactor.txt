@@ -15,12 +15,14 @@ two bugs:
      state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temp_hand[z-1]; 
      is instead:
      state->discard[currentPlayer][state->discardCount[currentPlayer++]]=temp_hand[z-1]; 
+**TEMPORARILY REMOVED
 
 Great Hall:
 
 Great Hall separated into its own function.  However, the function introduces
 a bug in which when discardCard is called, handPos and currentPlayer are
 swapped in the arguments.
+**TEMPORARILY REMOVED
 
 Cutpurse:
 

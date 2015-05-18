@@ -69,6 +69,18 @@ cardtest4: cardtest4.c dominion.o rngs.o
 	cardtest4
 	gcov -b dominion.c
 
+randomadv: randomtestadventurer.c dominion.o rngs.o
+	truncate -s 0 randomtestadventurer.out
+	gcc -o randomtestadventurer randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+	randomtestadventurer >> randomtestadventurer.out
+	gcov -b dominion.c >> randomtestadventurer.out
+	
+randomcard: randomtestcard.c dominion.o rngs.o
+	truncate -s 0 randomtestcard.out
+	gcc -o randomtestcard randomtestcard.c dominion.o rngs.o $(CFLAGS)
+	randomtestcard >> randomtestcard.out
+	
+
 unittestresults.out: unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c cardtest2.c cardtest3.c cardtest4.c dominion.c rngs.o
 	truncate -s 0 unittestresults.out	
 	echo "unittest1.c:" >> unittestresults.out

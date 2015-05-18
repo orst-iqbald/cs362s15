@@ -24,7 +24,7 @@ int main() {
     int handpos = 0;
     int res;      //return value of function
 		
-		printf("\ncardtest1\n");
+	printf("\ncardtest1\n");
     
     //play smithy card when it's the only card in the player's hand
     state->hand[player][0] = smithy;
@@ -34,7 +34,7 @@ int main() {
     assert(res == 0);
     assert(state->deckCount[player] == 2);
     if (state->discardCount[player] != 1)
-				printf("discardCount = %i, expected 1\n", state->discardCount[player]);
+		printf("discardCount = %i, expected 1\n", state->discardCount[player]);
     assert(state->handCount[player] == 3);
     
     return 0;

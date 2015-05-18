@@ -1,0 +1,24 @@
+Adventurer Random Test:
+-----------------------
+I noticed there are 3 major branches.
+
+*Empty deck
+*<2 treasures drawn
+*>2 treasures drawn
+
+To ensure these are regularly hit by testing I randomized the deck size and the contents of the deck.
+This is done with the randomizeDeck() function.
+
+The purpose of this unit test is to see if the cards are correctly transferred from the deck to the
+discard deck. It should have a greater coverage compared to last time as last time there was no effort
+to randomize the deck size. So we should cover the empty deck branch this time as opposed to last time
+with not covering it.
+
+Garden Random Test:
+-----------------------
+There is one branch.
+
+I give it a random deck with random contents of random size. The handsize is also random. I have not
+tested this in the past so I cannot say whether or not I have better coverage. But I think I nailed
+it with 100% branch coverage. I believe the randomizeDeck() function will ensure I hit all the
+logic branches.

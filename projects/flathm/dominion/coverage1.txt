@@ -43,7 +43,7 @@ unittest3.c
 	there is not a similar count in the fullDeckCount function.
 	Branch 27 was taken 0%: this means one of the boundary branches were not covered.
 	
-unittest4.ca
+unittest4.c
 	lines executed: 96.30% of 27
 	branches executed: 100% of 20
 	
