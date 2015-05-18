@@ -1,0 +1,60 @@
+/*******************************************************************************
+- Taylor Jenkins
+- jenkitay@onid.oregonstate.edu
+- CS 362 - Software Engineering II
+- Assignment 5
+- filename: BugFixes.txt
+- Description: A report of bug fixes performed in teammates & my dominion code.
+*******************************************************************************/
+
+Fixed bug 1 in Ryan Peterson's code, by correctly calling smithy card with the
+   currentPlayer,  on line 935 of dominion.c, instead of with the nextPlayer. 
+   This resolved two of the issues from the bug 2 report. 
+
+Fixed bug discovered while debugging bug 2: The card following smithy is
+   discarded(added to playedCards), instead of smithy. The Smithy card is now 
+   correctly added. Bug remainder of bug 2 as described below still exists, not 
+   sure of correct fix:
+
+   The discard count was still not increased by 1, indicating additional bugs. 
+   Test 3: discardCount count not increased by 1, Expected: 5. Returned: 4.
+   I ran GDB, and discovered that after drawing three cards, state-hand[0][1] 
+   held an extra card, which was not accounted for by state->handCount[0]. Also,
+   the discardCard() function was called with handPos of 1, instead of 0, the
+   current position of the Smithy card. (This can be fixed by changing hanPos+1 
+   to simply handPos in the function call to discardCard()).  At the end of 
+   stepping through the smithyEffect function, I realized that the discardCard() 
+   function places discarded cards in the playedCards collection, And I'm not 
+   certain if the discard[player] collection should be updated by the 
+   discardCard() function, or the endTurn() function. Do all played/discarded 
+   cards during a turn go into the playedCards collection until the end of the 
+   turn, and if not, at what point do they get placed into the discard pile. One 
+   thing is clear, and that is that the discard pile is not being updated.
+
+Fixed bug 3 in Ryan Peterson's code.
+   While debugging, I discovered and fixed a few bugs in my test code that 
+   displayed the incorrect expected value of other player's hand count. I had 
+   also incorrectly assumed that when a hand shrunk, it would be overwritten 
+   with a -1, but that was not the case, so I adjusted my test to compare hand 
+   size rather than card value for some tests.
+   
+   I discovered that when no coins were found in either the deck or discard pile
+   when the adventurer card was played, the hand size would change though it
+   should have remained unchanged.
+   
+   The issue I discovered was that the shuffle function only shuffled the deck, 
+   so I had to move the discard to the deck, and once I did that, all tests
+   passed.
+   
+Fixed Bug 1 in Kristin Swanson's code, in which all but one non-treasure cards,
+   drawn during play of the adventurer card, were placed in the discard pile. 
+   The issue was a simple logic error in the final while loop of the 
+   play_adventurer() function. I changed while(z-1>0) to while(z>0).
+   
+Fixed Bug 2 in Kristin Swanson's code in which the discard flag was set to 1, 
+   causing smithy card to be trashed rather than discarded. I set it to 0.
+   
+Debugging my own code:
+   
+   
+   

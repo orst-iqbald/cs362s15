@@ -190,7 +190,9 @@ int main(int argc, char *argv[])
          
          
          // play adventurer card
-         adventurerCardEffect(&state);
+         // adventurerCardEffect(&state);
+         int tempHand[MAX_HAND];
+         play_adventurer(&state, p, handPos, &tempHand);
          
          
          

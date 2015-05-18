@@ -190,7 +190,8 @@ int main(int argc, char *argv[])
          
          
          // play adventurer card
-         adventurerCardEffect(&state);
+         // adventurerCardEffect(&state);
+         adventurerEffect(&state, handPos);
          
          
          
@@ -239,7 +240,7 @@ int main(int argc, char *argv[])
                #if (NOISY_TEST == 1)
                printf("FAIL Test 3a: discardCount not increased by %d\n", numcardsdrawn - 2);
                printf("\tExpected: %d. Returned: %d\n"
-                  , statecpy.discardCount[p] + numcardsdrawn - 2, state.discardCount[p]);
+                  , statecpy.discardCount[p] + 2, state.discardCount[p]);
                #endif
             }
          }

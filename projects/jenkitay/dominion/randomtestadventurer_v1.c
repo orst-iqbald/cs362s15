@@ -28,7 +28,7 @@ gcc -g -Wall -std=c99 -fpic -coverage -lm randomtestadventurer.c dominion.o rngs
 
 int randrange(int min, int max);
 
-// int adventurerCardEffect(struct gameState *state);
+int adventurerCardEffect(struct gameState *state);
 
 int main(int argc, char *argv[])
 {	
@@ -62,8 +62,6 @@ int main(int argc, char *argv[])
    int failcount4 = 0;
    int failcount5 = 0;
    int randtestseed = 0;
-   int printcount = 0;
-   int addedcoins = 0;
    
    srand(randtestseed);
     
@@ -181,29 +179,69 @@ int main(int argc, char *argv[])
             }
          }
          foundcoins = foundcoinsindeck + foundcoinsindiscard;
-         if (foundcoins > 2) {
-            addedcoins = 2;
-         }
-         else {
-            addedcoins = foundcoins;
-         }
          
+         // print preconditions
+         #if (NOISY_TEST == 1)
+         printf("\n\nTest preconditions:\n"
+               "\tnumPlayers = %d\n"
+               "\twhoseTurn = %d\n"
+               "\thandCount = %d\n"
+               "\tTop deck card = %d\n"
+               "\tdeckCount = %d\n"
+               "\tTop discard card = %d\n"
+               "\tdiscardCount = %d\n"
+               "\tplayedCardCount = %d\n"
+               "\tfoundcoinsindeck = %d\n"
+               "\tfoundcoinsindiscard = %d\n",
+               statecpy.numPlayers,
+               statecpy.whoseTurn,
+               statecpy.handCount[p],
+               statecpy.deck[p][statecpy.deckCount[p] - 1],
+               statecpy.deckCount[p],
+               statecpy.discard[p][statecpy.discardCount[p] - 1],
+               statecpy.discardCount[p],
+               statecpy.playedCardCount, 
+               foundcoinsindeck,
+               foundcoinsindiscard);
+         
+         #endif
          
          // play adventurer card
          adventurerCardEffect(&state);
          
+         // print post conditions
+         #if (NOISY_TEST == 1)
+         printf("\nTest postconditions:\n"
+               "\tnumPlayers = %d\n"
+               "\twhoseTurn = %d\n"
+               "\thandCount = %d\n"
+               "\tTop deck card = %d\n"
+               "\tdeckCount = %d\n"
+               "\tTop discard card = %d\n"
+               "\tdiscardCount = %d\n"
+               "\tplayedCardCount = %d\n\n",
+               state.numPlayers,
+               state.whoseTurn,
+               state.handCount[p],
+               state.deck[p][state.deckCount[p] - 1],
+               state.deckCount[p],
+               state.discard[p][state.discardCount[p] - 1],
+               state.discardCount[p],
+               state.playedCardCount);
+         
+         #endif
          
          
          // Test 1: current player hand count should now show 2 more cards
          for (int player = 0; player < numPlayers; player++) {
-            if (player == p) {
-               if (state.handCount[player] != statecpy.handCount[player] + addedcoins) {
+            if (player != p) {
+               if (state.handCount[player] != statecpy.handCount[player] + 2) {
                   fail = 1;
                   failcount1++;
                   #if (NOISY_TEST == 1)
-                  printf("FAIL Test 1a: current player handCount did not increase by %d\n", addedcoins);
+                  printf("FAIL Test 1a: current player handCount did not increase by 2\n");
                   printf("\tExpected: %d. Returned: %d\n"
-                     , statecpy.handCount[player] + addedcoins, state.handCount[player]);
+                     , statecpy.handCount[player] + 2, state.handCount[player]);
                   #endif
                }
             }
@@ -214,7 +252,7 @@ int main(int argc, char *argv[])
                   #if (NOISY_TEST == 1)
                   printf("FAIL Test 1b: handCount changed for other player\n");
                   printf("\tExpected: %d. Returned: %d\n"
-                     , statecpy.handCount[player], state.handCount[player]);
+                     , statecpy.handCount[player] + 2, state.handCount[player]);
                   #endif
                }
             }
@@ -239,7 +277,7 @@ int main(int argc, char *argv[])
                #if (NOISY_TEST == 1)
                printf("FAIL Test 3a: discardCount not increased by %d\n", numcardsdrawn - 2);
                printf("\tExpected: %d. Returned: %d\n"
-                  , statecpy.discardCount[p] + numcardsdrawn - 2, state.discardCount[p]);
+                  , statecpy.discardCount[p] + 2, state.discardCount[p]);
                #endif
             }
          }
@@ -267,102 +305,51 @@ int main(int argc, char *argv[])
          
          // Test 5: Up to 2 discovered coin cards should be added to end of hand.
          if (foundcoins >= 2) {
-            if (state.hand[p][statecpy.handCount[p]] < copper 
-                  || state.hand[p][statecpy.handCount[p]] > gold 
-                  || state.hand[p][statecpy.handCount[p]+1] < copper 
-                  || state.hand[p][statecpy.handCount[p]+1] > gold) {
+            if (state.hand[p][statecpy.deckCount[p]] < copper 
+                  || state.hand[p][statecpy.deckCount[p]] > gold 
+                  || state.hand[p][statecpy.deckCount[p+1]] < copper 
+                  || state.hand[p][statecpy.deckCount[p+1]] > gold) {
                fail = 1;
                failcount5++;
                #if (NOISY_TEST == 1)
                printf("FAIL Test 5a: Two coins were not added to hand.\n");
                printf("\tExpected: two from %d, %d, or %d. Returned: %d and %d\n", 
-                     copper, silver, gold, state.hand[p][statecpy.handCount[p]]
-                  , state.hand[p][statecpy.handCount[p+1]]);
+                     copper, silver, gold, state.hand[p][statecpy.deckCount[p]]
+                  , state.hand[p][statecpy.deckCount[p+1]]);
                #endif
             }
          }
          if (foundcoins == 1) {
-            if (state.hand[p][statecpy.handCount[p]] < copper 
-                  || state.hand[p][statecpy.handCount[p]] > gold) {
+            if (state.hand[p][statecpy.deckCount[p]] < copper 
+                  || state.hand[p][statecpy.deckCount[p]] > gold  
+                  || state.hand[p][statecpy.deckCount[p+1]] > empty) {
                fail = 1;
                failcount5++;
                #if (NOISY_TEST == 1)
                printf("FAIL Test 5b: One coin only was not added to hand.\n");
-               printf("\tExpected: one of [%d, %d, or %d]. Returned: %d\n", 
-                     copper, silver, gold, state.hand[p][statecpy.handCount[p]]);
+               printf("\tExpected: one of [%d, %d, or %d], and %d. Returned: %d and %d\n", 
+                     copper, silver, gold, empty, state.hand[p][statecpy.deckCount[p]]
+                  , state.hand[p][statecpy.deckCount[p+1]]);
                #endif
             }
          }
          if (foundcoins == 0) {
-            if (state.hand[p][statecpy.handCount[p]] > empty  
-               && state.handCount[p] != statecpy.handCount[p]) {
+            if (state.hand[p][statecpy.deckCount[p]] > empty ) {
                fail = 1;
                failcount5++;
                #if (NOISY_TEST == 1)
                printf("FAIL Test 5c: No cards should have been added to hand.\n");
-               printf("\tExpected: %d. Returned: %d\n", 
-                     statecpy.hand[p][statecpy.handCount[p]-1], state.hand[p][state.handCount[p]-1]);
+               printf("\tExpected: two from %d. Returned: %d\n", 
+                     empty, state.hand[p][statecpy.deckCount[p]]);
                #endif
             }
          }
-      
-         failcount = failcount1 
-                   + failcount2 
-                   + failcount3 
-                   + failcount4 
-                   + failcount5 ;
-            
-         if (failcount > printcount) {
-            // print preconditions
-            #if (NOISY_TEST == 1)
-            printf("\nTest preconditions:\n"
-                  "\tnumPlayers = %d\n"
-                  "\twhoseTurn = %d\n"
-                  "\thandCount = %d\n"
-                  "\tTop deck card = %d\n"
-                  "\tdeckCount = %d\n"
-                  "\tTop discard card = %d\n"
-                  "\tdiscardCount = %d\n"
-                  "\tplayedCardCount = %d\n"
-                  "\tfoundcoinsindeck = %d\n"
-                  "\tfoundcoinsindiscard = %d\n",
-                  statecpy.numPlayers,
-                  statecpy.whoseTurn,
-                  statecpy.handCount[p],
-                  statecpy.deck[p][statecpy.deckCount[p] - 1],
-                  statecpy.deckCount[p],
-                  statecpy.discard[p][statecpy.discardCount[p] - 1],
-                  statecpy.discardCount[p],
-                  statecpy.playedCardCount, 
-                  foundcoinsindeck,
-                  foundcoinsindiscard);
-            
-            #endif
-                   
-            // print post conditions
-            #if (NOISY_TEST == 1)
-            printf("\nTest postconditions:\n"
-                  "\tnumPlayers = %d\n"
-                  "\twhoseTurn = %d\n"
-                  "\thandCount = %d\n"
-                  "\tTop deck card = %d\n"
-                  "\tdeckCount = %d\n"
-                  "\tTop discard card = %d\n"
-                  "\tdiscardCount = %d\n"
-                  "\tplayedCardCount = %d\n\n\n",
-                  state.numPlayers,
-                  state.whoseTurn,
-                  state.handCount[p],
-                  state.deck[p][state.deckCount[p] - 1],
-                  state.deckCount[p],
-                  state.discard[p][state.discardCount[p] - 1],
-                  state.discardCount[p],
-                  state.playedCardCount);
-            
-            #endif
-            printcount = failcount;
-         }
       }
+      failcount = failcount1 
+                + failcount2 
+                + failcount3 
+                + failcount4 
+                + failcount5 ;
    }
    
    // Tests Complete

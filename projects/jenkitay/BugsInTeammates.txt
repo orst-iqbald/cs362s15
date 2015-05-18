@@ -1,0 +1,330 @@
+/*******************************************************************************
+- Taylor Jenkins
+- jenkitay@onid.oregonstate.edu
+- CS 362 - Software Engineering II
+- Assignment 5
+- filename: BugsInTeammates.txt
+- Description: A report of bugs found in teammates dominion code.
+*******************************************************************************/
+
+Bugs found in Ryan Peterson's code:
+
+Bug Number: 1
+
+Title: Smithy card is called with next player, instead of current player
+ 
+Class: "Serious Bug"
+ 
+Date:          May 16, 2015
+Reported By:   Taylor Jenkins
+Email:         jenkitay@onid.oregonstate.edu
+ 
+Product:       Ryan Peterson's Dominion code.
+
+Is it reproducible: Yes
+ 
+Description
+===========
+   On line 935 of dominion.c, the smithy card is called with the nextPlayer,
+   instead of the currentPlayer.
+ 
+ 
+Steps to Produce/Reproduce
+--------------------------
+   Visual inspection of code will reveal this bug. 
+ 
+ 
+Expected Results
+----------------
+   return smithyEffect(state,handPos,currentPlayer);
+ 
+ 
+Actual Results
+--------------
+   return smithyEffect(state,handPos,nextPlayer);
+ 
+ 
+Other Information
+-----------------
+
+
+--------------------------------------------------------------------------------
+
+Bug Number: 2
+
+Title: Smithy card does not update current players hand, deck, or discard pile.
+ 
+Class: "Serious Bug"
+ 
+Date:          May 16, 2015
+Reported By:   Taylor Jenkins
+Email:         jenkitay@onid.oregonstate.edu
+ 
+Product:       Ryan Peterson's Dominion code.
+
+Is it reproducible: Yes
+ 
+Description
+===========
+   When playing the smithy card, the current player's handCount does not 
+   increase by two cards, as expected, nor does the deckCount decrease by 3, nor
+   does the discardCount increase by 1.
+ 
+Steps to Produce/Reproduce
+--------------------------
+   Pre-conditions:
+    handCount = 5
+    deckCount = 4
+    discardCount = 4
+    playedCardCount = 4
+    turn = 1
+    
+   Function call: cardEffect(smithy, 0, 0, 0, &state, handPos, 0);
+ 
+ 
+Expected Results
+----------------
+   Smithy Card: 
+   There are 10 smithy cards in every game, each costing 4 coins. 
+   When a smithy card is played, three cards are drawn from the player's deck by 
+   calling the drawCard() function, and added to the player's hand. The smithy 
+   card is then discarded from the hand.
+   
+   Post-conditions:
+    handCount = 7
+    deckCount = 1
+    discardCount = 5
+    playedCardCount = 5
+    turn = 1
+ 
+ 
+Actual Results
+--------------
+   Post-conditions:
+    handCount = 5
+    deckCount = 4
+    discardCount = 4
+    playedCardCount = 5
+    turn = 1
+ 
+ 
+Other Information
+-----------------
+
+   FAIL Test 1: handCount did not increase by two
+           Expected: 7. Returned: 5
+           starting handCount = 5 Player = 1
+   FAIL Test 2: deckCount did not decrease by three
+           Expected: 1. Returned: 4
+           starting handCount = 5 Player = 1
+   FAIL Test 3: discardCount count not increased by 1
+           Expected: 5. Returned: 4
+           starting handCount = 5 Player = 1
+
+
+--------------------------------------------------------------------------------
+
+Bug Number: 3
+
+Title: The handCount changes when playing the adventurer card, and no treasure 
+   cards are found.
+ 
+Class: "Serious Bug"
+ 
+Date:          May 16, 2015
+Reported By:   Taylor Jenkins
+Email:         jenkitay@onid.oregonstate.edu
+ 
+Product:       Ryan Peterson's Dominion code.
+
+Is it reproducible: Yes
+ 
+Description
+===========
+   When playing the adventurer card, and no treasure cards are found in either 
+   the deck or in the discard pile, then the handCount should remain 
+   unchanged, but it does not.
+ 
+ 
+Steps to Produce/Reproduce
+--------------------------
+   Test preconditions:
+        numPlayers = 4
+        whoseTurn = 1
+        handCount = 45
+        Top deck card = 9
+        deckCount = 3
+        Top discard card = 18
+        discardCount = 5
+        playedCardCount = 89
+        foundcoinsindeck = 0
+        foundcoinsindiscard = 0
+        
+   adventurerEffect(&state, handPos);
+ 
+ 
+Expected Results
+----------------
+   Adventurer Card: 
+   There are 10 adventurer cards in every game, each costing 6 coins. 
+   Playing the adventurer card allows you to draw cards from your deck until you
+   have drawn 2 treasure cards. The two treasure cards are added to your hand, 
+   and all non-treasure cards are discarded. If the deck is emptied before two 
+   treasure cards are drawn, then the discard pile is shuffled, and it becomes 
+   the new deck.
+   
+   Expected postconditions:
+        numPlayers = 4
+        whoseTurn = 1
+        handCount = 33
+        Top deck card = -1
+        deckCount = 0
+        Top discard card = 9
+        discardCount = 20
+        playedCardCount = 89
+        
+        Expected: handCount should have remained 45.
+ 
+ 
+Actual Results
+--------------
+   Test postconditions:
+        numPlayers = 4
+        whoseTurn = 1
+        handCount = 33
+        Top deck card = -1
+        deckCount = 0
+        Top discard card = 9
+        discardCount = 20
+        playedCardCount = 89
+        
+   FAIL Test 1a: current player handCount did not increase by 0
+        Expected: 45. Returned: 33
+   FAIL Test 5c: No cards should have been added to hand.
+        Expected: 22. Returned: 6
+
+
+--------------------------------------------------------------------------------
+********************************************************************************
+
+Bugs found in Kristin Swanson's code:
+
+Bug Number: 1
+
+Title: Adventurer card does not discard all drawn, non-treasure cards.
+ 
+Class: "Serious Bug"
+ 
+Date:          May 16, 2015
+Reported By:   Taylor Jenkins
+Email:         jenkitay@onid.oregonstate.edu
+ 
+Product:       Kristin Swanson's Dominion code.
+
+Is it reproducible: Yes
+ 
+Description
+===========
+The adventurer card seems to discard all but one of the drawn non-treasure 
+cards.
+ 
+ 
+Steps to Produce/Reproduce
+--------------------------
+   Test preconditions:
+        numPlayers = 3
+        whoseTurn = 1
+        handCount = 1
+        Top deck card = 16
+        deckCount = 49
+        Top discard card = 14
+        discardCount = 25
+        playedCardCount = 264
+        foundcoinsindeck = 2
+        foundcoinsindiscard = 2
+ 
+ 
+Expected Results
+----------------
+   The number of discard cards is expected to be 30, but it is only 29.
+ 
+ 
+Actual Results
+--------------
+   Test postconditions:
+        numPlayers = 3
+        whoseTurn = 1
+        handCount = 3
+        Top deck card = 2
+        deckCount = 42
+        Top discard card = 25
+        discardCount = 29
+        playedCardCount = 264
+ 
+   FAIL Test 3a: discardCount not increased by 5
+        Expected: 30. Returned: 29
+ 
+Other Information
+-----------------
+
+--------------------------------------------------------------------------------
+Bug Number: 2
+
+Title: Played count and discard count are not increased by 1 when smithy is 
+played.
+ 
+Class: "Serious Bug"
+ 
+Date:          May 16, 2015
+Reported By:   Taylor Jenkins
+Email:         jenkitay@onid.oregonstate.edu
+ 
+Product:       Kristin Swanson's Dominion code.
+
+Is it reproducible: Yes
+ 
+Description
+===========
+Played count and discard count are not increased by 1 when smithy is 
+played from hand position 0, given the following preconditions.
+ 
+ 
+Steps to Produce/Reproduce
+--------------------------
+   Pre-conditions:
+       handCount = 1
+       deckCount = 4
+       discardCount = 4
+       playedCardCount = 4
+       turn = 0
+ 
+ 
+Expected Results
+----------------
+   The number of discard cards is expected to be 5, but it is only 4.
+   
+ 
+ 
+Actual Results
+--------------
+   Post-conditions:
+       handCount = 3
+       deckCount = 1
+       discardCount = 4
+       playedCardCount = 4
+       turn = 0
+ 
+   FAIL Test 3: discardCount count not increased by 1
+        Expected: 5. Returned: 4
+        starting handCount = 1 Player = 0
+   FAIL Test 4: playedCardCount count not increased by 1
+        Expected: 5. Returned: 4
+        starting handCount = 1 Player = 0
+ 
+Other Information
+-----------------
+
+
+
+
+--------------------------------------------------------------------------------
